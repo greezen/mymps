@@ -37,8 +37,20 @@ $admindir = getcwdOL();
     </td>
   </tr>
   <tr bgcolor="#ffffff">
-    <td style="background-color:#f1f5f8; width:40%">金额</td>
-    <td>&nbsp;<input name="price" class="text" value=""></td>
+    <td style="background-color:#f1f5f8; width:40%">管理费</td>
+    <td>&nbsp;<input name="manage_fee" class="text" value=""></td>
+  </tr>
+  <tr bgcolor="#ffffff">
+    <td style="background-color:#f1f5f8; width:40%">电费</td>
+    <td>&nbsp;<input name="electric_fee" class="text" value=""></td>
+  </tr>
+  <tr bgcolor="#ffffff">
+    <td style="background-color:#f1f5f8; width:40%">水费</td>
+    <td>&nbsp;<input name="water_fee" class="text" value=""></td>
+  </tr>
+  <tr bgcolor="#ffffff">
+    <td style="background-color:#f1f5f8; width:40%">其它费用</td>
+    <td>&nbsp;<input name="other_fee" class="text" value=""></td>
   </tr>
 </table>
 </div>

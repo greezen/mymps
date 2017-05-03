@@ -15,7 +15,7 @@
         </div>
     </div>
 </div>
-<form method=post onSubmit="return chkform()" name="form1" action="?part=edit&id=<?=$row['id']?>">
+<form method=post onSubmit="return chkform()" name="form1" action="?part=add">
 <div id="<?=MPS_SOFTNAME?>">
 <table width="100%"  border="0" cellspacing="0" cellpadding="0" class="vbm">
 <tr class="firstr">

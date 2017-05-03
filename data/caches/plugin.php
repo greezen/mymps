@@ -132,7 +132,7 @@ $data = array (
     'id' => '5',
     'flag' => 'property',
     'iscore' => '0',
-    'name' => '物业',
+    'name' => '物业缴费',
     'directory' => 'property',
     'disable' => '0',
     'ifrewrite' => NULL,
@@ -142,7 +142,7 @@ $data = array (
     'adminmenu' => '小区信息=property_building.php
 房号信息=property_room.php
 信息录入=property.php
-查询交费记录=property_list.php',
+查询交费记录=property.php?act=find',
     'membermenu' => NULL,
     'version' => '1.0',
     'releasetime' => '1309753960',

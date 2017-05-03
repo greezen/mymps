@@ -15,21 +15,21 @@ if (!defined("IN_ADMIN") || !defined("IN_MYMPS")) {
 }
 require_once('../plugin/property/include/Constants.php');
 require_once('../plugin/property/include/functions.php');
-$part = $part ? trim($part) : "list";
+$part = $part ? trim($part) : "add";
 $id = isset($id) ? intval($id) : "";
 chk_admin_purview(Constants::PURVIEW_ADD);
 
 if (!submit_check(CURSCRIPT . "_submit")) {
     if ($part == "list") {
-        $query = $db->query("SELECT * FROM `" . $db_mymps . "property_price`");
+        $query = $db->query("SELECT * FROM `" . $db_mymps . "property`");
         $rows_num = $db->num_rows($query);
         $per_page = 20;
         $pages_num = ceil($rows_num / $per_page);
         $page = empty($page) ? 1 : $page;
         $offset = ($page - 1) * $per_page;
-        $list = $db->getAll("SELECT * FROM `" . $db_mymps . "property_price` ORDER BY time_created DESC LIMIT $offset,{$per_page}");
-    } else if ($part == "edit") {
-        $row = $db->get_one('SELECT * FROM ' . $db_mymps . 'property_price WHERE `id` = ' . $id);
+        $list = $db->getAll("SELECT * FROM `" . $db_mymps . "property` ORDER BY time_created DESC LIMIT $offset,{$per_page}");
+    } else if (in_array($part, ['edit', 'copy'])) {
+        $row = $db->get_one('SELECT * FROM ' . $db_mymps . 'property WHERE `id` = ' . $id);
         $province = $db->get_one('SELECT * FROM ' . $db_mymps . 'province WHERE `provinceid` = ' . $row['province_id']);
         $city = $db->get_one('SELECT * FROM ' . $db_mymps . 'city WHERE `cityid` = ' . $row['city_id']);
         $city_list = $db->getAll('SELECT * FROM ' . $db_mymps . 'city  WHERE `provinceid` = ' . $row['province_id'] . ' ORDER BY displayorder ASC');
@@ -40,9 +40,24 @@ if (!submit_check(CURSCRIPT . "_submit")) {
         $room = $db->get_one('SELECT * FROM ' . $db_mymps . 'room WHERE `room_id` = ' . $row['room_id']);
         $room_list = $db->getAll('SELECT * FROM ' . $db_mymps . 'room WHERE `building_id` = ' . $row['building_id'] . ' ORDER BY display_order ASC');
 
+    } else if (isset($act)) {
+        $part = 'search';
+        $sql = "SELECT * FROM " . $db_mymps . "property p LEFT JOIN ".$db_mymps."member m ON p.uid=m.id WHERE p.status='Y' ORDER BY time_created DESC";
+        $query = $db->query($sql);
+        $rows_num = $db->num_rows($query);
+        $per_page = 20;
+        $pages_num = ceil($rows_num / $per_page);
+        $page = empty($page) ? 1 : $page;
+        $offset = ($page - 1) * $per_page;
+        $list = $db->getAll($sql . " LIMIT $offset,{$per_page}");
+        $map_pay_type = array(
+            'weixin_pay' => '微信支付',
+            'alipay' => '支付宝支付'
+        );
+
     } elseif ($part == 'del') {
         $now = time();
-        $db->query("DELETE FROM " . $db_mymps . "property_price WHERE `id` = " . $id);
+        $db->query("DELETE FROM " . $db_mymps . "property WHERE `id` = " . $id);
         $res = $db->affected_rows();
 
         if ($res > 0) {
@@ -65,19 +80,27 @@ if (!submit_check(CURSCRIPT . "_submit")) {
         write_msg('请选择小区');
     } elseif (empty($room_id)) {
         write_msg('请选择房号');
-    } elseif (empty($price)) {
-        write_msg('请输入金额');
+    } elseif (empty($manage_fee)) {
+        write_msg('请输入管理费');
+    } elseif (empty($electric_fee)) {
+        write_msg('请输入电费');
+    } elseif (empty($water_fee)) {
+        write_msg('请输入水费');
     }
 
-    $res = $db->get_one('SELECT * FROM '. $db_mymps . 'property_price WHERE `room_id` = '. $room_id);
+    $period = date('Ym');
+    $res = $db->get_one('SELECT * FROM '. $db_mymps . 'property WHERE `room_id` = '. $room_id.' AND period=\''.$period.'\'');
     if (!empty($res)) {
         write_msg('该房号信息已经存在,请勿重复添加');
     }
 
     $now = time();
-    $db->query("INSERT INTO " . $db_mymps .
-        "property_price (province_id,city_id,area_id,building_id,room_id,price,time_created,time_updated) 
-		VALUES ('{$province_id}','{$city_id}','{$area_id}','{$building_id}','{$room_id}','{$price}','{$now}','{$now}')");
+    $sql = "INSERT INTO " . $db_mymps .
+        "property (province_id,city_id,area_id,building_id,room_id,manage_fee,electric_fee,water_fee,other_fee,time_created,time_updated,period) 
+		VALUES 
+		('{$province_id}','{$city_id}','{$area_id}','{$building_id}','{$room_id}','{$manage_fee}','{$electric_fee}','{$water_fee}','{$other_fee}','{$now}','{$now}','{$period}')";
+
+    $db->query($sql);
     $res = $db->affected_rows();
 
     if ($res > 0) {
@@ -96,12 +119,16 @@ if (!submit_check(CURSCRIPT . "_submit")) {
         write_msg('请选择小区');
     } elseif (empty($room_id)) {
         write_msg('请选择房号');
-    } elseif (empty($price)) {
-        write_msg('请输入金额');
+    } elseif (empty($manage_fee)) {
+        write_msg('请输入管理费');
+    } elseif (empty($electric_fee)) {
+        write_msg('请输入电费');
+    } elseif (empty($water_fee)) {
+        write_msg('请输入水费');
     }
 
     $now = time();
-    $db->query("UPDATE " . $db_mymps . "property_price SET province_id='{$province_id}',city_id='{$city_id}',area_id='{$area_id}',building_id='{$building_id}',room_id='$room_id}',price='{$price}',time_updated='{$now}' WHERE `id`=" . $id);
+    $db->query("UPDATE " . $db_mymps . "property SET province_id='{$province_id}',city_id='{$city_id}',area_id='{$area_id}',building_id='{$building_id}',room_id='$room_id}',price='{$price}',time_updated='{$now}' WHERE `id`=" . $id);
     $res = $db->affected_rows();
 
     if ($res > 0) {
