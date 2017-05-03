@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$typename} - {$store[tname]}</title> 
+<link href="{$mymps_global[SiteUrl]}/template/spaces/store/{$store[template]}/css/style.css" type="text/css" rel="stylesheet" />
+<script src="{$mymps_global[SiteUrl]}/template/spaces/store/{$store[template]}/js/common.js"></script>
+</head>
+<body>
+{template header}
+<div class="content">
+	{template sider}
+	<div class="cright">
+		<div class="location">当前位置：{$store[location]}</div>
+		<div class="clear"></div>
+		<div class="news_main">
+		<div class="bd">
+		<ul>
+		{loop $docu $mymps}
+		<li class="item">
+		<div class="title">
+		<span class="time">({echo GetTime($mymps[pubtime])}) </span><a href="{$mymps[uri]}">{$mymps[title]}</a></div>
+		</li>
+		{loopelse}
+		<div class="clear"></div>
+		<li>暂无{$typename}！</li>
+		{/loop}
+		</ul>
+		</div>
+
+	</div>
+</div>
+</div>
+<div class="clear15"></div>
+{template footer}
+</body>
+</html>

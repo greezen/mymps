@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/aboutus.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<title>{$page_title}</title>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_search]}">
+	{mytemplate inc_head_about}
+	<div class="clear"></div>
+	<div class="faq">
+    	{php $i=1;}
+        {loop $faq_type $mymps}
+		<dl class="qlist cfix">
+		<dt><i class="b-{$i}"></i>{$mymps[typename]}</dt>
+		<dd class="cfix">
+        {loop $mymps[faq] $w}
+        <a class="{if $w[id] == $faq[id]}current{/if}" href="{$w[uri]}" title="{$w[title]}">{echo cutstr($w[title],20)}</a>
+        {/loop}
+		</dd>
+		</dl>
+		{php $i++;}
+        {/loop}
+		<div class="clear"></div>
+		<div class="faqcontent">
+			<h1>{$faq[title]}</h1>
+			<p>
+			{$faq[content]}
+			</p>
+		</div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</body>
+</html>

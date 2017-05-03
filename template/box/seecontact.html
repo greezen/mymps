@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="Content-Language" content="zh-CN"/>
+<title>zhideyao.cn</title>
+<style>
+body{ background-color:white; font-size:12px; font-family:Arial, Helvetica, sans-serif;}
+.button{ margin-left:auto; margin-right:auto; width:300px; height:40px; margin-top:40px; margin-bottom:30px;}
+.button a{ text-align:center;}
+.button a.yes{ width:148px; height:40px; display:block; font-family:"microsoft yahei"; color:#ffffff; font-size:16px; text-decoration:none; line-height:40px; float:left;}
+.button a.no{width:127px; height:40px; display:block; font-family:"microsoft yahei"; color:#444444; font-size:16px; text-decoration:none; line-height:40px;float:left; margin-left:15px;}
+
+a.yes{ background-image:url(<?php echo $mymps_global[SiteUrl]?>/images/button.gif); background-position:0 0;}
+a.yes:hover{ background-image:url(<?php echo $mymps_global[SiteUrl]?>/images/button.gif); background-position:0 -40px;}
+
+a.no{ background-image:url(<?php echo $mymps_global[SiteUrl]?>/images/button.gif); background-position:0 -80px; }
+a.no:hover{ background-image:url(<?php echo $mymps_global[SiteUrl]?>/images/button.gif); background-position:0 -120px;}
+
+li{ list-style:none; text-align:0; margin:0; padding:0;}
+img{ vertical-align:middle}
+.contact { 
+	line-height:normal;text-align:left;
+	margin:0 auto 15px auto;
+	font-size:14px;
+}
+	.contact ul{
+		padding:5px 15px 5px 15px;
+		width:493px;
+		margin-left:auto;
+		margin-right:auto;
+	}
+		.contact ul li{
+			display:block;
+			height:35px;
+			line-height:35px;
+			
+		}
+		.contact ul li span.des{
+			width:88px;
+			float:left;
+			display:block;
+			text-align:right;
+		}
+		.contact ul li span.val{
+			color:#000000;
+			float:left;
+			display:block;
+			margin-right:20px;
+		}
+		.contact ul .tips{
+			font-size:12px;
+			color:#666;
+			border-bottom:0px;
+			background-color:#f1f1f1;
+			padding:5px 15px;
+			margin-top:15px;
+			margin-bottom:10px;
+		}
+		.title{ font-family:"microsoft yahei"; text-align:center; background-color:#f9f9f9; margin-bottom:10px; padding:5px 10px; font-size:16px; overflow:hidden; font-weight:bold;}
+		.titler{font-family:"microsoft yahei"; text-align:center; background-color:#f9f9f9; margin-bottom:10px; padding:2px 10px; font-size:14px; overflow:hidden;}
+		.font a{ margin-right:10px;}
+.button{ cursor:pointer}
+</style>
+</head>
+<body>
+<?php if($view == 'yes'){?>
+	<div class="contact">
+		<ul>
+			<li class="title"><?php echo $row['title']; ?></li>
+			<li><span class="des">联系人：</span><span class="val"><?php echo $row['contact_who']; ?> </span></li>
+			<li><span class="des">联系电话：</span><span class="val" style="color:red; font-weight:bold;"><?php echo $row['tel']; ?></span> <font class="font"><a rel="nofollow" href="<?=$mymps_global[SiteUrl]?>/posthistory.php?tel=<?php echo base64_encode($row['tel']); ?>" target="_blank">查看发贴记录</a> <a target="_blank" href="http://www.ip138.com:8080/search.asp?action=mobile&mobile=<?php echo $row['tel']; ?>">查归属地</a></font></li>
+			<?php if($row['qq']){?><li><span class="des">QQ咨询：</span><span class="val"><?php echo $row['qq']; ?></span></li><? }?>
+			<?php if($row['email']){?><li><span class="des">E-mail：</span><span class="val"><?php echo $row['email']; ?></span></li><? }?>
+			<?php if($row['ip']){?><li><span class="des">发布者IP：</span><span class="val"><?php echo $row['ip']; ?></span><span style="margin-left:10px; font-size:12px; color:green"><?php echo $row['ip2area']; ?></span></li>
+			<? }?>
+			<li class="tips"><font color="#FF6600">小提示：</font>联系我时请说明是在<?php echo $mymps_global['SiteName']; ?>看到的，谢谢！
+			</li>
+		</ul>
+	</div>
+<?php }elseif($view == 'no'){?>
+	<div class="contact">
+		<ul>
+			<li class="titler">查看该信息联系方式将扣除您 <font color="red"><?php echo $row['usecoin']; ?></font> 个金币，您当前拥有 <font color="red"><?php echo $money_own ?></font> 个金币</li>
+			<li class="button">
+			<?php if($row['usecoin'] > $money_own){?>
+				<a href="<?php echo $mymps_global[SiteUrl]; ?>/member/index.php?m=pay&box=1" class="yes">火速充值金币</a>
+			<?php }else{?>
+				<a href="<?php echo $mymps_global[SiteUrl]; ?>/box.php?part=seecontact&action=delmoney&infoid=<?php echo $row[id]; ?>" class="yes">残忍滴扣除</a>
+			<?php }?>
+			 <a href="#" onclick="parent.closeopendiv();" class="no">放弃查看</a></li>
+		</ul>
+	</div>
+<?php }?>
+</body>
+</html>

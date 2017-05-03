@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+<script src="{$mymps_global[SiteUrl]}/template/default/js/uaredirect.js" type="text/javascript"></script>
+<script type="text/javascript">uaredirect("{$mymps_global[SiteUrl]}/m/index.php?mod=informaiton&id={$info[id]}");</script>
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico">
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css">
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css">
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.head_{$mymps_global[head_style]}.css">
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/information.css">
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/information_comment.css">
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<script language="javascript">var current_domain="{$mymps_global[SiteUrl]}";</script>
+<script src="{$mymps_global[SiteUrl]}/template/global/messagebox.js" type="text/javascript"></script>
+<meta name="keywords" content="{if $info[extra]}{loop $info[extra] $k $mymps}{if $mymps[value]}{$mymps[title]}{$mymps[value]},{/if}{$info[title]}{/loop}{/if}"
+<meta name="description" content="{echo cutstr(clear_html($info[content]),200)}"/>
+</head>
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_info]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head}
+<div class="body1000">
+	<div class="clear"></div>
+	<div class="location">{$location}</div>
+	<div class="clear"></div>
+	<div class="wrapper">
+      	<div class="zpwrap">
+            <div class="information_hd">
+                <div class="information_title">
+                    <span class="zptitle">
+                    {$info[contact_who]}的个人简历 - {$info[title]}</span>
+                    <span class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></span>
+                </div>
+                <div class="clearfix"></div>
+                <div class="information_time">
+                    <span class="viewhits">浏览：<font id="hit" color="red"><script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=information&id={$info[id]}"></script></font></span>
+                    <span class="begintime">发布时间：{echo get_format_time($info[begintime])}</span>
+                    <span class="manage">
+                    <a href="javascript:setbg('置顶信息',538,248,'{$mymps_global[SiteUrl]}/box.php?part=upgrade&id={$info[id]}');" style="color:red">置顶</a>
+                    <a rel="nofollow" href="javascript:setbg('收藏信息',538,270,'{$mymps_global[SiteUrl]}/box.php?part=shoucang&infoid={$info[id]}')">收藏</a>
+                    <a rel="nofollow" href="javascript:setbg('删除信息',538,270,'{$mymps_global[SiteUrl]}/box.php?part=delinfo&id={$info[id]}')" title="一旦删除将不能恢复！">删除</a>
+                    <a rel="nofollow" href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?action=edit&id={$info[id]}" target="_blank">修改</a>
+                    <a class="report" href="javascript:setbg('举报信息',470,300,'{$mymps_global[SiteUrl]}/box.php?part=report&id={$info[id]}&infotitle={$info[title]}');">举报</a>
+                    &nbsp;&nbsp;
+                    </span>
+                </div>
+              </div>
+        	<div class="clearfix"></div>
+            <div class="resume">
+            <div class="inter_resume"> 
+            
+            <p class="pline">
+            	<!--{loop $info[extra] $mymps}-->
+                {$mymps[title]}：{$mymps[value]}<span class="line"></span>
+                <!--{/loop}-->
+            </p>
+            
+            <div class="clear15"></div>
+            <div class="clear15"></div>
+            <p>
+            <!--{if $info[contactview] == 1}-->
+                <!--{if $info[usecoin] > 0}-->
+                    <a href="javascript:void(0);" onclick="setbg('查看联系方式',550,320,'{$mymps_global[SiteUrl]}/box.php?part=seecontact&infoid={$info[id]}&if_view={$info[contactview]}')" class="viewcontacts">&nbsp;&nbsp;</a>
+                <!--{else}-->
+                   <div class="zpcontact">
+                    <ul>
+                    <!--{if $info[userid]}-->
+                    <li><span>来自用户：</span>{$info[userid]} {if $member[if_corp] ==1}<img src="{$mymps_global[SiteUrl]}/template/default/images/user2.gif" align="absmiddle" title="商家"/>{/if}</li>
+                    <!--{/if}-->
+                    <li><span>联系人：</span>{$info[contact_who]} {if $info[ip2area] == 'wap'}<font class="font" color="green">手机发布</font>{else}<font class="font">{$info[ip]}</font> <font class="font" color="green">{$info[ip2area]}</font>{/if}</li>
+                    <li><span>联系电话：</span><font class="tel">{$info[telephone]}</font> <font class="font"><a rel="nofollow" href="{$info[posthistory]}" target="_blank">查看发贴记录</a></font></li>
+                    {if $info[qq]}<li><span>联系QQ：</span>{$info[qq]}</li>{/if}		
+                    {if $info[email]}<li><span>电子邮箱：</span>{$info[email]}</li>{/if}
+                    </ul>
+                    </div>
+                <!--{/if}-->
+            <!--{else}-->
+                <div class="guoqi" style="margin-top:15px;">该信息已过期，联系方式被自动隐藏</div>
+            <!--{/if}-->
+            </p>
+            <div class="clearfix"></div>
+            <p class="p">个人介绍</p>
+            <div class="pdetail">
+            {if $advertisement[type][infoad]}
+            <div class="infoaddiv">
+            <!--{loop $advertisement[type][infoad] $mymps}-->
+            <div class="infoad">{$adveritems[$mymps]}</div>
+            <!--{/loop}-->
+            </div>
+            <div class="clear"></div>
+            {/if}
+            {$info[content]}
+            </div>
+            {if $info[image]}
+           	<link rel="stylesheet" type="text/css" href="{$mymps_global[SiteUrl]}/template/default/css/jquery.lightbox.css" media="screen"/>
+            <script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/jquery.lightbox.js"></script>
+            <script type="text/javascript">
+                $(function() {
+                    $('#gallery a').lightBox();
+                });
+            </script>
+            <p class="p">风采展示</p>
+            <div class="photo_list" id="gallery">
+                <ul id="photoGroups">
+                <!--{loop $info[image] $mymps}-->
+                <li><a href="{$mymps_global[SiteUrl]}{$mymps[path]}"><img src="{$mymps_global[SiteUrl]}{$mymps[prepath]}" height="115" title="{$mymps[title]}" alt="{$mymps[title]}" /></a></li>
+                <!--{/loop}-->
+                </ul>
+            </div>
+            <div class="clear"></div>
+            {/if}
+            </div> 
+            </div>
+		</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot}
+</div>
+</div>
+<script type="text/javascript">
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+#cont{width:100%; height:auto; margin:0 auto; overflow:hidden;background:url(../images/about_bg.jpg) repeat;}
+.ico{ background:url(../images/about_icon.png);display:inline-block;}
+
+/*menu*/
+.menu{ overflow:hidden;}
+.menu li{ height:39px; line-height:39px; margin-left:-1px; border-left:1px solid #cfd1d6;border-bottom:1px solid #cfd1d6; width:25%;float:left; background:#fff; text-align:center;}
+.menu li.cur{ color:#2877d4; border-bottom:2px solid #2877d4; margin-top:-1px; line-height:40px;}
+/*nr*/
+.mbox{ border:1px solid #d6dae2;border-radius:5px; margin:10px 10px; clear:both; background:#fff;box-shadow:0px 2px 1px -1px rgba(0,0,0,.1);-webkit-box-shadow:1px 2px 1px -1px rgba(0,0,0,.1);-moz-box-shadow:1px 2px 1px -1px rgba(0,0,0,.1);}
+.mbox .tit{ height:36px; border-bottom:1px solid #cacfd7; font-size:16px; font-weight:800; line-height:36px;padding-left:10px; }
+.mbox .nobor{border:0;}
+.mabout,.mlink{ margin:10px 10px; line-height:24px;}
+.mabout{ overflow:hidden;}
+.mabout img{ max-width:98%}
+/*.mabout{ height:150px;}*/
+.mbox .more,.mbox .more-on{ 
+	border-top:1px solid #d6dae2; height:38px; color:#2a77d4; line-height:38px; text-align:center;border-radius:0px 0px 5px 5px;
+	box-shadow:inset 0 1px 0 rgba(255,255,255,1);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,1);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,1);
+	
+}
+.tlist .more,.tlist .more-on{border-top:0px solid #d6dae2;}
+.mbox .more-on{
+	background:-moz-linear-gradient(90deg, #d9dde7,#dee2e9);
+	background:-webkit-gradient(linear, 50% 100%,50% 0%, from(#d9dde7), to(#dee2e9));
+	background:-webkit-linear-gradient(90deg, #d9dde7,#dee2e9);
+	background: -o-linear-gradient(90deg, #d9dde7,#dee2e9);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#d9dde7,endColorstr=#dee2e9,grandientType=1);
+	box-shadow:inset 0 1px 0 rgba(255,255,255,.6);-webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,.6);-moz-box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+}
+/*.mbox .more .ico.mico,.mbox .more-on .ico.mico{ width:8px; height:12px;background-size:22px auto;background-position:0 -176px; margin-left:8px;}*/
+
+.mbox .more .ico.mico,.mbox .more-on .ico.mico,.mbox .more .ico.pico,.mbox .more-on .ico.pico{ width:12px; height:9px;background-size:22px auto;background-position:0 -259px; margin-left:5px;}
+.mbox .more .ico.pico,.mbox .more-on .ico.pico{background-position:0 -280px;}
+.mlink a{ margin-right:20px; line-height:24px; display:inline-block; word-spacing:normal; word-break:keep-all;}
+.mcontact{}
+.mcontact li{line-height:42px;border-bottom:1px solid #ced2da;}
+.mcontact li img{text-align:center;vertical-align:middle;margin-left:10px;}
+.mcontact li .ico.user,.mcontact li .ico.email,.mcontact li .ico.pin{background-size:20px auto; vertical-align:middle;  width:16px;height:16px;background-position:0 -61px;margin:0px 15px 0 10px;}
+.mcontact li .ico.email{background-position:0 -83px; margin-top:2px;}
+.mcontact li .ico.pin{background-position:3px -104px;}
+.mcontact li .telbg,.mcontact li .telbg-on{
+	/*width:154px;*/height:30px; line-height:30px;border:#d77f00 solid 1px; width:150px; display:inline-block;/*position:absolute;*/border-radius:4px; margin-left:0; padding:0 5px 0 10px; margin-top:5px; color:#fff; font-weight:700;
+	background:-moz-linear-gradient(90deg, #ec861f,#f99200);
+	background:-webkit-gradient(linear, 50% 100%,50% 0%, from(#ec861f), to(#f99200));
+	background:-webkit-linear-gradient(90deg, #ec861f,#f99200);
+	background: -o-linear-gradient(90deg, #ec861f,#f99200);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#ec861f,endColorstr=#f99200,grandientType=1);
+	}
+.mcontact li .telbg-on{
+	border:1px solid #a46100;
+	background:-moz-linear-gradient(90deg, #b46617,#bd6f00);
+	background:-webkit-gradient(linear, 50% 100%,50% 0%, from(#b46617), to(#bd6f00));
+	background:-webkit-linear-gradient(90deg, #b46617,#bd6f00);
+	background: -o-linear-gradient(90deg, #b46617,#bd6f00);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#b46617,endColorstr=#bd6f00,grandientType=1);
+	}
+.mcontact li .telbg .ico.tel,.mcontact li .telbg-on .ico.tel{background-size:22px auto; width:21px;height:30px;background-position:5px -28px; background-repeat:no-repeat;float:right;  padding-left:5px;/* margin-left:20px;*/border-left:1px solid #f8b55c;box-shadow:-1px 0px 0px 0px rgba(223,114,0,1);-webkit-box-shadow:-1px 0px 0px 0px rgba(223,114,0,1);-moz-box-shadow:-1px 0px 0px 0px rgba(223,114,0,1);}
+.mcontact li .telbg-on .ico.tel{border-left:1px solid #c68636;box-shadow:-1px 0px 0px 0px rgba(189,97,0,1);-webkit-box-shadow:-1px 0px 0px 0px rgba(189,97,0,1);-moz-box-shadow:-1px 0px 0px 0px rgba(189,97,0,1);}
+.mcontact li .telbox{ width:165px; display:inline-block; vertical-align:top;}
+
+.mcontact li .ico.pint,.mcontact li .ico.pint-on{background-size:22px auto; vertical-align:middle; width:22px;height:19px;background-position:0 -198px;margin:0px 15px 0 10px;}
+.mcontact li .ico.pint-on{background-position:0 -223px}
+.mnewpic{ overflow:hidden; margin-bottom:10px;}
+.mnewpic li{float:left; text-align:center; display:inline; line-height:20px; margin-left:9px; margin-top:10px;}
+.mnewpic li img{width:88px; height:66px; display:block;}
+.mbox .dot{height:25px;text-align:center;}
+.cur_i,.cur_i_last{width:8px; height:8px; overflow:hidden; display:inline-block; background:#D6DAE2; margin:0 4px; cursor:pointer;border-radius:4px;-webkit-border-radius:4px; vertical-align:middle}
+.cur_i_last,.cur_i:hover{background:#2A77D4;}

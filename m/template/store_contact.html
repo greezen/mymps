@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>{$store[tname]}{$navi[$action]} - 商家店铺 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/store.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+    {template header_search}
+	<div class="dl_nav">
+		<span><a href="index.php?cityid={$cityid}">首页</a><font class="raquo"></font><a href="index.php?mod=corp&cityid={$cityid}">商家机构</a>
+        <font class="raquo"></font><a href="index.php?mod=store&id={$store[id]}">{$store[tname]}</a>
+        </span>
+	</div>
+    
+   {template store_header}
+	
+    <div class="clearfix"></div>
+    
+    <div class="mbox userintro">
+    <p class="mbox_t" pagetitle="地理位置"> <a href="javascript:void(0)"> <b>地理位置</b> </a> </p>
+    <div class="intro">
+    	<iframe margin="0" src="{$mymps_global[SiteUrl]}/map.php?title={$store[tname]}&isshow=1&p={$store[mappoint]}&width=300&height=272" width="100%" height="382" frameborder="0"></iframe>
+    </div>
+    </div>
+
+ 	
+
+{template footer}
+</div>
+</body>
+</html>

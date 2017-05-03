@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>删除信息 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/delete.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+	{template header_search}	
+	
+	<div class="dl_nav">
+		<span>
+			<a href="index.php">首页</a>&gt;<a href="index.php?mod=member">会员中心</a>&gt;<a href="index.php?mod=delete">删除信息</a>
+		</span>
+	</div>
+	
+    <div class="phone-use">	
+        <h1>请输入您的手机号码，来查找信息</h1>
+        <form action="index.php?" method="get">
+            <div class="phone-hao">
+			<input name="mod" type="hidden" value="delete"> 
+			<input name="keywords" type="text" value="{$keywords}" x-webkit-speech lang="zh-CN"  class="input-mobile" onKeyUp="(this.v=function(){this.value=this.value.replace(/[^0-9-]+/,'');}).call(this)" onBlur="this.v();">
+			<input type="submit" class="button-mobile" value="点击查询" >
+            </div>
+            <span id="pptmobileregmobile_tip" class="red f12" style="display: none;"></span>
+        </form>		
+		<div class="phone-query">
+        	{if $info_list && $keywords}
+            <div class='query-tit'>以下是"<span class='red' id='telephone'>{$keywords}</span>"查询结果，共 {$rows_num} 条</div>
+            <ul>
+            {loop $info_list $mymps}
+                <li><a href="index.php?mod=information&id={$mymps[id]}"><strong>{echo HighLight($mymps['title'],$keywords)}</strong><br><span>{echo GetTime($mymps[begintime])}</span></a><a class="del-but" href="tel:{$mymps_global[SiteTel]}" onClick="if(confirm('联系客服删除该信息，是否电话联系？'))return true;return false;" target="_blank">删除</a></li>
+            {/loop}
+            </ul>
+            </div>
+            {else}
+            <div class="query-no-info"><i class="regret"></i>抱歉，<span class="red" id="telephone">{$keywords}</span>手机号下没有检索到信息</div>	
+            {/if}
+		</div>
+     </div>
+     
+	 {if $keywords && $info_list}
+		<div class="pager">
+		{$pageview}
+		</div>
+	 {/if}
+	
+
+</div>
+{template footer2}
+</body>
+</html>

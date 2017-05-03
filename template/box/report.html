@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>举报信息</title>
+<link href="<?=$mymps_global['SiteUrl']?>/template/global/button.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body{font-size:12px;padding:0;margin:0; color:#333}
+p,form,ul,dl,ol,li,dt,dd,h1,h2,h3{margin:0;padding:0;list-style:none;} 
+
+.askleft{width:450px;height:100%;padding:0 15px 15px 15px;}
+
+textarea{width:360px;height:115px;font-size:12px;border:1px solid #C8C8C8;}
+
+span.red{ font-size:12px; color:#ff0000; line-height:2;}
+
+.tablestyle-2{font-size:12px;line-height:24px;font-family:Arial,Helvetica,sans-serif;}
+.tablestyle-2 tr{width:285px;}
+.tablestyle-2 td.t{text-align:left; vertical-align:top; width:120px; font-weight:bold}
+.tablestyle-2 td{border-bottom:1px #eee solid; padding:5px 0;}
+.tablestyle-2 td input{ margin-top:10px;}
+</style>
+<script language="javascript">
+function submitForm(){
+	if (document.formReport.content.value=="") {
+		alert('请填写情况说明!');
+		document.formReport.content.focus();
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+<body>
+<form action="?" name="formReport" method="post" onSubmit="return submitForm();">
+<input type="hidden" name="part" value="do_report">
+<input type="hidden" name="infoid" value="<?=intval($_GET['id'])?>">
+<input type="hidden" name="infotitle" value="<?=trim($_GET['infotitle'])?>">
+<div class="askleft">
+<table class="tablestyle-2" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="t">信息标题</td>
+		<td>
+			<?=trim($_GET['infotitle'])?>
+		</td>
+	</tr>
+	<tr>
+		<td class="t">信息编号</td>
+		<td>
+			<?=intval($_GET['id'])?>
+		</td>
+	</tr>
+	<tr>
+		<td class="t">举报类型</td>
+		<td>
+			<?=get_report_type()?>
+		</td>
+	</tr>
+	<tr>
+		<td class="t">情况说明</td>
+		<td>
+		<textarea name="content" class="fktext"></textarea>
+		</td>
+	</tr>
+	<tr>
+		<td class="t" style="border-bottom:1px #fff solid">&nbsp;
+			
+		</td>
+		<td style="border-bottom:1px #fff solid">
+		   <input type="submit" class="gray mini" value="确认提交" style="width:80px;" />
+		</td>
+	</tr>
+</table>
+</div>
+ </form>
+</body>
+</html>

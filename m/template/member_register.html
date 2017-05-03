@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>注册 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/login.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+	{template header_search}
+	
+  	<div class="dl_nav"><span><a href="index.php">首页</a><font class="raquo"></font><a href="javascript:;">注册</a></span></div> 
+
+  	<div class="m311 log_reg_box">
+		<div id="logRegTabCon">
+			<div class="log_reg_item">  
+				<form id="form1" method="post" action="index.php?mod=register&action=register">
+					<input type="hidden" value="{$mixcode}" name="mixcode"/>			   
+					<ul id="pptul" class="passport-login-input-ul">
+						<li style="display:none" class="passport-login-input-li">
+							<span id="loginTip" class="passport-login-tip"></span>
+						</li>
+						
+						<li id="loginUserNameLi" class="passport-login-input-li">
+							<span class="passport-login-input-span">用户名</span>
+							<input type="text" name="userid" id="regname" size="20" maxlength="15" class="passport-login-input passport-login-input-username" placeholder="请输入用户名（3-15字节以内）">
+						</li>
+						
+						<li id="loginPasswordLi" class="passport-login-input-li">
+							<span class="passport-login-input-span">密 &nbsp;&nbsp;  码</span>
+							<input type="password" name="userpwd" id="regpwd" size="20" maxlength="16" class="passport-login-input passport-login-input-password" placeholder="请输入密码（6-16位）">
+						</li>
+						
+						<li id="loginPasswordLi" class="passport-login-input-li">
+							<span class="passport-login-input-span">密码确认</span>
+							<input type="password" name="reuserpwd" id="regpwdrepeat" size="20" maxlength="16" class="passport-login-input passport-login-input-password" placeholder="再次输入密码">
+						</li>
+						
+						<li id="loginUserNameLi" class="passport-login-input-li">
+							<span class="passport-login-input-span">Email</span>
+							<input type="text" name="email" id="regemail" size="20" class="passport-login-input passport-login-input-username" placeholder="请输入Email地址" maxlength="75">
+						</li>
+						
+                      	{if $mobile_settings[authcode] == 1}
+                        <li id="loginUserNameLi" class="passport-login-input-li">
+                            <span class="passport-login-input-span">验证码</span>
+                            <input type="text" name="checkcode" class="passport-login-input passport-login-input-username"  style="width:130px;" placeholder="请输入验证码" size="20" maxlength="75">
+                        </li>
+                        <div style="margin-top:10px; text-align:center">
+                            <img src="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_authcodefile]}?mod=m" alt="看不清，请点击刷新" align="absmiddle" style="cursor:pointer; border:1px #ddd solid;" onClick="this.src=this.src+'?'"/>
+                        </div>
+                        {/if}
+						
+						<li id="rememberLi" class="passport-login-input-li">
+							<div class="login_ffle"><input type="checkbox" name="agreergpermit" value="1" id="checkbox" checked /> 我已阅读并完全同意<a href="index.php?mod=items">【条款内容】</a></div>
+						</li>
+	
+						<li id="loginButtonLi" class="passport-login-input-li">
+							<span class="passport-login-input-span" jqmoldstyle="block" style="display: none;">&nbsp;</span>
+							<label><input type="submit" name="button"  id="button" value="注册" class="passport-login-button btn_log" style="color: rgb(255, 254, 254);"></label>
+						</li>
+					</ul>
+			   </form>
+			</div>
+		</div>
+	</div>
+	<p>&nbsp;</p>
+{template footer2}
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/aboutus.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<title>{$page_title}</title>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_search]}">
+	{mytemplate inc_head_about}
+	<div class="clearfix"></div>
+	<div class="sitemap">
+		<div class="ul">
+        	<!--{loop $categories $mymps}-->
+            <div class="h3"><a target="_blank" href='{$mymps[uri]}'>{$city[cityname]}{$mymps[catname]}</a></div>
+			<div class="clearfix"></div>
+            <ul>
+            <!--{loop $mymps[children] $w}-->
+            <li><a target="_blank" href='{$w[uri]}' title="{$city[cityname]}{$w[catname]}">{$city[cityname]}{echo cutstr($w[catname],15)}</a> </li>
+            <!--{/loop}-->
+            </ul>
+            <!--{/loop}-->
+         </div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</body>
+</html>

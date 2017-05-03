@@ -1,0 +1,127 @@
+.city_box {
+	width:100%;
+	float:left
+}
+.city_box h3 {
+	border-top:1px solid #E3E3E3;
+	border-bottom:1px solid #E3E3E3;
+	height:38px;
+	font-size:16px;
+	padding-left:10px;
+	line-height:38px;
+	background:#F8F8F8;
+	color:#3F4358
+}
+.city_box .city_lst {
+	overflow:hidden;
+	width:100%
+}
+.city_box .city_lst li {
+	float:left;
+	width:33.3%;
+	height:45px;
+	line-height:40px;
+	text-align:center;
+	font-size:14px;
+	color:#394b59
+}
+.city_box .city_lst li a {
+	display:block;
+	height:45px;
+	color:#3F4358;
+	-webkit-border-radius:0
+}
+.city_box .hot li a {
+	color:#0C67E4
+}
+.city_box .city_lst li a.nobor {
+	border-left:0
+}
+.city_box .city_lst li a.nobor2 {
+	border-bottom:0
+}
+.city_box h4 {
+	clear:both;
+	height:40px;
+	border-top:1px solid #c8c9ca;
+	font-weight:400
+}
+.city_box h4 p {
+	background:#FFF;
+	padding-left:10px;
+	font-size:13px;
+	color:#999;
+	line-height:39px
+}
+.city_box h4 p span {
+	color:#3F4358;
+	font-size:15px;
+	font-weight:700;
+	margin-right:10px
+}
+.curr_city {
+	height:38px;
+	line-height:38px;
+	text-align:center;
+	padding-bottom:5px
+}
+.curr_city a {
+	color:#50b4d7
+}
+.curr_city .ico {
+	display:inline-block;
+	width:20px;
+	height:17px;
+	background:url(../img/face_ico.png?v=3.1.5) no-repeat;
+	background-size:20px 17px;
+	vertical-align:-2px;
+	margin-right:5px
+}
+.letters_lst li {
+	width:16.66666666666667%;
+	float:left;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	color:#394B59
+}
+.letters_lst li a {
+	display:block;
+	height:40px;
+	color:#394b59;
+	-webkit-border-radius:0
+}
+.letters_lst li:nth-of-type(6) a {
+	border-right:none
+}
+.letters_lst li:nth-of-type(12) a {
+	border-right:none
+}
+.letters_lst li:nth-of-type(18) a {
+	border-right:none
+}
+.letters_lst li:nth-of-type(19) a {
+	border-bottom:none
+}
+.letters_lst li:nth-of-type(20) a {
+	border-bottom:none
+}
+.letters_lst li:nth-of-type(21) a {
+	border-bottom:none
+}
+.letters_lst li:nth-of-type(22) a {
+	border-bottom:none
+}
+.local-city {
+	display:inline-block;
+	padding-left:20px;
+	font-size:14px;
+	color:#3F4358;
+	font-weight:400
+}
+
+/*mymps color*/
+.blue .city_box h4 {border-bottom:1px solid #3592E2;}
+.green .city_box h4 {border-bottom:1px solid #42B712;}
+.orange .city_box h4 {border-bottom:1px solid #FF6C00;}
+.red .city_box h4 {border-bottom:1px solid #C40000;}

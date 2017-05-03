@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>powered by mymps</title>
+<style>
+body{background-color:white; font-size:12px; margin:0px; padding:0px; color:#666} 
+
+ul{ margin:0; padding:2px 0;}
+li{ line-height:18px; padding-left:5px; list-style:none!important}
+.div{float:left; height:200px; margin:10px 5px 10px 7px; _margin:10px 4px 10px 6px; width:83px;}
+a{ color:#06c; text-decoration:none; }
+a:hover{ color:#06c; text-decoration:underline; }
+dl{ margin:0; padding:0; }
+
+.h{ margin:0; font-weight:bold; padding:2px 5px; line-height:20px; font-size:13px}
+
+.r{ font-weight:bold; line-height:20px; padding:2px 5px; overflow:hidden}
+.list{ border-right:1px #eee solid}
+</style>
+</head>
+<body>
+<?php
+$i = 0;
+foreach($admin_menu as $q => $w){
+
+	$i=$i+1;
+    $mymps_admin_menu .= $w[style] != 'more' ? '<div class="div"><div class="h'.($i<7?" list":"").'">'.$w[name].'</div>' : '';
+
+    if(is_array($w[group])){
+        foreach($w[group] as $e=>$r){
+				
+                if($i < 7){
+					$mymps_admin_menu .= "<dl class='list' id=\"".$q."\" ".$estyle.">";
+				} else {
+					$mymps_admin_menu .= "<dl id=\"".$q."\" ".$estyle.">";
+				}
+                foreach ($w[group][$e] as $r => $t){
+                    if(is_array($t)){
+                        $mymps_admin_menu .= "<ul>";
+                        $mymps_admin_menu .= "<div class=\"r\">".$r."</div>";
+                        foreach ($w[group][$e][$r] as $y => $u){
+                            $mymps_admin_menu .= "<li><a href=\"".$admindir."/".$u."\" target=\"framRight\">".$y."</a></li>";
+                        }
+                        $mymps_admin_menu .= "</ul>";
+                    }
+                }
+                $mymps_admin_menu .= "</dl>";
+
+        }
+    }
+    
+    $mymps_admin_menu .= '</div>';
+
+}
+echo $mymps_admin_menu;
+?>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/address.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/global.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/include/mymps.citymenu.inc.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/include/mymps.menu.inc.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/index.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/template/_inc.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/帮助.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/caches/pluginmenu_admin.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/caches/pluginmenu_member.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/config.db.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/common.fun.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/db.class.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/member.class.php" charset="GBK" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

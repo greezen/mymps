@@ -1,0 +1,13 @@
+<div class="footer">
+	&copy; {$mymps_global[SiteName]} <a href="{$about[aboutus_uri]}" target="_blank">关于我们</a> <a href="http://www.miibeian.gov.cn" target="_blank">{$mymps_global[SiteBeian]}</a> {$mymps_global[SiteStat]} 
+<span class="none_{$mymps_mymps[debuginfo]}">
+<!--{if $cachetime}-->
+This page is cached at <!--{echo GetTime($timestamp,'Y-m-d H:i:s')}-->
+<!--{else}-->
+<!--{php $mtime = explode(' ', microtime());$totaltime = number_format(($mtime[1] + $mtime[0] - $mymps_starttime), 6); echo 'Processed in '.$totaltime.' second(s) , '.$db->query_num.' queries';}-->
+<!--{/if}-->
+</span>
+<span class="none">Powered by <strong><a href="http://zhideyao.cn" target="_blank">mymps</a></strong> <em><a href="http://zhideyao.cn" target="_blank">{MPS_VERSION}</a></em></span>
+</div>
+<p id="back-to-top"><a href="#top"><span></span></a></p>
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/scrolltop.js"></script>

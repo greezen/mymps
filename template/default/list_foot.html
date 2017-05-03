@@ -1,0 +1,30 @@
+<div class="clear"></div>
+<div class="colorfoot">
+    <!--{if $hotcities}-->
+    <div class="cateintro relate">
+    <div class="introleft">{$cat[catname]}相关分站</div>
+    <div class="introright">
+    <!--{loop $hotcities $mymps}-->
+    <a href='{$mymps[domain]}{$cat[caturi]}' target="_blank">{$mymps[cityname]}{$cat[catname]}</a>
+    <!--{/loop}-->
+    </div>
+    </div>
+    <!--{/if}-->
+    <div class="clearfix"></div>
+    <div class="cateintro">
+        <div class="introleft">{$city[cityname]}{$cat[catname]}频道</div>
+        <div class="introright">{$city[cityname]}{$cat[catname]}频道为您提供{$city[cityname]}{$cat[catname]}信息，在此有大量{$city[cityname]}{$cat[catname]}信息供您选择，您可以免费查看和发布{$city[cityname]}{$cat[catname]}信息。</div>
+    </div>
+    <!--{if $friendlink}-->
+    <div class="clearfix"></div>
+    <div class="cateintro">
+    <div class="introleft">友情链接</div>
+    <div class="introflink">
+    <!--{loop $friendlink $mymps}-->
+    <a href='{$mymps[url]}' target='_blank'>{$mymps[name]}</a>
+    <!--{/loop}-->
+    <a href="{$city[domain]}{$about[friendlink_uri]}" target="_blank">更多</a>
+    </div>
+    </div>
+    <!--{/if}-->
+</div>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<script src="{$mymps_global[SiteUrl]}/template/default/js/uaredirect.js" type="text/javascript"></script>
+<script type="text/javascript">uaredirect("{$mymps_global[SiteUrl]}/m/index.php?mod=changecity&cityid={$cityid}");</script>
+<title>切换分站 - {$mymps_global[SiteName]}</title>
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/post.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/changecity.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/jquery.autocomplete.min.js"></script> 
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/jquery.autocomplete.css" />
+<!--{php $allcities = get_allcities();}-->
+<script type="text/javascript"> 
+var cities = [
+{php $i=1;}
+{loop $allcities  $k $mymps}
+{if $i > 1},{/if}{ name1: "{$mymps[citypy]}",name: "{$mymps[directory]}", to: "{$mymps[cityname]}" }
+{php $i=$i+1;}
+{/loop}
+]; 
+$(function() {
+$('#cityname').autocomplete(cities, { 
+max: 20,
+minChars: 0,
+width: 166,
+scrollHeight: 300,
+matchContains: true,
+autoFill: false,
+formatItem: function(row, i, max) { 
+return row.to; 
+}, 
+formatMatch: function(row, i, max) { 
+return row.name1 + row.name + row.to; 
+}, 
+formatResult: function(row) { 
+return row.to; 
+} 
+}); 
+}); 
+</script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_post}
+<div class="body1000">
+	<div class="clear15"></div>
+	<div id="main" class="wrapper">
+		<div class="changecitydiv">
+			<div class="vhd">
+				<form id="changcityForm" action="?" method="post">
+				目前{$mymps_global[SiteName]}已经开通<font color="#ff3300">{$total}</font>个分站，立刻选择你所关心的分站，或直接输入分站名称
+				<input type="text" class="focus2" onBlur="this.className='focus2'" onFocus="this.className='focus1'" id="cityname" name="cityname" value=""/>
+				<input type="submit" value="进入分站" class="vsubmit"/>
+				</form>
+			</div>
+			<div class="clear"></div>
+			<div id="blist">
+				热门分站：
+				{if $fromcity}<a href="{$fromcity[domain]}" style="color:#ff3300;">进入{$fromcity[cityname]}站 &raquo;</a>{/if}
+                {loop $hotcities $mymps}
+                    <a href="{$mymps[domain]}"><strong>{$mymps[cityname]}</strong></a>
+                {/loop}
+			</div>
+			<div class="clear"></div>
+			<dl id="clist" class="{$mymps_global[cfg_cityshowtype]}">
+            	{loop $cities $k $citie}
+				<div>
+				<dt>{$k}</dt>
+				<dd>
+                	{loop $citie $u $w}
+					<a href="{$w[domain]}" {if $w[ifhot] == 1}style="color:red;text-decoration:underline;"{/if}>{$w[cityname]}</a>
+					{/loop}
+				</dd>
+				</div>
+				<div class="clearfix"></div>
+				{/loop}
+			</dl>
+		</div>
+	</div>
+    <div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>

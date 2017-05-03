@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>…Ãº“µÍ∆Ã - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/corpall.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+    {template header_search}
+	{template navigation}
+    {php $i =1;}
+    {loop $ypcategory $mymps}
+    <div class="navv">
+    <div class="nav_tt nav_ttbg1">&nbsp; 
+    <span class="lico ico{$i}"></span>
+    <a href="index.php?mod=corp&catid={$mymps[corpid]}&cityid={$cityid}">{$mymps[corpname]}<i class="filt-arrowright"></i></a>
+    </div>
+    <div class="big_dl sale">
+        <ul>
+            {loop $mymps[children] $c}
+            <li class="one_third"><a href="index.php?mod=corp&catid={$c[corpid]}&cityid={$cityid}">{echo cutstr($c['corpname'],8)}</a></li>
+            {/loop}
+        </ul>
+    </div>
+    </div>
+    {php $i=$i+1;}
+    {/loop}
+	{template footer}
+</div>
+</body>
+</html>

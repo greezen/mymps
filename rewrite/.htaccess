@@ -1,0 +1,19 @@
+RewriteEngine On
+RewriteRule ^(.*)space/([a-z0-9\-\_]+)\/$ $1/space\.php\?user=$2
+RewriteRule ^(.*)store-([0-9]+)\/$ $1/store\.php\?uid=$2
+RewriteRule ^(.*)store-([0-9]+)/([^\/]+).html$ $1/store\.php\?uid=$2&Uid=$3
+RewriteRule ^(.*)category-([^\/]+)\.html$ $1/category\.php\?CAtid=$2
+RewriteRule ^(.*)information-id-([0-9]+)\.html$ $1/information\.php\?id=$2
+RewriteRule ^news\.html$ news\.php
+RewriteRule ^news-id-([0-9]+)\.html$ news\.php\?id=$1
+RewriteRule ^news-catid-([0-9]+)\.html$ news\.php\?catid=$1
+RewriteRule ^news-catid-([0-9]+)-page-([0-9]+)\.html$ news\.php\?catid=$1&page=$2
+RewriteRule ^(.*)corporation\.html$ $1/corporation\.php
+RewriteRule ^(.*)corporation-([^\/]+)\.html$ $1/corporation\.php\?Catid=$2
+RewriteRule ^(.*)aboutus\.html$ $1/about\.php\?part=aboutus
+RewriteRule ^(.*)sitemap\.html$ $1/about\.php\?part=sitemap
+RewriteRule ^(.*)aboutus-id-([0-9]+)\.html$ $1/about\.php\?part=aboutus&id=$2
+RewriteRule ^(.*)announce\.html$ $1/about\.php\?part=announce&id=$2
+RewriteRule ^(.*)faq\.html$ $1/about\.php\?part=faq
+RewriteRule ^(.*)faq-id-([0-9]+)\.html$ $1/about\.php\?part=faq&id=$2
+RewriteRule ^(.*)friendlink\.html$ $1/about\.php\?part=friendlink

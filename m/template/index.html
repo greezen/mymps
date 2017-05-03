@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<meta name="keywords" content="{$mymps_global[SiteName]}"/>
+	<meta name="description" content="{$mymps_global[SiteName]}手机版"/>
+	<title>{$mymps_global[SiteName]}-手机版</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/index.css">
+    <!--{if !$cityid && !$lat}-->
+	<script>
+    if (navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+    
+    function showPosition(position)
+    {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+		var replaceuri = '{$mymps_global[SiteUrl]}/m/index.php?lat='+lat+'&lng='+lng;window.location.replace(replaceuri);
+    }
+    </script>
+    <!--{/if}-->
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+
+{template header_search}
+{template navigation}
+<div class="index-category">
+    <div class="index_slider">
+        <div class="index_slider-wrap">
+            <div class="page">
+            {loop $categories $k $mymps}
+            <a href="index.php?mod=category&catid={$mymps[catid]}&cityid={$city[cityid]}" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[icon]}"></div>{echo cutstr($mymps[catname],4)}</a>
+            {/loop}
+    		</div>
+    	</div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div id="tab_01" class="newsct">
+    <div class="select_03 select_03_{$mymps_global[cfg_tpl_dir]} tab-hd">
+        <ul>
+            <li class="item current current1"><a href="javascript:void(0);">头版头条</a></li>
+            {php $ifnews = ifplugin('news');}
+            {if $ifnews}<li class="item current2"><a href="javascript:void(0);">新闻资讯</a></li>{/if}
+            {if $mymps_global[cfg_if_corp] == 1}<li class="item current3"><a href="javascript:void(0);">推荐商家</a></li>{/if}
+            
+        </ul>
+    </div>
+    <div>
+        <ul class="list_normal first_bold tab-cont">
+        <!--{php $index_topinfo = mymps_get_infos(6,NULL,3,NULL,NULL,NULL,NULL,NULL,$city[cityid]);}-->
+        <!--{loop $index_topinfo $k $mymps}-->
+        <li style="{if $mymps[ifbold] == 1}font-weight:bold;{/if}{if $mymps[ifred] == 1}color:red;{/if}">
+        <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a> 
+        <a href="index.php?mod=information&id={$mymps[id]}"><!--{echo cutstr($mymps[title],30)}--></a>
+        <span class="jian"></span>
+        </li>
+        <!--{/loop}-->
+        <div class="inner_html"><a href="index.php?mod=category" class="comn-submit gray btn_block">进入分类信息频道</a></div>
+        </ul>
+        <!--{if $ifnews}-->
+        <ul class="list_normal first_bold tab-cont" style="display:none;">
+        <!--{php $news = mymps_get_news(6);}-->
+        <!--{loop $news $k $mymps}-->
+        <li style="{if $mymps[is_commend] == 1}color:red;{/if}">
+        <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font> 
+        <a href="index.php?mod=news&id={$mymps[id]}&cityid={$cityid}">{$mymps[title]}</a><span class="jian"></span>
+        </li>
+        <!--{/loop}-->
+        <div class="inner_html"><a href="index.php?mod=news&cityid={$cityid}" class="comn-submit gray btn_block">进入新闻资讯频道</a></div>
+        </ul>
+        <!--{/if}-->
+        <!--{if $mymps_global[cfg_if_corp] == 1}-->
+        <!--{php $members = mymps_get_members(!$cityid ? 6 : NULL,NULL,NULL,NULL,2,NULL,NULL,$cityid);}-->
+        <ul class="list_normal first_bold tab-cont" style="display:none;">
+        <!--{loop $members $k $mymps}-->
+        <li><img src="{$mymps[prelogo]}" class="img"> <a href="index.php?mod=store&id={$mymps[id]}">{$mymps[tname]}</a><span class="jian"></span></li>
+        <!--{/loop}-->
+        <div class="inner_html"><a href="index.php?mod=corp" class="comn-submit gray btn_block">进入商家店铺频道</a></div>
+        </ul>
+        <!--{/if}-->
+
+    </div>
+    
+</div>
+<script src="template/js/jq_min.211.js"></script>
+<script src="template/js/index.js"></script>
+<script>
+(function($){
+	var list = $('#content').find('.cell');
+	if(list.length > 0){
+		
+		var txt = '';
+		$('#content').find('.cell').each(function(i){
+			if(i === 0){
+				txt += '<li class="active">1</li>';
+			}else{
+				txt += '<li>'+(i+1)+'</li>';
+			}
+		});
+		$('#indicator').html(txt);
+		var w_w = $(window).width();
+		setTimeout(function(){new C_Scroll({container:'slide',content:'content',ct:'indicator',size:w_w,intervalTime:5000,lazyIMG:!!0});},20);
+		setTimeout(function(){$('#slide').show();},20);
+	}
+	IDC.tabADS($('#tab_01'));
+})(jQuery);
+</script>
+
+{template footer}
+
+</body>
+</html>

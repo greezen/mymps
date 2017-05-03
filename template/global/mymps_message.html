@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>系统提示信息</title>
+<meta name="generator" content="<?=MPS_SOFTNAME?> <?=MPS_VERSION?>" />
+<meta name="description" content="mymps" />
+<meta name="keywords" content="mymps" />
+<base id="headbase" />
+<style type="text/css">
+body{ font-size:12px;padding:0 20px;margin:0;font-family:Arial,Verdana;}
+a{ text-decoration:none;color:#5ea6d8;}
+a:hover{ text-decoration:underline;}
+ol{list-style-type:decimal;margin-left:24px;color:#888;}
+.fl{float:left;}
+.fr{float:right;}
+.tar{ text-align:right;}
+.mt10{margin-top:10px;}
+.mr20{margin-right:20px;}
+.mb20{margin-bottom:20px;}
+.lh2{line-height:2;}
+.vt{ vertical-align:top;}
+.tip-page{width:500px;margin:20px auto 20px auto;}
+.tip-table{margin:0 1px;background:#ffffff;width:498px;}
+.tip-top{height:40px; line-height:40px; color:#197AC5; font-weight:bold; font-size:16px; padding-left:20px; background:#F3F8FE; border-left:1px #CFDEE4 solid; border-right:1px #CFDEE4 solid; border-bottom:1px #9DC1CF solid; font-family:"microsoft yahei";}
+.tip-bgA{ background:#F3F8FE;}
+.tip-bgB,.tip-bgC,.tip-bgC {background:#CFDEE4;}
+.tip-bgA,.tip-bgB{height:1px;overflow:hidden;}
+.tip-bgA{margin:0 2px;}
+.tip-bgB{margin:0 1px;}
+.tip-bgC{padding-top:1px;}
+.tip-content{padding:0 0 0 67px;}
+.tip-content tr td{padding:5px 10px 5px 0;line-height:25px;}
+.show-back{ text-decoration:underline;display:block;padding-right:25px;line-height:22px;overflow:hidden; height:20px;float:left;}
+.show-back:hover{ background-position:right -20px;}
+.btn{border-color:#5ea6d8;margin-right:1em;color:#fff;background:#5ea6d8;}
+.btn,.bt{border-width:1px;cursor:pointer;padding:.1em 1em;*padding:0 1em;font-size:9pt; line-height:130%; overflow:visible;}
+.bt{cursor:pointer;background:#f7f7f7;vertical-align:middle;border-color: #e4e4e4 #cccccc #cccccc #e4e4e4;}
+/*form*/
+input{font:12px Arial;padding:1px 3px 0 3px;vertical-align:middle;margin-bottom:1px;}
+.input{border: 1px solid; border-color: #c0c0c0 #ededed #ededed #c0c0c0;padding:2px 0px 2px 1px;font-size:1.0em;vertical-align:middle;color:#000;}
+input.gray{border:1px solid;cursor:pointer;border-color:#fff #848484 #848484 #fff !important;background:#f0f0f0 !important;color:#333 !important}
+input.blue {border:1px solid;cursor:pointer;border-color:#fff #848484 #848484 #fff !important;background:#1B72AF !important;color:#FFFFFF !important; line-height:20px;}
+</style>
+<script language="javascript">
+function JumpUrl(){
+	location='<?=$url?>';
+}
+</script>
+</head>
+<body>
+<div class="tip-page">
+<div class="tip-bgA"></div>
+	<div class="tip-bgC">
+	<div class="tip-top">提示信息</div>
+	<table cellpadding="0" cellspacing="0" class="tip-table">
+		<tr><td height="150">
+		<div class="tip-content">
+<div class="lh2" style="padding:20px 40px 20px 0;">
+<span class="f14"><?=$msg?></span><br />
+<div class="cc" style="padding:10px 20px 20px 0;">
+<?=$goto?>
+<?php if($hidden != 1){?><?php }?>
+</div></div>
+
+				</div>
+			</td>
+		</tr>
+	</table>
+	</div>
+<div class="tip-bgB"></div>
+</div>
+<script language="javascript">
+<?=$time_echo?>
+</script>
+<?php
+if(defined('IN_ADMIN')){
+?>
+<center style="color:#999999; width:500px; margin-left:auto; margin-right:auto;">
+<?php
+	$mtime = explode(' ', microtime());
+	$totaltime = number_format(($mtime[1] + $mtime[0] - $mymps_starttime), 6);
+	echo $sitedebug = 'Processed in '.$totaltime.' second(s) , '.$db->query_num.' queries';
+}
+?>
+</center>
+</body>
+</html>

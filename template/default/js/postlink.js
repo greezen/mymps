@@ -1,0 +1,1 @@
+function submitForm(){if(document.form1.typeid.value==""){document.form1.typeid.focus();alert("网站类型不能为空！");return false}if(document.form1.webname.value==""){document.form1.webname.focus();alert("网站名称不能为空！");return false}if(document.form1.url.value==""){document.form1.url.focus();alert("网站域名不能为空！");return false}document.form1.btn.value="提交中";return true}

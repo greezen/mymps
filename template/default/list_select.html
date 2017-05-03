@@ -1,0 +1,70 @@
+<div id="select">
+	<!--{if $cat_list}-->
+	<dl class='fore' id='select-brand'>
+	<dt>栏目分类：</dt>
+	<dd>
+	<div class='content'>
+    	<!--{loop $cat_list $mymps}-->
+		<div><a href="{$city[domain]}{$mymps[uri]}" {if $mymps[catid] == $cat[catid]}class="curr"{/if} title="{$city[cityname]}{$mymps[catname]}">不限</a></div>
+        <!--{loop $mymps[children] $w}-->
+		<div><a href="{$city[domain]}{$w[uri]}" {if $w[catid] == $cat[catid]}class="curr"{/if} title="{$city[cityname]}{$w[catname]}">{$w[catname]}</a></div>
+        <!--{/loop}-->
+		<!--{/loop}-->
+	</div>
+	</dd>
+	</dl>
+    <!--{/if}-->
+    <!--{loop $mymps_extra_model $mymps}-->
+	<dl>
+	<dt><!--{$mymps[title]}-->：</dt>
+	<dd>
+    <!--{loop $mymps['list'] $w}-->
+	<div><a href="{$city[domain]}{$w[uri]}" {if $w[select] == 1}class="curr"{/if}>{$w[name]}</a></div>
+	<!--{/loop}-->
+    </dd>
+	</dl>
+	<!--{/loop}-->
+    <!--{if $area_list}-->
+	<dl>
+	<dt>区域查找：</dt>
+	<dd>
+    	<!--{loop $area_list $mymps}-->
+		<div><a href="{$city[domain]}{$mymps[uri]}" {if $mymps[select] == 1}class="curr"{/if}>{$mymps[areaname]}</a></div>
+		<!--{/loop}-->
+	</dd>
+	</dl>
+	<!--{/if}-->
+    <!--{if $street_list}-->
+		<dl>
+		<dt></dt>
+		<dd>
+        	<!--{loop $street_list $mymps}-->
+			<div><a href="{$city[domain]}{$mymps[uri]}" {if $mymps[select] == 1}class="curr"{/if}>{$mymps[streetname]}</a></div>
+			<!--{/loop}-->
+		</dd>
+		</dl>
+	<!--{/if}-->
+    <!--{if !$cityid && $hotcities}-->
+		<dl>
+		<dt>热门分站</dt>
+		<dd>
+		<div><a href="#" class="curr">不限</a></div>
+        	<!--{loop $hotcities $mymps}-->
+			<div><a href="{$mymps[domain]}{$cat[caturi]}">{$mymps[cityname]}</a></div>
+			<!--{/loop}-->
+		<div><a href="{$mymps_global[SiteUrl]}/changecity.php">更多 &raquo;</a></div>
+		</dd>
+		</dl>
+	<!--{/if}-->
+	<dl class="lastdl">
+	<form method="get" action="{$mymps_global[SiteUrl]}/search.php?" target="_blank">
+		<input name="cityid" value="{$city[cityid]}" type="hidden">
+		<input name="mod" value="information" type="hidden">
+		<input name="catid" value="{$cat[catid]}" type="hidden">
+		<input name="areaid" value="{$areaid}" type="hidden">
+		<input name="streetid" value="{$streetid}" type="hidden">
+		<input name="keywords" type="text" value="" class="searchinput" id="searchbody" onmouseover="hiddennotice('searchbody');"/>
+		<input type="submit" value="搜本类" class="{$mymps_global[head_style]}_searchsubmit" />
+	</form>
+	</dl>
+</div>

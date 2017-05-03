@@ -1,0 +1,1 @@
+$().ready(function(){$('form').checkForm(1)});function CharMode(iN){if(iN>=65&&iN<=90)return 2;if(iN>=97&&iN<=122)return 4;else return 1}function bitTotal(num){modes=0;for(i=0;i<3;i++){if(num&1)modes++;num>>>=1}return modes}

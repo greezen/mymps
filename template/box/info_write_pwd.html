@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="Content-Language" content="zh-CN"/>
+<title>powered by mymps</title>
+<link href="<?=$mymps_global['SiteUrl']?>/template/global/button.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+body{font-size:12px;padding:0;margin:0; color:#333}
+p,form,ul,dl,ol,li,dt,dd,h1,h2,h3{margin:0;padding:0;list-style:none;} 
+
+.table{width:100%;height:100%;margin:15px 15px 15px 30px;}
+
+span.red{ font-size:12px; color:#ff0000; line-height:2;}
+
+.tablestyle-2{font-size:12px;line-height:24px;font-family:Arial,Helvetica,sans-serif; margin-bottom:15px;}
+.tablestyle-2 tr{width:285px;}
+.tablestyle-2 td.t{text-align:left; vertical-align:top; width:80px; font-weight:bold}
+.tablestyle-2 td{ padding:5px 0; }
+.tablestyle-2 td input{ border:1px #ddd solid; padding:3px 5px; width:250px;}
+</style>
+<script language="javascript">
+function submitForm(){
+	if (document.form1.manage_pwd.value=="") {
+		alert('请输入该信息的管理密码!');
+		document.form1.manage_pwd.focus();
+		return false;
+	}
+	return true;
+}
+</script>
+</head>
+<body>
+<div class="table">
+<form  name="form1" method="post" action="<?php echo $mymps_global['SiteUrl']?>/box.php" onSubmit="return submitForm();">
+<input name="part" value="<?=$part?>" type="hidden">
+<input name="id" value="<?=$id?>" type="hidden">
+<table cellpadding="0" cellspacing="0" class="tablestyle-2">
+	<tr>
+		<td class="t">信息主题</td>
+		<td><?=$post[title]?></td>
+	</tr>
+	<tr>
+		<td class="t">管理密码</td>
+		<td><input type="password" name="manage_pwd"/></td>
+	</tr>
+	<tr>
+		<td class="t" style="border-bottom:1px #fff solid">&nbsp;</td>
+		<td style="border-bottom:1px #fff solid"><input type="submit" class="gray mini" value="确认删除" style="width:80px;" /></td>
+	</tr>
+</table>
+</form> 
+</div>
+</body>
+</html>

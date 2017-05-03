@@ -1,0 +1,1 @@
+function CheckForm(){var _form=document.DelinfoFrom;var _tel=_form.tel.value;if(_tel.replace(/^\s*|\s*$/g,"")==""){_form.tel.focus();alert('请输入您的手机号码！');return false}else if(!isMobile(_tel)){_form.tel.focus();alert('请输入正确的手机号码！');return false}else{return true}}function isMobile(vStr){var vReg=/^1(3|4|5|8)\d{9}$/;return vReg.test(vStr)}

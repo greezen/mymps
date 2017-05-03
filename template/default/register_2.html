@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/login.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_log}
+<div class="clearfix"></div>
+<div class="inner">
+	<div class="body">
+		<div class="registerpart">
+			<div class="step3">
+				<span>1. 选择注册类型</span>
+				<span>2. 填写注册信息</span>
+				<span class="cur"><!--{if $error < 3}-->3. 账号审核<!--{else}-->3. 邮箱验证<!--{/if}--></span>
+			</div>
+            <div class="fbd">
+            <div class="c_border">
+            <center id="infobox">
+            <ul>
+            <div id="mr">
+                <!--{if $error == 1}-->
+                <h2 class="h">邮件发出失败，请联系客服审核账号！</h2>
+                <p><a href="{$mymps_global[SiteUrl]}">[返回网站首页]</a></p>
+                <p></p>
+                <!--{elseif $error == 2}-->
+                <h1 class="h">验证邮件已发出，请登录邮箱查收！</h1>
+                <!--{if $webmail}--><p><a href="{$webmail}" target="_blank">登录 [{$webname}] 查收邮件！</a></p><!--{/if}-->
+                <p>童鞋们注意了：系统发出的邮件有时可能会被误归为垃圾邮件  !-_-<br />当收件箱里没有收到邮件时建议查阅下邮箱的垃圾箱...</p>
+                <!--{elseif $error == 3}-->
+                <h2 class="h">客服正在审核您的账号，请耐心等待！</h2>
+                <p>若长时间没有通过审核，请联系客服人员为您开通！</p>
+                <p><a href="{$mymps_global[SiteUrl]}">[返回网站首页]</a></p>
+                <!--{elseif $error == 4}-->
+                <h1 class="h">恭喜！您的账号已通过邮箱认证审核！</h1>
+                <p>您的账号 <b style="color:red">{$userid}</b> 已经通过网站审核！<a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_member_logfile]}" style="font-size:14px; text-decoration:underline">登录用户中心>></a></p>
+                <!--{elseif $error == 5}-->
+                <h2 class="h">链接已失效！请联系网站客服开通账号！</h2>
+                <p><a href="{$mymps_global[SiteUrl]}">[返回网站首页]</a></p>
+                <!--{/if}-->
+            </div>
+            </ul>
+            </center>
+            </div>
+            
+            </div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/post.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/jquery.autocomplete.min.js"></script> 
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/jquery.autocomplete.css" />
+<script type="text/javascript">
+var cates = [
+{php $i=1;}
+{loop $categories $mymps}
+{if $i >1},{/if}
+{ name1: "{$mymps[dir_typename]}",name: "{$mymps[catid]}", to: "{$mymps[catname]}" }
+	{loop $mymps[children] $w},
+	{ name1: "{$w[dir_typename]}",name: "{$w[catid]}", to: "{$w[catname]}" }
+	{/loop}
+	{php $i++;}
+{/loop}
+{php $i=NULL;unset($i);}
+]; 
+$(function() {
+$('#catname').autocomplete(cates, { 
+max: 20, 
+minChars: 0, 
+width: 316, 
+scrollHeight: 100,
+matchContains: true, 
+autoFill: false,
+formatItem: function(row, i, max) { 
+return row.to; 
+}, 
+formatMatch: function(row, i, max) { 
+return row.name1 + row.name + row.to; 
+}, 
+formatResult: function(row) { 
+return row.to; 
+} 
+}); 
+}); 
+</script>
+<script type="text/javascript">
+window.history.go(1);
+</script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_post}
+<div class="body1000">
+	<div class="clear15"></div>
+	<div id="main" class="wrapper">
+		<div class="step1">
+		<span class="cur"><font class="number">1</font> 选择信息分类</span>
+		<span><font class="number">2</font> 填写信息内容</span>
+		<span><font class="number">3</font> 发布成功</span>
+		</div>
+		<div id="fenlei2">
+            <div class="minheight" id="ymenu-side"> 
+               <ul class="ym-mainmnu">
+               		{loop $categories $k $mymps}
+                    <li class="ym-tab">
+                        <a href="#" class="black">{$mymps[catname]}</a>
+                        <ul class="ym-submnu">
+                            {loop $mymps[children] $u $w}
+                            <li><a href="?action=input&catid={$w[catid]}&cityid={$city[cityid]}">{$w[catname]}</a></li>
+                            {/loop}
+                        </ul> 
+                    </li>
+                    {/loop}
+                </ul>
+                {if $catid > 0}
+                <div class="clear"></div>
+                <div class="backall"><a href="?action=input&cityid={$city[cityid]}">&laquo;重新选择大类</a></div>
+                {/if}
+            </div>
+            <form action="?" method="get">
+            <input name="cityid" value="{$cityid}" type="hidden">
+        	<div class="psearch">
+                <div class="pshead"><em>搜索栏</em><input type="text" id="catname" name="catname" placeholder="请输入关键字查找您要发布的分类" class="pstxt" value=""><input type="button" value="帮我推荐类别" onclick="this.form.submit()" class="psbtn" id="btn_cateSearch">
+                </div>
+       		</div>
+            </form>
+		</div> 
+        
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/post_select.js"></script> 
+</body>
+</html>

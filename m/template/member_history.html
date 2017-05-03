@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>浏览记录 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/member.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+	{template header_search}
+	<div class="ucenter">
+		<ul class="u_infolst" id="userHistory" style="margin-top:-40px">
+			<script src="template/js/history.js"></script>
+		</ul>
+		<div class="btn_clearhistory" onClick="clearCookie();location.reload();">清空历史浏览记录</div>
+	</div>
+
+</div>
+{template footer}
+</body>
+</html>

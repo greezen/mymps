@@ -1,0 +1,1 @@
+$obj('searchheader').value='请输入关键词或分类名';if($obj('searchbody')){$obj('searchbody').value=$obj('searchheader').value;}if($obj('searchfooter')){$obj('searchfooter').value=$obj('searchheader').value;}function hiddennotice(overid){var thisval=$obj(overid);if(thisval.value=='请输入关键词或分类名'){thisval.value='';thisval.focus();}}

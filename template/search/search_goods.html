@@ -1,0 +1,66 @@
+{template search_head}
+	<!-- 搜索结果页 -->	
+	<div class="c"></div>
+ 	<div class="main2 cc" id="mainbox">
+    	<div class="h">
+        	<span class="fr">搜索<span class="s1">{$search[keywords]}</span>获得{$search[rows_num]}条查询结果
+        	</span>
+            <span class="mr20"><a href="#">{$mymps_global[SiteName]}搜索</a> &raquo; 商品</span><span class="s6">小提示：多个词用空格分隔，搜索的更准！</span>
+        </div>
+
+		<div class="content fl">
+        	<div class="s_dlA">
+            	{if $search[rows_num] == 0}
+                <div class="nodata">抱歉！没有找到匹配的相关信息，您可以尝试换个关键词搜索一下。</div>
+                {else}
+                <div class="searchgoods mt6">
+					<ul class="shop_info"> 
+					{loop $search[result] $k $result}
+						<li><a href="{$result[uri]}" title="{$result[goodsname]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$result[pre_picture]}" width="115" height="98"/></a><span><a href="{$result[uri]}" title="{$result[goodsname]}" target="_blank">{$result[goodsname]}</a></span><em>￥{$result[nowprice]}</em></li>
+					{/loop}
+					</ul> 
+    			</div>
+        		{/if}
+                <div class="pagination mt6" style="margin-left:10px">{$search[pagination]}</div>
+            </div>
+        </div>
+
+        <div class="sidebar fr">
+        	<div class="p15 s_boxA">
+            	<h2>商品详细检索</h2>
+                <ul class="quicksearch">
+                    <form action="search.php?" method="get" />
+                    <input type="hidden" name="mod" value="goods" />
+                    <dl>
+                    <dt>选择类别：</dt>
+                    <dd>
+                    <select name="catid">
+                    	<option value="" {if !$catid}style="background-color:#6eb00c; color:white!important;"{/if}>不限类别</option>
+						{loop $catoption $k $options}
+                        <option value="{$options[catid]}" {if $options[catid] == $catid}selected style="background-color:#6eb00c; color:white!important;"{/if}>{$options[catname]}</option>
+                        {/loop}
+                    </select>
+					</dd>
+                    <dt>关键字：</dt>
+                    <dd><input type="text" name="keywords"  class="searchinput inputbox" value="{$search[keywords]}" /></dd> 
+                    <dt>&nbsp;</dt>
+                    <dd><input type="submit" value="我要搜索" class="submit"/></dd>
+                    </dl>
+                    </form>
+                </ul>
+            </div>
+        </div>
+
+        <div class="c">&nbsp;</div>
+  
+    </div>
+
+</div></div>
+
+<div class="footer-wrap">
+<div class="c mt10"></div>
+{template search_foot}
+</div>
+</div>
+</body>
+</html>

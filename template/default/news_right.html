@@ -1,0 +1,39 @@
+<div class="col2">
+	<div class="searchnews">
+		<form action="{$mymps_global[SiteUrl]}/search.php" method="get" target="_blank">
+		<input name="mod" value="news" type="hidden">
+		<input name="keywords" value="" type="text" class="input">
+		<input type="submit" class="submit" value="搜文章">
+		</form>
+	</div>
+	<div class="clear"></div>
+	<div class="information">
+		<ul>
+        	<!--{php $latest_info = mymps_get_infos(10);}-->
+        	<!--{loop $latest_info $mymps}-->
+			<li><a href="{$mymps[uri]}" title="{$mymps[title]}" target="_blank"  style="{if $mymps[ifred] == 1}color:red;{/if} {if $mymps[ifbold] == 1}font-weight:bold;{/if}">{$mymps[title]}</a></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="imgnews">
+		<ul>
+        	<!--{php $image_news = mymps_get_news(6,NULL,1);}-->
+        	<!--{loop $image_news $mymps}-->
+			<li><a href="{$mymps[uri]}"><img src="{$mymps_global[SiteUrl]}{$mymps[imgpath]}" alt="{$mymps[title]}"/></a><br /><a href="{$mymps[uri]}" title="{$mymps[title]}" {if $mymps[iscommend] == 1}style="color:red"{/if}>{echo cutstr($mymps[title],22)}</a></li>
+			<!--{/loop}-->
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<div class="hotread">
+		<div class="hd">热门阅读排行</div>
+		<div class="list">
+			<ul>
+            	<!--{php $latest_news = mymps_get_news(15);}-->
+            	<!--{loop $latest_news $mymps}-->
+				<li><a href="{$mymps[uri]}" title="{$mymps[title]}" {if $mymps[iscommend] == 1}style="color:red"{/if}>{$mymps[title]}</a></li>
+				<!--{/loop}-->
+			</ul>
+		</div>
+	</div>
+</div>

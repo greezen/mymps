@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/post.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/delinfo.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/chkdelinfo.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_post}
+<div class="body1000">
+	<div class="clear15"></div>
+	<div id="main" class="wrapper">
+		
+		<div class="stepon2 cfix borderline">
+			<li>
+			<form action="{$mymps_global[SiteUrl]}/search.php" method="get" name="DelinfoFrom">
+			<input name="mod" type="hidden" value="information">
+			<input type="text" class="typeinput" name="tel">
+			<input class="typebtn" value="点击查询" type="submit"  onclick="return CheckForm();"/>
+			</form>
+			</li><br />
+			<li>输入您的手机号码，点击查询按钮查找信息</li>
+		</div>
+		<div><h2 class="balance-h2">其它修改/删除方式</h2></div>
+		<div class="stepon cfix">
+			<a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_member_logfile]}">登录账户修改/删除 &raquo;</a><br />
+			<font color="#666666">会员通过用户中心修改/删除自己发布的信息</font>
+		</div>
+		
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>

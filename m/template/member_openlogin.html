@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>QQ登录 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/login.css">
+	<script src="template/js/jq.min.js"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+	<div class="c_header">
+		<a class="c_logo" href="index.php"></a>
+		<a class="c_publish" href="index.php?mod=post"><i class="ico"></i>发布</a>
+	</div>
+	
+  	<div class="dl_nav"><span><a href="index.php">首页</a><font class="raquo"></font><a href="javascript:;">QQ登录</a></span></div> 
+
+	<div class="m311 log_reg_box">
+    <div id="logRegTabCon">
+		<div class="log_reg_item mt10"><img src="{$figureurl_qq_1}" align="center" height="20" width="20"/> &nbsp;{$nickname}&nbsp;，欢迎使用QQ登录。
+	  
+            <div class="reg-sf">
+				<a href="index.php?mod=openlogin&action=reg" class="bindtab {if $action == reg}sel{/if}"><i></i>未注册过本站</a>
+				<a href="index.php?mod=openlogin&action=bind" class="bindtab {if $action == bind}sel{/if}"><i></i>已经注册过本站</a>
+            </div>
+			
+            {if $action == 'reg'}
+				<div class="bindpanel">注册一个新用户
+				<form action="index.php?mod=openlogin" method="post">
+				<input name="action" value="reg" type="hidden">
+				<input name="mixcode" value="{$mixcode}" type="hidden">
+				<ul class="passport-login-input-ul">
+					<li class="passport-login-input-li">
+						<span class="passport-login-input-span">用户名</span>
+						<input name="userid" type="text" value="{$nickname}" class="passport-login-input passport-login-input-password" style="color: rgb(182, 182, 182);" readonly >
+					</li>
+					
+					<li class="passport-login-input-li">
+						<span class="passport-login-input-span">Email</span>
+						<input name="email" type="text" class="passport-login-input passport-login-input-password" style="color: rgb(182, 182, 182);">
+					</li>
+					
+					<li class="passport-login-input-li">
+						<span class="passport-login-input-span">密码</span>
+						<input name="userpwd" type="password" class="passport-login-input passport-login-input-password" style="color: rgb(182, 182, 182);">
+					</li>
+					
+					<li class="passport-login-input-li mt10">
+					  <label><input name="log_submit" type="submit" value="注册并绑定" class="passport-login-button btn_log" style="color: rgb(255, 254, 254);"></label>
+					</li>
+				</ul>
+				</form>
+				</div>
+			{else}
+				<div class="bindpanel">绑定原来已经注册的用户
+				<form action="index.php?mod=openlogin" method="post">
+				<input name="action" value="bind" type="hidden">
+				<input name="mixcode" value="{$mixcode}" type="hidden">
+				<ul class="passport-login-input-ul">
+					<li class="passport-login-input-li">
+						<span class="passport-login-input-span">原用户名</span>
+						<input name="bind_userid" type="text" size="20" class="passport-login-input passport-login-input-mobile" style="color: rgb(182, 182, 182);">
+					</li>
+					
+					<li class="passport-login-input-li">
+						<span class="passport-login-input-span">原密码</span>
+						<input name="bind_userpwd" type="password" class="passport-login-input passport-login-input-password" style="color: rgb(182, 182, 182);">
+					</li>
+	
+					<li class="passport-login-input-li mt10">
+						<label><input name="log_submit" type="submit" value="绑定" class="passport-login-button btn_log" style="color: rgb(255, 254, 254);"></label>
+					</li>
+				</ul>
+				</form>
+				</div>
+			{/if}
+			<div class="clear"></div>
+		</div>
+    </div>
+  </div>
+
+</div>
+{template footer2}
+</body>
+</html>

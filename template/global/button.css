@@ -1,0 +1,332 @@
+.button_on {
+	background:url("../../images/button_bg2.gif");
+	border:1px solid #c3a336
+}
+.input_on {
+	background:url("../../images/button_bg2.gif");
+	border:1px solid #c3a336
+}
+input.input,input.text {
+	width:200px;
+	padding:2px 4px 3px 4px;
+	border:1px solid;
+	border-color:#666 #ddd #ddd #666
+}
+input.input-small,input.txt {
+	width:50px!important;
+	padding:2px 4px 3px 4px;
+	border:1px solid;
+	border-color:#666 #ddd #ddd #666
+}
+input.radio {
+	border:none;
+	vertical-align:middle
+}
+input.checkbox {
+	height:14px;
+	border:none;
+	vertical-align:middle
+}
+input.input {
+	-moz-box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	height:32px;
+	*height:28px;
+	vertical-align:middle;
+	float:left;
+	line-height:28px;
+	border:2px solid #eee;
+	background:#fff;
+	padding:3px 5px;
+	*padding:0 5px 0 5px;
+}
+input.input:focus,inputinput.focus {
+	border-color:#51b4ff;
+	background:#fff
+}
+input.input.error,input.error,input.error .input {
+	border-color:#ec5524
+}
+textarea.input {
+	height:auto;
+	vertical-align:text-top
+}
+input.input-large {
+	width:198px
+}
+.authcode {
+	float:left;
+	border:1px #eee solid;
+	height:52px;
+	width:196px;
+	cursor:pointer;
+	margin-bottom:5px;
+	margin-top:3px;
+}
+input.mymps,button {
+	color:#ffffff;
+	font-family:microsoft yahei;
+	font-size:14px;
+	background-color:#F78015;
+	border:none;
+	cursor:pointer;
+	text-align:center;
+}
+input.mymps:hover,button:hover{
+	background-color:#EB6D13;
+}
+input.gray {
+	font-size:14px;
+	font-family:microsoft yahei;
+	border:none;
+	cursor:pointer;
+	background:#E9E4E4!important;
+	color:#000 !important;
+	text-align:center;
+}
+input.gray:hover {
+	background:#c8c6c7!important;
+}
+button.mini,input.mini {
+	padding-left:12px;
+	padding-right:12px;
+	height:32px!important;
+	*padding-left:10px!important;
+	*padding-right:10px!important;
+}
+button.large,input.large {
+	padding-left:18px;
+	padding-right:18px;
+	height:32px!important;
+	*padding-left:10px!important;
+	*padding-right:10px!important;
+}
+input.mymps_input {
+	height:19px
+}
+a.button,a.button span,a.button span i {
+	display:block;
+	float:left;
+	font-weight:bold;
+	cursor:pointer
+}
+a.a,a.a span,a.a span i {
+	color:#fff;
+	background:#fff url(../../images/button/a.gif) no-repeat left top
+}
+a.b,a.b span,a.b span i {
+	color:#513e0a;
+	background:#fff url(../../images/button/b.gif) no-repeat left top
+}
+a.c,a.c span,a.c span i {
+	color:#002f51;
+	background:#fff url(../../images/button/c.gif) no-repeat left top
+}
+a.button:link,a.button:visited {
+	text-decoration:none
+}
+a.button span i {
+	background-color:transparent;
+	overflow:hidden
+}
+a.button:hover span {
+	color:#fffa7e
+}
+a.xxl:link,a.xxl:visited,a.xxl {
+	padding:0 20px 0 0;
+	background-position:right top;
+	font-size:16px
+}
+a.xxl:hover {
+	background-position:right -150px
+}
+a.xxl:link span,a.xxl:visited span {
+	height:43px;
+	line-height:38px;
+	padding:0 0 0 20px
+}
+a.xxl:hover span {
+	background-position:left -150px
+}
+a.xxl span i {
+	width:30px;
+	height:30px;
+	background-position:-5px -304px;
+	margin:4px 5px 0 -14px
+}
+a.xxl span i.r {
+	float:right;
+	margin:4px -13px 0 5px
+}
+a.xxl span i.al {
+	background-position:-52px -304px
+}
+a.xl:link,a.xl:visited,a.xl {
+	padding:0 15px 0 0;
+	background-position:right -43px;
+	font-size:14px
+}
+a.xl:hover {
+	background-position:right -193px
+}
+a.xl:link span,a.xl:visited span {
+	height:34px;
+	line-height:30px;
+	*line-height:31px;
+	padding:0 0 0 15px;
+	background-position:left -43px
+}
+a.xl:hover span {
+	background-position:left -193px
+}
+a.xl span i {
+	width:22px;
+	height:22px;
+	background-position:-6px -347px;
+	margin:4px 3px 0 -10px
+}
+a.xl span i.r {
+	float:right;
+	margin:4px -10px 0 3px
+}
+a.xl span i.al {
+	background-position:-53px -347px
+}
+a.l:link,a.l:visited,a.l {
+	padding:0 15px 0 0;
+	background-position:right -77px
+}
+a.l:hover {
+	background-position:right -227px
+}
+a.l:link span,a.l:visited span {
+	height:29px;
+	line-height:25px;
+	padding:0 0 0 15px;
+	background-position:left -77px;
+	font-size:14px
+}
+a.l:hover span {
+	background-position:left -227px
+}
+a.l span i {
+	width:19px;
+	height:19px;
+	background-position:-4px -380px;
+	margin:3px 3px 0 -10px
+}
+a.l span i.r {
+	float:right;
+	margin:3px -10px 0 3px
+}
+a.l span i.al {
+	background-position:-51px -380px
+}
+a.m:link,a.m:visited,a.m {
+	padding:0 13px 0 0;
+	background-position:right -106px
+}
+a.m:hover {
+	background-position:right -256px
+}
+a.m:link span,a.m:visited span {
+	height:25px;
+	line-height:22px;
+	*line-height:24px;
+	padding:0 0 0 13px;
+	background-position:left -106px;
+	font-size:12px;
+	font-weight:normal
+}
+a.m:hover span {
+	background-position:left -256px
+}
+a.m span i {
+	width:17px;
+	height:17px;
+	background-position:-5px -409px;
+	margin:3px 2px 0 -8px
+}
+a.m span i.r {
+	float:right;
+	margin:2px -8px 0 2px
+}
+a.m span i.al {
+	background-position:-52px -409px
+}
+a.s:link,a.s:visited,a.s {
+	padding:0 12px 0 0;
+	background-position:right -131px
+}
+a.s:hover {
+	background-position:right -281px
+}
+a.s:link span,a.s:visited span {
+	height:19px;
+	line-height:17px;
+	*line-height:19px;
+	padding:0 0 0 12px;
+	background-position:left -131px;
+	color:#000;
+	font-size:12px;
+	font-weight:normal
+}
+a.s:hover span {
+	background-position:left -281px
+}
+a.s span i {
+	width:15px;
+	height:15px;
+	background-position:-3px -432px;
+	margin:1px 2px 0 -8px
+}
+a.s span i.r {
+	float:right;
+	margin:1px -7px 0 2px
+}
+a.s span i.al {
+	background-position:-50px -432px
+}
+a.b:link,a.b:link span {
+	color:#513e0a
+}
+a.c:link,a.c:link span {
+	color:#002f51
+}
+a.b:hover span {
+	color:#a57900
+}
+a.c:hover span {
+	color:#006ebd
+}
+a.button span {
+	_position:relative
+}
+a.button:link span.r,a.button:visited span.r {
+	_padding-right:15px
+}
+a.xxl:link span.r,a.xxl:visited span.r {
+	_padding-right:25px
+}
+a.button span i {
+	_margin-left:-5px
+}
+a.button span i.r {
+	_position:absolute;
+	_right:0;
+	_top:0
+}
+.imgnum {
+	background:#6EB00E;
+	color:#fff;
+	border:1px solid #0E8108;
+	height:12px;
+	display:inline-block;
+	line-height:12px;
+	overflow:hidden;
+	font-family:ËÎÌו;
+	vertical-align:middle;
+	margin:0 3px 1px;
+	padding:1px
+}

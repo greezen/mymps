@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<script src="{$mymps_global[SiteUrl]}/template/default/js/uaredirect.js" type="text/javascript"></script>
+<script type="text/javascript">uaredirect("{$mymps_global[SiteUrl]}/m/index.php?mod=category&catid={$catid}&cityid={$cityid}");</script>
+<title>{$page_title}</title>
+<meta name="keywords" content="{$cat[keywords]}" />
+<meta name="description" content="{$cat[description]}" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.head_{$mymps_global[head_style]}.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/category.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/pagination2.css" />
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/hover_bg.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_cat]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head}
+<div class="body1000">
+	<div class="clear"></div>
+	<div class="location">
+		{$location}
+	</div>
+	<div class="clear"></div>
+	<div class="wrapper">
+		{mytemplate list_select}
+	</div>
+	
+	<div class="clear"></div>
+	<div class="{$mymps_global[head_style]}_listhd">
+		<div class="listhdleft">
+			<div><a href="#" class="currentr"><span></span>{$city[cityname]}{$cat[catname]}简历</a></div>
+		</div>
+		<div class="listhdcenter">
+			信息总数：<span>{$rows_num}</span> ，您知道吗？置顶发布的信息可使成交率提高50%！
+		</div>
+		<div class="listhdright">
+			<a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?catid={$cat[catid]}&cityid={$city[cityid]}" target="_blank">免费发布{$city[cityname]}{$cat[catname]}信息>></a>
+		</div>
+	</div>
+	<div class="clear5"></div>
+	<div class="body1000">
+		<div id="ad_intercatdiv"></div>
+		<div class="infolists">
+			<div class="list_jianli">
+				<div id="ad_interlistad_top"></div>
+				<ul>
+					<div class="firstr">
+						<span class="ltitle">求职位</span>
+						<span class="ltime">发布时间</span>
+						<span class="lterm">是否应届</span>
+						<span class="lxb">性别</span>
+						<span class="lage">年龄</span>
+						<span class="lxueli">学历</span>
+						<span class="lexp">工作年限</span>
+					</div>
+					{loop $info_list $mymps}
+					<div class="hover {if $mymps[upgrade_type]>1}ding{/if}">
+						<span class="ltitle">
+						<a title="{$mymps[title]}" href="{$mymps[uri]}" target="_blank"  style="{if $mymps[ifred] == 1}color:red;{/if} {if $mymps[ifbold] == 1}font-weight:bold;{/if}">{echo cutstr($mymps[title],20)}</a>{if $mymps[img_count]}<span class="img_count">{$mymps[img_count]}图</span>{/if}{if $mymps[certify] == 1}<span class="certify">认证</span>{/if}
+						</span>
+						<span class="ltime">{echo get_format_time($mymps[begintime])}&nbsp;</span>
+						<span class="lterm">{$mymps[graduate]}&nbsp;</span>
+						<span class="lxb">{$mymps[sex]}&nbsp;</span>
+						<span class="lage">{$mymps[age]}&nbsp;</span>
+						<span class="lxueli">{$mymps[education]}&nbsp;</span>
+						<span class="lexp">{$mymps[work_life]}&nbsp;</span>
+					</div>
+					{/loop}
+				</ul>
+				<div id="ad_interlistad_bottom"></div>
+			</div>
+			<div class="clear"></div>
+			<div class="pagination2">{$pageview}</div>
+			<div class="clear"></div>
+			<div class="totalpost"><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?catid={$cat[catid]}&cityid={$city[cityid]}" target="_blank">马上发布一条{$city[cityname]}{$cat[catname]}信息&raquo;</a></div>
+		</div>
+	</div>
+    {mytemplate list_foot}
+	{mytemplate inc_foot}
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="Content-Language" content="zh-CN"/>
+<title>powered by mymps</title>
+<link href="<?=$mymps_global['SiteUrl']?>/template/global/mymps.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="<?=$mymps_global['SiteUrl']?>/template/default/js/login.js"></script>
+</head>
+<body style="padding:20px 0px 10px 20px; line-height:22px; color:#666">
+<div style="float:left; width:290px; border-right:1px #eeeeee solid; margin-bottom:20px; ">
+<form name="formLogin" method="post" action="<?=$mymps_global['SiteUrl']?>/<?php echo $mymps_global['cfg_member_logfile']?>" target="_self" onSubmit="return submitForm();">
+<input name="mod" type="hidden" value="login">
+<input name="action" type="hidden" value="dopost">
+<?php
+if($gourl == 'seecontact'){
+	$url = $mymps_global[SiteUrl].'/box.php?part=seecontact&infoid='.$infoid.'&if_view='.$if_view;
+}elseif($gourl == 'shoucang'){
+	$url = $mymps_global[SiteUrl].'/box.php?part=shoucang&infoid='.$infoid;
+}elseif($gourl == 'delinfo'){
+	$url = $mymps_global[SiteUrl].'/box.php?part=delinfo&id='.$id;
+}else{
+	$url = $mymps_global[SiteUrl].'/box.php?part=upgrade&id='.$id.'&catid='.$catid;
+}
+?>
+<input name="url" type="hidden" value="<?php echo $url; ?>">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="60" height="40">登录帐号</td>
+    <td><b style="color:red"><input name="userid" type="text" class="input input-large"/></b></td>
+  </tr>
+  <tr>
+    <td width="60" height="40">登录密码</td>
+    <td><input name="userpwd" type="password" class="input input-large"/></td>
+  </tr>
+<?php if($authcodesettings['login'] == 1) {?>
+  <tr>
+    <td width="60" height="40">验证码：</td>
+    <td><input type="text" name="checkcode" class="input input-large"/> </td>
+ </td>
+ <tr>
+ 	<td>&nbsp;</td>
+	<td><img src="<?=$mymps_global['SiteUrl']?>/<?=$mymps_global['cfg_authcodefile']?>" alt="看不清，请点击刷新" class="authcode" align="absmiddle" onClick="this.src=this.src+'?'"/></td>
+ </tr>
+<?}?>
+  <tr>
+    <td></td>
+    <td><label for="memory"><input name="memory" type="checkbox" value="on" class="checkbox" id="memory"/> 记住密码，公共场所慎用！</label></td>
+  </tr>
+  <tr>
+    <td height="50">&nbsp;</td>
+    <td><input type="submit" class="mymps mini" name="log_submit" value="立即登录" /></td>
+  </tr>
+</table>
+</form>
+</div>
+<div style="float:left; padding-left:15px; padding-bottom:6px; margin-top:10px;height:auto; overflow:auto; display:block; width:auto; color:#585858">
+	您需要登录方能进行后续操作！<br /><br />还没有会员帐号？<br /><br />
+<input type="button" class="gray mini" onclick="window.open('<?=$mymps_global['SiteUrl']?>/<?php echo $mymps_global['cfg_member_logfile'];?>?mod=register')" value="立即注册">
+</div>
+</body>
+</html>

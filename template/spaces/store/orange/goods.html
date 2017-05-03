@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>商品展示 - {$store[tname]}</title>
+<link href="{$mymps_global[SiteUrl]}/template/spaces/store/{$store[template]}/css/style.css" type="text/css" rel="stylesheet" />
+<script src="{$mymps_global[SiteUrl]}/template/spaces/store/{$store[template]}/js/common.js"></script>
+</head>
+<body>
+
+{template header}
+<div class="content">
+	{template sider}
+	<div class="cright">
+		<div class="location">当前位置：{$store[location]}</div>
+		<div class="clear"></div>
+		<div class="shop_infomain"> 
+			{loop $goods $mymps}
+			<li><a href="{$mymps_global[SiteUrl]}/{$mymps[uri]}" title="{$mymps[goodsname]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$mymps[pre_picture]}" width="120" height="93" /></a><span><a href="{$mymps[uri]}" title="{$mymps[goodsname]}" target="_blank">{$mymps[goodsname]}</a></span><em>&yen;{$mymps[nowprice]}</em></li>
+			{loopelse}
+			<p>暂无商品！</p>
+			{/loop}
+		</div> 
+	</div>
+</div>
+<div class="clear15"></div>
+{template footer}
+</body>
+</html>

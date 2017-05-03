@@ -1,0 +1,27 @@
+<div class="bartop">
+	<div class="barcenter">
+		<div class="barleft">
+			<ul class="barcity"><span>{if $city[cityname]}{$city[cityname]}{else}总站{/if}</span> [<a href="{$mymps_global[SiteUrl]}/changecity.php">切换分站</a>]</ul> 
+			<ul class="line"><u></u></ul>
+			<ul class="barcang"><a href="{$mymps_global[SiteUrl]}/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a></ul>
+			<ul class="line"><u></u></ul>
+			<ul class="barpost"><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}">快速发布信息</a></ul>
+			<ul class="line"><u></u></ul>
+			<ul class="bardel"><a href="{$mymps_global[SiteUrl]}/delinfo.php" rel="nofollow">修改/删除信息</a></ul>
+			<ul class="line"><u></u></ul>
+			<ul class="barwap"><a href="{$mymps_global[SiteUrl]}/mobile.php">手机浏览</a></ul>
+		</div>
+		<div class="barright">
+			<script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=iflogin"></script>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<div class="mhead">
+	<div class="logo"><a href="{$city[domain]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$mymps_global[SiteLogo]}" title="{$mymps_global[SiteName]}"/></a></div>
+	<div class="navigation">
+		<a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_member_logfile]}?cityid={$city[cityid]}" {if $mod == 'login' || !$mod}class="current"{/if}>用户登录</a>
+		<a href="{$mymps_global[cfg_member_logfile]}?mod=register&cityid={$city[cityid]}" {if $mod == 'register' || $mod == 'validate'}class="current"{/if}>立即注册</a>
+		<a href="{$mymps_global[cfg_member_logfile]}?mod=forgetpass&cityid={$city[cityid]}" {if $mod == 'forgetpass'}class="current"{/if}>找回密码</a>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<div class="header">
+	<div class="inner">
+		<div class="logo"><a href="{$mymps_global[SiteUrl]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$mymps_global[SiteLogo]}" title="{$mymps_global[SiteName]}"></a></div>
+		<div class="nav">
+			<a href="{$about[aboutus_uri]}" {if $part == 'aboutus'}class="current"{/if}>关于我们</a>
+			<a href="{$about[announce_uri]}" {if $part == 'announce'}class="current"{/if}>网站公告</a>
+			<a href="{$about[faq_uri]}" {if $part == 'faq'}class="current"{/if}>帮助中心</a>
+			<a href="{$about[friendlink_uri]}" {if $part == 'friendlink'}class="current"{/if}>友情链接</a>
+			<a href="{$about[sitemap_uri]}" {if $part == 'sitemap'}class="current"{/if}>网站地图</a>
+		</div>
+	</div>
+</div>

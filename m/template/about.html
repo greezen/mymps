@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>联系我们 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/about.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+{template header_search}
+<div id="cont">
+    <div class="mbox">
+    	<h3 class="tit">联系我们</h3>
+        <ul class="mcontact">
+        	<li>
+				<i class="ico user"></i>电话：
+				<span class="telbox">
+					<a href="tel:{$mymps_global[SiteTel]}" class="telbg">{$mymps_global[SiteTel]}<i class="ico tel"></i></a>
+				</span>
+        	</li>
+            <li><i class="ico email"></i>邮箱：{$mymps_global[SiteEmail]}</li>
+		</ul>
+    </div>
+</div>
+{template footer}

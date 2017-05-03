@@ -1,0 +1,42 @@
+<div class="infobox">
+    <div class="infoboximg"   pageTitle="商家相册">
+        <a href="javascript:void(0)"><img src='{$store[prelogo]}' /></a>
+    </div>
+       
+    <ul class="gsmc">
+        <li><b>{$store[tname]}</b></li> 
+        <li>
+           <span class="dp_xx"><img src="{$mymps_global[SiteUrl]}/images/credit/{$store[credits]}.gif"></span>
+           <label>{if $store[score] > 0}{$store[score]}分{/if}</label>
+        </li>
+        <li>
+        {if $store[com_cercity]}<span class="rz"><i class="icon blue_v"></i>营业执照已认证</span>/{/if}
+        {echo GetTime($store[jointime],'Y-m-d')}注册
+        </li> 
+    </ul>
+</div>
+
+<div class="clear"></div>
+
+<ul class="infoitembox">
+    <li>
+    <i class="icon tel_ico"></i>
+    <a style="text-decoration: none; color: #282828;" href="tel:{$store[tel]}">{$store[tel]}</a>
+    </li>
+    <li onclick="javascript:window.location.href='index.php?mod=store&id={$store[id]}&action=contact'" pageTitle="机构地址">
+    <a href="javascript:void(0)">
+    <i class="icon db_ico"></i>{$store[address]}<i class="icon arr1"></i>
+    </a>
+    </li>
+</ul>
+
+ <div class="storenavi">
+    <div class="storenav">
+        <ul>
+            {loop $navi $k $v}
+            <li><a href="index.php?mod=store&id={$store[id]}&action={$k}" {if $action == $k}class="current"{/if}>{$v}</a></li>
+            {/loop}
+            
+        </ul>
+    </div>
+</div>

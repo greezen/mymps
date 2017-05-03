@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/aboutus.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<title>{$page_title}</title>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_search]}">
+	{mytemplate inc_head_about}
+	<div class="clear"></div>
+	<div class="announce">
+    <!--{loop $announce $k $mymps}-->
+		<div class="title">
+		<a id="{$mymps[id]}"></a>
+		<div class="l">{$mymps[title]}</div>
+		<div class="r">起始时间：{echo GetTime($mymps[begintime])} &nbsp;&nbsp;结束时间：{if $mymps[endtime] == 0}无截止日期{else}{echo GetTime($mymps[endtime])}{/if}</div>
+		</div>
+		<div class="announcecontent">
+			{$mymps[content]}
+		</div>
+		<div class="clear"></div>
+	<!--{/loop}-->
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</body>
+</html>

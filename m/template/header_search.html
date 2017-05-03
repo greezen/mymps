@@ -1,0 +1,14 @@
+<div class="header">
+	{if $mobile_settings[mobilelogo]}<a class="logo_a" href="index.php?cityid={$city[cityid]}"><img src="{$mymps_global[SiteUrl]}{$mobile_settings[mobilelogo]}" alt="{$mymps_global[SiteName]}"></a>{/if}
+	<a class="city_a" href="index.php?mod=changecity&cityid={$city[cityid]}">{echo $city[cityname] ? $city[cityname] : 'ÇÐ»»'}<i class="filt-arrowwhite"></i></a>
+    <div class="search {echo $mobile_settings[mobilelogo] ? 'width45' : 'width65'}">
+	<form action="index.php?" method="get">
+        <input name="cityid" type="hidden" value="{$city[cityid]}">
+		<input name="mod" type="hidden" value="search">
+		<input class="input_keys" name="keywords" type="text" value="{$keywords}" x-webkit-speech lang="zh-CN" placeholder="ÊäÈë¹Ø¼ü´ÊËÑË÷">
+		<input class="search_but body_bg" id="qixc" type="submit" value="ËÑÐÅÏ¢">
+	</form>
+	</div>
+    {if !$mobile_settings[mobilelogo]}<div class="h_btn h_post" onclick="javascript:window.location.href='index.php?mod=post&cityid={$city[cityid]}'" ></div>{/if}
+</div>
+<div class="clearfix"></div>

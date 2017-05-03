@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/post.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/posthistory.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_post}
+<div class="body1000">
+	<div class="clear15"></div>
+	<div id="main" class="wrapper">
+		<div class="top_info cfix">
+			<img src="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_authcodefile]}?part=contact&wid=130&strings={$tel}" align="absmiddle">此号码最近发布了 <span class="numtotal">{$numtotal}</span> 条信息
+		</div>
+		<div class="fabu cfix" >
+			<h2 class="balance-h2">该号码最近发贴记录</h2>
+			<ul class="ggifyes">
+			<li class="firstr">
+				<span class="title">信息标题</span>
+				<span class="cate">信息类别</span>
+				<span class="user">发布人</span>
+				<span class="time">发布时间</span>
+			</li>
+            <!--{loop $info $info}-->
+			<li>
+				<span class="title"><a href="{$info[uri]}" target="_blank">{echo cutstr($info[title],40)}</a></span>
+				<span class="cate">{$info[catname]}&nbsp;</span>
+				<span class="user">{if $info[userid]}<a href="{$info[uri_tname]}" target="_blank">{$info[userid]}</a>{else}{$info[contact_who]}{/if}&nbsp;</span>
+				<span class="time">{echo GetTime($info[begintime])}</span>
+			</li>
+            <!--{/loop}-->
+			</ul> 
+		</div>
+		<dl class="prompt">
+			<dt>温馨提示：</dt>
+			<dd>1、如一个电话使用大量不同的账户进行发贴，则很有可能是中介或商家。</dd>
+			<dd>2、如您遇到中介商家冒充个人的行为请马上<a href="{$about[aboutus_uri]}" target="_blank">联系我们</a>。</dd>
+		</dl>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>

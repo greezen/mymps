@@ -1,0 +1,403 @@
+.log_reg_box {
+	width:100%;
+	min-width:320px;
+	float:left;
+}
+.log_reg_box ul.tab {
+	width:100%;
+}
+.log_reg_box ul.tab li {
+	width:50%;
+	height:41px;
+	text-align:center;
+	line-height:40px;
+	font-size:14px;
+	color:#3e3e3e;
+	float:left;
+	background:-webkit-gradient(linear,0% 0,0% 100%,from(#f7fafc),to(#FFFFFF));
+}
+.log_reg_box ul.tab li.curr span {
+	border-left:1px solid #FFFFFF;
+	border-right:1px solid #FFFFFF;
+	display:block;
+	color:#f97d03;
+}
+.log_reg_box ul.tab li.curr span font {
+	border:1px solid #fcfcfd;
+	display:block;
+}
+.log_reg_box ul.tab li.currl span {
+	background:#F2F5F7;
+	border-right:1px solid #d3d3d3;
+	border-bottom:1px solid #d3d3d3;
+	-webkit-box-shadow:0 1px 1px #E9EBEC;
+	color:#3e3e3e;
+}
+.log_reg_box ul.tab li.currr span {
+	background:#F2F5F7;
+	border-left:1px solid #d3d3d3;
+	border-right:none;
+	border-bottom:1px solid #d3d3d3;
+	-webkit-box-shadow:0 1px 1px #E9EBEC;
+	color:#3e3e3e;
+}
+#logRegTabCon {
+	padding:0 10px 0;
+}
+.login_intxt {
+	border:1px solid #c0c1c2;
+	height:42px;
+}
+.login_intxtt {
+	width:65px;
+	font-size:15px;
+	line-height:42px;
+	padding-left:12px;
+	color:#3e3e3e;
+	float:left;
+}
+.login_intxt input {
+	width:200px;
+	height:14px;
+	line-height:14px;
+	font-size:12px;
+	color:#b6b6b6;
+	border:none;
+	outline:none;
+	margin-top:14px;
+	background:#FFFFFF;
+	float:left;
+}
+.login_ertxt {
+	width:100%;
+	height:23px;
+	display:block;
+	font-size:11px;
+	line-height:23px;
+	color:#e00303;
+}
+.login_ffle i {
+	width:19px;
+	height:16px;
+	background-position:-55px -58px;
+	display:block;
+	float:left;
+}
+.login_ffle i.nx_checked {
+	background-position:-74px -58px;
+}
+.log_reg_item {
+	width:100%;
+	padding-top:6px;
+	float:left;
+}
+.passport-login-input-ul {
+	width:100%;
+}
+.passport-login-input-ul li {
+	border:1px solid #c0c1c2;
+	height:42px;
+	margin-top:10px;
+	overflow:hidden;
+	background:#FFFFFF;
+}
+/*ul.passport-login-input-ul li:nth-child(1) {
+	width:100%;
+	height:24px;
+	border:1px solid #e86f6f;
+	background:#f1cece;
+	color:#e4133a;
+	line-height:24px;
+	font-size:12px;
+	text-indent:12px;
+}
+ul.passport-login-input-ul li:nth-child(2) input {
+	background:#FFFFFF;
+}
+ul.passport-login-input-ul li:nth-child(3) input {
+	background:#FFFFFF;
+}
+*/#rememberLi,#mobileLoginButtonLi,#loginButtonLi {
+	border:none;
+	height:auto;
+	margin:10px 0 0 0;
+}
+#mobilevalidateli input {
+	background:#FFFFFF;
+}
+.passport-login-input-span {
+	width:70px;
+	font-size:16px;
+	line-height:42px;
+	padding-left:12px;
+	color:#3e3e3e;
+	float:left;
+}
+.passport-login-input {
+	width:180px;
+	height:40px;
+	vertical-align:middle;
+	font-size:12px;
+	color:#b6b6b6;
+	border:none;
+	outline:none;
+	background:#FFFFFF;
+	position:relative;
+	top:3px;
+}
+#pptvalidatecode {
+	width:85px;
+	height:14px;
+	line-height:14px;
+	font-size:12px;
+	color:#b6b6b6;
+	border:none;
+	outline:none;
+	margin-top:14px;
+	background:#FFFFFF;
+	float:left;
+}
+#pptvcodeImg {
+	padding-top:5px;
+	padding-right:6px;
+	float:right;
+}
+.login_ffle {
+	font-size:14px;
+	color:#7c7c7c;
+	padding:15px 0 15px 10px;
+	float:left;
+}
+.btn_log {
+	width:100%;
+	height:42px;
+	line-height:42px;
+	color:#fffefe;
+	text-align:center;
+	overflow:hidden;
+	border:none;
+	-webkit-border-radius:0;
+	font-size:14px;
+}
+.login_ff {
+	padding:0 5px;
+}
+.login_ffmain {
+	padding:15px 0 20px;
+	width:100%;
+	float:left;
+}
+a.login_ffri {
+	padding:5px 5px 3px 5px;
+	display:block;
+	float:left;
+	color:#50b4d7;
+}
+a.login_ffleft {
+	padding:5px 5px 3px 5px;
+	display:block;
+	float:right;
+	color:#50b4d7;
+}
+#loginTip,#mobileLoginTip {
+	color:red;
+}
+#validateli a {
+	display:none;
+}
+.f12 {
+	display:none;
+}
+#logRegTabCode {
+	padding:0 10px 0;
+}
+ul#pptmobileregul {
+	padding-top:20px;
+}
+ul#pptmobileregul li {
+	border:1px solid #C0C1C2;
+	height:42px;
+	overflow:hidden;
+}
+.passport-reg-input-span {
+	width:85px;
+	font-size:15px;
+	line-height:42px;
+	padding-left:12px;
+	color:#3E3E3E;
+	float:left;
+}
+.passport-reg-input {
+	width:180px;
+	height:40px;
+	vertical-align:middle;
+	font-size:12px;
+	color:#B6B6B6;
+	border:none;
+	outline:none;
+	background:#FFFFFF;
+	position:relative;
+	top:3px;
+}
+#pptmobileregmobile_tip {
+	width:100%;
+	height:28px;
+	font-size:11px;
+	color:#e00303;
+	display:block;
+}
+ul#pptmobileregul li#mobileRegSendMobileCodeLi {
+	border:none;
+	text-align:center;
+}
+ul#pptmobileregul li#mobileRegSendMobileCodeLi .passport-reg-input-span {
+	display:none;
+}
+.mob_yzm {
+	width:180px;
+	height:50px;
+	background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#c3caa8),color-stop(1,#c3caa8));
+	line-height:50px;
+	color:#fff;
+	text-align:center;
+	overflow:hidden;
+	border:none;
+	-webkit-border-radius:0;
+}
+.mob_yzm_time {
+	background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#e0e3e5),color-stop(1,#e0e3e5));
+	color:#3e3e3e;
+}
+ul#pptmobileregul li#mobileRegSendMobileCodeLi {
+	height:auto;
+	text-align:center;
+}
+#pptmobileresendbtn_tip {
+	width:100%;
+	height:15px;
+	font-size:11px;
+	color:#e00303;
+	display:block;
+}
+ul#pptmobileregul li#pptmobilertt {
+	width:100%;
+	font-size:12px;
+	line-height:22px;
+	color:#585858;
+	text-align:center;
+	padding-bottom:20px;
+	border:none;
+	border-bottom:1px dashed #c5c5c5;
+}
+#mobileRegMobileCodeLi {
+	margin-top:25px;
+}
+#pptmobileregmobilecode_tip {
+	width:100%;
+	height:20px;
+	font-size:11px;
+	color:#e00303;
+	display:block;
+}
+ul#pptmobileregul li#mobileRegButtonLi {
+	border:none;
+	padding-bottom:25px;
+}
+ul#pptmobileregul li#mobileRegButtonLi .passport-reg-input-span {
+	display:none;
+}
+.login_hezuo {
+	padding:0 5px;
+	margin-top:10px;
+	color:#5c5c5c;
+}
+.login_hezuo_mian {
+	background:#fff;
+	width:100%;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+.login_hezuo_mian ul {
+	border:1px solid #c0c1c2;
+	height:22px;
+	padding:10px 0;
+	overflow:hidden;
+}
+.login_hezuo_mian li {
+	width:49%;
+	float:left;
+	height:22px;
+	line-height:22px;
+	text-align:center;
+}
+.login_hezuo_mian li.bor {
+	border-right:1px solid #bbbdc3;
+}
+.login_hezuo_mian li i {
+	background:url(../images/yz-ico.png) no-repeat;
+	background-size:18px auto;
+	background-position:0 -85px;
+	width:18px;
+	height:19px;
+	display:inline-block;
+	margin-right:5px;
+	vertical-align:middle;
+	overflow:hidden;
+}
+.login_hezuo_mian li i.hzico-sina {
+	background-position:0 -108px;
+	height:16px;
+}
+.login_hezuo_mian a {
+	width:100%;
+	height:100%;
+	display:inline-block;
+	-webkit-border-radius:0;
+}
+.mt10 {
+	margin-top:10px;
+}
+.reg-sf {
+	margin:5px 0 10px;
+	overflow:hidden;
+}
+.reg-sf a {
+	width:50%;
+	float:left;
+	padding:10px 0;
+	display:inline-block;
+	color:#5c5c5c;
+	cursor:pointer;
+}
+.reg-sf a i {
+	background:url(../images/yz-ico.png) no-repeat;
+	background-size:18px auto;
+	background-position:0 -132px;
+	vertical-align:middle;
+	margin-right:10px;
+	width:18px;
+	height:18px;
+	display:inline-block;
+	overflow:hidden;
+}
+.reg-sf a.sel {
+	color:#ff5b0a;
+}
+.reg-sf a.sel i {
+	background-position:0 -157px;
+}
+#mobileLoginButtonLi.mt10 {
+	margin:20px 0 30px;
+}
+
+.blue .btn_log{background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#3592E2),color-stop(1,#3592E2));}
+.green .btn_log{background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#42B712),color-stop(1,#42B712));}
+.orange .btn_log{background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#FF7201),color-stop(1,#FF7201));}
+.red .btn_log{background:-webkit-gradient(linear,0 0,0 100%,color-stop(0,#C40000),color-stop(1,#C40000));}
+
+
+
+
+
+
+

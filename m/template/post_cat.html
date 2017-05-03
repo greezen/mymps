@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>发布信息 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/post.css">
+	<script src="template/js/jq.js"></script>
+</head>
+<body class="{$mymps_global[cfg_tpl_dir]}">
+{template header_search}
+{loop $categories $mymps}
+<dl class="business">
+    <dt class="house"><i class="ico" style="background-image:url({$mymps_global[SiteUrl]}/{$mymps[icon]});"></i>发布{$mymps[catname]}信息</dt>
+    <dd {if $catid}style="display:block"{/if}>
+        {loop $mymps[children] $c}
+        <a href="index.php?mod=post&catid={$c[catid]}&cityid={$cityid}&areaid={$areaid}&streetid={$streetid}">{$c[catname]}</a>
+        {/loop}
+    </dd>
+</dl>
+{/loop}
+    
+<script type="text/javascript">
+    (function () {
+        $('.business dt').bind('click', function () {
+            var _this = $(this).parent();
+            if (_this.hasClass('exp')) {
+                _this.removeClass('exp');
+            } else {
+                var scrollTop = document.body.scrollTop;
+                _this.addClass('exp');
+                window.scrollTo(0, scrollTop);
+            }
+        });
+    }());
+</script>
+{template footer}
+</body>
+</html>

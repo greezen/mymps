@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" /> 
+<title>zhideyao.cn</title> 
+<style type="text/css"> 
+body {
+	padding: 0px;
+	margin: 40px 60px;
+	background:white;
+	font-size:14px;
+	background-color:white;
+}
+#center {
+	width: auto;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	padding-left:60px;
+	background:url(../../template/default/images/right.gif) 0 10px no-repeat;
+}
+input{font:12px Arial;padding:6px 9px;vertical-align:middle;margin-bottom:1px; font-family:microsoft yahei;}
+input.gray{border:1px solid;cursor:pointer; border-radius:3px; border-color:#ddd #ddd #ddd #ddd !important;background:#F1F1F1;color:#333 !important}
+</style> 
+</head> 
+
+<body> 
+<div id="center">
+恭喜！签到成功，您的账户已成功增加 <?php echo intval($score_changer);?> 个积分！<br><br>
+当前积分值：<?=$score?><br><br>
+<input value="关闭窗口" type="button" onclick='parent.window.location.reload();parent.closeopendiv();' style="margin-left:auto;margin-right:auto;" class="gray">
+</div>
+</body>
+</html>

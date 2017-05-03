@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>所有分类 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/all.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+{template header_search}
+{template navigation}
+
+{loop $cat_list $mymps}
+<div class="navv">
+<div class="nav_tt nav_ttbg1">
+<img src="{$mymps_global[SiteUrl]}{$mymps[icon]}" align="center" valign="middle" class="icon"> &nbsp; 
+<a href="index.php?mod=category&catid={$mymps[catid]}&cityid={$cityid}">{$mymps[catname]}<i class="filt-arrowright"></i></a>
+<span class="apost"><a href="index.php?mod=post&catid={$mymps[catid]}&cityid={$cityid}">发信息</a></span>
+</div>
+<div class="big_dl sale">
+	<ul>
+    	{loop $mymps[children] $c}
+		<li class="one_third"><a href="index.php?mod=category&catid={$c[catid]}&cityid={$cityid}">{echo cutstr($c['catname'],8)}</a></li>
+		{/loop}
+	</ul>
+</div>
+</div>
+{/loop}
+{template footer}
+	
+</div>
+</body>
+</html>

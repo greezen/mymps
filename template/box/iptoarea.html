@@ -1,0 +1,19 @@
+<?php
+$admindir = $admindir ? $admindir : '/admin';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="Content-Language" content="zh-CN"/>
+<title>powered by mymps</title>
+<link href="../template/global/css/mymps.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div style="text-align:left; padding:10px 20px">
+选定的IP&raquo; <b style="color:red"><?=$ip?></b><br />
+<div style="border-top:1px #eee solid; margin-top:10px; padding-top:10px;"> 参考地址&raquo; <b style="font-size:14px; color:red"><?php echo $area?></b> <a target="_blank" href="http://www.ip138.com/ips.asp?ip=<?=$ip?>&action=2">详细查询&raquo;</a></div>
+</div>
+</body>
+</html>

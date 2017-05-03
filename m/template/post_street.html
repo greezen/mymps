@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>发布信息 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/post.css">
+	<script src="template/js/jq.min.js"></script>
+</head>
+<body class="{$mymps_global[cfg_tpl_dir]}">
+{template header_search}
+<dl class="business exp">
+    <dt class="house">选择下级地区</dt>
+    <dd>
+    {loop $street_list $mymps}
+      <a href="index.php?mod=post&catid={$catid}&cityid={$cityid}&areaid={$areaid}&streetid={$mymps[streetid]}">{$mymps[streetname]}</a>
+    {/loop}
+    </dd>
+</dl>
+<script type="text/javascript">
+(function () {
+    $('.business dt').bind('click', function () {
+        var $this = $(this).parent();
+        if ($this.hasClass('exp')) {
+            $this.removeClass('exp');
+        } else {
+            var scrollTop = document.body.scrollTop;
+            $this.addClass('exp');
+            window.scrollTo(0, scrollTop);
+        }
+    });
+}());
+</script>
+{template footer}
+</body>
+</html>

@@ -1,0 +1,18 @@
+<?php
+$admindir = $admindir ? $admindir : '/admin';
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<meta http-equiv="Content-Language" content="zh-CN"/>
+<title>powered by mymps</title>
+<link href="<?=$mymps_global['SiteUrl']?>/template/global/mymps.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div style="text-align:left; padding:10px 20px">
+您选中了会员&raquo; <b style="color:red"><?=$userid?></b><br /><div style="border-top:1px #eee solid; margin-top:10px; padding-top:10px;"> <a href="..<?=$admindir?>/index.php?do=power&userid=<?=$userid?>&password=<?php echo $password; ?>" target="_blank">进入会员控制面板</a> | <?php if($uid){?><a href="<?=$mymps_global['SiteUrl']?>/store.php?uid=<?=$uid?>" target="_blank">进入ta的店铺</a> | <?php }else{?><a href="<?=$mymps_global['SiteUrl']?>/space.php?user=<?=$userid?>" target="_blank">进入ta的空间</a> | <?php }?><a href="..<?=$admindir?>/pm.php?userid=<?=$userid?>" target="framRight">给ta发短消息</a> | <a href="..<?=$admindir?>/information.php?keywords=<?=$userid?>&show=userid" target="framRight">ta发布的分类信息</a></div>
+</div>
+</body>
+</html>

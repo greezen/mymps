@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<script src="{$mymps_global[SiteUrl]}/template/default/js/uaredirect.js" type="text/javascript"></script>
+<script type="text/javascript">uaredirect("{$mymps_global[SiteUrl]}/m/index.php?mod=news&id={$id}");</script>
+<title>{$page_title}</title>
+<meta name="keywords" content="{$news[keywords]}" />
+<meta name="description" content="{$news[introduction]}" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.head_{$mymps_global[head_style]}.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/news.head_{$mymps_global[head_style]}.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/newstyle.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/news_comment.css" />
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/news.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/comment.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_search]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+	{mytemplate inc_head}
+	<div class="clear"></div>
+    <div class="body1000">
+		<div class="location">{$location}</div>
+		<div class="clear"></div>
+		<div class="column">
+			<div class="col1">
+				<div class="article_module">
+					<div id="article">
+					<h1>{$news[title]}</h1>
+					<div id="article_extinfo">
+						<div>
+						发布时间：{echo GetTime($news[begintime])}&nbsp;&nbsp;来源：{$news[source]}&nbsp;&nbsp;浏览：<font id="hit"><script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=news&id={$news[id]}"></script></font>&nbsp;&nbsp; 【<a href="javascript:fontZoom(16)">大</a>】【<a href="javascript:fontZoom(14)">中</a>】【<a href="javascript:fontZoom(12)">小</a>】
+						</div>
+						</div>
+						<!--{if $news[introduction]}<div id="introduction">{$news[introduction]}</div>{/if}-->
+						<div id="article_body">
+						{$news[content]}
+						<div class="bianji">责任编辑：{$news[author]}</div>
+						</div>
+						<div class="operation">
+							<span class="shoucang"><a href="javascript:window.external.addFavorite(window.location.href,'{$news[title]}');">加入收藏</a></span>
+							<span class="print"><a href="javascript:window.print();">打印本页</a></span>
+							<span class="close"><a href="javascript:window.close();">关闭窗口</a></span>
+							<span class="top"><a href="javascript:window.scrollTo(0,0);">返回顶部</a></span>
+						</div>
+						<div class="relatenews">
+							<div class="relatetitle">相关文章：</div>
+							<div class="relateli">
+								<ul>
+                                	<!--{php $relate_news = mymps_get_news(8,$news['catid']);}-->
+                                	<!--{loop $relate_news $mymps}-->
+									<li><a href="{$mymps[uri]}" title="{$mymps[title]}">{$mymps[title]}</a></li>
+                                    <!--{/loop}-->
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="newscomment">
+				<div class="hd"><span class="hd1">相关评论</span><span class="hd2"><a href="#comment_write">我来说两句</a></span></div>
+				<div class="bd">
+				<div><script type="text/javascript" src="{$mymps_global[SiteUrl]}/comment.php?part=news&id={$news[id]}"></script></div>
+				</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+            {mytemplate news_right}
+		</div>
+		{mytemplate inc_foot}
+	</div>
+</body>
+</html>

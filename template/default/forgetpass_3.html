@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/findpwd.css" />
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/validator.common.js"></script> 
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/validator.js"></script> 
+<title>找回密码</title>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_log}
+<div class="inner">
+	<div class="body">
+	<div class="clearfix"></div>
+	<div id="main" class="wrapper">
+		<div class="step3">
+			<span><font class="number">1</font> 填写电子邮箱地址</span>
+			<span><font class="number">2</font> 验证信息</span>
+			<span class="cur"><font class="number">3</font> 重设密码</span>
+		</div>
+		<div class="stepp">
+			<form action="{$mymps_global[cfg_member_logfile]}" method="post" name="ForpwdFrom">
+			<input name="mod" type="hidden" value="forgetpass" />
+			<input name="action" type="hidden" value="resetpwd" />
+			<input name="uid" type="hidden" value="{$uid}" />
+			<input name="userid" type="hidden" value="{$userid}" />
+			<input name="email" type="hidden" value="{$email}" />
+			<div class="clear"></div>
+			<div>
+			<span class="cl">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</span>
+			<span class="cr font">{$userid}</span>
+			</div>
+			<div class="clear"></div>
+			<div>
+			<span class="cl">新&nbsp;&nbsp;密&nbsp;&nbsp;码：</span>
+			<span class="cr">
+			<input id="reg_password" name="userpwd" type="password" class="input input-large" require="true" datatype="limitB" min="6" max="16" msg="密码不得少于6个字符或超过16个字符！" maxlength="16">
+			</span>
+			</div>
+			<div class="clear"></div>
+			<div>
+			<span class="cl">再次输入：</span>
+			<span class="cr">
+			<input name="reuserpwd" type="password" to="userpwd" class="input input-large" msg="两次输入的密码不一致" id="pwdconfirm" require="true" datatype="repeat">
+			</span>
+			</div>
+			<div class="clear"></div>
+			<div><span class="cl">&nbsp;</span><span class="cr"><input name="log_submit" class="typebtn" value="确认修改" type="submit" onclick="return CheckForm();"/></span></div>
+			</form>
+		</div>
+	</div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>
+<script language="javascript" type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/validator2.js"></script>

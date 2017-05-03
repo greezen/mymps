@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>{$cat[catname]} - 新闻资讯 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/news.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+    {template header_search}
+    <div class="clearfix"></div>
+    <div class="news">
+    
+    <div class="dl_nav">
+		<span><a href="index.php?cityid={$cityid}">首页</a><font class="raquo"></font><a href="index.php?mod=news&cityid={$cityid}">新闻资讯</a>
+        {loop $parentcats $mymps}
+        <font class="raquo"></font><a href="index.php?mod=news&cityid={$cityid}&catid={$mymps[catid]}">{$mymps[catname]}</a>
+        {/loop}
+        </span>
+	</div>
+
+    <div class="newsnavi">
+    	<div class="newsnav">
+        	<ul>
+            	<!--{loop $rootchannel $mymps}-->
+                <li><a href="index.php?mod=news&catid={$mymps[catid]}&cityid={$city[cityid]}" {if $mymps[catid] == $catid}class='current'{/if}>全部</a></li>
+                <!--{loop $mymps[children] $w}-->
+                <li><a href="index.php?mod=news&catid={$w[catid]}&cityid={$city[cityid]}" {if $w[catid] == $catid}class='current'{/if}>{$w[catname]}</a></li> 
+                <!--{/loop}-->
+                <!--{/loop}-->
+            </ul>
+        </div>
+    </div>
+	
+    <div class="clearfix"></div>
+        
+    <div class="mod_02" id="myPicsrc">
+                <div class="bd tab-cont">
+                    <ul class="list_normal list_news">
+                        <!--{loop $news $mymps}-->
+                        <li class="img">
+                            <a href="{$mymps[uri]}" class="link">
+                            <p class="img"><img src="{$mymps[imgpath]}" onerror="this.src='{$mymps_global[SiteUrl]}/images/nophoto.jpg'" /></p>
+                            <p class="tit"{if $mymps[iscommend] ==1}style="color:red"{/if}>{$mymps[title]}</p>
+                            <p class="txt">{echo cutstr($mymps[title],20)}</p>
+                            <p class="hot po_ab">{echo GetTime($mymps[begintime],'m-d')}</p>
+                            </a>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                
+            </div>
+    </div>
+    {if $news}
+	<div class="pager">
+    {$pageview}
+	</div>
+	{/if}
+	{template footer}
+</div>
+</body>
+</html>

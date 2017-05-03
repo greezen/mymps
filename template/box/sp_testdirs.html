@@ -1,0 +1,20 @@
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<style>
+*{ font-size:12px; line-height:22px; margin:0; padding:0}
+</style>
+<table style="margin:10px 10px 15px 20px;">
+    <?php
+        foreach($sp_testdirs as $d)
+        {
+          if($d!='/') $fulld = MYMPS_ROOT.$d;
+          else $fulld = MYMPS_ROOT;
+          if($d!='/') $rsta = (is_readable($fulld) ? '<font color=green>[√]读</font>' : '<font color=red>[×]读</font>');
+          else $rsta = '';
+          $wsta = (is_writeable($fulld) ? '<font color=green>[√]写</font>' : '<font color=red>[×]写</font>');
+    ?> 
+    <tr>
+      <td width="190"><?php echo $d; ?></td>
+      <td><?php echo $rsta." ".$wsta; ?></td>
+    </tr>
+    <?php }?>
+</table>

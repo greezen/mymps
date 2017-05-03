@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/findpwd.css" />
+<title>找回密码</title>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_log}
+<div class="inner">
+	<div class="body">
+	<div class="clearfix"></div>
+	<div id="main" class="wrapper">
+    	{if $status == 'error2'}
+		<div class="step2">
+			<span><font class="number">1</font> 填写电子邮箱地址</span>
+			<span class="cur"><font class="number">2</font> 验证信息</span>
+			<span><font class="number">3</font> 重设密码</span>
+		</div>
+		{else}
+		<div class="step3">
+			<span><font class="number">1</font> 填写电子邮箱地址</span>
+			<span><font class="number">2</font> 验证信息</span>
+			<span class="cur"><font class="number">3</font> 重设密码</span>
+		</div>
+		{/if}
+		<div class="stepp">
+			{if $status == 'success'}
+			<h1>密码修改成功！请用新密码重新登录网站！</h1>
+			<div class="clear15"></div>
+			<div class="steppp">
+				<div>用户名：<strong>{$userid}</strong></div>
+				<div class="clear15"></div>
+				<div>电子邮箱：<strong>{$email}</strong>(<font color="#666">此邮箱可用于登录</font>)</div>
+				<div class="clear15"></div>
+				<div><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_member_logfile]}?mod=login">登录会员中心&raquo;</a></div>
+			</div>
+			{else}
+			<div class="clear15"></div>
+			<h2>{$msg}</h2>
+			{/if}
+		</div>
+	</div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>

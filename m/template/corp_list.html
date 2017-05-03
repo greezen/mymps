@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>{$corp[corpname]} - 商家店铺 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/corplist.css">
+    <link type="text/css" rel="stylesheet" href="template/css/filter.css">
+    
+    <script src="template/js/jq.js"></script>
+	<script src="template/js/jq.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="template/css/scrollbar.css">
+	<script src="template/js/scrollbar.js"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+    {template header_search}
+    <div id="mask" onclick="maskHide();"></div>
+
+	<div class="dl_nav">
+		<span><a href="index.php?cityid={$cityid}">首页</a><font class="raquo"></font><a href="index.php?mod=corp&cityid={$cityid}">商家机构</a>
+        {loop $parentcats $mymps}
+        <font class="raquo"></font><a href="index.php?mod=corp&cityid={$cityid}&catid={$mymps[corpid]}">{$mymps[corpname]}</a>
+        {/loop}
+        </span>
+	</div>
+	
+	<div class="filtate-outter">
+
+    <div class="list-filtrate">
+        <section class="filtrate-nav">
+            <ul>
+                <li class="filter_li" id="filter_catid"> <a href="javascript:filterShow('catid');">分类<i class="filt-arrow"></i></a> </li>
+                <li class="filter_li" id="filter_areaid"> <a href="javascript:filterShow('areaid');">区域<i class="filt-arrow"></i></a> </li>
+            </ul>
+        </section>
+       
+        <div class="filt-container">
+        
+            {loop $ypcategory $k $mymps}
+            <div class="filt-open" id="filter-catid">
+                <div class="warpper box-flex1 bg-white" data-key="district" style="height: 286px;">
+                    <ul class="">
+                    	<li {echo $mymps[corpid] == $catid ? 'class="active"' : '';}><a href="index.php?mod=corp&catid={$mymps[corpid]}&cityid={$cityid}">不限</a></li>
+                        {loop $mymps[children] $u $w}
+                        <li {echo $w[corpid] == $catid ? 'class="active"' : '';}><a href="index.php?mod=corp&catid={$w[corpid]}&cityid={$cityid}">{$w[corpname]}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+            {/loop}
+            
+            {if $city[cityid]}
+            <div class="filt-open" id="filter-areaid">
+                <div class="warpper box-flex1 bg-white" data-key="district" style="height: 400px; overflow-style:marquee-block">
+                    <ul class="">
+                    	<li class="{echo $areaid == 0 ? 'active' : '';}"><a href="index.php?mod=corp&cityid={$city[cityid]}&catid={$catid}">不限</a></li>
+                    	{loop $city[area] $k $mymps}
+                        {if $mymps[street]}
+                        <li class="zone {echo $mymps[areaid] == $areaid ? 'active' : '';}" id="zone_{$mymps[areaid]}"><a href="javascript:showChild({$mymps[areaid]});">{$mymps[areaname]}</a><i class="filt-arrow"></i></li>
+                        {else}
+                        <li class="zone {echo $mymps[areaid] == $areaid ? 'active' : '';}" id="zone_{$mymps[areaid]}"><a href="index.php?mod=corp&catid={$catid}&cityid={$city[cityid]}&areaid={$mymps[areaid]}">{$mymps[areaname]}</a></li>
+                        {/if}
+                        {/loop}
+                        
+                    </ul>
+                </div>
+                {loop $city[area] $k $mymps}
+                <div class="f_box_inner bg-white" id="showChild_{$mymps[areaid]}" {if $mymps[areaid] == $areaid}style="display:block;"{/if}>
+                <ul>
+                	<li class="{echo $streetid == 0 ? 'active' : '';}"><a href="index.php?mod=corp&cityid={$city[cityid]}&catid={$catid}&areaid={$mymps[areaid]}">不限</a></li>
+                	{loop $mymps[street] $u $w}
+                    <li class="{echo $w[streetid] == $streetid ? 'active' : '';}"><a href="index.php?mod=corp&cityid={$city[cityid]}&catid={$catid}&areaid={$mymps[areaid]}&streetid={$w[streetid]}">{$w[streetname]}</a></li>
+                   	{/loop}
+                </ul>
+                </div>
+				{/loop}
+            </div>
+            {else}
+             <div class="filt-open" id="filter-areaid">
+                <div class="warpper box-flex1 bg-white" data-key="district" style="height: 286px;">
+                    <ul class="">
+                        {loop $hotcities $k $mymps}
+                        <li><a href="index.php?mod=corp&catid={$catid}&cityid={$mymps[cityid]}">{$mymps[cityname]}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+<script>
+    function showChild(id){
+        $('.f_box_inner').hide();
+        $('#showChild_'+id).show();
+        $('#showChild_'+id).mCustomScrollbar({theme:"minimal-dark"});
+        $('#showChild_'+id).prev(".warpper").removeClass("bg-white");
+        $('#showChild_'+id).prev(".warpper").addClass("bg-gray");
+        $('#showChild_'+id).prev(".warpper").find("li").removeClass("active");
+        $(".zone").removeClass("active");
+        $('#zone_'+id).addClass("active");
+    }
+    function showClassChild(id){
+        $('.f_box_inner').hide();
+        $('#showClassChild_'+id).show();
+        $('#showClassChild_'+id).mCustomScrollbar({theme:"minimal-dark"});
+        $('#showClassChild_'+id).prev(".warpper").removeClass("bg-white");
+        $('#showClassChild_'+id).prev(".warpper").addClass("bg-gray");
+        $('#showClassChild_'+id).prev(".warpper").find("li").removeClass("active");
+        $('.class_db').removeClass("active");
+        $('#class_'+id).addClass("active");
+    }
+    function filterShow(id){
+        $('.filter_li').removeClass('select');
+        $('#filter_'+id).addClass('select');
+        $('.filt-open').hide();
+        $('#filter-'+id).addClass("two_col");
+        $('#filter-'+id).show();
+        $('.filtrate-nav').addClass("click_filtrate_nav");
+        $('.filt-container').addClass("click_filt_container");
+        $('#mask').css({"height":"3119px","display":"block"});
+    }
+    $(document).ready(
+            function(){
+                $('.warpper').mCustomScrollbar({theme:"minimal-dark"});
+            }
+    );
+    function maskHide(){
+        $('#mask').hide();
+        $('.filt-open').hide();
+        $('.filtrate-nav').removeClass("click_filtrate_nav");
+        $('.filt-container').removeClass("click_filt_container");
+    }
+</script>
+
+    <ul class="search-list J_list">
+    {loop $member $mymps}
+    <li>
+        <a class="item Fix" href="index.php?mod=store&id={$mymps[id]}">
+            <div class="pic">
+                <img src="{$mymps_global[SiteUrl]}{$mymps[prelogo]}">
+            </div>
+            <div class="content">
+                <div class="name">
+                    <h3 class="shopname">{echo cutstr($mymps[tname],24)}
+                    </h3>
+                </div>
+                <div class="comment">
+                        <span>{$mymps[tel]}</span>
+
+                </div>
+                <div class="intro Fix">
+                    <span class="type">{echo cutstr($mymps[address],30)}</span>
+                    
+                </div>
+            </div>
+        </a>
+    </li>
+    {loopelse}
+    <li style="padding:50px 0; text-align:center;">没有找到相关机构店铺！<a href="javascript:history.back(-1);">返回</a></li>
+    {/loop}
+    {if $member}
+	<div class="pager" style="border-top:none;border-bottom:1px #ddd solid;">
+    {$pageview}
+	</div>
+	{/if}
+</ul>
+{template footer}
+</div>
+</body>
+</html>

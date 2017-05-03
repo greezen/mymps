@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" /> 
+<title>zhideyao.cn</title> 
+<style type="text/css"> 
+<!--
+body {
+	padding: 0px;
+	margin-top: 1px;
+	margin-left: 1px;
+	background:white;
+	font-size:12px;
+	background-color:white;
+}
+#center {
+	width: auto;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+.content {
+	padding-left: 70px;
+}
+.content_1 {
+	float: left;
+	width: auto;
+	line-height: 24px;
+	color: #a7a7aa;
+}
+.content_1 .hj {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.content_1 strong {
+	color: #006acd;
+}
+.content_1 b {
+	color: #006acd;
+}
+.content_2 {
+	line-height: 24px;
+	float: right;
+	width: 170px;
+	padding-right: 15px;
+	color: #006acd;
+	margin-top: 20px;
+}
+.content_2 span {
+	color: #e91116;
+}
+.clear {clear:both; height:10px; visibility:hidden; overflow: hidden}
+a:hover {
+	color: #FF0000;
+}
+.content_11 {	float: left;
+	width: auto;
+	line-height: 24px;
+	color: #a7a7aa;
+}
+.cont {
+	padding:10px 30px 0 30px;
+}
+.cont_1 {
+	width: auto;
+	line-height: 24px;
+	color: #a7a7aa;
+}
+.nr {
+	height:auto;
+	overflow:auto
+}
+
+.nr span.l{ display:block; width:350px; }
+.nr span.r{ display:block; width:350px; }
+ 
+.nr em {
+	font-style: normal;
+	color: #FF0000;
+}
+.nr b {
+	color: #006acd;
+}
+.input0 {
+	border: 1px solid #b9cde3;
+	height: 18px;
+	vertical-align: middle;
+	width: 150px;
+	line-height: 18px;
+	padding-left:5px;
+	padding-right:5px;
+}
+textarea {
+	border: 1px solid #b9cde3;
+	height: 40px;
+	width: 436px;
+	vertical-align: middle;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+input.submit{border:1px solid;cursor:pointer;border-color:#fff #848484 #848484 #fff !important;background:#1B72AF !important;color:#FFFFFF !important; line-height:20px;}
+
+.mymps{ width:100%}
+.mymps td{ border-bottom:1px #eee solid; text-align:center}
+.current td{color:#090;border-color:#abdc97;background-color:#f5fff1;}
+.current td.icon{background:#f5fff1 url(../member/template/images/valid.gif) no-repeat 5px 4px;}
+-->
+</style> 
+<script type="text/javascript">
+	function $(id) {
+		return document.getElementById(id);
+	}
+</script>
+</head> 
+
+<body> 
+<div id="center"> 
+	<form action="box.php" method="post">
+	<input name="part" value="credits_up" type="hidden">
+	<input name="action" value="post" type="hidden">
+	<div class="cont"> 
+	
+		<div class="cont_1"> 
+		
+			<div class="nr" style="border-bottom:3px #ddd solid"><b>您当前拥有金币 <font color="red"><?=$row['money_own']?></font> <img src="<?=$mymps_global['SiteUrl']?>/member/images/mymps_icon_incomes.gif" align="absmiddle">，信用值 <font color="red" id="scorenow"><?=$row['credit']?></font> <img src="<?=$mymps_global['SiteUrl']?>/images/credit/<?php echo $row['credits']?>.gif" align="absmiddle"></div> 
+			<div>
+				<table border="0" cellspacing="0" cellpadding="0" class="mymps">
+				<tr class="firstr"><td colspan="5" style="text-align:left!important">信用等级对照说明</td></tr> 
+				<tr bgcolor="#f5f8ff" style="font-weight:bold"><td>信用等级</td><td>信用度大于</td><td>信用度小于</td><td>等级图标</td></tr> 
+				<?php for($i=1;$i<16;$i++){?>
+				<tr align="center" bgcolor="white" <?php if($row['credits'] == $i) echo 'class="current"';?>><td class="icon"><?php echo $i; ?></td><td><?php echo $credit_set[rank][$i]?></td><td><?php echo $credit_set[rank][$i+1]?>&nbsp;</td><td><img src="<?=$mymps_global['SiteUrl']?>/images/credit/<?php echo $i; ?>.gif" border="0"></td> 
+				<?php }?>
+				</table>
+			</div>
+		  <div class="nr" style=" border-top:3px #ddd solid; padding:8px 5px 5px 5px; color:#000;">我要使用<input name="coin" id="coin" type="text" value="<?=$row['money_own']?>" class="input0" style="width:50px" onKeyUp="if(value><?=$row['money_own']?>)value=<?=$row['money_own']?>;javascript:can_credit();"/>个金币来购买<font id="credit" style="color:red"></font>信用值，总信用值将达到<font id="credit_total" style="color:red"></font>			</div> 
+			
+		</div>  
+	
+		<div class="clear"></div> 
+		<div style="width:100%;text-align:left; padding:0 10px"><input type="submit" class="submit" value="确认购买" <?php if(empty($row['money_own'])) echo 'disabled';?>/>
+		&nbsp;<input type="button" onclick="parent.closeopendiv();" class="submit" value="取消" /></div> 
+	</div> 
+	
+	</form>
+<script type="text/javascript">
+	$('credit').innerHTML = <?php echo $row['money_own'];?>*<?php echo $coin_credit;?>;
+	$('credit_total').innerHTML = parseInt($('credit').innerHTML)+parseInt(<?php echo $row[credit];?>);
+	function can_credit(){
+		$('credit').innerHTML = $('coin').value*<?php echo $coin_credit;?>;
+		$('credit_total').innerHTML = parseInt($('credit').innerHTML)+parseInt(<?php echo $row[credit];?>);
+	}
+</script>
+	
+</div>
+</body> 
+</html> 

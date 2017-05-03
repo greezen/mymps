@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>手机版，让你拥有更方便的浏览体验！</title>
+<link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/post.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/m.css" />
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_post}
+<div class="body1000">
+	<div class="clear"></div>
+	<div class="wapcontent">
+		<div class="wap_left">
+		</div>
+		<div class="wap_right">
+			<div class="input_domain">
+				<div class="input_words">通过手机/平板电脑浏览器输入即可访问网站</div>
+				<div class="inputdomain">{$mobile_settings[mdomain]}</div>
+				<div class="input_image"><img src="{$mymps_global[SiteUrl]}/qrcode.php?value={$mobile_settings[mdomain]}" valign="absmiddle"><br />手机扫描二维码访问</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>

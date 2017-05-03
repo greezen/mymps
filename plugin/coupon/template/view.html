@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$page_title}</title>
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.head_{$mymps_global[head_style]}.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/coupon.head_{$mymps_global[head_style]}.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/plugin/coupon/template/style.css" />
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_search]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+	{mytemplate inc_head}
+	<div class="body1000">
+		<div class="location">{$location}</div>
+		<div class="indexcontent mt5">
+			<div class="cleft">
+				<div class="categoryclass">
+					<div class="hd"><span>优惠券(共{$count[total]}张)</span></div>
+					<div class="bd">
+                	<div class="subtitle">按分类选择：</div>
+                    <div class="li">
+                    	{loop $coupon_class $class}
+                        <li {if $cate_id == $class[cate_id]}class="current"{/if}><a href="{$class[cate_uri]}">{$class[cate_name]}</a> {$count[$class[cate_id]]}</li>
+                        {/loop}
+                    </div>
+					{if $area_class}
+                    <div class="clear"></div>
+                    <div class="subtitle">按区域选择：</div>
+                    <div class="li">
+                       {loop $area_class $v}
+                       <li {if $v[select] == 1}class="current"{/if}><a href="{$v[uri]}">{$v[areaname]}</a></li>
+                       {/loop}
+                    </div>
+					{/if}
+                </div>
+				</div>
+				<div class="clear"></div>
+				<div class="controlcoupon">
+					<div class="button"><button value="上传优惠券" class="fbyhq" onclick="window.open('{$mymps_global[SiteUrl]}/member/index.php?m=coupon&ac=detail');"></button> <button value="管理优惠券" class="glyhq" onclick="window.open('{$mymps_global[SiteUrl]}/member/index.php?m=coupon');"></button>
+					</div>
+					<div class="clearfix"></div>
+					<div class="tel">
+						合作热线：<span>{$mymps_global[SiteTel]}</span>
+					</div>
+				</div>
+			</div>
+			<div class="cright">
+				<div class="viewcoupon">
+					<div class="ctitle">{$coupon[title]}</div>
+					<div class="dateline">人气：<span>{$coupon[hit]}</span> 发布时间：{echo GetTime($coupon[dateline])}</div>
+					<div class="viewdetail">
+						<div class="yhq"><span>优惠券</span></div>
+						<div class="coupond">
+							<div class="lefter">
+								<div class="img"><img src="{$mymps_global[SiteUrl]}{$coupon[pre_picture]}">{if  $coupon[sup]}<sup>{$coupon[sup]}折</sup>{/if}</div>
+								<div class="tips">
+									<ul>
+										<li>使用前请出示此券，黑白打印即可。 </li>
+										<li>除特殊注明不能与其他优惠同时享用。</li>
+										<li>本优惠最终解释权归商家所有</li>
+									</ul>
+								</div>
+							</div>
+							<div class="righter">
+								<div class="rtitle">{$coupon[title]}</div>
+								<div class="enddate">有效期 {echo GetTime($coupon[begindate],'Y年m月d日')} 至 <font color="#ff3300">{echo GetTime($coupon[enddate],'Y年m月d日')}</font></div>
+								<div class="content">{$coupon[content]}</div>
+							</div>
+						</div>
+					</div>
+					<div class="printer">
+						<div class="printbutton"><input type="button" value="打印此券" class="print" onclick="window.open('{$mymps_global[SiteUrl]}/coupon.php?id={$coupon[id]}&action=print')"><br />
+						<span>{$coupon[prints]}</span> 人打印</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+				<div class="shopinfo">
+					<div class="hd">商家信息</hd>
+					<div class="bd">
+						<div class="shopname"><a href="{$space[uri]}" target="_blank">{$space[tname]}</a></div>
+						<div class="address">联系地址：{$space[address]}</div>
+						<div class="tel">联系电话：{$space[tel]}</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		{mytemplate inc_foot}
+	</div>
+</div>
+</body>
+</html>

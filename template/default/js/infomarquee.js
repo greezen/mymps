@@ -1,0 +1,1 @@
+$().ready(function(){$(".marquee_photo").jMarquee({visible:5,step:1,direction:"left"});});

@@ -1,0 +1,1 @@
+var indextop = new ppRoll({speed:60,demo:"indextop",demo1:"indextop1",demo2:"indextop2",objStr:"indextop",width:"310px",height:"217px",direction:"top"});

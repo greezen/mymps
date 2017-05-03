@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" /> 
+<title>zhideyao.cn</title> 
+<style type="text/css"> 
+<!--
+body {
+	padding: 0px;
+	margin-top: 1px;
+	margin-left: 1px;
+	background:white;
+	font-size:12px;
+	background-color:white;
+}
+#center {
+	width: auto;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+.content {
+	padding-left: 70px;
+}
+.content_1 {
+	float: left;
+	width: auto;
+	line-height: 24px;
+	color: #a7a7aa;
+}
+.content_1 .hj {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.content_1 strong {
+	color: #006acd;
+}
+.content_1 b {
+	color: #006acd;
+}
+.content_2 {
+	line-height: 24px;
+	float: right;
+	width: 170px;
+	padding-right: 15px;
+	color: #006acd;
+	margin-top: 20px;
+}
+.content_2 span {
+	color: #e91116;
+}
+.clear {clear:both; height:10px; visibility:hidden; overflow: hidden}
+a:hover {
+	color: #FF0000;
+}
+.content_11 {	float: left;
+	width: auto;
+	line-height: 24px;
+	color: #a7a7aa;
+}
+.cont {
+	padding-left: 30px;
+	padding-top:10px;
+}
+.cont_1 {
+	width: auto;
+	line-height: 24px;
+	color: #a7a7aa;
+}
+.nr {
+	height:auto;
+	overflow:auto
+}
+
+.nr span.l{ display:block; width:350px; }
+.nr span.r{ display:block; width:350px; }
+ 
+.nr em {
+	font-style: normal;
+	color: #FF0000;
+}
+.nr b {
+	color: #006acd;
+}
+.input0 {
+	border: 1px solid #b9cde3;
+	height: 18px;
+	vertical-align: middle;
+	width: 150px;
+	line-height: 18px;
+	padding-left:5px;
+	padding-right:5px;
+}
+textarea {
+	border: 1px solid #b9cde3;
+	height: 40px;
+	width: 436px;
+	vertical-align: middle;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+input.submit{border:1px solid;cursor:pointer;border-color:#fff #848484 #848484 #fff !important;background:#1B72AF !important;color:#FFFFFF !important; line-height:20px;}
+
+-->
+</style> 
+<script type="text/javascript">
+	function $(id) {
+		return document.getElementById(id);
+	}
+</script>
+</head> 
+
+<body> 
+<div id="center"> 
+	<form action="box.php" method="post">
+	<input name="part" value="score_coin" type="hidden">
+	<input name="action" value="post" type="hidden">
+	<div class="cont"> 
+	
+		<div class="cont_1"> 
+		
+			<div class="nr"><b>您当前拥有积分 <font color="red" id="scorenow"><?=$row['score']?></font> 分，可兑换 <font color="red" id="cancoin"></font>金币</b></div> 
+			<div class="nr">
+				<span class="r">我要使用<input name="score" id="score" type="text" value="<?=$row['score']?>" class="input0" style="width:50px" onKeyUp="if(value><?=$row[score]?>)value=<?=$row[score]?>;javascript:can_coin();"/>个积分来兑换 <font id="coin"></font> 金币</span>
+			</div> 
+			
+		</div>  
+	
+		<div class="clear"></div> 
+		<div style="width:100%;text-align:left;"><input type="submit" class="submit" value="确认兑换" <?php if(empty($row['score'])) echo 'disabled';?>/>
+		&nbsp;<input type="button" onclick="parent.closeopendiv();" class="submit" value="取消" /></div> 
+	</div> 
+	
+	</form>
+<script type="text/javascript">
+	$('coin').innerHTML = $('cancoin').innerHTML = Math.floor($('scorenow').innerHTML/<?php echo $mymps_global["cfg_score_fee"];?>);
+	function can_coin(){
+		$('coin').innerHTML = Math.floor($('score').value/<?php echo $mymps_global["cfg_score_fee"];?>);
+	}
+</script>
+</div> 
+</body> 
+</html> 

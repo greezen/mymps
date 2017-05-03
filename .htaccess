@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteRule ^info-id-([0-9]+)\/$ public/info.php?id=$1
+	RewriteRule ^info-catid-([0-9]+)-page-([0-9]+)\/$ public/info.php?catid=$1&page=$2
+	RewriteRule ^info-catid-([0-9]+)-areaid-([0-9]+)-page-([0-9]+)\/$ public/info.php?catid=$1&areaid=$2&page=$3
+	RewriteRule ^aboutus\/$ public/about.php?part=aboutus
+	RewriteRule ^aboutus-id-([0-9]+)\/$ public/about.php?part=aboutus&id=$1
+	RewriteRule ^announce-page-([0-9]+)\/$ public/about.php?part=announce&page=$1
+	RewriteRule ^announce-id-([0-9]+)\/$ public/about.php?part=announce&id=$1
+	RewriteRule ^faq\/$ public/about.php?part=faq
+	RewriteRule ^faq-id-([0-9]+)\/$ public/about.php?part=faq&id=$1
+	RewriteRule ^friendlink\/$ public/about.php?part=friendlink
+	RewriteRule ^friendlink-action-apply\/$ public/about.php?part=friendlink&action=apply
+	RewriteRule ^guestbook-page-([0-9]+)\/$ public/about.php?part=guestbook&page=$1
+	RewriteRule ^guestbook-action-write\/$ public/about.php?part=guestbook&action=write
+	RewriteRule ^space-([a-z,0-9\-]+)\/$ public/space.php?user=$1
+</IfModule>

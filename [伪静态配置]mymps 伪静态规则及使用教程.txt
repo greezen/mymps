@@ -1,0 +1,58 @@
+mymps 伪静态规则及使用教程
+
++ 您可以通过系统设置中“是否开启伪静态”来控制 URL 静态化 开启关闭状态- t1 H8 I! L9 M
+8 b; _( Q* m! d' l# U
++ 本功能对服务器环境有特殊要求，独立主机用户需要对 Web 服务器增加相应的 Rewrite 规则，因此需要服务器权限才可使用。对于虚拟主机用户，您需要向您的空间服务商进行咨询：空间是否支持 Rewrite 以及是否支持对站点目录中 .htaccess 的文件解析，只有满足这两条件，URL 静态化 功能才会生效。' _3 i, Q, \, d, U
+: K3 o! `3 c) `; S9 {2 t
++++++++++++++++++++++++++
+Apache Web Server（Apache 用户）, T  R) `2 W; u1 c& f! r2 h- E
++++++++++++++++++++++++++( v0 D4 w+ [7 Y: h* r
+5 _- H3 h- m/ m7 o$ g. f1 Z8 @
+首先确定您使用的 Apache 版本，及是否加载了 mod_rewrite 模块。' v6 d. |  C1 @1 Y2 k: i0 E
+Apache 1.x 的用户请检查 conf/httpd.conf 中是否存在如下两段代码： 
+LoadModule rewrite_module     libexec/mod_rewrite.so) u' `# ^3 ^+ E8 l3 y
+AddModule mod_rewrite.c/ @8 J! k( T* y* n, n
+Apache 2.x 的用户请检查 conf/httpd.conf 中是否存在如下一段代码：; u' J* \3 ^5 }! c$ `& D+ u
+LoadModule rewrite_module     modules/mod_rewrite.so
+如果存在，那么在配置文件（通常就是 conf/httpd.conf）中加入如下代码。此时请务必注意，如果网站使用通过虚拟主机来定义，请务必加到虚拟主机配置，即 <VirtualHost> 中去，如果加在虚拟主机配置外部将可能无法使用。改好后然后将 Apache 重启。 
+RewriteEngine On% |' g% R# `  T: P, [8 n8 d: V/ B
+RewriteRule ^info-id-([0-9]+)\/$ public/info.php?id=$1
+RewriteRule ^info-catid-([0-9]+)-page-([0-9]+)\/$ public/info.php?catid=$1&page=$2& v' j+ o: V3 a' a- k
+RewriteRule ^info-catid-([0-9]+)-areaid-([0-9]+)-page-([0-9]+)\/$ public/info.php?catid=$1&areaid=$2&page=$3
+RewriteRule ^aboutus\/$ public/about.php?part=aboutus# K  m# X% O: G8 m* ~8 N: y) Z2 ^
+RewriteRule ^aboutus-id-([0-9]+)\/$ public/about.php?part=aboutus&id=$1
+RewriteRule ^announce-page-([0-9]+)\/$ public/about.php?part=announce&page=$11 p* ?- q: [* L) B9 j
+RewriteRule ^announce-id-([0-9]+)\/$ public/about.php?part=announce&id=$1# ^7 V( f3 w% z4 m  Z/ N
+RewriteRule ^faq\/$ public/about.php?part=faq
+RewriteRule ^faq-id-([0-9]+)\/$ public/about.php?part=faq&id=$1# V8 Z. M2 z5 U3 m
+RewriteRule ^friendlink\/$ public/about.php?part=friendlink. q8 U5 g- X* ]7 Y2 x
+RewriteRule ^friendlink-action-apply\/$ public/about.php?part=friendlink&action=apply& l1 ~  L2 E' }, C; ?, Y. F
+RewriteRule ^guestbook-page-([0-9]+)\/$ public/about.php?part=guestbook&page=$1+ T1 H  e1 e: c
+RewriteRule ^guestbook-action-write\/$ public/about.php?part=guestbook&action=write
+RewriteRule ^space-([a-z,0-9\-]+)\/$ public/space.php?user=$1
+& ?3 b0 b( |- U& g5 j
+++++++++++++++++++++++
+IIS Web Server（IIS 用户）6 `4 D1 ]( O. x4 D: O! o8 n
+++++++++++++++++++++++) e, m6 b/ R# r3 V" M9 W
+
+首先在 IIS 的 Isapi 上添加IIS_Rewrite这个筛选器，筛选器名称为 Rewrite ，可执行文件选择 Rewrite.dll ，重新启动 IIS。IIS_Rewrite目录中 httpd.ini 已经设置好，其中内容如下： 1 x1 I, o) q- n+ _$ c  U* J4 F
+[ISAPI_Rewrite]; d4 D! R4 R0 G( x3 t) q9 [% T
+# 3600 = 1 hour: A; f9 u# H8 K5 ^
+CacheClockRate 3600
+RepeatLimit 32* @! p/ U- V6 a( ~) F: T+ Z  J5 l
+# Protect httpd.ini and httpd.parse.errors files( [8 o* S6 e! h, g
+# from accessing through HTTP* P% R( O- ^) c" T4 `$ B1 m
+RewriteRule ^(.*)/info-id-([0-9]+)\/\?*(.*)$ $1/public/info\.php?id=$2
+RewriteRule ^(.*)/info-catid-([0-9]+)-page-([0-9]+)\/\?*(.*)$ $1/public/info\.php?catid=$2&page=$3
+RewriteRule ^(.*)/info-catid-([0-9]+)-areaid-([0-9]+)-page-([0-9]+)\/\?*(.*)$ $1/public/info\.php?catid=$2&areaid=$3&page=$4- v3 N7 D. B5 y- w4 o
+RewriteRule ^(.*)/aboutus\/\?*(.*)$ $1/public/about\.php?part=aboutus
+RewriteRule ^(.*)/aboutus-id-([0-9]+)\/\?*(.*)$ $1/public/about\.php?part=aboutus&id=$2& x5 ?5 r4 P' n) A- g/ ^, o# O
+RewriteRule ^(.*)/announce-page-([0-9]+)\/\?*(.*)$ $1/public/about\.php?part=announce&page=$2
+RewriteRule ^(.*)/announce-id-([0-9]+)\/\?*(.*)$ $1/public/about\.php?part=announce&id=$2
+RewriteRule ^(.*)/faq\/\?*(.*)$ $1/public/about\.php?part=faq
+RewriteRule ^(.*)/faq-id-([0-9]+)\/\?*(.*)$ $1/public/about\.php?part=faq&id=$2
+RewriteRule ^(.*)/friendlink\/\?*(.*)$ $1/public/about\.php?part=friendlink: z2 l  D. ~' `5 E1 v! h
+RewriteRule ^(.*)/friendlink-action-apply\/\?*(.*)$ $1/public/about\.php?part=friendlink&action=apply
+RewriteRule ^(.*)/guestbook-page-([0-9]+)\/\?*(.*)$ $1/public/about\.php?part=guestbook&page=$2
+RewriteRule ^(.*)/guestbook-action-write\/\?*(.*)$ $1/public/about\.php?part=guestbook&action=write2 m$ L9 J* \6 F# \% u6 w5 ~* T
+RewriteRule ^(.*)/space-([a-z,0-9\-]+)\/\?*(.*)$ $1/public/space\.php?user=$2

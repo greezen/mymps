@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>{$page_title}</title>
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/global.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/post.css" />
+<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/spaces/person/style.css" />
+{if $mymps_global[bodybg] == 1}<link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/bodybg.css" />{/if}
+<script src="{$mymps_global[SiteUrl]}/template/global/noerr.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+<script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
+{mytemplate inc_head_post}
+<div class="body1000">
+	<div class="clear15"></div>
+	<div id="main" class="wrapper">
+		<div class="top_info cfix" style="padding-bottom:20px;">
+			<div class="infol">
+				<p><span class="tx"><img src="{$mymps_global[SiteUrl]}/{$space[prelogo]}" /></span></p>
+			</div>
+			<div class="xqxinfo">
+				<table>
+					<tbody>
+						<tr>
+							<th>用&nbsp;&nbsp;户&nbsp;名</th>
+							<td>
+								<p class="yhzh_p">
+									<strong>{$space[userid]}</strong>
+									<img title="信用值:{$space[credit]}" align="absmiddle" src="{$mymps_global[SiteUrl]}/images/credit/{$space[credits]}.gif"> &nbsp;&nbsp;&nbsp;
+									{if $space[storeuri] && $space[if_corp] == 1}<a target="_blank" title="查看{$space[userid]}的网上店铺" href="{$space[storeuri]}">查看我的网上店铺&raquo;</a>{/if}
+								</p>
+							</td>
+						</tr>
+						<tr>
+							<th>注册时间</th>
+							<td>{echo get_format_time($space[jointime])}</td>
+						</tr>
+						<tr>
+							<th class="t">认证信息</th>
+							<td class="t">
+							<p class="rz">
+								{if $space['per_certify'] == 1}<span><b>实名已认证</b><i class="nameyz" title="实名已认证"></i></span>{else}<span><b>实名未认证</b><i class="nameyzw" title="实名未认证"></i></span>{/if}
+								{if $space['com_certify'] == 1}<span><b>营业执照已认证</b><i class="zzyz" title="营业执照已认证"></i></span>{else}<span><b>营业执照未认证</b><i class="zzyzw" title="营业执照未认证"></i></span>{/if}
+							</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="fabu cfix" >
+			<h2 class="balance-h2">我发布的信息</h2>
+			<ul class="ggifno">
+            {loop $info $mymps}
+			<li>
+                <span class="date">{echo get_format_time($mymps[begintime])}</span>
+                <a href="{$mymps[uri]}" target="_blank">{echo cutstr($mymps[title],100)}</a>
+                ({$mymps[catname]})
+			</li>
+			{/loop}
+			</ul> 
+		</div>
+	</div>
+	<div class="clear"></div>
+	{mytemplate inc_foot_about}
+</div>
+</body>
+</html>

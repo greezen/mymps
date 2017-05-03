@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link rel="stylesheet" href="<?php echo $mymps_global[SiteUrl]?>/template/global/button.css">
+<script language="javascript" src="<?php echo $mymps_global[SiteUrl]?>/template/global/noerr.js"></script>
+<style>
+body{font:Verdana, Arial, Helvetica, sans-serif; text-align:left;}
+</style>
+<script language="javascript">
+<?php if($documentdomain === 'yes'){?>document.domain = '<?php echo str_replace("http://www.","",$mymps_global["SiteUrl"])?>';<?php }?>
+function besuremark() {
+	var point1 = document.getElementById('point1').value;
+	var point2 = document.getElementById('point2').value;
+	if(point1 == '' || point2 == ''){
+		if(!confirm('您尚未标注地图\n\n确认保存吗?')) return false;
+	} else {
+		parent.document.getElementById('mappoint').value = point1 + "," + point2;
+		alert('地理位置标注成功！');
+	}
+	parent.closeopendiv();
+}
+</script>
+</head>
+<body style="margin:10px 0 0 0; ">
+<div id="mymap" style="width:<?php echo $width; ?>px; height:<?php echo $height; ?>px;"><center style="margin-top:10px;">loading...</center></div>
+<?php if($action == 'markpoint'){?>
+<div style=" margin-left:10px; margin-right:10px; margin-top:10px; padding-bottom:10px; text-align:center; border-top:1px #eee solid"><font style="font-size:12px; color:#585858; line-height:30px">点击“我要标注”按钮后，鼠标左键单击地图指定位置进行标注</font><br />
+<input type="button" onclick="markmap();" id="markbtn" value="我要标注" class="gray large"/>
+<input type="button" value="确定" onclick="besuremark();" class="gray large">
+</div>
+<input type="hidden" id="point1" value='' />
+<input type="hidden" id="point2" value='' />
+<?php }?>
+<script type="text/javascript">
+var map_id = 'mymap';
+var p1 = '<?php echo $p1; ?>';
+var p2 = '<?php echo $p2; ?>';
+var mark = 'mark';
+var show = '<?php echo ($action == "show" && $p1 && $p2) ? 1 : 0; ?>';
+var title = '<?php echo $title; ?>';
+var content = '<?php echo $content; ?>';
+var width = <?php echo $width; ?>;
+var height = <?php echo $height; ?>;
+var view_level = <?php echo $level; ?>;
+var cityname = '<?php echo $cityname ; ?>';
+</script>
+<script type="text/javascript" language="javascript" src="<?php echo $mymps_global[mapapi]; ?>" <?php if($mymps_global[mapapi_charset]) $charset = $mymps_global[mapapi_charset]; ?>></script>
+<script type="text/javascript" language="javascript" src="<?php echo $mymps_global[SiteUrl]?>/include/map/<?php echo $mymps_global[mapflag]?>.js?v=<?php echo $version; ?>"></script>
+</body>
+</html>

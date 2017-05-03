@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="index_page">
+<head>
+	{template header}
+	<title>登录 - {$mymps_global[SiteName]}</title>
+	<link type="text/css" rel="stylesheet" href="template/css/global.css">
+	<link type="text/css" rel="stylesheet" href="template/css/style.css">
+	<link type="text/css" rel="stylesheet" href="template/css/login.css">
+</head>
+
+<body class="{$mymps_global[cfg_tpl_dir]}">
+<div class="body_div">
+
+	{template header_search}
+	
+  	<div class="dl_nav"><span><a href="index.php">首页</a><font class="raquo"></font><a href="javascript:;">登录</a></span></div> 
+
+  	<div class="m311 log_reg_box">
+		<div id="logRegTabCon">
+			<div class="log_reg_item">  
+				<form id="form1" method="post" action="index.php?mod=login&action=login">
+				<input type="hidden" name="returnurl" value="{$returnurl}">			   
+				<ul id="pptul" class="passport-login-input-ul">
+					<li style="display:none" class="passport-login-input-li">
+						<span id="loginTip" class="passport-login-tip"></span>
+					</li>
+					
+					<li id="loginUserNameLi" class="passport-login-input-li">
+						<span class="passport-login-input-span">用户名</span>
+						<input type="text" name="userid" class="passport-login-input passport-login-input-username" placeholder="请输入用户名">
+					</li>
+					
+					<li id="loginPasswordLi" class="passport-login-input-li">
+						<span class="passport-login-input-span">密&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+						<input type="password" name="userpwd" class="passport-login-input passport-login-input-password" placeholder="请输入密码">
+					</li>
+				
+                	{if $mobile_settings[authcode] == 1}
+					<li id="loginUserNameLi" class="passport-login-input-li">
+						<span class="passport-login-input-span">验证码</span>
+						<input type="text" name="checkcode" class="passport-login-input passport-login-input-username"  style="width:130px;" placeholder="请输入验证码" size="20" maxlength="75">
+					</li>
+                    <div style="margin-top:10px; text-align:center">
+                    	<img src="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_authcodefile]}?mod=m" alt="看不清，请点击刷新" align="absmiddle" style="cursor:pointer; border:1px #ddd solid;" onClick="this.src=this.src+'?'"/>
+                    </div>
+					{/if}
+					
+					<li id="loginButtonLi" class="passport-login-input-li">
+						<span class="passport-login-input-span" jqmoldstyle="block" style="display: none;">&nbsp;</span>
+						<label><input type="submit" name="button" value="登录" class="passport-login-button btn_log"></label>
+					</li>
+				</ul>
+				</form>
+			</div>
+		</div>
+		<div class="login_ff">
+		  <div class="login_ffmain">
+			  <a class="login_ffleft" href="index.php?mod=register">免费注册</a>
+		  </div>
+	      <div class="login_hezuo">
+			  使用合作网站账号登录：
+			  <div class="login_hezuo_mian">
+				<ul>
+					<li class="bor" style=" margin:0 auto; float:none; border:none"><a href="{$mymps_global[SiteUrl]}/include/qqlogin/qq_login.php?mod=m"><i class="hzico-qq"></i>使用QQ账号登录</a></li>
+				</ul>
+			  </div>
+		  </div>
+		</div>
+  	</div>
+	
+	{template footer2}
+</div>
+</body>
+</html>
