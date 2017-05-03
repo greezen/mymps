@@ -17,8 +17,9 @@ $data 	 	= $pluginsettings	=	'';
 $areaid 	= isset($areaid) 	? intval($areaid) 	: 0;
 $cityid 	= isset($cityid) 	? intval($cityid) 	: 0;
 $page	 	= isset($page)	   	? intval($page)	  	: 1;
+$do	 	= isset($do)	   	? trim($do)	  	: 'default';
 
-!ifplugin(CURSCRIPT) && exit('管理员已禁用或未安装团购插件...');
+!ifplugin(CURSCRIPT) && exit('管理员已禁用或未安装物业缴费插件...');
 
 if(!submit_check(CURSCRIPT.'_submit')){
 
@@ -28,48 +29,10 @@ if(!submit_check(CURSCRIPT.'_submit')){
 	
 	$group_class = get_group_class();
 	
-	if($id) {
+	if($do == 'default') {
 		
-		$group  = $db -> getRow("SELECT * FROM `{$db_mymps}group` WHERE groupid = '$id' AND glevel > '0'");
-		if(!$group['groupid']) write_msg('该团购活动不存在或者尚未通过审核！',$mymps_global['SiteUrl']);
-		$city = get_city_caches($group['cityid'] ? $group['cityid'] : $cityid);
-		/*自动补充总站数据start*/
-		if($mymps_global['cfg_independency'] && $cityid){
-			$maincity = get_city_caches(0);
-			$independency = explode(',',$mymps_global['cfg_independency']);
-			$independency = is_array($independency) ? $independency : array();
-			if(in_array('advertisement',$independency)){
-				$city['advertisement'] = empty($city['advertisement']) ? $maincity['advertisement'] : $city['advertisement'];
-			}
-			$maincity = NULL;
-		}
-		/*自动补充总站数据end*/
-		
-		$group['remaindate'] = intval(($group['enddate'] - $timestamp)/(86400));
-		
-		$data = '';
-		@include MYMPS_DATA.'/caches/area_option_static.php';
-		$group['areaname'] = $data ? $data[$group['areaid']]['areaname'] : $db -> getOne("SELECT areaname FROM `{$db_mymps}area` WHERE areaid = '$group[areaid]'");
-		$data = NULL;
-		
-		/*团购介绍内链处理*/
-		$group['content'] = replace_insidelink($group['content'],'group');
-		
-		$share = array();
-		$share['title'] = urlencode($group['gname']);
-		$share['url']	= plugin_url(CURSCRIPT,array('id'=>$group['groupid']));
-		
-		$loc = get_group_location($group['cate_id'],$group['gname']);
-		$page_title = $loc['page_title'];
-		$location	= $loc['location'];
 
-		$advertisement	= get_advertisement('other');//获得全局广告
-		$adveritems		= $city['advertisement'];
-		$advertisement	= $advertisement['all'];
-		
-		$hotgroup = mymps_get_groups(15,1);
-		globalassign();
-		include mymps_tpl('view');
+		include mymps_tpl('property');
 		
 	} else {
 	
