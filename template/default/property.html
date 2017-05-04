@@ -12,6 +12,7 @@
 <script src="{$mymps_global[SiteUrl]}/template/default/js/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/jquery.autocomplete.min.js"></script> 
 <link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/jquery.autocomplete.css" />
+
 <script type="text/javascript">
 var cates = [
 {php $i=1;}
@@ -52,6 +53,19 @@ window.history.go(1);
 
 <body class="{$mymps_global[cfg_tpl_dir]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
 {mytemplate inc_head_post}
+<style type="text/css">
+    select{
+        width: auto !important;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        vertical-align: middle;
+        border: 1px solid #ccc;
+        background: #fff;
+        padding: 3px 5px;
+        margin-left: 2px;
+    }
+</style>
 <div class="body1000">
 	<div class="clear15"></div>
 	<div id="main" class="wrapper">
@@ -60,25 +74,72 @@ window.history.go(1);
 		<span><font class="number">2</font> 支付</span>
 		<span><font class="number">3</font> 支付成功</span>
 		</div>
-		<div id="fenlei2">
-            <div class="minheight" id="ymenu-side"> 
-               <ul class="ym-mainmnu">
-               		{loop $categories $k $mymps}
-                    <li class="ym-tab">
-                        <a href="#" class="black">{$mymps[catname]}</a>
-                        <ul class="ym-submnu">
-                            {loop $mymps[children] $u $w}
-                            <li><a href="?action=input&catid={$w[catid]}&cityid={$city[cityid]}">{$w[catname]}</a></li>
-                            {/loop}
-                        </ul> 
-                    </li>
-                    {/loop}
-                </ul>
-                {if $catid > 0}
-                <div class="clear"></div>
-                <div class="backall"><a href="?action=input&cityid={$city[cityid]}">&laquo;重新选择大类</a></div>
-                {/if}
+		<div id="fenlei2" style="margin-left: 58px">
+            <div class="publish-detail">
+                <div class="p-line">
+                    <label class="p-label"><span class="red required">*</span>  选择房号：</label>
+                    <div class="publish-detail-item">
+                        <div id="address">
+                            <select name="province_id" id="province_id">
+                                <option value="0">请选择</option>
+                                <!--{loop $province_list $item}-->
+                                <!--{if $item['provinceid'] == $row['province_id']}-->
+                                <option value="{$item['provinceid']}" selected>{$item['provincename']}</option>
+                                <!--{else}-->
+                                <option value="{$item['provinceid']}">{$item['provincename']}</option>
+                                <!--{/if}-->
+                                <!--{/loop}-->
+                            </select>
+                            <!--{if $member}-->
+                            <select name="city_id" id="city_id">
+                                <option value="0">请选择</option>
+                                <!--{loop $city_list $item}-->
+                                <!--{if $item['cityid'] == $row['city_id']}-->
+                                <option value="{$item['cityid']}" selected>{$item['cityname']}</option>
+                                <!--{else}-->
+                                <option value="{$item['cityid']}">{$item['cityname']}</option>
+                                <!--{/if}-->
+                                <!--{/loop}-->
+                            </select>
+                            <select name="area_id" id="area_id">
+                                <option value="0">请选择</option>
+                                <!--{loop $area_list $item}-->
+                                <!--{if $item['areaid'] == $row['area_id']}-->
+                                <option value="{$item['areaid']}" selected>{$item['areaname']}</option>
+                                <!--{else}-->
+                                <option value="{$item['areaid']}">{$item['areaname']}</option>
+                                <!--{/if}-->
+                                <!--{/loop}-->
+                            </select>
+                            <select name="building_id" id="building_id">
+                                <option value="0">请选择</option>
+                                <!--{loop $building_list $item}-->
+                                <!--{if $item['building_id'] == $row['building_id']}-->
+                                <option value="{$item['building_id']}" selected>{$item['name']}</option>
+                                <!--{else}-->
+                                <option value="{$item['building_id']}">{$item['name']}</option>
+                                <!--{/if}-->
+                                <!--{/loop}-->
+                            </select>
+                            <select name="room_id" id="room_id">
+                                <option value="0">请选择</option>
+                                <!--{loop $room_list $item}-->
+                                <!--{if $item['room_id'] == $row['room_id']}-->
+                                <option value="{$item['room_id']}" selected>{$item['name']}</option>
+                                <!--{else}-->
+                                <option value="{$item['room_id']}">{$item['name']}</option>
+                                <!--{/if}-->
+                                <!--{/loop}-->
+                            </select>
+                            <!--{/if}-->
+                        </div>
+                    </div>
+                </div>
+                <p class='p-submit'>
+                    <input type="submit" id="fabu" class="fabu1" value="确认" ct="submit" onclick="return AllInputCheck();"/>
+                </p>
             </div>
+
             <form action="?" method="get">
             <input name="cityid" value="{$cityid}" type="hidden">
         	<div class="psearch">
@@ -92,6 +153,60 @@ window.history.go(1);
 	<div class="clear"></div>
 	{mytemplate inc_foot_about}
 </div>
-<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/post_select.js"></script> 
+<script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/post_select.js"></script>
+<script type="text/javascript" src="/admin/js/jquery.3.1.1.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $('#province_id').change(function () {
+            var that = $(this);
+            var data = {"do" : "city", "province_id" : $('#province_id').val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('city', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $(document).on('change', '#city_id', function () {
+            var that = $(this);
+            var data = {"do" : "area", "city_id" : $(this).val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('area', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $(document).on('change', '#area_id', function () {
+            var that = $(this);
+            var data = {"do": "building", "area_id": $(this).val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('building', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $(document).on('change', '#building_id', function () {
+            var that = $(this);
+            var data = {"do": "room", "building_id": $(this).val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('room', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        function select_tpl(type, data) {
+            var tpl = '<select name="'+type+'_id" id="'+type+'_id">';
+            tpl += '<option value="">请选择</option>';
+            $.each(data, function (i,v) {
+                tpl += '<option value="'+ v.id+'">'+ v.name+'</option>';
+            });
+            tpl += '</select>';
+            return tpl;
+        }
+    })
+</script>
 </body>
 </html>

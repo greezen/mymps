@@ -3,6 +3,7 @@
 
 $member_menu = array();
 $member_menu['user']['info']		= '分类信息';
+$member_menu['user']['property']		= '物业缴费';
 $member_menu['user']['pay']			= '充值金币';
 if($if_corp == 1){
 	$member_menu['corp']['avatar']	= '店铺头像';

@@ -11,6 +11,12 @@ ifsiteopen();
 require_once MYMPS_DATA."/config.db.php";
 require_once MYMPS_INC."/db.class.php";
 
+require_once MYMPS_DATA."/config.inc.php";
+require_once MYMPS_INC."/member.class.php";
+if (!$member_log->chk_in()) {
+	write_msg('','../member/index.php');
+}
+$member = $db -> getRow("SELECT * FROM `{$db_mymps}member` WHERE userid = '$s_uid'");
 $id 		= isset($id) 		? intval($id) 		: '';
 $cate_id 	= isset($cate_id) 	? intval($cate_id) 	: 0;
 $data 	 	= $pluginsettings	=	'';
@@ -18,6 +24,8 @@ $areaid 	= isset($areaid) 	? intval($areaid) 	: 0;
 $cityid 	= isset($cityid) 	? intval($cityid) 	: 0;
 $page	 	= isset($page)	   	? intval($page)	  	: 1;
 $do	 	= isset($do)	   	? trim($do)	  	: 'default';
+
+
 
 !ifplugin(CURSCRIPT) && exit('管理员已禁用或未安装物业缴费插件...');
 
@@ -30,8 +38,18 @@ if(!submit_check(CURSCRIPT.'_submit')){
 	$group_class = get_group_class();
 	
 	if($do == 'default') {
-		
+		if (!empty($member)) {
+			$row = $db->get_one('SELECT * FROM ' . $db_mymps . 'property WHERE `uid` = ' . $member['id'] . ' ORDER BY id DESC');
+			if (!empty($row)){
+				$city_list = $db->getAll('SELECT * FROM ' . $db_mymps . 'city  WHERE `provinceid` = ' . $row['province_id'] . ' ORDER BY displayorder ASC');
+				$area_list = $db->getAll('SELECT * FROM ' . $db_mymps . 'area WHERE `cityid` = ' . $row['city_id'] . ' ORDER BY displayorder ASC');
+				$building_list = $db->getAll('SELECT * FROM ' . $db_mymps . 'building WHERE `area_id` = ' . $row['area_id'] . ' ORDER BY display_order ASC');
+				$room_list = $db->getAll('SELECT * FROM ' . $db_mymps . 'room WHERE `building_id` = ' . $row['building_id'] . ' ORDER BY display_order ASC');
+			}
+		}
 
+
+		$province_list = $db->getall("SELECT * FROM `" . $db_mymps . "province` ORDER BY displayorder ASC");
 		include mymps_tpl('property');
 		
 	} else {
