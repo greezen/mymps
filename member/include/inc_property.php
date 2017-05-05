@@ -176,7 +176,8 @@ if($ac == 'del'){
 	
 	require_once MYMPS_DATA.'/info.level.inc.php';
 	runcron();
-	$sql = "SELECT * FROM ". $db_mymps . "property WHERE status='{$status}'";
+	$sql = "SELECT COUNT(*) total FROM ". $db_mymps . "property WHERE status='{$status}'";
+    $rows_num = $db->fetch_first($sql)['total'];
 	$list = $db->getAll($sql);
 
 	$location = location();

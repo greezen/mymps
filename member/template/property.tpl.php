@@ -40,6 +40,7 @@
                                     <form method="post" action="?m=<?= $m ?>&l=<?= $l ?>&page=<?= $page ?>"
                                           name="form1">
                                         <div class="datatablewrap">
+                                            <?php if (!empty($list)) :?>
                                             <div class="xinxi-guanli-box">
                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0"
                                                        class="xinfabu prico">
@@ -47,7 +48,6 @@
                                                         <td>期号</td>
                                                         <td>地址</td>
                                                         <td>金额</td>
-                                                        <td>缴费时间</td>
                                                         <td>支付方式</td>
                                                     </tr>
                                                     <?php  foreach ($list as $item) :
@@ -57,12 +57,12 @@
                                                         <td><?= $item['period'] ?></td>
                                                         <td><?= get_address($item['room_id'], 'room') ?></td>
                                                         <td><?= $total_fee ?></td>
-                                                        <td><?= date('Y-m-d H:i:s', $item['pay_time']) ?></td>
                                                         <td><?= Constants::map_pay_type[$item['pay_type']] ?></td>
                                                     </tr>
                                                     <?php  endforeach;?>
                                                 </table>
                                             </div>
+                                            <?php endif;?>
                                             <?php if ($rows_num > 0) { ?>
                                                 <div class="clearfix datacontrol">
                                                     <div class="dataaction">
