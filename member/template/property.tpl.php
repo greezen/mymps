@@ -50,13 +50,15 @@
                                                         <td>缴费时间</td>
                                                         <td>支付方式</td>
                                                     </tr>
-                                                    <?php  foreach ($list as $item) :?>
+                                                    <?php  foreach ($list as $item) :
+                                                        $total_fee = ($item['manager_fee'] + $item['water_fee'] + $item['electric_fee'] + $item['other_fee'])
+                                                    ?>
                                                     <tr>
                                                         <td><?= $item['period'] ?></td>
-                                                        <td><?= $item['period'] ?></td>
-                                                        <td><?= $item['period'] ?></td>
+                                                        <td><?= get_address($item['room_id'], 'room') ?></td>
+                                                        <td><?= $total_fee ?></td>
                                                         <td><?= date('Y-m-d H:i:s', $item['pay_time']) ?></td>
-                                                        <td><?= $item['pay_type'] ?></td>
+                                                        <td><?= Constants::map_pay_type[$item['pay_type']] ?></td>
                                                     </tr>
                                                     <?php  endforeach;?>
                                                 </table>

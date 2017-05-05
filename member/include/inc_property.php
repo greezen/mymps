@@ -5,6 +5,8 @@ $box = !empty($_POST['box']) ? 1 : '';
 $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
 
 require_once MEMBERDIR.'/include/common.func.php';
+require_once MYMPS_ROOT .'/plugin/property/include/functions.php';
+require_once MYMPS_ROOT .'/plugin/property/include/Constants.php';
 
 if($ac == 'del'){
 

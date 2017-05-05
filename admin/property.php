@@ -50,10 +50,7 @@ if (!submit_check(CURSCRIPT . "_submit")) {
         $page = empty($page) ? 1 : $page;
         $offset = ($page - 1) * $per_page;
         $list = $db->getAll($sql . " LIMIT $offset,{$per_page}");
-        $map_pay_type = array(
-            'weixin_pay' => '微信支付',
-            'alipay' => '支付宝支付'
-        );
+        $map_pay_type = Constants::map_pay_type;
 
     } elseif ($part == 'del') {
         $now = time();
