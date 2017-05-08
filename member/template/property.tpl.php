@@ -92,7 +92,7 @@
                                                         </tr>
                                                     </thead>
                                                     <?php  foreach ($list as $item) :
-                                                        $total_fee = ($item['manager_fee'] + $item['water_fee'] + $item['electric_fee'] + $item['other_fee'])
+                                                        $total_fee = ($item['manage_fee'] + $item['water_fee'] + $item['electric_fee'] + $item['other_fee'])
                                                     ?>
                                                     <tr>
                                                         <td><?= $item['period'] ?></td>
