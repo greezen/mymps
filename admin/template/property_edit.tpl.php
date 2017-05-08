@@ -25,6 +25,10 @@
 </td>
 </tr>
 <tbody id="menu_1">
+<tr>
+    <td bgcolor="#F1F5F8">应用交时间：</td>
+    <td><?=$row['period']?></td>
+</tr>
 <tr bgcolor="white">
   <td bgcolor="#F1F5F8">地址： </td>
   <td>
