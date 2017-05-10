@@ -1,51 +1,63 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="index_page">
 <head>
-	{template header}
-	<title>我的发布 - {$mymps_global[SiteName]}</title>
-	<link type="text/css" rel="stylesheet" href="template/css/global.css">
-	<link type="text/css" rel="stylesheet" href="template/css/style.css">
-	<link type="text/css" rel="stylesheet" href="template/css/member.css">
+    {template header}
+    <title>我的发布 - {$mymps_global[SiteName]}</title>
+    <link type="text/css" rel="stylesheet" href="template/css/global.css">
+    <link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/member.css">
 </head>
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="body_div">
 
-	{template header_search}
-	
-	<div class="dl_nav">
-		<span>
-			<a href="index.php">首页</a>&gt;<a href="index.php?mod=member">会员中心</a>&gt;<a href="index.php?mod=mypost&userid={$userid}">物业缴费</a>
-		</span>
-	</div>
+    {template header_search}
+    <div class="navi">
+        <li class="cate {if $status == 'N'}selected{/if}" tab="N"><a href="index.php?mod=property&status=N">待缴费用</a>
+        </li>
+        <li class="cate {if $status == 'Y'}selected{/if}" tab="Y" style="float: left"><a
+                href="index.php?mod=property&status=Y">缴费明细</a></li>
+    </div>
 
-	<div class="ucenter" style="border-bottom:1px #dddddd solid;">
-		<ul class="u_infolst">
-        	{loop $info_list $mymps}
-				<li >
-				<a href="index.php?mod=information&id={$mymps[id]}">
-				<h2>{$mymps[title]}</h2>
-				<div class="attr">
-					<span>{$mymps[catname]}</span>
-					<span></span>
-					<!--<span class="del"><i class="ico_del"></i>删除</span>-->
-				</div>
-				<div class="attr">
-					<span class="status">显示中</span>
-					<span>{echo get_format_time($mymps[begintime])}</span>
-				</div>
-				</a>
-				</li>
+    <div class="ucenter" style="border-bottom:1px #dddddd solid;">
+        <ul class="u_infolst">
+            {loop $list $item}
+            <li>
+                <a href="javascript:;">
+                    <h2>金额：<span style="color: #f01d01">{echo $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}</span>
+                        元</h2>
+                    <div class="attr">
+                        <span>期号：{$item['period']}</span>
+                        <span></span>
+                        {if $status == 'N'}
+                        <span class="del">缴费</span>
+                        {/if}
+                    </div>
+                    {if $status == 'Y'}
+                    <div class="attr">
+                        <span>缴费时间：{echo date('Y-m-d H:i:s',$item['pay_time'])}</span>
+                        <span></span>
+                        {if $status == 'N'}
+                        <span class="del">缴费</span>
+                        {/if}
+                    </div>
+                    {/if}
+                    <div class="attr">
+                        <span>地址：{echo get_address($item['room_id'], 'room')}</span>
+                        <span></span>
+                    </div>
+                </a>
+            </li>
             {loopelse}
-            <div style="margin:30px 0;text-align:center">您还没有发布过信息哦~！</div>
+            <div style="margin:30px 0;text-align:center">无记录</div>
             {/loop}
-		</ul>
-	</div>
-	{if $info_list}
-	<div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
-    {$pageview}
-	</div>
-	{/if}
+        </ul>
+    </div>
+    {if $info_list}
+    <div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
+        {$pageview}
+    </div>
+    {/if}
 </div>
 {template footer}
 </body>

@@ -4,18 +4,17 @@ if ( CURSCRIPT != "wap" )
 {
     exit( "FORBIDDEN" );
 }
-$userid = isset( $_GET['userid'] ) ? mhtmlspecialchars( $_GET['userid'] ) : "";
-if ( !( $row = $db->getrow( "SELECT * FROM `".$db_mymps."member` WHERE userid = '{$userid}'" ) ) )
-{
-    errormsg( "您所访问的用户不存在或者未通过审核！" );
-}
-$where = " WHERE userid = '".$userid."' AND (info_level = 1 OR info_level = 2)";
+require_once MYMPS_ROOT .'/plugin/property/include/functions.php';
+
+$status = isset($_GET['status'])?trim($_GET['status']):'N';
+$uid = $db->getOne("SELECT id FROM ". $db_mymps . "member WHERE userid='{$s_uid}'");
+$where = " WHERE uid = {$uid} AND status='{$status}'";
 $perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
-$param = setparams( array( "mod", "userid" ) );
-$rows_num = $db->getone( "SELECT COUNT(id) FROM `".$db_mymps."information` {$where}" );
+$param = setparams( array( "mod", "status" ) );
+$rows_num = $db->getone( "SELECT COUNT(id) FROM `".$db_mymps."property` {$where}" );
 $totalpage = ceil( $rows_num / $perpage );
 $num = intval( $page - 1 ) * $perpage;
-$info_list = page1( "SELECT * FROM `".$db_mymps."information` {$where} ORDER BY id DESC", $perpage );
+$list = page1( "SELECT * FROM `".$db_mymps."property` {$where} ORDER BY id DESC", $perpage );
 $pageview = pager( );
 include( mymps_tpl( "member_property" ) );
 ?>
