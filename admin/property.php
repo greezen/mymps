@@ -83,9 +83,11 @@ if (!submit_check(CURSCRIPT . "_submit")) {
         write_msg('请输入电费');
     } elseif (empty($water_fee)) {
         write_msg('请输入水费');
+    } elseif (empty($period)) {
+        write_msg('请填写应交时间');
     }
 
-    $period = date('Ym');
+    //$period = date('Ym');
     $res = $db->get_one('SELECT * FROM '. $db_mymps . 'property WHERE `room_id` = '. $room_id.' AND period=\''.$period.'\'');
     if (!empty($res)) {
         write_msg('该房号信息已经存在,请勿重复添加');

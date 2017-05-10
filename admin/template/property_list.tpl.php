@@ -14,6 +14,7 @@
 <table border="0" cellspacing="0" cellpadding="0" class="vbm">
     <tr class="firstr">
       <td>编号</td>
+      <td>应交时间</td>
       <td>价格</td>
       <td>地址</td>
       <td>创建时间</td>
@@ -23,6 +24,7 @@
 <?php foreach($list as $item) :?>
   <tr>
   <td width="40"><?=$item['id']?></td>
+  <td><?=$item['period']?></td>
   <td><?=$item['manage_fee']+$item['electric_fee']+$item['water_fee']+$item['other_fee']?></td>
   <td><?=get_address($item['room_id'], 'room')?></td>
   <td><?=date('Y-m-d H:i:s', $item['time_created'])?></td>

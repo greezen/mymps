@@ -17,6 +17,7 @@ $admindir = getcwdOL();
             </div>
         </div>
     </div>
+<script type='text/javascript' src='js/calendar.js'></script>
 <form action="?part=add" method="post">
 <div id="<?=MPS_SOFTNAME?>">
 <table border="0" cellspacing="0" cellpadding="0" class="vbm">
@@ -36,6 +37,10 @@ $admindir = getcwdOL();
         </div>
     </td>
   </tr>
+    <tr bgcolor="#ffffff">
+        <td style="background-color:#f1f5f8">应交时间：</td>
+        <td>&nbsp;<input name="period" style="width:100px;" class="txt" value="<?=date('Ym')?>" onclick="popUpCalendar(this, this, &quot;yyyymm&quot;)"> </td>
+    </tr>
   <tr bgcolor="#ffffff">
     <td style="background-color:#f1f5f8; width:40%">管理费</td>
     <td>&nbsp;<input name="manage_fee" class="text" value=""></td>
