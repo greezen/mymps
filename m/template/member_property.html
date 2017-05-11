@@ -10,7 +10,32 @@
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="body_div">
-
+    <style type="text/css">
+        select{
+            width: auto !important;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            vertical-align: middle;
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: 3px 5px;
+            margin-left: 2px;
+        }
+        .select-list{
+            margin: 1rem auto;
+        }
+        #address{
+            margin: 1rem;
+        }
+        .formrow{
+            width: 5rem;
+            margin: auto;
+        }
+        #set_address{
+            padding: 0.3rem;
+        }
+    </style>
     {template header_search}
     <div class="navi">
         <li class="cate {if $status == 'N'}selected{/if}" tab="N"><a href="index.php?mod=property&status=N">待缴费用</a>
@@ -20,6 +45,22 @@
     </div>
 
     <div class="ucenter" style="border-bottom:1px #dddddd solid;">
+        {if empty($room_id)}
+        <div class="select-list">
+            <div style="padding-left: 1rem">请选择您的地址：</div>
+            <div id="address">
+                <select name="province_id" id="province_id">
+                    <option value="0">请选择</option>
+                    {loop $province_list $item}
+                    <option value="{$item['provinceid']}">{$item['provincename']}</option>
+                    {/loop}
+                </select>
+            </div>
+            <div class="formrow formrow-action">
+                <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="提交" class="button" name="base_submit"></span></span>
+            </div>
+        </div>
+        {else}
         <ul class="u_infolst">
             {loop $list $item}
             <li>
@@ -52,6 +93,7 @@
             <div style="margin:30px 0;text-align:center">无记录</div>
             {/loop}
         </ul>
+        {/if}
     </div>
     {if $info_list}
     <div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
@@ -60,5 +102,76 @@
     {/if}
 </div>
 {template footer}
+<script type="text/javascript" src="/admin/js/jquery.3.1.1.min.js"></script>
+<script type="application/javascript">
+    $(function () {
+        $('#province_id').change(function () {
+            var that = $(this);
+            var data = {"do" : "city", "province_id" : $('#province_id').val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('city', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $(document).on('change', '#city_id', function () {
+            var that = $(this);
+            var data = {"do" : "area", "city_id" : $(this).val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('area', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $(document).on('change', '#area_id', function () {
+            var that = $(this);
+            var data = {"do": "building", "area_id": $(this).val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('building', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $(document).on('change', '#building_id', function () {
+            var that = $(this);
+            var data = {"do": "room", "building_id": $(this).val()};
+            $.post('/address.php', data, function (rsp) {
+                var str = select_tpl('room', rsp);
+                that.nextAll().remove();
+                $('#address').append(str);
+            }, 'json')
+        });
+
+        $('#set_address').click(function () {
+            var room_id = $('#room_id').val();
+            if (room_id == undefined || room_id < 1) {
+                window.alert('您还未选择房间号哦');
+                return false;
+            }
+            var url = '/member/index.php?m=property&act=address';
+            var data = {"room_id": room_id};
+            $.post(url, data, function (rsp) {
+                if (rsp == 'ok') {
+                    window.location.href = '/m/index.php?mod=property&status=N';
+                } else {
+                    window.alert('设置失败');
+                }
+            });
+        });
+
+        function select_tpl(type, data) {
+            var tpl = '<select name="'+type+'_id" id="'+type+'_id">';
+            tpl += '<option value="">请选择</option>';
+            $.each(data, function (i,v) {
+                tpl += '<option value="'+ v.id+'">'+ v.name+'</option>';
+            });
+            tpl += '</select>';
+            return tpl;
+        }
+    })
+</script>
 </body>
 </html>
