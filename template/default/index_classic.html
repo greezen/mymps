@@ -1,45 +1,86 @@
+<!--{php}
+$index_cat = get_categories_tree(0,'category');
+if(is_array($index_cat)){
+    foreach($index_cat as $firstcatkey => $firstcatval){
+        $incatids = NULL;
+        $incatids = get_children($firstcatval['catid']);
+        $query	= $db -> query("SELECT a.catname,a.dir_typename,a.id,a.userid,a.catid,a.title,a.ifred,a.ifbold,a.begintime,a.cityid FROM `{$db_mymps}information` AS a WHERE $incatids AND (a.info_level = 1 OR a.info_level = 2) {$city_limit} ORDER BY a.begintime DESC LIMIT 0,".$tpl_index['foreachinfo']);
+        $index_cat[$firstcatval['catid']]['information'] = array();
+        while($irow   = $db -> fetchRow($query)){
+            $arr['id'] 	      = $irow['id'];
+            $arr['title'] 	  = $irow['title'];
+            $arr['begintime'] = $irow['begintime'];
+            $arr['catname']	  = $irow['catname'];
+            $arr['ifred']	  = $irow['ifred'];
+            $arr['ifbold']	  = $irow['ifbold'];
+            $arr['caturi']	  = Rewrite('category',array('dir_typename'=>$irow['dir_typename'],'catid'=>$irow['catid'],'domain'=>$city['domain']));
+            $arr['uri']		  = Rewrite('info',array('id'=>$irow['id'],'cityid'=>$irow['cityid'],'dir_typename'=>$irow['dir_typename']));
+            $index_cat[$firstcatval['catid']]['information'][] = $arr;
+        }
+    }
+}
+$tpl_index[classic][cats] = $tpl_index[classic][cats] ? $tpl_index[classic][cats]+1 : '12';
+{/php}-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-    <title>无标题文档</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+    <script src="{$mymps_global[SiteUrl]}/template/default/js/uaredirect.js" type="text/javascript"></script>
+    <script type="text/javascript">uaredirect("{$mymps_global[SiteUrl]}/m/index.php?mod=index&cityid={$cityid}");</script>
+    <title>{$city[title]}</title>
 
-    <link href="css/index.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="js/jquery1.42.min.js">
-    </script><script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <meta name="keywords" content="{$city[keywords]}"/>
+    <meta name="description" content="{$city[description]}"/>
+    <link rel="shortcut icon" href="{$mymps_global[SiteUrl]}/favicon.ico" />
+    <link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/style.head_{$mymps_global[head_style]}.css" />
+    <link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/index.head_{$mymps_global[head_style]}.css" />
+    <link rel="stylesheet" href="{$mymps_global[SiteUrl]}/template/default/css/index.css" />
+    <script src="{$mymps_global[SiteUrl]}/template/default/js/global.js" type="text/javascript"></script>
+    <link href="{$mymps_global[SiteUrl]}/template/default/css/home.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/jquery1.42.min.js">
+    </script><script type="text/javascript" src="{$mymps_global[SiteUrl]}/template/default/js/jquery.SuperSlide.2.1.1.js"></script>
+
 </head>
 
-<body>
+<body class="{$mymps_global[cfg_tpl_dir]} {$mymps_global[screen_index]} bodybg{$mymps_global[cfg_tpl_dir]}{$mymps_global[bodybg]}">
 
 <div class="header">
     <div class="head">
         <div class="head_top">
-            <a href="#">保存到桌面</a>　<a href="#">注册</a> 　<a href="#">登陆</a></div>
-        <div class="logo"><img src="images/logo.png" width="180" height="70" /></div>
-        <div class="area"><a href="#"><h1>总站</h1><span><img src="images/up.png" width="20" height="20" /></span></a></div>
+            <ul>
+                <a href="{$mymps_global[SiteUrl]}/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a>　
+            </ul>
+            <script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=iflogin&cityid={$city[cityid]}"></script>
+        </div>
+        <div class="logo"><img src="{$mymps_global[SiteUrl]}{$mymps_global[SiteLogo]}" title="{$mymps_global[SiteName]}" width="180" height="70" /></div>
+        <div class="area">
+            <a href="{$mymps_global[SiteUrl]}/changecity.php">
+                {if $city[cityname]}{$city[cityname]}{else}<h1>总站</h1>{/if}
+                <span><img src="{$mymps_global[SiteUrl]}/template/default/images/index/up.png" width="20" height="20" /></span>
+            </a>
+        </div>
         <div class="search">
-            <form id="form1" name="form1" method="post" action="">
-
-
-                <input type="text" name="textfield" id="textfield" class="ser_txt" />
+            <form method="get" action="{$mymps_global[SiteUrl]}/search.php?" id="searchForm" target="_blank">
+                <input name="cityid" value="{$city[cityid]}" type="hidden"/>
+                <input type="text" class="ser_txt" name="keywords" id="searchheader" onmouseover="hiddennotice('searchheader');" x-webkit-speech lang="zh-CN" />
                 <input type="submit" name="button" id="button" value="提交"  class="ser_btn"/>
             </form>
         </div>
         <div class="head_btn">
-            <h1><a href="#">修改/删除信息</a></h1>
-            <h2><a href="#">免费发布信息</a></h2>
+            <h1><a href="{$mymps_global[SiteUrl]}/delinfo.php">修改/删除信息</a></h1>
+            <h2><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?cityid={$cityid}&catid={echo $catid?$catid:$info[catid]}">免费发布信息</a></h2>
 
         </div>
 
     </div>
     <div class="nav">
         <ul>
-            <li><a href="#">首页</a></li>
-            <li><a href="#">车辆买卖</a></li>
-            <li><a href="#">房屋租售</a></li>
-            <li><a href="#">招聘信息</a></li>
-            <li><a href="#">物业缴费</a></li>
-            <li id="mob"><a href="#">手机浏览</a></li>
+            <li><a href="{$city[domain]}" id="index">首页</a></li>
+            <!--{php $navurl_header = mymps_get_navurl('header',9);}-->
+            <!--{loop $navurl_header $k $mymps}-->
+            <li><a {if $mymps[flag] == $cat[catid] || $mymps[flag] == $cat[parentid]}class="current"{/if} target="{$mymps[target]}" id="{$mymps[flag]}" href="{if $mymps[flag] != 'outlink' && $mymps[flag] != 'news'}{$city[domain]}{/if}{$mymps[url]}"><font color="{$mymps[color]}">{$mymps[title]}</font><sup class="{$mymps[ico]}"></sup></a></li>
+            <!--{/loop}-->
+            <li id="mob"><a href="{$mymps_global[SiteUrl]}/mobile.php" target="_blank">手机浏览</a></li>
         </ul>
 
     </div>
@@ -48,16 +89,16 @@
     <div class="index_div">
         <div class="focusBox" >
             <ul class="pic">
-                <li><a href="#" target="_blank"><img src="images/banner.jpg"/></a></li>
-                <li><a href="#" target="_blank"><img src="images/2.jpg"/></a></li>
-                <li><a href="#" target="_blank"><img src="images/5.jpg"/></a></li>
+                <!--{php $focus = mymps_get_focus('index',3,$city[cityid]);}-->
+                <!--{loop $focus $k $mymps}-->
+                <li><a href="{$mymps[url]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$mymps[image]}" alt="{$mymps[words]}"/></a></li>
+                <!--{/loop}-->
             </ul>
 
             <ul class="hd">
+                <!--{loop $focus $k $mymps}-->
                 <li></li>
-                <li></li>
-                <li></li>
-
+                <!--{/loop}-->
             </ul>
         </div>
         <script type="text/javascript">
@@ -68,47 +109,38 @@
         </script>
         <div class="top_news">
             <ul>
-                <li><a href="#">人事培训、绩效专员</a></li>
-                <li>办公室文员（弹性工作+节日福利</li>
-                <li>深圳月薪4500销售</li>
-                <li>兰博基尼 盖拉多 2012款 LP 5604</li>
-                <li>本田,雅马哈,铃木,川崎进口车,</li>
-                <li>价格便宜,款式 多,质量有保</li>
-                <li>宝马 1系 2012款 116i 1.6T 手自</li>
-                <li>碧桂园太东公园上城 深圳东位置中</li>
-                <li>龙华绿本村委统建房,抢购倒计时！</li>
-                <li>宝马 1系 2012款 116i 1.6T 手自</li>
+                <!--{php $index_topinfo = mymps_get_infos($tpl_index['indextopinfo'],NULL,3,NULL,NULL,NULL,NULL,NULL,$cityid);}-->
+                <!--{loop $index_topinfo $mymps}-->
+                <li><span class="showtitle"><a title="{$mymps[title]}" target="_blank" href="{$mymps[uri]}" style="{if $mymps[ifred] == 1}color:red;{/if}{if $mymps[ifbold] == 1}font-weight:bold;{/if}">{$mymps[title]}</a></span></li>
+                <!--{/loop}-->
             </ul>
         </div>
         <div class="slideTxtBox">
             <div class="hd">
-
-
-
                 <ul><li>网站新闻</li><li>网站公告</li></ul>
             </div>
             <div class="bd">
                 <ul >
                     <div id="content">
-                        <li><span class="date">11-11</span><a href="#" >中国打破了世界软件巨头规</a></li>
-                        <li><span class="date">11-11</span><a href="#" >口语：会说中文就能说英语</a></li>
-                        <li><span class="date">11-11</span><a href="#">农场摘菜不如在线学外语好</a></li>
-                        <li><span class="date">11-11</span><a href="#" >数理化老师竟也看学习资料</a></li>
-                        <li><span class="date">11-11</span><a href="#" >学英语送ipad2,45天突破听</a></li>
-                        <li><span class="date">11-11</span><a href="#" >那些无法理解的荒唐事</a></li>
-                        <li><span class="date">11-11</span><a href="#" >那些无法理解的荒唐事</a></li>
+                        <!--{php $i=1;if(ifplugin('news')) $news = mymps_get_news($tpl_index['news']);}-->
+                        <!--{loop $news $mymps}-->
+                        <!--{if $i == 1}-->
+                        <h1><a target="_blank" href="{$mymps[uri]}" title="{$mymps[title]}" {if $mymps[iscommend] ==1}style="color:red"{/if}>{$mymps[title]}</a></h1>
+                        <p>{$mymps[content]}</p>
+                        <!--{else}-->
+                        <li><span class="title"><a target="_blank" href="{$mymps[uri]}" title="{$mymps[title]}" {if $mymps[iscommend] ==1}style="color:red"{/if}>{echo cutstr($mymps[title],42)}</a></span><span class="time">[{echo GetTime($mymps[begintime],'m-d')}]</span></li>
+                        <!--{/if}-->
+                        {php $i++;}
+                        <!--{/loop}-->
                     </div>
 
                 </ul>
 
                 <ul>  <div id="content">
-                    <li><span class="date">11-11</span><a href="#" >中国打破了世界软件巨头规</a></li>
-                    <li><span class="date">11-11</span><a href="#" >口语：会说中文就能说英语</a></li>
-                    <li><span class="date">11-11</span><a href="#">农场摘菜不如在线学外语好</a></li>
-                    <li><span class="date">11-11</span><a href="#" >数理化老师竟也看学习资料</a></li>
-                    <li><span class="date">11-11</span><a href="#" >学英语送ipad2,45天突破听</a></li>
-                    <li><span class="date">11-11</span><a href="#" >那些无法理解的荒唐事</a></li>
-                    <li><span class="date">11-11</span><a href="#" >那些无法理解的荒唐事</a></li>
+                    <!--{php $announce = mymps_get_announce($tpl_index['announce'],$city['cityid']);}-->
+                    <!--{loop $announce $k $mymps}-->
+                    <li><span class="announcetitle"><a style="color:{$mymps[titlecolor]}" title="{$mymps[title]}" href="{$mymps[uri]}" target="_blank">{$mymps[title]}</a></span><span class="announcetime">{echo GetTime($mymps[pubdate],'m-d')}</span></li>
+                    <!--{/loop}-->
                 </div>
 
                 </ul>
@@ -122,153 +154,46 @@
         </div>
 
     </div>
-    <div class="index_list">
-        <div class="index_list_title"><img src="images/a1.png" width="48" height="48" /><h1>房屋租售</h1><h2><a href="#">更多>></a></h2><h3><a href="#">发信息</a></h3></div>
+
+    {php $i=1;}
+    <!--{loop $index_cat $fcat}-->
+    <!--{if $i < $tpl_index[classic][cats]}-->
+    <div class="index_list {if $i%2 == 0}iright{/if}">
+        <div class="index_list_title">
+            {if $fcat[icon]}<img alt="{$fcat[catname]}" src="{$mymps_global[SiteUrl]}{$fcat[icon]}" align="absmiddle" width="48" height="48" />{/if}
+            <h1>{$fcat[catname]}</h1>
+            <h2><a href="{$fcat[uri]}" target="_blank">更多>></a></h2>
+            <h3><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?catid={$fcat[catid]}&cityid={$city[cityid]}" target="_blank">发信息</a></h3>
+        </div>
         <div class="index_list_type">
             <ul>
-                <li><a href="#">房屋出租</a></li>
-                <li><a href="#">日租/短租</a></li>
-                <li><a href="#">二手房出售</a></li>
-                <li><a href="#">店铺转让/出租</a></li>
-                <li><a href="#">商铺出售</a></li>
-                <li><a href="#">写字楼出租</a></li>
-                <li><a href="#">写字楼出售</a></li>
-                <li><a href="#">厂房/仓库/土地</a></li>
-                <li><a href="#">求租/求购</a></li>
+                {loop $fcat['children'] $child}
+                <li><a href="{$child['uri']}">{$child['catname']}</a></li>
+                {/loop}
             </ul>
         </div>
         <div class="index_list_con">
             <ul>
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-
-                <li > <span class="itime">[05-03]</span>
-                    <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span> </li>
-
+                <!--{loop $fcat[information] $info}-->
+                <li > <span class="itime">[{echo GetTime($info[begintime],'m-d')}]</span>
+                    <span class="info"><a href="{$info[uri]}" title="{$info[title]}">{$info[title]}</a></span>
+                </li>
+                <!--{/loop}-->
             </ul>
 
         </div>
     </div>
-    <div class="index_list iright">
-        <div class="index_list_title"><img src="images/a2.png" width="48" height="48" />
-            <h1>车辆买卖</h1>
-            <h2><a href="#">更多&gt;&gt;</a></h2>
-            <h3><a href="#">发信息</a></h3>
-        </div>
-        <div class="index_list_type">
-            <ul>
-                <li><a href="#">二手轿车</a></li>
-                <li><a href="#">货车/工程车</a></li>
-                <li><a href="#">面包车/客车</a></li>
-                <li><a href="#">拖拉机/收割机</a></li>
-                <li><a href="#">拼车/顺风车</a></li>
-                <li><a href="#">新车优惠/4S店</a></li>
-                <li><a href="#">汽车用品/配件</a></li>
-                <li><a href="#">汽修保养地</a></li>
-                <li><a href="#">车辆收购服务</a></li>
-
-            </ul>
-        </div>
-        <div class="index_list_con">
-            <ul>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="index_list ">
-        <div class="index_list_title"><img src="images/a3.png" width="48" height="48" />
-            <h1>招聘信息</h1>
-            <h2><a href="#">更多&gt;&gt;</a></h2>
-            <h3><a href="#">发信息</a></h3>
-        </div>
-        <div class="index_list_type">
-            <ul>
-                <li><a href="#">不限营业员/促销/零售</a></li>
-                <li><a href="#">服务员/收银员</a></li>
-                <li><a href="#">销售/市场/业务员</a></li>
-                <li><a href="#">文员/客服/助理</a></li>
-                <li><a href="#">保姆/家政</a></li>
-                <li><a href="#">司机/驾驶员</a></li>
-                <li><a href="#">保安/保洁</a></li>
-                <li><a href="#">厨师/切配</a></li>
-                <li><a href="#">送货/快递/仓管</a></li>
-
-            </ul>
-        </div>
-        <div class="index_list_con">
-            <ul>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-            </ul>
-        </div>
-    </div>
-    <div class="index_list iright">
-        <div class="index_list_title"><img src="images/a4.png" width="48" height="48" />
-            <h1>物业缴费</h1>
-            <h2><a href="#">更多&gt;&gt;</a></h2>
-            <h3><a href="#">发信息</a></h3>
-        </div>
-        <div class="index_list_type">
-            <ul>
-                <li><a href="#">房屋出租</a></li>
-                <li><a href="#">日租/短租</a></li>
-                <li><a href="#">二手房出售</a></li>
-                <li><a href="#">店铺转让/出租</a></li>
-                <li><a href="#">商铺出售</a></li>
-                <li><a href="#">写字楼出租</a></li>
-                <li><a href="#">写字楼出售</a></li>
-                <li><a href="#">厂房/仓库/土地</a></li>
-                <li><a href="#">求租/求购</a></li>
-            </ul>
-        </div>
-        <div class="index_list_con">
-            <ul>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-                <li > <span class="itime">[05-03]</span> <span class="info"><a href="#">碧桂园太东公园上城 深圳东位置中心区带精装修置业改善</a></span></li>
-            </ul>
-        </div>
-    </div>
+    <!--{/if}-->
+    {php $i++;}
+    <!--{/loop}-->
+    <!--{php $telephone = mymps_get_telephone($tpl_index[telephone],$city[cityid]);}-->
     <div class="bbdh">
         <div class="cdiv">
-            <div class="index_title"><h1>便民电话</h1><h2><span>以下便民电话招商：300/年，变色或加粗加100元。(可新增行业类别，每类别限一家，先占先得！)</span>　加盟电话：010-12345678</h2></div>
+            <div class="index_title"><h1>便民电话</h1><h2><span>以下便民电话招商：300/年，变色或加粗加100元。(可新增行业类别，每类别限一家，先占先得！)</span>　加盟电话：{$mymps_global[SiteTel]}</h2></div>
             <ul>
-                <li>报警<br />110</li>
-                <li>报警<br />110</li>
-                <li>报警<br />110</li>
+                <!--{loop $telephone $k $mymps}-->
+                <li><font style="color:{$mymps[color]};{if $mymps[if_bold] == 1}font-weight:bold{/if}">{$mymps[telname]}<br />{$mymps[telnumber]}</font></li>
+                <!--{/loop}-->
             </ul>
             <div class="clear"></div>
         </div>
@@ -277,25 +202,32 @@
         <div class="cdiv">
             <div class="index_title">
                 <h1>友情链接</h1>
-                <h2><a href="#">我要申请</a></h2>
+                <h2><a href="{$about[friendlink_uri]}">我要申请</a></h2>
             </div>
+
+            {if $friendlink[txt]}
             <div class="index_link">
-                <a href="http://9416.cn">就是一流</a>
-                <a href="http://9416.cn">就是一流</a>
-                <a href="http://9416.cn">就是一流</a>
-                <a href="http://9416.cn">就是一流</a>
-                <a href="http://9416.cn">就是一流</a>
-                <a href="http://9416.cn">就是一流</a>
-                <a href="http://9416.cn">就是一流</a>
+                <!--{loop $friendlink[txt] $mymps}-->
+                <li><a href="{$mymps[url]}" target="_blank" title="{$mymps[name]}">{$mymps[name]}</a></li>
+                <!--{/loop}-->
+                <li><a href="http://zhideyao.cn" target="_blank">值得要交易平台</a></li>
             </div>
+            {/if}
             <div class="clear"></div>
         </div>
     </div>
 </div>
 <div class="foot">
-    <p>网站简介 广告服务 联系我们 网站帮助 友情链接 网站公告 网站地图   </p>
-    <p> Copyright ◎2017 ? 城盛惠民, All Rights Reserved. </p>
-    <p><img src="images/foot.jpg" width="473" height="62" /></p>
+    <p>
+        <!--{php $navurl_foot = mymps_get_navurl('foot',30);}-->
+        <!--{php $counturlnav = count($navurl_foot);$i=1;}-->
+        <!--{loop $navurl_foot $k $mymps}-->
+        <a {if $counturlnav == $i}class="backnone"{/if} href="{$mymps[url]}" style="color:{$mymps[color]}" target="{$mymps[target]}">{$mymps[title]}<sup class="{$mymps[ico]}"></sup></a>
+        <!--{php $i=$i+1;}-->
+        <!--{/loop}-->
+    </p>
+    <p> Copyright ◎{echo GetTime($timestamp,'Y')} 城盛惠民, All Rights Reserved. </p>
+    <p><img src="{$mymps_global[SiteUrl]}/template/default/images/index/foot.jpg" width="473" height="62" /></p>
 </div>
 </body>
 </html>
