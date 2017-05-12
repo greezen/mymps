@@ -4,6 +4,11 @@ if ( CURSCRIPT != "wap" )
 {
     exit( "FORBIDDEN" );
 }
+if ($iflogin == 0) {
+    $url = 'http://'.$_SERVER["HTTP_HOST"].'/m/index.php?mod=login&returnurl='.$returnurl;
+    header('Location:'.$url);
+    exit;
+}
 require_once MYMPS_ROOT .'/plugin/property/include/functions.php';
 
 $status = isset($_GET['status'])?trim($_GET['status']):'N';
