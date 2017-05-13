@@ -23,7 +23,7 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                             <div class="pwrap accountinfo">
                                 <div class="phead"><div class="phead-inner"><div class="phead-inner">
                                     <h3 class="ptitle"><span>帐号信息</span></h3>
-                                    
+
                                 </div></div></div>
                                 <div class="pbody">
                                     <div class="clearfix accountinfo-dock">
@@ -42,9 +42,9 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                                             <?php }?>
                                             <?php }?>
                                             <a class="account-topup" href="index.php?m=pay">金币充值</a>
-                                            
+
                                             <span class="account-sum" title="金币余额:<?php echo $row['money_own']?>"><strong><?php echo $row['money_own']?></strong></span>
-                                            
+
                                         </div>
                                         <div class="account-uesrinfo">
                                             <span class="account-name"><?php echo $row['tname'].$s_uid; ?> <font color=red>[<?=$levelname?>]</font> <a target="_blank" style="font-size:12px; font-weight:100;" href="<?php echo Rewrite('space',array('user'=>$row['userid']))?>">查看个人主页</a></span>
@@ -62,11 +62,11 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                                 </div>
                                 <div class="pfoot"><p><b>-</b></p></div>
                             </div>
-							
+
 							<div id="msg_success"></div>
 							<div id="msg_error"></div>
 							<div id="msg_alert"></div>
-							
+
                             <div class="pwrap pwrap-simple">
                             <div class="phead"><div class="phead-inner"><div class="phead-inner">
                                 <h3 class="ptitle"><span>统计信息</span></h3>
@@ -88,11 +88,11 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
 									<?php }?>
                                 </div>
                             </ul>
-                            
+
                             </div>
                             <div class="pfoot"><p><b>-</b></p></div>
                             </div>
-                            
+
                             <div class="pwrap pwrap-simple exchange-finance">
                             <div class="phead"><div class="phead-inner"><div class="phead-inner">
                                 <h3 class="ptitle"><span>财务信息</span></h3>
@@ -110,7 +110,7 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                                         <span class="value"><strong><?php echo $row['score']; ?></strong> 分</span>
 										<a class="detail" href="javascript:setbg('兑换金币',450,270,'../box.php?part=score_coin&userid=<?=$s_uid?>');">兑换金币</a>
 										<a style="color:#ff3300;" href="javascript:setbg('如何获得积分',350,270,'../box.php?part=howtogetscore');">如何获得积分？</a>
-                                        
+
                                     </li>
 									<li class="noborder">
                                         <span class="label">信用等级:</span>
@@ -154,7 +154,7 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                             </div>
                             <div class="pfoot"><p><b>-</b></p></div>
                             </div>
-							
+
 							<?php if($mymps_global['cfg_if_affiliate'] == 1){?>
 							<div class="pwrap pwrap-simple exchange-security">
                             <div class="phead"><div class="phead-inner"><div class="phead-inner">
@@ -181,15 +181,15 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
 <td bgcolor="#ffffff">&nbsp;&nbsp;<input size="115" onClick="this.select();" type="text" value="<?php echo $mymps_global['SiteUrl']?>/index.php?fromuid=<?=$row[id]?>" style="border:1px solid #ccc;padding:3px 5px" /></td>
 </tr>
 </table>
-										
+
                                     </li>
-                                   
+
                                  </ul>
                             </div>
                             <div class="pfoot"><p><b>-</b></p></div>
                             </div>
 							<?php }?>
-							
+
                             <!--<div class="pwrap pwrap-simple exchange-security">
                             <div class="phead"><div class="phead-inner"><div class="phead-inner">
                                 <h3 class="ptitle"><span>安全信息</span></h3>
@@ -205,7 +205,7 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                             </div>
                             <div class="pfoot"><p><b>-</b></p></div>
                             </div>-->
-                            
+
                         </div>
                     </div>
                 </div>

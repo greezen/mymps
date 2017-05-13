@@ -37,54 +37,55 @@ $tpl_index['classic']['cats'] = $tpl_index['classic']['cats'] ? $tpl_index['clas
     <link rel="stylesheet" href="<?=$mymps_global['SiteUrl']?>/template/default/css/index.head_<?=$mymps_global['head_style']?>.css" />
     <link rel="stylesheet" href="<?=$mymps_global['SiteUrl']?>/template/default/css/index.css" />
     <script src="<?=$mymps_global['SiteUrl']?>/template/default/js/global.js" type="text/javascript"></script>
-    <link href="<?=$mymps_global['SiteUrl']?>/template/default/css/home.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="<?=$mymps_global['SiteUrl']?>/template/default/js/jquery1.42.min.js">
     </script><script type="text/javascript" src="<?=$mymps_global['SiteUrl']?>/template/default/js/jquery.SuperSlide.2.1.1.js"></script>
 
 </head>
 
-<body class="<?=$mymps_global['cfg_tpl_dir']?> <?=$mymps_global['screen_index']?> bodybg<?=$mymps_global['cfg_tpl_dir']?><?=$mymps_global['bodybg']?>">
-
+<body class="<?=$mymps_global['cfg_tpl_dir']?> <?=$mymps_global['screen_index']?> bodybg<?=$mymps_global['cfg_tpl_dir']?><?=$mymps_global['bodybg']?>"><link href="<?=$mymps_global['SiteUrl']?>/template/default/css/home.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.current{
+background-color: #00AFF0;
+}
+</style>
 <div class="header">
-    <div class="head">
-        <div class="head_top">
-            <ul>
-                <a href="<?=$mymps_global['SiteUrl']?>/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a>　
-            </ul>
-            <script type="text/javascript" src="<?=$mymps_global['SiteUrl']?>/javascript.php?part=iflogin&cityid=<?=$city['cityid']?>"></script>
-        </div>
-        <div class="logo"><img src="<?=$mymps_global['SiteUrl']?><?=$mymps_global['SiteLogo']?>" title="<?=$mymps_global['SiteName']?>" width="180" height="70" /></div>
-        <div class="area">
-            <a href="<?=$mymps_global['SiteUrl']?>/changecity.php">
-                <? if($city['cityname']) { ?><?=$city['cityname']?><?php } else { ?><h1>总站</h1><?php } ?>
-                <span><img src="<?=$mymps_global['SiteUrl']?>/template/default/images/index/up.png" width="20" height="20" /></span>
-            </a>
-        </div>
-        <div class="search">
-            <form method="get" action="<?=$mymps_global['SiteUrl']?>/search.php?" id="searchForm" target="_blank">
-                <input name="cityid" value="<?=$city['cityid']?>" type="hidden"/>
-                <input type="text" class="ser_txt" name="keywords" id="searchheader" onmouseover="hiddennotice('searchheader');" x-webkit-speech lang="zh-CN" />
-                <input type="submit" name="button" id="button" value="提交"  class="ser_btn"/>
-            </form>
-        </div>
-        <div class="head_btn">
-            <h1><a href="<?=$mymps_global['SiteUrl']?>/delinfo.php">修改/删除信息</a></h1>
-            <h2><a href="<?=$mymps_global['SiteUrl']?>/<?=$mymps_global['cfg_postfile']?>?cityid=<?=$cityid?>&catid=<? echo $catid?$catid:$info['catid']; ?>">免费发布信息</a></h2>
-
-        </div>
-
-    </div>
-    <div class="nav">
-        <ul>
-            <li><a href="<?=$city['domain']?>" id="index">首页</a></li>
-            <?php $navurl_header = mymps_get_navurl('header',9); ?>            <?php if(is_array($navurl_header)){foreach($navurl_header as $k => $mymps) { ?>            <li><a <? if($mymps['flag'] == $cat['catid'] || $mymps['flag'] == $cat['parentid']) { ?>class="current"<?php } ?> target="<?=$mymps['target']?>" id="<?=$mymps['flag']?>" href="<? if($mymps['flag'] != 'outlink' && $mymps['flag'] != 'news') { ?><?=$city['domain']?><?php } ?><?=$mymps['url']?>"><font color="<?=$mymps['color']?>"><?=$mymps['title']?></font><sup class="<?=$mymps['ico']?>"></sup></a></li>
-            <?php }} ?>
-            <li id="mob"><a href="<?=$mymps_global['SiteUrl']?>/mobile.php" target="_blank">手机浏览</a></li>
-        </ul>
-
-    </div>
+<div class="head">
+<div class="head_top">
+<ul>
+<a href="<?=$mymps_global['SiteUrl']?>/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a>　
+</ul>
+<script type="text/javascript" src="<?=$mymps_global['SiteUrl']?>/javascript.php?part=iflogin&cityid=<?=$city['cityid']?>"></script>
 </div>
-<div class="index_main">
+<div class="logo"><img src="<?=$mymps_global['SiteUrl']?><?=$mymps_global['SiteLogo']?>" title="<?=$mymps_global['SiteName']?>" width="180" height="70" /></div>
+<div class="area">
+<a href="<?=$mymps_global['SiteUrl']?>/changecity.php">
+<? if($city['cityname']) { ?><?=$city['cityname']?><?php } else { ?><h1>总站</h1><?php } ?>
+<span><img src="<?=$mymps_global['SiteUrl']?>/template/default/images/index/up.png" width="20" height="20" /></span>
+</a>
+</div>
+<div class="search">
+<form method="get" action="<?=$mymps_global['SiteUrl']?>/search.php?" id="searchForm" target="_blank">
+<input name="cityid" value="<?=$city['cityid']?>" type="hidden"/>
+<input style="padding: 0;" type="text" class="ser_txt" name="keywords" id="searchheader" onmouseover="hiddennotice('searchheader');" x-webkit-speech lang="zh-CN" />
+<input type="submit" name="button" id="button" value="提交"  class="ser_btn"/>
+</form>
+</div>
+<div class="head_btn">
+<h1><a href="<?=$mymps_global['SiteUrl']?>/delinfo.php">修改/删除信息</a></h1>
+<h2><a href="<?=$mymps_global['SiteUrl']?>/<?=$mymps_global['cfg_postfile']?>?cityid=<?=$cityid?>&catid=<? echo $catid?$catid:$info['catid']; ?>">免费发布信息</a></h2>
+
+</div>
+
+</div>
+<div class="nav">
+<ul>
+<li><a href="<?=$city['domain']?>" id="index" <? if(empty($cat['catid'])) { ?>class="current"<?php } ?>>首页</a></li><?php $navurl_header = mymps_get_navurl('header',9); ?><?php if(is_array($navurl_header)){foreach($navurl_header as $k => $mymps) { ?><li><a <? if($mymps['flag'] == $cat['catid'] || $mymps['flag'] == $cat['parentid']) { ?>class="current"<?php } ?> target="<?=$mymps['target']?>" id="<?=$mymps['flag']?>" href="<? if($mymps['flag'] != 'outlink' && $mymps['flag'] != 'news') { ?><?=$city['domain']?><?php } ?><?=$mymps['url']?>"><font color="<?=$mymps['color']?>"><?=$mymps['title']?></font><sup class="<?=$mymps['ico']?>"></sup></a></li>
+<?php }} ?>
+<li id="mob"><a href="<?=$mymps_global['SiteUrl']?>/mobile.php" target="_blank">手机浏览</a></li>
+</ul>
+
+</div>
+</div><div class="index_main">
     <div class="index_div">
         <div class="focusBox" >
             <ul class="pic">
@@ -105,7 +106,7 @@ $tpl_index['classic']['cats'] = $tpl_index['classic']['cats'] ? $tpl_index['clas
         </script>
         <div class="top_news">
             <ul>
-                <?php $index_topinfo = mymps_get_infos($tpl_index['indextopinfo'],NULL,3,NULL,NULL,NULL,NULL,NULL,$cityid); ?>                <?php if(is_array($index_topinfo)){foreach($index_topinfo as $mymps) { ?>                <li><span class="showtitle"><a title="<?=$mymps['title']?>" target="_blank" href="<?=$mymps['uri']?>" style="<? if($mymps['ifred'] == 1) { ?>color:red;<?php } if($mymps['ifbold'] == 1) { ?>font-weight:bold;<?php } ?>"><?=$mymps['title']?></a></span></li>
+                <?php $index_topinfo = mymps_get_infos($tpl_index['indextopinfo'],NULL,3,NULL,NULL,NULL,NULL,NULL,$cityid); ?>                <?php if(is_array($index_topinfo)){foreach($index_topinfo as $mymps) { ?>                <li><span class="showtitle"><a title="<?=$mymps['title']?>" target="_blank" href="<?=$mymps['uri']?>" style="<? if($mymps['ifred'] == 1) { ?>color:red;<?php } if($mymps['ifbold'] == 1) { ?>font-weight:bold;<?php } ?>"><? echo mb_substr($mymps['title'],0,16,'gbk'); ?></a></span></li>
                 <?php }} ?>
             </ul>
         </div>
@@ -116,13 +117,8 @@ $tpl_index['classic']['cats'] = $tpl_index['classic']['cats'] ? $tpl_index['clas
             <div class="bd">
                 <ul >
                     <div id="content">
-                        <?php $i=1;if(ifplugin('news')) $news = mymps_get_news($tpl_index['news']); ?>                        <?php if(is_array($news)){foreach($news as $mymps) { ?>                        <? if($i == 1) { ?>
-                        <h1><a target="_blank" href="<?=$mymps['uri']?>" title="<?=$mymps['title']?>" <? if($mymps['iscommend'] ==1) { ?>style="color:red"<?php } ?>><?=$mymps['title']?></a></h1>
-                        <p><?=$mymps['content']?></p>
-                        <?php } else { ?>
-                        <li><span class="title"><a target="_blank" href="<?=$mymps['uri']?>" title="<?=$mymps['title']?>" <? if($mymps['iscommend'] ==1) { ?>style="color:red"<?php } ?>><? echo cutstr($mymps['title'],42); ?></a></span><span class="time">[<? echo GetTime($mymps['begintime'],'m-d'); ?>]</span></li>
-                        <?php } ?>
-                        <?php $i++; ?>                        <?php }} ?>
+                        <?php if(ifplugin('news')) $news = mymps_get_news($tpl_index['news']); ?>                        <?php if(is_array($news)){foreach($news as $mymps) { ?>                        <li><span class="date"><? echo GetTime($mymps['begintime'],'m-d'); ?></span><a target="_blank" href="<?=$mymps['uri']?>" title="<?=$mymps['title']?>" <? if($mymps['iscommend'] ==1) { ?>style="color:red"<?php } ?>><? echo mb_substr($mymps['title'],0,13,'gbk'); ?></a></li>
+                        <?php }} ?>
                     </div>
 
                 </ul>
@@ -203,7 +199,7 @@ $tpl_index['classic']['cats'] = $tpl_index['classic']['cats'] ? $tpl_index['clas
         <?php $navurl_foot = mymps_get_navurl('foot',30); ?>        <?php $counturlnav = count($navurl_foot);$i=1; ?>        <?php if(is_array($navurl_foot)){foreach($navurl_foot as $k => $mymps) { ?>        <a <? if($counturlnav == $i) { ?>class="backnone"<?php } ?> href="<?=$mymps['url']?>" style="color:<?=$mymps['color']?>" target="<?=$mymps['target']?>"><?=$mymps['title']?><sup class="<?=$mymps['ico']?>"></sup></a>
         <?php $i=$i+1; ?>        <?php }} ?>
     </p>
-    <p> Copyright ◎<? echo GetTime($timestamp,'Y'); ?> 城盛惠民, All Rights Reserved. </p>
+    <p> Copyright ◎<? echo GetTime($timestamp,'Y'); ?> <?=$mymps_global['SiteName']?>, All Rights Reserved. </p>
     <p><img src="<?=$mymps_global['SiteUrl']?>/template/default/images/index/foot.jpg" width="473" height="62" /></p>
 </div>
 </body>

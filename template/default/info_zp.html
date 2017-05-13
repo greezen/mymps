@@ -58,7 +58,7 @@
     
             <div class="pdetail"> 
             <!--{loop $info[extra] $mymps}-->
-                <span>{$mymps[title]}：</span>{if in_array($v[title],array('0元/天','0元/月'))}面议{else}{$mymps[value]}{/if}<br />
+                <span>{$mymps[title]}：</span>{if in_array($mymps[title],array('0元/天','0元/月'))}面议{else}{$mymps[value]}{/if}<br />
             <!--{/loop}-->
             </div>
     

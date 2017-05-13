@@ -1172,6 +1172,7 @@ function mymps_get_announce($num='12',$cityid=NULL){
 	$query = $db -> query("SELECT * FROM `{$db_mymps}announce` WHERE begintime<'$timestamp' AND (endtime='0' OR endtime>'$timestamp') {$city_limit} ORDER BY id DESC LIMIT 0,$num");
 	while($row = $db -> fetchRow($query)){
 		$list[$row['id']]['title'] 		= $row['title'];
+		$list[$row['id']]['pubdate']	= $row['pubdate'];
 		$list[$row['id']]['begintime']	= $row['begintime'];
 		$list[$row['id']]['endtime']	= $row['endtime'];
 		$list[$row['id']]['titlecolor']	= $row['titlecolor'];
