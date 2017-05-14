@@ -14,7 +14,7 @@
     {
         navigator.geolocation.getCurrentPosition(showPosition);
     }
-    
+
     function showPosition(position)
     {
         var lat = position.coords.latitude;
@@ -41,6 +41,20 @@
     	</div>
     </div>
 </div>
+<div class="focusBox" >
+    <ul class="pic">
+        <li><a href="#" target="_blank"><img src="/template/default/images/index/banner.jpg" width="100%" height="200rem"/></a></li>
+        <li><a href="#" target="_blank"><img src="/template/default/images/index/2.jpg" width="100%" height="200rem"/></a></li>
+        <li><a href="#" target="_blank"><img src="/template/default/images/index/5.jpg" width="100%" height="200rem"/></a></li>
+    </ul>
+
+    <ul class="hd">
+        <li></li>
+        <li></li>
+        <li></li>
+
+    </ul>
+</div>
 <div class="clearfix"></div>
 <div id="tab_01" class="newsct">
     <div class="select_03 select_03_{$mymps_global[cfg_tpl_dir]} tab-hd">
@@ -49,7 +63,7 @@
             {php $ifnews = ifplugin('news');}
             {if $ifnews}<li class="item current2"><a href="javascript:void(0);">新闻资讯</a></li>{/if}
             {if $mymps_global[cfg_if_corp] == 1}<li class="item current3"><a href="javascript:void(0);">推荐商家</a></li>{/if}
-            
+
         </ul>
     </div>
     <div>
@@ -57,7 +71,7 @@
         <!--{php $index_topinfo = mymps_get_infos(6,NULL,3,NULL,NULL,NULL,NULL,NULL,$city[cityid]);}-->
         <!--{loop $index_topinfo $k $mymps}-->
         <li style="{if $mymps[ifbold] == 1}font-weight:bold;{/if}{if $mymps[ifred] == 1}color:red;{/if}">
-        <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a> 
+        <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a>
         <a href="index.php?mod=information&id={$mymps[id]}"><!--{echo cutstr($mymps[title],30)}--></a>
         <span class="jian"></span>
         </li>
@@ -69,7 +83,7 @@
         <!--{php $news = mymps_get_news(6);}-->
         <!--{loop $news $k $mymps}-->
         <li style="{if $mymps[is_commend] == 1}color:red;{/if}">
-        <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font> 
+        <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font>
         <a href="index.php?mod=news&id={$mymps[id]}&cityid={$cityid}">{$mymps[title]}</a><span class="jian"></span>
         </li>
         <!--{/loop}-->
@@ -87,15 +101,16 @@
         <!--{/if}-->
 
     </div>
-    
+
 </div>
 <script src="template/js/jq_min.211.js"></script>
 <script src="template/js/index.js"></script>
+<script type="text/javascript" src="/template/default/js/jquery.SuperSlide.2.1.1.js"></script>
 <script>
 (function($){
 	var list = $('#content').find('.cell');
 	if(list.length > 0){
-		
+
 		var txt = '';
 		$('#content').find('.cell').each(function(i){
 			if(i === 0){
@@ -110,6 +125,7 @@
 		setTimeout(function(){$('#slide').show();},20);
 	}
 	IDC.tabADS($('#tab_01'));
+    $(".focusBox").slide({ mainCell:".pic",effect:"left", autoPlay:true, delayTime:600, trigger:"click"});
 })(jQuery);
 </script>
 
