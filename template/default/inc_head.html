@@ -40,8 +40,39 @@
 			<!--{loop $navurl_header $k $mymps}-->
 			<li><a {if $mymps[flag] == $cat[catid] || $mymps[flag] == $cat[parentid]}class="current"{/if} target="{$mymps[target]}" id="{$mymps[flag]}" href="{if $mymps[flag] != 'outlink' && $mymps[flag] != 'news'}{$city[domain]}{/if}{$mymps[url]}"><font color="{$mymps[color]}">{$mymps[title]}</font><sup class="{$mymps[ico]}"></sup></a></li>
 			<!--{/loop}-->
-			<li id="mob"><a href="{$mymps_global[SiteUrl]}/mobile.php" target="_blank">手机浏览</a></li>
+			<li id="mob"><a href="#" >手机APP下载</a></li>
 		</ul>
 
 	</div>
 </div>
+
+
+<link href="/template/default/css/adanimated.css" rel="stylesheet" type="text/css" />
+<div id="dialogBg"></div>
+		<div id="dialog" class="animated">
+			<div style="height:18px"></div>
+			<div class="dialogTop" style="position:absolute;height:8px;right:5px; top:-10px;">
+				
+				<a href="javascript:;" class="claseDialogBtn" ><strong><b>×</b></strong></a>
+			</div>
+			<div class="index_view_ad" id="ad_view"></div>
+		</div>
+
+<script type="text/javascript">
+$('#mob').click(function(){
+	$('#dialogBg').fadeIn(300);
+	$('#dialog').removeAttr('class').addClass('animated bounceIn').fadeIn();
+	$('#ad_view').html("<div style='text-align:center'><img src='/images/QRcodexx.png' alt='' style='text-align:center'/></div><br /><br /><div style='text-align:center'>请用手机扫描二维码 <a href='/app/download.php' target='_blank'>下载APP</a></div>");
+    });
+    //关闭弹窗
+	$('.dialogTop').click(function(){
+		$('#dialogBg').fadeOut(300,function(){
+			$('#dialog').addClass('bounceOutUp').fadeOut();
+		});
+	});
+
+	
+
+
+
+</script>

@@ -1,0 +1,44 @@
+<div class="bartop">
+	<div class="barcenter">
+		<div class="barleft">
+			<ul class="barcity"><span>{if $city[cityname]}{$city[cityname]}{else}总站{/if}</span> [<a href="{$mymps_global[SiteUrl]}/changecity.php">切换分站</a>]</ul>
+			<ul class="line"><u></u></ul>
+			<ul class="barcang"><a href="{$mymps_global[SiteUrl]}/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a></ul>
+			<ul class="line"><u></u></ul>
+			<ul class="barpost"><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?cityid={$cityid}">快速发布信息</a></ul>
+			<ul class="line"><u></u></ul>
+			<ul class="bardel"><a href="{$mymps_global[SiteUrl]}/delinfo.php" rel="nofollow">修改/删除信息</a></ul>
+			<ul class="line"><u></u></ul>
+			<ul class="barwap"><a href="{$mymps_global[SiteUrl]}/mobile.php">手机浏览</a></ul>
+		</div>
+		<div class="barright">
+			<script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=iflogin&cityid={$city[cityid]}"></script>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<div class="mhead">
+	<div class="logo"><a href="{echo $city[domain]?$city[domain]:$mymps_global[SiteUrl]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$mymps_global[SiteLogo]}" title="{$mymps_global[SiteName]}"/></a></div>
+	<div class="font">
+		<span>
+        <!--{if CURSCRIPT == 'posthistory'}-->
+			发帖记录
+			<!--{elseif CURSCRIPT == 'space'}-->
+			用户中心
+			<!--{elseif CURSCRIPT == 'mobile'}-->
+			手机版
+			<!--{elseif CURSCRIPT == 'login'}-->
+			帐号升级
+			<!--{elseif CURSCRIPT == 'delinfo'}-->
+			修改/删除信息
+			<!--{elseif CURSCRIPT == 'property'}-->
+			物业缴费
+			<!--{elseif CURSCRIPT == 'changecity'}-->
+			切换分站
+			<!--{else}-->
+			发布信息
+			<!--{/if}-->
+		</span>
+	</div>
+</div>
+<div class="cleafix"></div>

@@ -59,7 +59,7 @@ background-color: #00AFF0;
 <div class="logo"><img src="<?=$mymps_global['SiteUrl']?><?=$mymps_global['SiteLogo']?>" title="<?=$mymps_global['SiteName']?>" width="180" height="70" /></div>
 <div class="area">
 <a href="<?=$mymps_global['SiteUrl']?>/changecity.php">
-<? if($city['cityname']) { ?><?=$city['cityname']?><?php } else { ?><h1>总站</h1><?php } ?>
+<? if($city['cityname']) { ?><h1><?=$city['cityname']?></h1><?php } else { ?><h1>总站</h1><?php } ?>
 <span><img src="<?=$mymps_global['SiteUrl']?>/template/default/images/index/up.png" width="20" height="20" /></span>
 </a>
 </div>
@@ -81,11 +81,42 @@ background-color: #00AFF0;
 <ul>
 <li><a href="<?=$city['domain']?>" id="index" <? if(empty($cat['catid'])) { ?>class="current"<?php } ?>>首页</a></li><?php $navurl_header = mymps_get_navurl('header',9); ?><?php if(is_array($navurl_header)){foreach($navurl_header as $k => $mymps) { ?><li><a <? if($mymps['flag'] == $cat['catid'] || $mymps['flag'] == $cat['parentid']) { ?>class="current"<?php } ?> target="<?=$mymps['target']?>" id="<?=$mymps['flag']?>" href="<? if($mymps['flag'] != 'outlink' && $mymps['flag'] != 'news') { ?><?=$city['domain']?><?php } ?><?=$mymps['url']?>"><font color="<?=$mymps['color']?>"><?=$mymps['title']?></font><sup class="<?=$mymps['ico']?>"></sup></a></li>
 <?php }} ?>
-<li id="mob"><a href="<?=$mymps_global['SiteUrl']?>/mobile.php" target="_blank">手机浏览</a></li>
+<li id="mob"><a href="#" >手机APP下载</a></li>
 </ul>
 
 </div>
-</div><div class="index_main">
+</div>
+
+
+<link href="/template/default/css/adanimated.css" rel="stylesheet" type="text/css" />
+<div id="dialogBg"></div>
+<div id="dialog" class="animated">
+<div style="height:18px"></div>
+<div class="dialogTop" style="position:absolute;height:8px;right:5px; top:-10px;">
+
+<a href="javascript:;" class="claseDialogBtn" ><strong><b>×</b></strong></a>
+</div>
+<div class="index_view_ad" id="ad_view"></div>
+</div>
+
+<script type="text/javascript">
+$('#mob').click(function(){
+$('#dialogBg').fadeIn(300);
+$('#dialog').removeAttr('class').addClass('animated bounceIn').fadeIn();
+$('#ad_view').html("<div style='text-align:center'><img src='/images/QRcodexx.png' alt='' style='text-align:center'/></div><br /><br /><div style='text-align:center'>请用手机扫描二维码 <a href='/app/download.php' target='_blank'>下载APP</a></div>");
+    });
+    //关闭弹窗
+$('.dialogTop').click(function(){
+$('#dialogBg').fadeOut(300,function(){
+$('#dialog').addClass('bounceOutUp').fadeOut();
+});
+});
+
+
+
+
+
+</script><div class="index_main">
     <div class="index_div">
         <div class="focusBox" >
             <ul class="pic">
@@ -124,7 +155,7 @@ background-color: #00AFF0;
                 </ul>
 
                 <ul>  <div id="content">
-                    <?php $announce = mymps_get_announce($tpl_index['announce'],$city['cityid']); ?>                    <?php if(is_array($announce)){foreach($announce as $k => $mymps) { ?>                    <li><span class="announcetitle"><a style="color:<?=$mymps['titlecolor']?>" title="<?=$mymps['title']?>" href="<?=$mymps['uri']?>" target="_blank"><?=$mymps['title']?></a></span><span class="announcetime"><? echo GetTime($mymps['pubdate'],'m-d'); ?></span></li>
+                    <?php $announce = mymps_get_announce($tpl_index['announce'],$city['cityid']); ?>                    <?php if(is_array($announce)){foreach($announce as $k => $mymps) { ?>                    <li><span class="date"><? echo GetTime($mymps['pubdate'],'m-d'); ?></span><a style="color:<?=$mymps['titlecolor']?>" title="<?=$mymps['title']?>" href="<?=$mymps['uri']?>" target="_blank" ><? echo mb_substr($mymps['title'],0,14,'gbk'); ?></a></li>
                     <?php }} ?>
                 </div>
 

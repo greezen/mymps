@@ -1,25 +1,58 @@
-<div class="bartop">
-	<div class="barcenter">
-		<div class="barleft">
-			<ul class="barcity"><span>{if $city[cityname]}{$city[cityname]}{else}总站{/if}</span> [<a href="{$mymps_global[SiteUrl]}/changecity.php">切换分站</a>]</ul>
-			<ul class="line"><u></u></ul>
-			<ul class="barcang"><a href="{$mymps_global[SiteUrl]}/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a></ul>
-			<ul class="line"><u></u></ul>
-			<ul class="barpost"><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?cityid={$cityid}">快速发布信息</a></ul>
-			<ul class="line"><u></u></ul>
-			<ul class="bardel"><a href="{$mymps_global[SiteUrl]}/delinfo.php" rel="nofollow">修改/删除信息</a></ul>
-			<ul class="line"><u></u></ul>
-			<ul class="barwap"><a href="{$mymps_global[SiteUrl]}/mobile.php">手机浏览</a></ul>
-		</div>
-		<div class="barright">
+<link href="{$mymps_global[SiteUrl]}/template/default/css/home.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.current{
+		background-color: #00AFF0;
+	}
+	.font{
+		margin-top: 1rem;
+		text-align: left;
+		margin-left: 29rem;
+		font-size: 1.2rem;
+	}
+</style>
+<div class="header" style="width: 100%">
+	<div class="head">
+		<div class="head_top">
+			<ul>
+				<a href="{$mymps_global[SiteUrl]}/desktop.php" target="_blank" title="点击右键，选择“目标另存为”，将此快捷方式保存到桌面即可">保存到桌面</a>　
+			</ul>
 			<script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=iflogin&cityid={$city[cityid]}"></script>
 		</div>
+		<div class="logo"><img src="{$mymps_global[SiteUrl]}{$mymps_global[SiteLogo]}" title="{$mymps_global[SiteName]}" width="180" height="70" /></div>
+		<div class="area">
+			<a href="{$mymps_global[SiteUrl]}/changecity.php">
+				{if $city[cityname]}<h1>{$city[cityname]}</h1>{else}<h1>总站</h1>{/if}
+				<span><img src="{$mymps_global[SiteUrl]}/template/default/images/index/up.png" width="20" height="20" /></span>
+			</a>
+		</div>
+		<div class="search">
+			<form method="get" action="{$mymps_global[SiteUrl]}/search.php?" id="searchForm" target="_blank">
+				<input name="cityid" value="{$city[cityid]}" type="hidden"/>
+				<input style="padding: 0;" type="text" class="ser_txt" name="keywords" id="searchheader" onmouseover="hiddennotice('searchheader');" x-webkit-speech lang="zh-CN" />
+				<input type="submit" name="button" id="button" value="提交"  class="ser_btn"/>
+			</form>
+		</div>
+		<div class="head_btn">
+			<h1><a href="{$mymps_global[SiteUrl]}/delinfo.php">修改/删除信息</a></h1>
+			<h2><a href="{$mymps_global[SiteUrl]}/{$mymps_global[cfg_postfile]}?cityid={$cityid}&catid={echo $catid?$catid:$info[catid]}">免费发布信息</a></h2>
+
+		</div>
+
+	</div>
+	<div class="nav">
+		<ul>
+			<li><a href="{$city[domain]}" id="index" {if empty($cat['catid'])}class="current"{/if}>首页</a></li>
+			<!--{php $navurl_header = mymps_get_navurl('header',9);}-->
+			<!--{loop $navurl_header $k $mymps}-->
+			<li><a {if $mymps[flag] == $cat[catid] || $mymps[flag] == $cat[parentid]}class="current"{/if} target="{$mymps[target]}" id="{$mymps[flag]}" href="{if $mymps[flag] != 'outlink' && $mymps[flag] != 'news'}{$city[domain]}{/if}{$mymps[url]}"><font color="{$mymps[color]}">{$mymps[title]}</font><sup class="{$mymps[ico]}"></sup></a></li>
+			<!--{/loop}-->
+			<li id="mob"><a href="javascript:;" target="_blank">手机APP下载</a></li>
+		</ul>
+
 	</div>
 </div>
-<div class="clearfix"></div>
-<div class="mhead">
-	<div class="logo"><a href="{echo $city[domain]?$city[domain]:$mymps_global[SiteUrl]}" target="_blank"><img src="{$mymps_global[SiteUrl]}{$mymps_global[SiteLogo]}" title="{$mymps_global[SiteName]}"/></a></div>
-	<div class="font">
+
+<div class="font">
 		<span>
         <!--{if CURSCRIPT == 'posthistory'}-->
 			发帖记录
@@ -39,6 +72,28 @@
 			发布信息
 			<!--{/if}-->
 		</span>
-	</div>
 </div>
-<div class="cleafix"></div>
+<link href="/template/default/css/adanimated.css" rel="stylesheet" type="text/css" />
+<div id="dialogBg"></div>
+<div id="dialog" class="animated">
+	<div style="height:18px"></div>
+	<div class="dialogTop" style="position:absolute;height:8px;right:5px; top:-10px;">
+
+		<a href="javascript:;" class="claseDialogBtn" ><strong><b>×</b></strong></a>
+	</div>
+	<div class="index_view_ad" id="ad_view"></div>
+</div>
+
+<script type="text/javascript">
+	$('#mob').click(function(){
+		$('#dialogBg').fadeIn(300);
+		$('#dialog').removeAttr('class').addClass('animated bounceIn').fadeIn();
+		$('#ad_view').html("<div style='text-align:center'><img src='/images/QRcodexx.png' alt='' style='text-align:center'/></div><br /><br /><div style='text-align:center'>请用手机扫描二维码 <a href='/app/download.php' target='_blank'>下载APP</a></div>");
+	});
+	//关闭弹窗
+	$('.dialogTop').click(function(){
+		$('#dialogBg').fadeOut(300,function(){
+			$('#dialog').addClass('bounceOutUp').fadeOut();
+		});
+	});
+</script>
