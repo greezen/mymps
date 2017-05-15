@@ -63,6 +63,8 @@ $areaid = isset( $areaid ) ? intval( $areaid ) : "";
 $streetid = isset( $streetid ) ? intval( $streetid ) : "";
 if ( !$cityid )
 {
+    //header('Location:index.php?mod=changecity');
+    //exit();
     redirectmsg( "请先选择您所在的分站", "index.php?mod=changecity" );
     exit( );
 }
