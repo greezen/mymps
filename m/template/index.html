@@ -34,7 +34,9 @@
         <div class="index_slider-wrap">
             <div class="page">
             {loop $categories $k $mymps}
+            {if $mymps[catid] != 5 }
             <a href="index.php?mod=category&catid={$mymps[catid]}&cityid={$city[cityid]}" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[icon]}"></div>{echo cutstr($mymps[catname],4)}</a>
+            {/if}
             {/loop}
             <a href="index.php?mod=property&status=N" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}/template/default/images/index/icon_fang.gif"></div>ŒÔ“µ</a>
     		</div>
@@ -47,7 +49,7 @@
         <!--{loop $focus $k $mymps}-->
         <li>
             <a href="{$mymps[url]}" target="_blank">
-                <img style="width: 100%;" src="{$mymps_global[SiteUrl]}{$mymps[image]}" alt="{$mymps[words]}"/>
+                <img style="width: 100%; height: 10rem" src="{$mymps_global[SiteUrl]}{$mymps[image]}" alt="{$mymps[words]}"/>
             </a>
         </li>
         <!--{/loop}-->
