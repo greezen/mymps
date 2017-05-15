@@ -12,13 +12,6 @@
 	<p class="footer_02" style="display:none">{$mymps_global[SiteStat]}</p>
 </div>
 
-<div id="contactbar">
-	<a href="index.php?mod=category&cityid={$city[cityid]}" class="bottom_index{echo $mod == 'category' ? '_on' : '';}">分类</a>
-	<a href="index.php?mod=history&cityid={$city[cityid]}" class="bottom_history{echo $mod == 'history' ? '_on' : '';}">历史</a>
-	<a href="index.php?mod=member&cityid={$city[cityid]}" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">我的</a>
-	<a href="index.php?mod=post&cityid={$city[cityid]}" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">发布</a>
-</div>
-
 <script type="text/javascript" src="template/js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript">
 	$(function () {

@@ -29,6 +29,28 @@
 
 {template header_search}
 {template navigation}
+<style type="text/css">
+    .focusBox .hd{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: -1.5rem;
+        position: absolute;
+    }
+    .focusBox .hd li{
+        width: 0.65rem;
+        height: 0.65rem;
+        background-color: #a4aab1;
+        border-radius: 50%;
+        display: inline-block;
+        margin-left: 0.3rem;
+    }
+
+    .focusBox .hd .on{
+        background-color: #22a9ff;
+    }
+
+</style>
 <div class="index-category">
     <div class="index_slider">
         <div class="index_slider-wrap">
@@ -56,9 +78,9 @@
     </ul>
 
     <ul class="hd">
+        <!--{loop $focus $k $mymps}-->
         <li></li>
-        <li></li>
-        <li></li>
+        <!--{/loop}-->
 
     </ul>
 </div>
