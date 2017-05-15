@@ -9,3 +9,39 @@
 	<a href="index.php?mod=member&cityid={$city[cityid]}" class="bottom_member{echo in_array($mod,array('login','member','register')) ? '_on' : '';}"></a>
 	<a href="index.php?mod=post&cityid={$city[cityid]}" class="bottom_post{echo $mod == 'post' ? '_on' : '';}"></a>
 </div>
+<script type="text/javascript" src="template/js/jq_min.211.js"></script>
+<script type="text/javascript" src="template/js/jquery.touchSwipe.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$("body").swipe( {
+			swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+				var mod = '{$mod}';
+				var catid = '{$catid}';
+				if (direction == 'left') {
+					if(catid == '') {
+						window.location.href = 'index.php?mod=category&catid=3&cityid={$city[cityid]}';
+					} else if (catid == 3) {
+						window.location.href = 'index.php?mod=category&catid=2&cityid={$city[cityid]}';
+					} else if (catid == 2) {
+						window.location.href = 'index.php?mod=category&catid=4&cityid={$city[cityid]}';
+					} else if (catid == 4) {
+						window.location.href = 'index.php?mod=property&status=N';
+					}
+				} else if (direction == 'right') {
+					if (mod == 'property' || mod == 'login') {
+						window.location.href = 'index.php?mod=category&catid=4&cityid={$city[cityid]}';
+					} else {
+						if (catid == 4) {
+							window.location.href = 'index.php?mod=category&catid=2&cityid={$city[cityid]}';
+						} else if (catid == 2) {
+							window.location.href = 'index.php?mod=category&catid=3&cityid={$city[cityid]}';
+						} else if (catid == 3) {
+							window.location.href = 'index.php?mod=index&&cityid={$city[cityid]}';
+						}
+					}
+				}
+			},
+			allowPageScroll:"auto"
+		});
+	});
+</script>
