@@ -17,7 +17,7 @@ $authcodesettings = $data;
 $data = NULL;
 require_once MYMPS_MEMBER.'/include/common.func.php';
 
-if(!in_array($mod,array(CURSCRIPT,'register','forgetpass','out','openlogin','validate'))){
+if(!in_array($mod,array(CURSCRIPT,'register','forgetpass','out','openlogin','validate','wx','wx_login'))){
 	$mod = $_REQUEST['mod'] = CURSCRIPT;
 }
 require_once MYMPS_DATA."/config.inc.php";
@@ -113,6 +113,47 @@ if(!submit_check('log_submit')){
 				if($action == 'store') $get_member_cat = get_member_cat();
 				$mixcode = md5($cookiepre);
 				
+				$whenregister = '';
+				$whenregister = $db -> getOne("SELECT value FROM `{$db_mymps}config` WHERE description = 'whenregister' AND type = 'checkanswe'");
+				if($whenregister == '1' && $checkanswer = read_static_cache('checkanswer')){
+					$checkquestion['id']		= $randid = array_rand($checkanswer,1);
+					$checkquestion['question']  = $checkanswer[$randid]['question'];
+					$checkquestion['answer']	= $checkanswer[$randid]['answer'];
+				}
+				include mymps_tpl($mod.'_'.$action);
+			}else{
+				include mymps_tpl($mod);
+			}
+		break;
+		case 'wx':
+			$redirect_uri = urlencode($mymps_global['SiteUrl'].'/member.php?mod=wx_login');
+			$state = md5(uniqid().microtime(true));
+			$appid = 'wx12fa90d205fe3807';
+			$url = 'https://open.weixin.qq.com/connect/qrconnect?appid='.$appid.'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_login&state='.$state.'#wechat_redirect';
+			header('Location:'.$url);
+		break;
+		case 'wx_login':
+			var_dump($_GET,$_POST);exit;
+			$mymps_global['cfg_if_member_register'] != 1 && write_msg("操作失败！系统管理员关闭了新会员注册！");
+
+			@require MYMPS_DATA.'/caches/qqlogin.php';
+			$mymps_global['ifqqlogin'] = $data['open'];
+			$data = NULL;
+
+			$city = get_city_caches($cityid);
+			$loc 		= get_location('register',0,'会员注册');
+			$page_title = $loc['page_title'];
+			$location	= $loc['location'];
+
+			if(in_array($action,array('store','person'))){
+				require MYMPS_DATA.'/safequestions.php';
+				$safequestion = GetSafequestion(0,'safequestion');
+				$mymps_imgcode = $authcodesettings['register'];
+				$submit = '立即注册';
+				if($action == 'store') $get_area_options = select_where_option('/include/selectwhere.php',$city['cityid'],$areaid,$streetid);
+				if($action == 'store') $get_member_cat = get_member_cat();
+				$mixcode = md5($cookiepre);
+
 				$whenregister = '';
 				$whenregister = $db -> getOne("SELECT value FROM `{$db_mymps}config` WHERE description = 'whenregister' AND type = 'checkanswe'");
 				if($whenregister == '1' && $checkanswer = read_static_cache('checkanswer')){
