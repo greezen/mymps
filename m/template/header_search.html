@@ -1,3 +1,10 @@
+{if (stristr($_SERVER['HTTP_USER_AGENT'], 'AiYouXin_App'))}
+<script type="text/javascript">
+	applocal.setMessageInTop("{echo $city[cityname] ? $city[cityname] : '切换'}");
+</script>
+{else}
+
+
 <div class="header">
 	{if $mobile_settings[mobilelogo]}<a class="logo_a" href="index.php?cityid={$city[cityid]}"><img src="{$mymps_global[SiteUrl]}{$mobile_settings[mobilelogo]}" alt="{$mymps_global[SiteName]}"></a>{/if}
 	<a class="city_a" href="index.php?mod=changecity&cityid={$city[cityid]}">{echo $city[cityname] ? $city[cityname] : '切换'}<i class="filt-arrowwhite"></i></a>
@@ -11,4 +18,17 @@
 	</div>
     {if !$mobile_settings[mobilelogo]}<div class="h_btn h_post" onclick="javascript:window.location.href='index.php?mod=post&cityid={$city[cityid]}'" ></div>{/if}
 </div>
+
+<div style="height: 49px;"></div>
+
+
 <div class="clearfix"></div>
+<div id="contactbar">
+	<a href="index.php?cityid={$city[cityid]}" class="bottom_home{echo $mod=='index' ? '_on' : '';}">首页</a>
+
+	<a href="index.php?mod=category&cityid={$city[cityid]}" class="bottom_index{echo $mod == 'category' ? '_on' : '';}">分类</a>
+	
+	<a href="index.php?mod=member&cityid={$city[cityid]}" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">我的</a>
+	<a href="index.php?mod={if empty($city[cityid])}changecity{else}post{/if}&cityid={$city[cityid]}" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">发布</a>
+</div>
+{/if}
