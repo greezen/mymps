@@ -27,7 +27,7 @@ $tpl_index['classic']['cats'] = $tpl_index['classic']['cats'] ? $tpl_index['clas
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gbk" />
     <script src="<?=$mymps_global['SiteUrl']?>/template/default/js/uaredirect.js" type="text/javascript"></script>
-    <script type="text/javascript">uaredirect("<?=$mymps_global['SiteUrl']?>/m/index.php?mod=index&cityid=<?=$cityid?>");</script>
+    <script type="text/javascript">//uaredirect("<?=$mymps_global['SiteUrl']?>/m/index.php?mod=index&cityid=<?=$cityid?>");</script>
     <title><?=$city['title']?></title>
 
     <meta name="keywords" content="<?=$city['keywords']?>"/>

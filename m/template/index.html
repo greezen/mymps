@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="index_page">
 <head>
-	{template header}
-	<meta name="keywords" content="{$mymps_global[SiteName]}"/>
-	<meta name="description" content="{$mymps_global[SiteName]}手机版"/>
-	<title>{$mymps_global[SiteName]}-手机版</title>
-	<link type="text/css" rel="stylesheet" href="template/css/global.css">
-	<link type="text/css" rel="stylesheet" href="template/css/style.css">
-	<link type="text/css" rel="stylesheet" href="template/css/index.css">
+    {template header}
+    <meta name="keywords" content="{$mymps_global[SiteName]}"/>
+    <meta name="description" content="{$mymps_global[SiteName]}手机版"/>
+    <title>{$mymps_global[SiteName]}-手机版</title>
+    <link type="text/css" rel="stylesheet" href="template/css/global.css">
+    <link type="text/css" rel="stylesheet" href="template/css/style.css">
+    <link type="text/css" rel="stylesheet" href="template/css/index.css">
     <!--{if !$cityid && !$lat}-->
-	<script>
-    if (navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
+    <script>
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
 
-    function showPosition(position)
-    {
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-		var replaceuri = '{$mymps_global[SiteUrl]}/m/index.php?lat='+lat+'&lng='+lng;window.location.replace(replaceuri);
-    }
+        function showPosition(position)
+        {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var replaceuri = '{$mymps_global[SiteUrl]}/m/index.php?lat='+lat+'&lng='+lng;window.location.replace(replaceuri);
+        }
     </script>
     <!--{/if}-->
 </head>
@@ -30,24 +30,36 @@
 {template header_search}
 {template navigation}
 <style type="text/css">
-    .focusBox .hd{
+    #iSlider-wrapper {
         width: 100%;
-        margin: 0 auto;
-        text-align: center;
-        margin-top: -1.5rem;
-        position: absolute;
-    }
-    .focusBox .hd li{
-        width: 0.65rem;
-        height: 0.65rem;
-        background-color: #a4aab1;
-        border-radius: 50%;
-        display: inline-block;
-        margin-left: 0.3rem;
+        height: 10rem;
+        overflow: hidden;
+        position: relative;
     }
 
-    .focusBox .hd .on{
-        background-color: #22a9ff;
+    #iSlider-wrapper ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    #iSlider-wrapper li {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-pack: center;
+        -webkit-box-align: center;
+        list-style: none;
+    }
+
+    #iSlider-wrapper li img {
+        max-width: 100%;
+        max-height: 100%;
     }
 
 </style>
@@ -55,34 +67,29 @@
     <div class="index_slider">
         <div class="index_slider-wrap">
             <div class="page">
-            {loop $categories $k $mymps}
-            {if $mymps[catid] != 5 }
-            <a href="index.php?mod=category&catid={$mymps[catid]}&cityid={$city[cityid]}" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[icon]}"></div>{echo cutstr($mymps[catname],4)}</a>
-            {/if}
-            {/loop}
-            <a href="index.php?mod=property&status=N" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}/template/default/images/index/icon_fang.gif"></div>物业</a>
-    		</div>
-    	</div>
+                {loop $categories $k $mymps}
+                {if $mymps[catid] != 5 }
+                <a href="index.php?mod=category&catid={$mymps[catid]}&cityid={$city[cityid]}" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}{$mymps[icon]}"></div>{echo cutstr($mymps[catname],4)}</a>
+                {/if}
+                {/loop}
+                <a href="index.php?mod=property&status=N" class="item food"><div class="icon"><img src="{$mymps_global[SiteUrl]}/template/default/images/index/icon_fang.gif"></div>物业</a>
+            </div>
+        </div>
     </div>
 </div>
-<div class="focusBox" >
-    <ul class="pic">
-        <!--{php $focus = mymps_get_focus('index',3,$city[cityid]);}-->
-        <!--{loop $focus $k $mymps}-->
-        <li>
-            <a href="{$mymps[url]}" target="_blank">
-                <img style="width: 100%; height: 10rem" src="{$mymps_global[SiteUrl]}{$mymps[image]}" alt="{$mymps[words]}"/>
-            </a>
-        </li>
-        <!--{/loop}-->
-    </ul>
-
-    <ul class="hd">
-        <!--{loop $focus $k $mymps}-->
-        <li></li>
-        <!--{/loop}-->
-
-    </ul>
+<div class="" id="iSlider-wrapper">
+    <!--{php
+        $focus = mymps_get_focus('index',3,$city[cityid]);
+        $focus_list = array();
+        foreach($focus as $f) :
+            $temp = array(
+                'content' => $f['image']
+            );
+            array_push($focus_list, $temp);
+            unset($temp);
+        endforeach;
+        $focus_list = json_encode($focus_list);
+    }-->
 </div>
 <div class="clearfix"></div>
 <div id="tab_01" class="newsct">
@@ -97,35 +104,35 @@
     </div>
     <div>
         <ul class="list_normal first_bold tab-cont">
-        <!--{php $index_topinfo = mymps_get_infos(10,NULL,3,NULL,NULL,NULL,NULL,NULL,$city[cityid]);}-->
-        <!--{loop $index_topinfo $k $mymps}-->
-        <li style="{if $mymps[ifbold] == 1}font-weight:bold;{/if}{if $mymps[ifred] == 1}color:red;{/if}">
-        <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a>
-        <a href="index.php?mod=information&id={$mymps[id]}"><!--{echo cutstr($mymps[title],30)}--></a>
-        <span class="jian"></span>
-        </li>
-        <!--{/loop}-->
-        <div class="inner_html"><a href="index.php?mod=category" class="comn-submit gray btn_block">进入分类信息频道</a></div>
+            <!--{php $index_topinfo = mymps_get_infos(10,NULL,3,NULL,NULL,NULL,NULL,NULL,$city[cityid]);}-->
+            <!--{loop $index_topinfo $k $mymps}-->
+            <li style="{if $mymps[ifbold] == 1}font-weight:bold;{/if}{if $mymps[ifred] == 1}color:red;{/if}">
+                <a href="index.php?mod=category&catid={$mymps[catid]}" class="cat">[<!--{$mymps[catname]}-->]</a>
+                <a href="index.php?mod=information&id={$mymps[id]}"><!--{echo cutstr($mymps[title],30)}--></a>
+                <span class="jian"></span>
+            </li>
+            <!--{/loop}-->
+            <div class="inner_html"><a href="index.php?mod=category" class="comn-submit gray btn_block">进入分类信息频道</a></div>
         </ul>
         <!--{if $ifnews}-->
         <ul class="list_normal first_bold tab-cont" style="display:none;">
-        <!--{php $news = mymps_get_news(6);}-->
-        <!--{loop $news $k $mymps}-->
-        <li style="{if $mymps[is_commend] == 1}color:red;{/if}">
-        <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font>
-        <a href="index.php?mod=news&id={$mymps[id]}&cityid={$cityid}">{$mymps[title]}</a><span class="jian"></span>
-        </li>
-        <!--{/loop}-->
-        <div class="inner_html"><a href="index.php?mod=news&cityid={$cityid}" class="comn-submit gray btn_block">进入新闻资讯频道</a></div>
+            <!--{php $news = mymps_get_news(6);}-->
+            <!--{loop $news $k $mymps}-->
+            <li style="{if $mymps[is_commend] == 1}color:red;{/if}">
+                <font class="time">[<!--{echo GetTime($mymps[begintime],'m-d')}-->]</font>
+                <a href="index.php?mod=news&id={$mymps[id]}&cityid={$cityid}">{$mymps[title]}</a><span class="jian"></span>
+            </li>
+            <!--{/loop}-->
+            <div class="inner_html"><a href="index.php?mod=news&cityid={$cityid}" class="comn-submit gray btn_block">进入新闻资讯频道</a></div>
         </ul>
         <!--{/if}-->
         <!--{if $mymps_global[cfg_if_corp] == 1}-->
         <!--{php $members = mymps_get_members(!$cityid ? 6 : NULL,NULL,NULL,NULL,2,NULL,NULL,$cityid);}-->
         <ul class="list_normal first_bold tab-cont" style="display:none;">
-        <!--{loop $members $k $mymps}-->
-        <li><img src="{$mymps[prelogo]}" class="img"> <a href="index.php?mod=store&id={$mymps[id]}">{$mymps[tname]}</a><span class="jian"></span></li>
-        <!--{/loop}-->
-        <div class="inner_html"><a href="index.php?mod=corp" class="comn-submit gray btn_block">进入商家店铺频道</a></div>
+            <!--{loop $members $k $mymps}-->
+            <li><img src="{$mymps[prelogo]}" class="img"> <a href="index.php?mod=store&id={$mymps[id]}">{$mymps[tname]}</a><span class="jian"></span></li>
+            <!--{/loop}-->
+            <div class="inner_html"><a href="index.php?mod=corp" class="comn-submit gray btn_block">进入商家店铺频道</a></div>
         </ul>
         <!--{/if}-->
 
@@ -134,28 +141,38 @@
 </div>
 <script src="template/js/jq_min.211.js"></script>
 <script src="template/js/index.js"></script>
+<link rel="stylesheet" href="template/js/islider/iSlider.css">
+<script src="template/js/islider/iSlider.min.js"></script>
 <script type="text/javascript" src="/template/default/js/jquery.SuperSlide.2.1.1.js"></script>
 <script>
-(function($){
-	var list = $('#content').find('.cell');
-	if(list.length > 0){
+    (function($){
+        var list = $('#content').find('.cell');
+        if(list.length > 0){
 
-		var txt = '';
-		$('#content').find('.cell').each(function(i){
-			if(i === 0){
-				txt += '<li class="active">1</li>';
-			}else{
-				txt += '<li>'+(i+1)+'</li>';
-			}
-		});
-		$('#indicator').html(txt);
-		var w_w = $(window).width();
-		setTimeout(function(){new C_Scroll({container:'slide',content:'content',ct:'indicator',size:w_w,intervalTime:5000,lazyIMG:!!0});},20);
-		setTimeout(function(){$('#slide').show();},20);
-	}
-	IDC.tabADS($('#tab_01'));
-    $(".focusBox").slide({ mainCell:".pic",effect:"left", autoPlay:true, delayTime:600, trigger:"click"});
-})(jQuery);
+            var txt = '';
+            $('#content').find('.cell').each(function(i){
+                if(i === 0){
+                    txt += '<li class="active">1</li>';
+                }else{
+                    txt += '<li>'+(i+1)+'</li>';
+                }
+            });
+            $('#indicator').html(txt);
+            var w_w = $(window).width();
+            setTimeout(function(){new C_Scroll({container:'slide',content:'content',ct:'indicator',size:w_w,intervalTime:5000,lazyIMG:!!0});},20);
+            setTimeout(function(){$('#slide').show();},20);
+        }
+        IDC.tabADS($('#tab_01'));
+        //$(".focusBox").slide({ mainCell:".pic",effect:"left", autoPlay:true, delayTime:600, trigger:"click"});
+        var list = {$focus_list};
+
+        var S = new iSlider(document.getElementById('iSlider-wrapper'), list, {
+            isAutoplay: 1,
+            isLooping: 1,
+            isOverspread: 1,
+            animateTime: 800
+        });
+    })(jQuery);
 </script>
 
 {template footer}
