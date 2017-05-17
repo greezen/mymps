@@ -3,7 +3,7 @@
 .index-category .index_slider-wrap{overflow:hidden;position:relative}
 .index-category .page{float:left;padding:0;width:100%;box-sizing:border-box;-webkit-box-sizing:border-box;position:relative}
 .index-category .item{width:25%;padding:13px 0 0;display:block;float:left;color:#333;position:relative;box-sizing:border-box;-webkit-box-sizing:border-box}
-.index-category .item .icon img{border-radius:19px;-webkit-border-radius:19px;width:44px;height:44px;color:#333;position:relative}
+.index-category .item .icon img{border-radius:19px;-webkit-border-radius:19px;width:33px;height:33px;color:#333;position:relative}
 .index-category .circles{line-height:10px}
 .index-category .icon{background-size:auto auto}
 
@@ -30,7 +30,7 @@
 .newsct{ height:auto; background-color:#ffffff; padding: 10px 0 10px 0; border-bottom:1px #dedede solid;}
 
 .list_normal {}
-.list_normal li,.list_normal2 p { height:46px; line-height:46px; overflow:hidden; border-bottom:1px solid #f1f1f1; padding:0 25px 0 10px; position:relative; z-index:1; font-size:18px;}
+.list_normal li,.list_normal2 p { height:46px; line-height:46px; overflow:hidden; border-bottom:1px solid #f1f1f1; padding:0 25px 0 10px; position:relative; z-index:1; font-size:15px;}
 .list_normal .jian { display:block; position:absolute; right:13px; top:50%; margin-top:-5px; width:6px; height:11px; background:url(../images/list_style_ico.gif) no-repeat 0 0; background-size:6px 11px;}
 .list_normal .cat { color:#36c;}
 .list_normal .img { width:36px; height:25px; margin-top:8px; margin-right:8px; float:left; border:1px #ddd solid; padding:1px;}

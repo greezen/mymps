@@ -3,20 +3,20 @@
 $citydomain = $db ->getOne("SELECT domain FROM `{$db_mymps}city` WHERE cityid = '$cityid'");
 $citydomain = $citydomain ? $citydomain : "../index.php?cityid=".$cityid;
 ?>
-<div class="toolbar">
+<!--<div class="toolbar">
     <div class="clearfix toolbar-inner">
         <div class="quicklink">
             <ul id="mymps_website_links" class="accesslink">
-				<a href="<?=$citydomain?>" target="_blank">返回<?php echo $mymps_global['SiteName']?>首页</a>
+				<a href="<?/*=$citydomain*/?>" target="_blank">返回<?php /*echo $mymps_global['SiteName']*/?>首页</a>
             </ul>
         </div>
         <div class="userbar">
-            <a class="username" href="index.php"><?php echo $s_uid; ?></a>
-            <a href="index.php?m=pm" style="margin-top:1px">短消息<?php if($pm_total > 0){?><span class="counts"><?=$pm_total?></span><?php }?></a>
-            <a href="../<?php echo $mymps_global['cfg_member_logfile']?>?mod=out" style="margin-top:1px">退出</a>
+            <a class="username" href="index.php"><?php /*echo $s_uid; */?></a>
+            <a href="index.php?m=pm" style="margin-top:1px">短消息<?php /*if($pm_total > 0){*/?><span class="counts"><?/*=$pm_total*/?></span><?php /*}*/?></a>
+            <a href="../<?php /*echo $mymps_global['cfg_member_logfile']*/?>?mod=out" style="margin-top:1px">退出</a>
         </div>
     </div>
-</div>
+</div>-->
 <div class="header">
     <div class="clearfix header-inner">
         <div class="brand">
