@@ -60,4 +60,7 @@ $mymps_mymps['cfg_goods_limit']['height'] = '100';
 
 $mymps_mymps['cfg_banner_limit']['width'] = '950';
 $mymps_mymps['cfg_banner_limit']['height'] = '150';
+
+$wx['appid'] = 'wx12fa90d205fe3807';
+$wx['secret'] = '030d72b4214462df46fff53ebc87421d';
 ?>

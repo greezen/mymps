@@ -128,12 +128,30 @@ if(!submit_check('log_submit')){
 		case 'wx':
 			$redirect_uri = urlencode($mymps_global['SiteUrl'].'/member.php?mod=wx_login');
 			$state = md5(uniqid().microtime(true));
-			$appid = 'wx12fa90d205fe3807';
-			$url = 'https://open.weixin.qq.com/connect/qrconnect?appid='.$appid.'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_login&state='.$state.'#wechat_redirect';
+			$url = 'https://open.weixin.qq.com/connect/qrconnect?appid='.$wx['appid'].'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_login&state='.$state.'#wechat_redirect';
 			header('Location:'.$url);
 		break;
 		case 'wx_login':
-			var_dump($_GET,$_POST);exit;
+			function curl_get($url)
+			{
+				$ch = curl_init($url);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+				$res = curl_exec($ch);
+				curl_close($ch);
+				return json_decode($res, true);
+			}
+			$code = trim($_GET['code']);
+			$url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$wx['appid'].'&secret='.$wx['secret'].'&code='.$code.'&grant_type=authorization_code';
+			$res = curl_get($url);
+			if (isset($res['access_token'])) {
+				$url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'];
+				$user_info = curl_get($url);
+				var_dump($res,$user_info);exit;
+			}
+			var_dump($_GET,$_POST,$res);exit;
 			$mymps_global['cfg_if_member_register'] != 1 && write_msg("操作失败！系统管理员关闭了新会员注册！");
 
 			@require MYMPS_DATA.'/caches/qqlogin.php';
