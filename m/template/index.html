@@ -81,6 +81,7 @@
     <!--{php
         $focus = mymps_get_focus('index',3,$city[cityid]);
         $focus_list = array();
+        if (!empty($focus)):
         foreach($focus as $f) :
             $temp = array(
                 'content' => $f['image']
@@ -88,6 +89,7 @@
             array_push($focus_list, $temp);
             unset($temp);
         endforeach;
+        endif;
         $focus_list = json_encode($focus_list);
     }-->
 </div>
