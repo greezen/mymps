@@ -26,6 +26,34 @@ function member_reg($userid,$userpwd,$email='',$safequestion='',$safeanswer='',$
 	$db -> query($sql);
 }
 
+function wx_member_reg($openid,$nickname,$face,$email='',$safequestion='',$safeanswer='',$cname='',$status=''){
+
+	global $mymps_global,$db,$db_mymps,$member_log,$timestamp;
+
+	if($openid){
+		$userid = $db->getOne("SELECT userid FROM `{$db_mymps}member` WHERE openid = '$openid'");
+		if($userid) {
+			return $userid;
+		}
+	} else {
+		return false;
+	}
+
+	$ip = GetIP();
+	$safeanswer = trim($safeanswer);
+	$row 		= $db->getRow("SELECT money_own FROM `{$db_mymps}member_level` WHERE id = '1'");
+	$money_own	= $row['money_own'];
+	$status 	= ($status == 1 || $mymps_global['cfg_member_verify'] == 1) ? 1 : 0;
+	$userpwd = substr($openid, -8);
+	$userid = mt_rand(100000000, 999999999);
+	$sql 		= "INSERT INTO `{$db_mymps}member`(id,userid,userpwd,logo,prelogo,email,safequestion,safeanswer,levelid,joinip,loginip,jointime,logintime,money_own,openid,cname,status) VALUES ('','$userid','$userpwd','$face','$face','$email','$safequestion','$safeanswer','1','$ip','$ip','$timestamp','$timestamp','$money_own','$openid','$cname','$status')";
+
+	if ($db->query($sql)){
+		return $userid;
+	}
+	return false;
+}
+
 function sendpm($fromuser='',$touser='',$title='',$content='',$if_sys=0){
 	global $db,$db_mymps,$timestamp;
 	$fromuser = $fromuser ? mhtmlspecialchars($fromuser) : '';

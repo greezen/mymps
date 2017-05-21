@@ -149,40 +149,16 @@ if(!submit_check('log_submit')){
 			if (isset($res['access_token'])) {
 				$url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'];
 				$user_info = curl_get($url);
-				var_dump($res,$user_info);exit;
-			}
-			var_dump($_GET,$_POST,$res);exit;
-			$mymps_global['cfg_if_member_register'] != 1 && write_msg("操作失败！系统管理员关闭了新会员注册！");
-
-			@require MYMPS_DATA.'/caches/qqlogin.php';
-			$mymps_global['ifqqlogin'] = $data['open'];
-			$data = NULL;
-
-			$city = get_city_caches($cityid);
-			$loc 		= get_location('register',0,'会员注册');
-			$page_title = $loc['page_title'];
-			$location	= $loc['location'];
-
-			if(in_array($action,array('store','person'))){
-				require MYMPS_DATA.'/safequestions.php';
-				$safequestion = GetSafequestion(0,'safequestion');
-				$mymps_imgcode = $authcodesettings['register'];
-				$submit = '立即注册';
-				if($action == 'store') $get_area_options = select_where_option('/include/selectwhere.php',$city['cityid'],$areaid,$streetid);
-				if($action == 'store') $get_member_cat = get_member_cat();
-				$mixcode = md5($cookiepre);
-
-				$whenregister = '';
-				$whenregister = $db -> getOne("SELECT value FROM `{$db_mymps}config` WHERE description = 'whenregister' AND type = 'checkanswe'");
-				if($whenregister == '1' && $checkanswer = read_static_cache('checkanswer')){
-					$checkquestion['id']		= $randid = array_rand($checkanswer,1);
-					$checkquestion['question']  = $checkanswer[$randid]['question'];
-					$checkquestion['answer']	= $checkanswer[$randid]['answer'];
+				$userid = wx_member_reg($user_info['openid'], $user_info['nickname'], $user_info['headimgurl']);
+				if ($userid) {
+					$userpwd = substr($user_info['openid'], -8);
+					$member_log -> in($userid,$userpwd,'','noredirect');
+					write_msg("现在转入用户管理中心，请稍候...",$mymps_global['SiteUrl']."/member/index.php");
 				}
-				include mymps_tpl($mod.'_'.$action);
-			}else{
-				include mymps_tpl($mod);
+			} else {
+				write_msg('登录失败，请稍候再试');
 			}
+
 		break;
 		
 		case 'forgetpass':
