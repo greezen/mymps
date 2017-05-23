@@ -44,7 +44,7 @@ function wx_member_reg($openid,$nickname,$face,$email='',$safequestion='',$safea
 	$row 		= $db->getRow("SELECT money_own FROM `{$db_mymps}member_level` WHERE id = '1'");
 	$money_own	= $row['money_own'];
 	$status 	= ($status == 1 || $mymps_global['cfg_member_verify'] == 1) ? 1 : 0;
-	$userpwd = substr($openid, -8);
+	$userpwd = md5(substr($openid, -8));
 	$userid = mt_rand(100000000, 999999999);
 	$sql 		= "INSERT INTO `{$db_mymps}member`(id,userid,userpwd,logo,prelogo,email,safequestion,safeanswer,levelid,joinip,loginip,jointime,logintime,money_own,openid,cname,status,nickname) VALUES ('','$userid','$userpwd','$face','$face','$email','$safequestion','$safeanswer','1','$ip','$ip','$timestamp','$timestamp','$money_own','$openid','$cname','$status','$nickname')";
 
