@@ -1,0 +1,18 @@
+<?php
+$data = array (
+  'seo_force_space' => 'active',
+  'seo_force_yp' => 'active',
+  'seo_force_news' => 'active',
+  'seo_force_info' => 'active',
+  'seo_force_category' => 'rewrite',
+  'seo_htmlext' => '',
+  'seo_force_about' => 'active',
+  'seo_htmldir' => '',
+  'seo_htmlnewsdir' => '',
+  'seo_description' => '{city}ÍøÕ¾ÃèÊö',
+  'seo_keywords' => '{city}ÍøÕ¾¹Ø¼ü´Ê',
+  'seo_sitename' => '{city}ÍøÕ¾Ãû³Æ',
+  'seo_force_store' => 'active',
+  'seo_html_make' => '',
+);
+?>
