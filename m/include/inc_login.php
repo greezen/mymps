@@ -73,7 +73,24 @@ else if ( $action == "login" )
         redirectmsg( "µÇÂ¼Ê§°Ü£¬ÄúÊäÈëÁË´íÎóµÄÕÊºÅ»òÃÜÂë!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
     }
 }
-else if ( $iflogin == 1 )
+else if ( $action == 'wx' )
+{
+    $openid = isset($_POST['openid'])?trim($_POST['openid']):'';
+    $nickname = isset($_POST['nickname'])?trim($_POST['nickname']):'';
+    $headimg = isset($_POST['headimg'])?trim($_POST['headimg']):'';
+
+    if (empty($openid) || empty($nickname) || empty($headimg) || strlen($openid) != 28) {
+        redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
+    }
+
+    $userid = wx_member_reg($openid, $nickname, $headimg);
+    if ($userid) {
+        $userpwd = md5(substr($user_info['openid'], -8));
+        $member_log -> in($userid,$userpwd,'','noredirect');
+        redirectmsg( $nickname." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : urlencode( "index.php?mod=member&cityid=".$cityid ) );
+    }
+    redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
+}else if ( $iflogin == 1 )
 {
     redirectmsg( "ÄúÒÑµÇÂ¼", $returnurl ? $returnurl : "index.php" );
 }
