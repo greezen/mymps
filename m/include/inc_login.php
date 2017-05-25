@@ -89,10 +89,10 @@ else if ( $act == 'wx' )
     $userid = wx_member_reg($openid, $nickname, $headimg);
     if ($userid) {
         $userpwd = md5(substr($user_info['openid'], -8));
-        $member_log -> in($userid,$userpwd,'','noredirect');
-        redirectmsg( $nickname." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : urlencode( "index.php?mod=member&cityid=".$cityid ) );
+        $member_log -> in($userid,$userpwd,"off", "noredirect");
+        redirectmsg( $nickname." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=".$cityid);
     }
-    redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
+    redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid);
 }else if ( $iflogin == 1 )
 {
     redirectmsg( "ÄúÒÑµÇÂ¼", $returnurl ? $returnurl : "index.php" );
