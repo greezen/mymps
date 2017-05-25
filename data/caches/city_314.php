@@ -1,0 +1,62 @@
+<?php
+$data = array (
+  'area' => 
+  array (
+    11470 => 
+    array (
+      'areaid' => '11470',
+      'areaname' => '°¢¿ËËÕÊÐ',
+    ),
+    11471 => 
+    array (
+      'areaid' => '11471',
+      'areaname' => 'ÎÂËÞ',
+    ),
+    11472 => 
+    array (
+      'areaid' => '11472',
+      'areaname' => '¿â³µ',
+    ),
+    11473 => 
+    array (
+      'areaid' => '11473',
+      'areaname' => 'É³ÑÅ',
+    ),
+    11474 => 
+    array (
+      'areaid' => '11474',
+      'areaname' => 'ÐÂºÍ',
+    ),
+    11475 => 
+    array (
+      'areaid' => '11475',
+      'areaname' => '°Ý³Ç',
+    ),
+    11476 => 
+    array (
+      'areaid' => '11476',
+      'areaname' => 'ÎÚÊ²',
+    ),
+    11477 => 
+    array (
+      'areaid' => '11477',
+      'areaname' => '°¢ÍßÌá',
+    ),
+    11478 => 
+    array (
+      'areaid' => '11478',
+      'areaname' => '¿ÂÆº',
+    ),
+  ),
+  'cityid' => '314',
+  'citypy' => 'akesu',
+  'cityname' => '°¢¿ËËÕ',
+  'directory' => 'aks',
+  'domain' => 'http://mymps.dev/city/aks/',
+  'mappoint' => '',
+  'firstletter' => 'a',
+  'title' => '',
+  'keywords' => '',
+  'description' => '',
+);
+?>

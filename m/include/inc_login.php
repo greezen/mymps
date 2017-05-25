@@ -5,6 +5,8 @@ if ( CURSCRIPT != "wap" )
     exit( "FORBIDDEN" );
 }
 $returnurl = isset( $_REQUEST['returnurl'] ) ? mhtmlspecialchars( $_REQUEST['returnurl'] ) : "";
+$act = isset($_GET['act'])?trim($_GET['act']):'';
+
 if ( $action == "logout" )
 {
     if ( PASSPORT_TYPE == "ucenter" )
@@ -73,16 +75,17 @@ else if ( $action == "login" )
         redirectmsg( "µÇÂ¼Ê§°Ü£¬ÄúÊäÈëÁË´íÎóµÄÕÊºÅ»òÃÜÂë!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
     }
 }
-else if ( $action == 'wx' )
+else if ( $act == 'wx' )
 {
     $openid = isset($_POST['openid'])?trim($_POST['openid']):'';
     $nickname = isset($_POST['nickname'])?trim($_POST['nickname']):'';
     $headimg = isset($_POST['headimg'])?trim($_POST['headimg']):'';
 
-    if (empty($openid) || empty($nickname) || empty($headimg) || strlen($openid) != 28) {
-        redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
+    if (empty($openid) || empty($nickname) || empty($headimg) || strlen($openid) != 29) {
+        redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid );
     }
 
+    include_once MYMPS_MEMBER . '/include/common.func.php';
     $userid = wx_member_reg($openid, $nickname, $headimg);
     if ($userid) {
         $userpwd = md5(substr($user_info['openid'], -8));
