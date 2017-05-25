@@ -81,7 +81,7 @@ else if ( $act == 'wx' )
     $nickname = isset($_POST['nickname'])?trim($_POST['nickname']):'';
     $headimg = isset($_POST['headimg'])?trim($_POST['headimg']):'';
 
-    if (empty($openid) || empty($nickname) || empty($headimg) || strlen($openid) != 28) {
+    if (empty($openid) || empty($nickname) || empty($headimg) || !in_array(strlen($openid), [28, 29])) {
         redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid );
     }
 
