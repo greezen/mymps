@@ -9,7 +9,12 @@ $row['prelogo'] = $row['prelogo'] ? $row['prelogo'] : "/images/noavatar_small.gi
 $row['prelogo'] = $mymps_global['SiteUrl'].$row['prelogo'];
 if ( $iflogin == 1 )
 {
-    $loginfo = "<a class=\"u_name fl\">欢迎，</a><a href=\"index.php?mod=member&userid=".$s_uid."\" class=\"u_name fl\">".$s_uid."</a> <a href=\"index.php?mod=login&action=logout&returnurl=".$returnurl."\" class=\"exit58\">安全退出</a>";
+    $user = $db->get_one("select * from ".$db_mymps."member where userid='{$s_uid}'");
+    $show_name = $s_uid;
+    if (!empty($user) && !empty($user['nickname'])) {
+        $show_name = $user['nickname'];
+    }
+    $loginfo = "<a class=\"u_name fl\">欢迎，</a><a href=\"index.php?mod=member&userid=".$s_uid."\" class=\"u_name fl\">".$show_name."</a> <a href=\"index.php?mod=login&action=logout&returnurl=".$returnurl."\" class=\"exit58\">安全退出</a>";
     $loginfopost = "<a class=\"u_name fl\">欢迎,</a><a href=\"index.php?mod=member&userid=".$s_uid."\" class=\"u_name fl\"><b>".$s_uid."</b></a>   &nbsp;&nbsp;<a href=\"index.php?mod=login&action=logout&returnurl=".$returnurl."\" class=\"exit58\">退出</a>";
     $loginfomypost = "<a href=\"index.php?mod=mypost&userid=".$s_uid."\" class=\"my_publish\">".我的发布."</a>";
     $loginfomyshoucang = "<a href=\"index.php?mod=shoucang&userid=".$s_uid."\" class=\"my_collect\">".我的收藏."</a>";

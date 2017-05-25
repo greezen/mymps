@@ -29,7 +29,12 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
                                     <div class="clearfix accountinfo-dock">
                                         <div class="account-avatar">
                                             <a href="index.php?t=index&m=avatar" title="更改头像">
-                                                <img src="<?php echo $mymps_global['SiteUrl'].($face != '' ? $face : '/images/noavatar_small.gif')?>" alt="更改头像" width="48" height="48" />
+                                                <?php if (!empty($row['openid']) && substr($row['logo'], 0, 4) == 'http') :?>
+                                                    <img src="<?=$row['logo']?>" alt="更改头像" width="48" height="48" />
+                                                <?php else:?>
+                                                    <img src="<?php echo $mymps_global['SiteUrl'].($face != '' ? $face : '/images/noavatar_small.gif')?>" alt="更改头像" width="48" height="48" />
+                                                <?php endif;?>
+
                                                 <span class="avatar-change">更改头像</span>
                                             </a>
                                         </div>

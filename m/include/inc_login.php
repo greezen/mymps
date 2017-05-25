@@ -68,11 +68,11 @@ else if ( $action == "login" )
     if ( $s_uid )
     {
         $member_log->in( $s_uid, md5( $userpwd ), "off", "noredirect" );
-        redirectmsg( $s_uid." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : urlencode( "index.php?mod=member&cityid=".$cityid ) );
+        redirectmsg( $s_uid." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=".$cityid);
     }
     else
     {
-        redirectmsg( "µÇÂ¼Ê§°Ü£¬ÄúÊäÈëÁË´íÎóµÄÕÊºÅ»òÃÜÂë!", $returnurl ? $returnurl : urlencode( "index.php?mod=login&cityid=".$cityid ) );
+        redirectmsg( "µÇÂ¼Ê§°Ü£¬ÄúÊäÈëÁË´íÎóµÄÕÊºÅ»òÃÜÂë!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid );
     }
 }
 else if ( $act == 'wx' )
@@ -88,8 +88,8 @@ else if ( $act == 'wx' )
     include_once MYMPS_MEMBER . '/include/common.func.php';
     $userid = wx_member_reg($openid, $nickname, $headimg);
     if ($userid) {
-        $userpwd = md5(substr($user_info['openid'], -8));
-        $member_log -> in($userid,$userpwd,"off", "noredirect");
+        $userpwd = '';
+        $member_log -> in($userid,$userpwd,"", "noredirect");
         redirectmsg( $nickname." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=".$cityid);
     }
     redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid);
