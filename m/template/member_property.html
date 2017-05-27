@@ -35,72 +35,127 @@
         #set_address{
             padding: 0.3rem;
         }
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        .app{
+            width: 100%;
+            height: 100%;
+        }
+        .summary{
+            height: 7.5rem;
+            background-color: #383838;
+            text-align: center;
+            color: #B6B6B6;
+            font-size: 0.8rem;
+        }
+        .summary div{
+            padding-top: 0.5rem;
+        }
+        .summary .title{
+            padding-top: 1rem;
+        }
+        .summary .room{
+            font-size: 0.7rem;
+        }
+        .summary .money{
+            color: #fff;
+            font-size: 2rem;
+        }
+        .bill_nav{
+            background-color: #EAE9DF;
+            height: 3rem;
+        }
+        .bill_nav .on{
+            border-bottom: 2px solid #F39605;
+            color: #000;
+        }
+        .bill_nav_item{
+            width: 49%;
+            height: 3rem;
+            line-height: 3rem;
+            display: inline-block;
+            font-size: 1rem;
+            text-align: center;
+            vertical-align: bottom;
+            text-decoration: none;
+            color: #9D9D9C;
+        }
+        .bill_list{
+            margin: 0 1rem;
+        }
+        .bill_item{
+            padding: 0.5rem 0;
+            display: block;
+            border-bottom: 1px solid #ccc;
+            position: relative;
+        }
+        .bill_item div{
+            padding: 0.3rem 0;
+        }
+        .bill_item .date{
+            font-size: 1.5rem;
+        }
+        .bill_item .desc{
+            font-size: 0.8rem;
+        }
+        .bill_item .pay{
+            font-size: 1.2rem;
+            color: #DB4E28;
+            right: 1rem;
+            top: 1.2rem;
+            position: absolute;
+        }
     </style>
     {template header_search}
-    <div class="navi">
-        <li class="cate {if $status == 'N'}selected{/if}" tab="N"><a href="index.php?mod=property&status=N">待缴费用</a>
-        </li>
-        <li class="cate {if $status == 'Y'}selected{/if}" tab="Y" style="float: left"><a
-                href="index.php?mod=property&status=Y">缴费明细</a></li>
-    </div>
-
-    <div class="ucenter" style="border-bottom:1px #dddddd solid;">
-        {if empty($room_id)}
-        <div class="select-list">
-            <div style="padding-left: 1rem">请选择您的地址：</div>
-            <div id="address">
-                <select name="province_id" id="province_id">
-                    <option value="0">请选择</option>
-                    {loop $province_list $item}
-                    <option value="{$item['provinceid']}">{$item['provincename']}</option>
-                    {/loop}
-                </select>
-            </div>
-            <div class="formrow formrow-action">
-                <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="提交" class="button" name="base_submit"></span></span>
-            </div>
+    {if empty($room_id)}
+    <div class="select-list">
+        <div style="padding-left: 1rem">请选择您的地址：</div>
+        <div id="address">
+            <select name="province_id" id="province_id">
+                <option value="0">请选择</option>
+                {loop $province_list $item}
+                <option value="{$item['provinceid']}">{$item['provincename']}</option>
+                {/loop}
+            </select>
         </div>
-        {else}
-        <ul class="u_infolst">
-            {loop $list $item}
-            <li>
-                <a href="javascript:;">
-                    <h2>金额：<span style="color: #f01d01">{echo $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}</span>
-                        元</h2>
-                    <div class="attr">
-                        <span>期号：{$item['period']}</span>
-                        <span></span>
-                        {if $status == 'N'}
-                        <span class="del">缴费</span>
-                        {/if}
-                    </div>
-                    {if $status == 'Y'}
-                    <div class="attr">
-                        <span>缴费时间：{echo date('Y-m-d H:i:s',$item['pay_time'])}</span>
-                        <span></span>
-                        {if $status == 'N'}
-                        <span class="del">缴费</span>
-                        {/if}
-                    </div>
-                    {/if}
-                    <div class="attr">
-                        <span>地址：{echo get_address($item['room_id'], 'room')}</span>
-                        <span></span>
-                    </div>
-                </a>
-            </li>
-            {loopelse}
-            <div style="margin:30px 0;text-align:center">无记录</div>
-            {/loop}
-        </ul>
-        {/if}
+        <div class="formrow formrow-action">
+            <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="提交" class="button" name="base_submit"></span></span>
+        </div>
     </div>
-    {if $info_list}
-    <div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
-        {$pageview}
+    {else}
+    <div class="app">
+        <div class="summary">
+            <div class="title">未缴金额合计</div>
+            <div class="money">398.89</div>
+            <div class="room">房间：{echo get_address($list[0]['room_id'], 'room')}</div>
+        </div>
+        <div class="bill">
+            <div class="bill_nav">
+                <a href="index.php?mod=property&status=N" class="bill_nav_item {if $status == 'N'}on{/if}">未缴账单</a>
+                <a href="index.php?mod=property&status=Y" class="bill_nav_item {if $status == 'Y'}on{/if}">历史账单</a>
+            </div>
+            <div class="bill_list">
+                {loop $list $item}
+                <a class="bill_item">
+                    <div class="date">{$item['period']}</div>
+                    {php $fee = $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}
+                    <div class="desc">本期费用合计 {$fee}，本期未缴费用 {$fee}</div>
+                    <div class="pay">缴 费</div>
+                </a>
+                {loopelse}
+                <div style="margin:30px 0;text-align:center">无记录</div>
+                {/loop}
+            </div>
+            {if $info_list}
+            <div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
+                {$pageview}
+            </div>
+            {/if}
+        </div>
     </div>
     {/if}
-</div>
 {template footer}
 <script type="text/javascript" src="template/js/jq_min.211.js"></script>
 <script type="application/javascript">

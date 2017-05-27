@@ -14,6 +14,7 @@ require_once MYMPS_ROOT .'/plugin/property/include/functions.php';
 $status = isset($_GET['status'])?trim($_GET['status']):'N';
 $uid = $db->getOne("SELECT id FROM ". $db_mymps . "member WHERE userid='{$s_uid}'");
 $room_id = $db->getOne("SELECT room_id FROM ".$db_mymps."property WHERE uid={$uid}");
+
 if ($room_id) {
     $where = " WHERE room_id = {$room_id} AND status='{$status}'";
     $perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
