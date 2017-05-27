@@ -16,7 +16,8 @@ if($act == 'address'){
 	}
 	$uid = $db->getOne("SELECT id FROM ".$db_mymps."member WHERE userid='{$s_uid}'");
 	$sql = "UPDATE ".$db_mymps."property SET uid='{$uid}' WHERE room_id={$room_id} AND uid=0";
-	if ($db->query($sql)) {
+	$sql1 = "UPDATE ".$db_mymps."member SET room_id='{$room_id}' WHERE id={$uid}";
+	if ($db->query($sql) && $db->query($sql1)) {
 		echo 'ok';exit;
 	}
 	echo 'error2';exit;
