@@ -13,8 +13,12 @@
 
 	{template header_search}
 
-	<div class="c_logn"> 
+	<div class="c_logn">
+		{if empty($user) || empty($user['logo'])}
 		<img src="template/images/center_ico.png" width="43" height="43" class="fl u_img">
+		{else}
+		<img src="{$user['logo']}" width="43" height="43" class="fl u_img">
+		{/if}
 		{$loginfo}
 	</div>
 	

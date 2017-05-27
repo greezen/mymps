@@ -151,7 +151,7 @@ if(!submit_check('log_submit')){
 				$user_info = curl_get($url);
 				$userid = wx_member_reg($user_info['openid'], $user_info['nickname'], $user_info['headimgurl']);
 				if ($userid) {
-					$userpwd = md5(substr($user_info['openid'], -8));
+					$userpwd = '';
 					$member_log -> in($userid,$userpwd,'','noredirect');
 					write_msg("现在转入用户管理中心，请稍候...",$mymps_global['SiteUrl']."/member/index.php");
 				}
