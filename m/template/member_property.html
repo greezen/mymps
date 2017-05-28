@@ -12,7 +12,7 @@
 <div class="body_div">
     <style type="text/css">
         select{
-            width: auto !important;
+            width: 100% !important;
             -moz-box-sizing: border-box;
             -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -21,6 +21,9 @@
             background: #fff;
             padding: 3px 5px;
             margin-left: 2px;
+            height: 2.6rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.6rem;
         }
         .select-list{
             margin: 1rem auto;
@@ -29,11 +32,15 @@
             margin: 1rem;
         }
         .formrow{
-            width: 5rem;
+            width: 20rem;
             margin: auto;
         }
         #set_address{
-            padding: 0.3rem;
+            width: 20rem;
+            border-radius: 0.5rem;
+            background: -webkit-gradient(linear,0 0,0 100%,color-stop(0,#3592E2),color-stop(1,#3592E2));
+            color: #fff;
+            padding: 0.5rem;
         }
         body {
             padding: 0;
@@ -121,15 +128,19 @@
             </select>
         </div>
         <div class="formrow formrow-action">
-            <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="提交" class="button" name="base_submit"></span></span>
+            <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="提 交" class="button" name="base_submit"></span></span>
         </div>
     </div>
     {else}
     <div class="app">
         <div class="summary">
             <div class="title">未缴金额合计</div>
-            <div class="money">398.89</div>
-            <div class="room">房间：{echo get_address($list[0]['room_id'], 'room')}</div>
+            <div class="money">{$total}</div>
+            {if empty($room_id)}
+            <div class="room"></div>
+            {else}
+            <div class="room">房间：{echo get_address($room_id, 'room')}</div>
+            {/if}
         </div>
         <div class="bill">
             <div class="bill_nav">
@@ -139,7 +150,7 @@
             <div class="bill_list">
                 {loop $list $item}
                 <a class="bill_item">
-                    <div class="date">{$item['period']}</div>
+                    <div class="date">{echo date('Y年m月',strtotime($item['period']))}</div>
                     {php $fee = $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}
                     <div class="desc">本期费用合计 {$fee}，本期未缴费用 {$fee}</div>
                     <div class="pay">缴 费</div>
@@ -148,7 +159,7 @@
                 <div style="margin:30px 0;text-align:center">无记录</div>
                 {/loop}
             </div>
-            {if $info_list}
+            {if $list}
             <div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
                 {$pageview}
             </div>

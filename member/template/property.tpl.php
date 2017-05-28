@@ -136,7 +136,7 @@
     </div>
     <?php //include mymps_tpl('inc_foot'); ?>
 
-    <script type="text/javascript" src="/admin/js/jquery.3.1.1.min.js"></script>
+    <script type="text/javascript" src="/m/template/js/jq_min.211.js"></script>
     <script type="application/javascript">
         $(function () {
             $('#province_id').change(function () {
