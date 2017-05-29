@@ -35,7 +35,7 @@ switch ( $do )
 	if ( $part == "list" )
 	{
 		chk_admin_purview( "purview_用户列表" );
-		var_dump($typeid);
+		//var_dump($typeid);
 		$where = $typeid ? "WHERE typeid = ".$typeid."" : "";
 		$where .= $admin_cityid ? " AND a.cityid = '".$admin_cityid."'" : ($cityid ? " AND a.cityid = '".$cityid."'" : "");
 		$sql = "SELECT a.id,a.userid,a.cityid,a.uname,a.tname,a.logintime,a.loginip,a.typeid,b.typename FROM `".$db_mymps."admin` AS a LEFT JOIN `{$db_mymps}admin_type` AS b ON a.typeid = b.id {$where} ORDER BY a.typeid Asc";
