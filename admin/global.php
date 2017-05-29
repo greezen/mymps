@@ -180,6 +180,7 @@ function chk_admin_purview( $purview )
 	$admin_uname = $data[$admin_id]['uname'];
 	if ( !in_array( $purview, explode( ",", $data[$admin_id]['purviews'] ) ) )
 	{
+		write_msg( "您没有此功能的操作权限！" );
 	}
 }
 
