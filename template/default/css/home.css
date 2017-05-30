@@ -302,6 +302,8 @@ a {
 	border: 1px solid #ddd;
 	padding: 20px;
 	margin-top: 10px;
+	height: 17rem;
+	overflow: hidden;
 }
 .index_list_title h1 {
 	font-size: 18px;
