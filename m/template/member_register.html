@@ -106,9 +106,8 @@
 
             function settime(obj) {
                 if (countdown == 0) {
-                    alert(countdown+'tt')
                     obj.attr("disabled",false);
-                    obj.value = "获取验证码";
+                    obj.val("获取验证码");
                     countdown = 60;
                     return;
                 } else {
