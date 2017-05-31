@@ -32,8 +32,8 @@
                             <input type="text" name="userid" id="regname" size="11" maxlength="11" style="width: auto"
                                    class="passport-login-input passport-login-input-username" placeholder="请输入手机号">
                         </li>
-                        <span><input style="height: 36px;padding: 5px;vertical-align: bottom;" type="button" id="btn"
-                                     value="获取验证码" onclick="settime(this)"/></span>
+                        <span><input style="height: 36px;padding: 5px;vertical-align: bottom;" type="button" id="send"
+                                     value="获取验证码"/></span>
 
                         <li id="loginPasswordLi" class="passport-login-input-li">
                             <span class="passport-login-input-span">密 &nbsp;&nbsp;  码</span>
@@ -90,23 +90,39 @@
     <p>&nbsp;</p>
     {template footer2}
     <script type="text/javascript">
-        var countdown = 60;
-        function settime(obj) {
-            if (countdown == 0) {
-                obj.removeAttribute("disabled");
-                obj.value = "获取验证码";
-                countdown = 60;
-                return;
-            } else {
-                obj.setAttribute("disabled", true);
-                obj.value = "重新发送(" + countdown + ")";
-                countdown--;
-            }
-            setTimeout(function () {
-                        settime(obj)
+        $(function () {
+            var countdown = 60;
+            var t = null;
+            $('#send').click(function () {
+                var that = $(this);
+                $.post('index.php?mod=register&action=code', {"phone":$('#regname').val()}, function (rsp) {
+                    if (rsp == 'ok') {
+                       settime(that);
+                    } else {
+                        alert('验证码发送失败！');
                     }
-                    , 1000);
-        }
+                });
+            });
+
+            function settime(obj) {
+                if (countdown == 0) {
+                    alert(countdown+'tt')
+                    obj.attr("disabled",false);
+                    obj.value = "获取验证码";
+                    countdown = 60;
+                    return;
+                } else {
+                    obj.attr("disabled", true);
+                    obj.val("重新发送(" + countdown + ")");
+                    countdown--;
+                }
+                t = setTimeout(function () {
+                            settime(obj)
+                        }
+                        , 1000);
+            }
+        });
+
 
     </script>
 

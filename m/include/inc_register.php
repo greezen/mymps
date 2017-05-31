@@ -117,9 +117,9 @@ if ( $action == "register" )
     $member_log->in( $userid, md5( $userpwd ), "on", "noredirect" );
     redirectmsg( "恭喜! 您已经注册成功", "index.php?mod=index" );
 } elseif ($action == 'code') {
+    echo 'ok';exit;
     require_once  MYMPS_ROOT.'/include/Sms.php';
     $msg = sprintf('【城盛惠民】『【%s】』，为您的手机验证码。如非本人操作，请忽略。', mt_rand(100000, 999999));
-    echo $msg;exit;
     $r=Sms::send('15989589725', '666');
     var_dump($r);exit;
 }
