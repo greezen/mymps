@@ -84,7 +84,7 @@ if ( $action == "register" )
             }
         }
     }
-    $rs = checkuserid( $userid, "用户名" );
+    $rs = checkuserid( $userid, "手机号" );
     if ( $rs != "ok" )
     {
         redirectmsg( $rs, "index.php?mod=register" );
@@ -95,7 +95,11 @@ if ( $action == "register" )
     }
     if ( 20 < strlen( $userid ) )
     {
-        redirectmsg( "您的用户名多于20个字符，不允许注册!", "index.php?mod=register" );
+       // redirectmsg( "您的用户名多于20个字符，不允许注册!", "index.php?mod=register" );
+    }
+    if ( 11 != strlen( $userid ) )
+    {
+        redirectmsg( "手机号码不正确!", "index.php?mod=register" );
     }
     if ( strlen( $userpwd ) < 5 )
     {
@@ -110,8 +114,14 @@ if ( $action == "register" )
         redirectmsg( "你指定的用户名 ".$userid." 已存在，请使用别的用户名!", "index.php?mod=register" );
     }
     member_reg( $userid, md5( $userpwd ), $email, $safequestion, $safeanswer );
-    $member_log->in( $userid, md5( $userpwd ), "off", "noredirect" );
+    $member_log->in( $userid, md5( $userpwd ), "on", "noredirect" );
     redirectmsg( "恭喜! 您已经注册成功", "index.php?mod=index" );
+} elseif ($action == 'code') {
+    require_once  MYMPS_ROOT.'/include/Sms.php';
+    $msg = sprintf('【城盛惠民】『【%s】』，为您的手机验证码。如非本人操作，请忽略。', mt_rand(100000, 999999));
+    echo $msg;exit;
+    $r=Sms::send('15989589725', '666');
+    var_dump($r);exit;
 }
 else
 {

@@ -67,7 +67,7 @@ else if ( $action == "login" )
     }
     if ( $s_uid )
     {
-        $member_log->in( $s_uid, md5( $userpwd ), "off", "noredirect" );
+        $member_log->in( $s_uid, md5( $userpwd ), "on", "noredirect" );
         redirectmsg( $s_uid." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=".$cityid);
     }
     else
@@ -89,7 +89,7 @@ else if ( $act == 'wx' )
     $userid = wx_member_reg($openid, $nickname, $headimg);
     if ($userid) {
         $userpwd = '';
-        $member_log -> in($userid,$userpwd,"", "noredirect");
+        $member_log -> in($userid,$userpwd,"on", "noredirect");
         redirectmsg( $nickname." »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=".$cityid);
     }
     redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid);
