@@ -107,24 +107,45 @@ if ( $action == "register" )
     }
     if ( !is_email( $email ) )
     {
-        redirectmsg( "Email格式不正确！", "index.php?mod=register" );
+        //redirectmsg( "Email格式不正确！", "index.php?mod=register" );
     }
     if ( $db->getone( "SELECT id FROM `".$db_mymps."member` WHERE userid = '{$userid}' " ) )
     {
         redirectmsg( "你指定的用户名 ".$userid." 已存在，请使用别的用户名!", "index.php?mod=register" );
     }
-    member_reg( $userid, md5( $userpwd ), $email, $safequestion, $safeanswer );
+    $p_code = mgetcookie('p_code');
+    if (empty($code) || $code != intval($p_code) - 100) {
+        redirectmsg( "验证码不正确", "index.php?mod=register" );
+    }
+    member_reg( $userid, md5( $userpwd ), '', $safequestion, $safeanswer );
     $member_log->in( $userid, md5( $userpwd ), "on", "noredirect" );
-    redirectmsg( "恭喜! 您已经注册成功", "index.php?mod=index" );
+    redirectmsg( "恭喜! 您已经注册成功", "index.php?mod=member&cityid=".$cityid );
 } elseif ($action == 'code') {
-    echo 'ok';exit;
-    require_once  MYMPS_ROOT.'/include/Sms.php';
-    $msg = sprintf('【城盛惠民】『【%s】』，为您的手机验证码。如非本人操作，请忽略。', mt_rand(100000, 999999));
-    $r=Sms::send('15989589725', '666');
-    var_dump($r);exit;
+    if (mgetcookie('t_code')) {
+        $phone = isset($_POST['phone'])?trim($_POST['phone']):null;
+
+        if (empty($phone)) {
+            exit('error');
+        }
+        if ($db->getone( "SELECT id FROM `".$db_mymps."member` WHERE userid = '{$phone}' " ) ) {
+            exit('has');
+        }
+        require_once  MYMPS_ROOT.'/include/Sms.php';
+        $code = mt_rand(100000, 999999);
+        //$msg = sprintf('【城盛惠民】『【%s】』，为您的手机验证码。如非本人操作，请忽略。', mt_rand(100000, 999999));
+        $msg = sprintf('您的验证码是:【%s】。请不要把验证码泄漏给其它人。下次登录访问官网http://1.cndnss.net', $code);
+        $r=Sms::send($phone, $msg);
+        if ($r){
+            msetcookie('p_code', $code + 100);
+            exit('ok');
+        }
+        exit('error');
+    }
+    exit('error');
 }
 else
 {
+    msetcookie('t_code', md5(time()), 86400);
     $mixcode = md5( $cookiepre );
     include( mymps_tpl( "member_register" ) );
 }

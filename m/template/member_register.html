@@ -15,7 +15,11 @@
 
     <div class="dl_nav"><span><a href="index.php">首页</a><font class="raquo"></font><a href="javascript:;">注册</a></span>
     </div>
-
+    <style type="text/css">
+        .code_disable {
+            background: -webkit-gradient(linear,0 0,0 100%,color-stop(0,#b0b0b0),color-stop(1,#b0b0b0)) !important;
+        }
+    </style>
     <div class="m311 log_reg_box">
         <div id="logRegTabCon">
             <div class="log_reg_item">
@@ -32,8 +36,13 @@
                             <input type="text" name="userid" id="regname" size="11" maxlength="11" style="width: auto"
                                    class="passport-login-input passport-login-input-username" placeholder="请输入手机号">
                         </li>
-                        <span><input style="height: 36px;padding: 5px;vertical-align: bottom;" type="button" id="send"
+                        <span><input style="height: 36px;padding: 0 10px;vertical-align: bottom;width: auto;line-height: 29px;margin-bottom: 8px;" class="btn_log" type="button" id="send"
                                      value="获取验证码"/></span>
+
+                        <li id="loginCodeLi" class="passport-login-input-li">
+                            <span class="passport-login-input-span">验证码</span>
+                            <input type="text" name="code" id="code" size="11" maxlength="11" class="passport-login-input passport-login-input-username" placeholder="请输入验证码">
+                        </li>
 
                         <li id="loginPasswordLi" class="passport-login-input-li">
                             <span class="passport-login-input-span">密 &nbsp;&nbsp;  码</span>
@@ -48,12 +57,12 @@
                                    class="passport-login-input passport-login-input-password" placeholder="再次输入密码">
                         </li>
 
-                        <li id="loginUserNameLi" class="passport-login-input-li">
-                            <span class="passport-login-input-span">Email</span>
-                            <input type="text" name="email" id="regemail" size="20"
-                                   class="passport-login-input passport-login-input-username" placeholder="请输入Email地址"
-                                   maxlength="75">
-                        </li>
+                        <!--<li id="loginUserNameLi" class="passport-login-input-li">-->
+                            <!--<span class="passport-login-input-span">Email</span>-->
+                            <!--<input type="text" name="email" id="regemail" size="20"-->
+                                   <!--class="passport-login-input passport-login-input-username" placeholder="请输入Email地址"-->
+                                   <!--maxlength="75">-->
+                        <!--</li>-->
 
                         {if $mobile_settings[authcode] == 1}
                         <li id="loginUserNameLi" class="passport-login-input-li">
@@ -95,9 +104,16 @@
             var t = null;
             $('#send').click(function () {
                 var that = $(this);
-                $.post('index.php?mod=register&action=code', {"phone":$('#regname').val()}, function (rsp) {
+                var phone = $('#regname').val();
+                if (phone.length != 11) {
+                    alert('手机号码不正确');
+                    return false;
+                }
+                $.post('index.php?mod=register&action=code', {"phone":phone}, function (rsp) {
                     if (rsp == 'ok') {
                        settime(that);
+                    } else if (rsp == 'has') {
+                        alert('您的手机号已注册过，请直接登录！')
                     } else {
                         alert('验证码发送失败！');
                     }
@@ -107,11 +123,13 @@
             function settime(obj) {
                 if (countdown == 0) {
                     obj.attr("disabled",false);
+                    obj.removeClass('code_disable')
                     obj.val("获取验证码");
                     countdown = 60;
                     return;
                 } else {
                     obj.attr("disabled", true);
+                    obj.addClass('code_disable')
                     obj.val("重新发送(" + countdown + ")");
                     countdown--;
                 }
