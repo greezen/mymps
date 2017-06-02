@@ -31,7 +31,7 @@ class Sms
         curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
         $return_str = curl_exec($curl);
-        curl_close($curl);var_dump($return_str);
+        curl_close($curl);
         return json_decode($return_str);
     }
 }
