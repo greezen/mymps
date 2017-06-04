@@ -634,7 +634,7 @@ select{border:none; height:30px; width:93%; background-color:#eeeff1; color:#394
 background:#eeeff1 url(../images/select_bg.png) center right no-repeat;
 }
 
-.ico{ width:36px ; height:36px; border-radius:18px;-webkit-border-radius:18px; float:left; display:block; margin-top:9px; background-size:auto auto;position:relative; background-repeat:no-repeat;}
+.ico{ width:48px ; height:48px; border-radius:18px;-webkit-border-radius:18px; float:left; display:block; margin-top:9px; background-size:auto auto;position:relative; background-repeat:no-repeat;}
 
 .blue #button {background: #3592E2;}
 .green #button {background: #42B712;}
