@@ -29,4 +29,19 @@ function GetInfoLastTime($lasttime='',$formname='endtime',$type='pc'){
 	return $info_lasttime_form;
 }
 
+function getInfoTimeJson()
+{
+	global $info_lasttime;
+	$data = array();
+	foreach ($info_lasttime as $key=>$val) {
+		$tmp = array(
+			'id' => $key,
+			'value' => iconv('gbk', 'utf-8', $val),
+		);
+		array_push($data, $tmp);
+		unset($tmp);
+	}
+	return json_encode($data);
+}
+
 ?>

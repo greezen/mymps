@@ -27,7 +27,7 @@
 			<h1 class="tit">{$row[title]}</h1>
 			<div class="status_bar">
 				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
-				<span class="browse_num"><i class="ico"></i><span id="totalcount" ><script type="text/javascript" src="{$mymps_global[SiteUrl]}/javascript.php?part=information&id={$row[id]}"></script></span>¥Œ</span>
+				<span class="browse_num"><i class="ico"></i><span id="totalcount" >{$row['hit']}</span>¥Œ</span>
 				<a rel="nofollow" href="{$mymps_global[SiteUrl]}/box.php?part=wap_shoucang&infoid={$row[id]}" class="btn_Favorite"><i class="ico"></i> ’≤ÿ</a>
 			</div>
 		</div>
