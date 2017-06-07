@@ -29,6 +29,6 @@
 	<a href="index.php?mod=category&cityid={$city[cityid]}" class="bottom_index{echo $mod == 'category' ? '_on' : '';}">分类</a>
 	
 	<a href="index.php?mod=member&cityid={$city[cityid]}" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">我的</a>
-	<a href="index.php?mod={if empty($city[cityid])}changecity{else}post{/if}&cityid={$city[cityid]}" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">发布</a>
+	<a href="index.php?mod={if empty($city[cityid])}changecity{php msetcookie('post',1);}{else}post{/if}&cityid={$city[cityid]}" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">发布</a>
 </div>
 {/if}
