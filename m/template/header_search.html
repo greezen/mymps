@@ -1,12 +1,46 @@
 {if (stristr($_SERVER['HTTP_USER_AGENT'], 'AiYouXin_App'))}
 <script type="text/javascript">
-	applocal.setMessageInTop("{echo $city[cityname] ? $city[cityname] : 'ÇÐ»»'}");
+	
+	
+
+	//alert(messagingIframe);
+
+    function iosLocal(key,val){
+		var messagingIframe = document.createElement('iframe');
+		messagingIframe.style.display = 'none';
+		document.documentElement.appendChild(messagingIframe);
+        messagingIframe.src = key+":"+val;
+    }
+
+
+	var ua = navigator.userAgent.toLowerCase();	
+	if (/iphone|ipad|ipod/.test(ua)) {
+		iosLocal("changecity","{echo $city[cityname] ? $city[cityname] : 'ÇÐ»»'}");
+
+		{if $mod!='index' && $mod!='category' && !in_array($mod,array('login','member','register','shoucang','mypost')) && $mod!='post'}
+			iosLocal("changback","back");
+		{else}
+			iosLocal("changlogo","logo");
+		{/if}
+
+	}else{
+		applocal.setMessageInTop("{echo $city[cityname] ? $city[cityname] : 'ÇÐ»»'}");
+	}
+
+
+	
 </script>
 {else}
 
-
+<!--<img src="/m/template/images/back.png" style="height:32px;width:32px" alt="{$mymps_global[SiteName]}">-->
 <div class="header">
-	{if $mobile_settings[mobilelogo]}<a class="logo_a" href="index.php?cityid={$city[cityid]}"><img src="{$mymps_global[SiteUrl]}{$mobile_settings[mobilelogo]}" alt="{$mymps_global[SiteName]}"></a>{/if}
+
+	
+	{if $mobile_settings[mobilelogo]}{if $mod!='index' && $mod!='category' && !in_array($mod,array('login','member','register','shoucang','mypost')) && $mod!='post'}
+	<a class="logo_a" href="#" onclick="window.location.href=document.referrer;">
+	<img id="back" src="/m/template/images/back.png" style="height:32px;width:32px;" alt="{$mymps_global[SiteName]}">
+	</a>
+	{else}<a class="logo_a" href="index.php?cityid={$city[cityid]}"><img src="{$mymps_global[SiteUrl]}{$mobile_settings[mobilelogo]}" alt="{$mymps_global[SiteName]}"></a>{/if}{/if}
 	<a class="city_a" href="index.php?mod=changecity&cityid={$city[cityid]}">{echo $city[cityname] ? $city[cityname] : 'ÇÐ»»'}<i class="filt-arrowwhite"></i></a>
     <div class="search {echo $mobile_settings[mobilelogo] ? 'width45' : 'width65'}">
 	<form action="index.php?" method="get">
@@ -31,4 +65,38 @@
 	<a href="index.php?mod=member&cityid={$city[cityid]}" class="bottom_member{echo in_array($mod,array('login','member','register','shoucang','mypost')) ? '_on' : '';}">ÎÒµÄ</a>
 	<a href="index.php?mod={if empty($city[cityid])}changecity{php msetcookie('post',1);}{else}post{/if}&cityid={$city[cityid]}" class="bottom_post{echo $mod == 'post' ? '_on' : '';}">·¢²¼</a>
 </div>
+<script type="text/javascript">
+/*
+String.prototype.startWith=function(str){
+  var reg=new RegExp("^"+str);
+  return reg.test(this);
+}
+
+
+var search = window.location.search;
+search = search.substring(1);
+var isback = false;
+
+if(!search.startWith("cityid") && !search.startWith("mod=post") && !search.startWith("mod=category") && !search.startWith("mod=member")
+  && search!=""){
+	var element = document.getElementById('back');
+	element.style.display="block";
+
+	var logo = document.getElementById('logo');
+	logo.style.display="none";
+
+	isback = true;
+	
+}
+
+function gotobackx(){
+	if(isback){
+		 
+	}else{
+		window.location.href="index.php?cityid={$city[cityid]}";
+	}
+}
+*/
+
+</script>
 {/if}
