@@ -14,7 +14,6 @@ class mysql {
         if(!$this->link = @$func($dbhost, $dbuser, $dbpw, 1)) {
         	$this->halt("Can not connect to MySQL server");
         }
-		
 		if ($this->server_info() > '4.1')
         {
             if ($dbcharset != 'latin1')
