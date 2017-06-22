@@ -23,24 +23,11 @@
             margin-left: 2px;
             height: 2.6rem;
             margin-bottom: 0.5rem;
-            border-radius: 0.6rem;
+            border-radius: 0.3rem;
         }
         .select-list{
             margin: 1rem auto;
         }
-		.button_submit {
-			width: 100%;
-			height: 42px;
-			line-height: 42px;
-			color: #fffefe;
-			text-align: center;
-			overflow: hidden;
-			border: none;
-			-webkit-border-radius: 0;
-			font-size: 14px;
-
-			    background: -webkit-gradient(linear,0 0,0 100%,color-stop(0,#3592E2),color-stop(1,#3592E2));
-		}
         #address{
             margin: 1rem;
         }
@@ -48,7 +35,13 @@
             width: 20rem;
             margin: auto;
         }
-
+        #set_address{
+            width: 20rem;
+            border-radius: 0.5rem;
+            background: -webkit-gradient(linear,0 0,0 100%,color-stop(0,#3592E2),color-stop(1,#3592E2));
+            color: #fff;
+            padding: 0.5rem;
+        }
         body {
             padding: 0;
             margin: 0;
@@ -123,57 +116,29 @@
         }
     </style>
     {template header_search}
-    {if empty($room_id)}
-    <div class="select-list">
-        <div style="padding-left: 1rem">请选择您的地址：</div>
-        <div id="address">
-            <select name="province_id" id="province_id">
-                <option value="0">请选择</option>
-                {loop $province_list $item}
-                <option value="{$item['provinceid']}">{$item['provincename']}</option>
-                {/loop}
-            </select>
-        </div>
-        <div class="formrow formrow-action">
-            <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="提 交" class="button_submit" name="base_submit"></span></span>
-        </div>
-    </div>
-    {else}
     <div class="app">
         <div class="summary">
-            <div class="title">未缴金额合计</div>
-            <div class="money">{$total}</div>
-            {if empty($room_id)}
-            <div class="room"></div>
-            {else}
-            <div class="room">地址：{echo get_address($room_id, 'room')} <a href="index.php?mod=property&newadd=true">[更换]</a></div>
-            {/if}
+            <div class="title">应缴金额</div>
+            <div class="money">{$total} 元</div>
         </div>
         <div class="bill">
-            <div class="bill_nav">
-                <a href="index.php?mod=property&status=N" class="bill_nav_item {if $status == 'N'}on{/if}">未缴账单</a>
-                <a href="index.php?mod=property&status=Y" class="bill_nav_item {if $status == 'Y'}on{/if}">历史账单</a>
-            </div>
             <div class="bill_list">
-                {loop $list $item}
-                <a class="bill_item" href="index.php?mod=pay&id={$item['id']}">
-                    <div class="date">{echo date('Y年m月',strtotime($item['period']))}</div>
-                    {php $fee = $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}
-                    <div class="desc">本期费用合计 {$fee}，本期未缴费用 {$fee}</div>
-                    <div class="pay">缴 费</div>
-                </a>
-                {loopelse}
-                <div style="margin:30px 0;text-align:center">无记录</div>
-                {/loop}
+                <table style="margin-top: 1rem">
+                    <tr>
+                        <th width="50%">支付方式</th>
+                        <td>
+                            <select name="pay_type">
+                                <option value="wx">微信支付</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div class="formrow formrow-action">
+                    <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="支 付" class="button" name="base_submit"></span></span>
+                </div>
             </div>
-            {if $list}
-            <div class="pager" style="border-top:none; border-bottom:1px #ddd solid;">
-                {$pageview}
-            </div>
-            {/if}
         </div>
     </div>
-    {/if}
 {template footer}
 <script type="text/javascript" src="template/js/jq_min.211.js"></script>
 <script type="application/javascript">

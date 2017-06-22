@@ -20,7 +20,10 @@ function redirectmsg( $redirectmsg, $url )
     echo "<?xml version=\"1.0\" encoding=\"".$charset."\"?>";
     include( mymps_tpl( "header_error" ) );
     echo "<div>".$redirectmsg." <a href=\"".$url."\">µã´ËÌø×ª</a></div>";
+	//echo "<script type='text/javascript'>location.href='".$url."'</script>";
     include( mymps_tpl( "footer_error" ) );
+
+	//header("location: ".$url);
     exit( );
 }
 
@@ -93,7 +96,7 @@ if ( $mobile_settings['allowmobile'] != 1 )
 }
 if ( pcclient( ) )
 {
-    write_msg( "", $mymps_global['SiteUrl'] );
+    //write_msg( "", $mymps_global['SiteUrl'] );
 }
 $lat = isset( $lat ) ? ( double )$lat : "";
 $lng = isset( $lng ) ? ( double )$lng : "";
@@ -102,7 +105,7 @@ if ( $lat && $lng )
     $cityid = get_latlng2cityid( $lat, $lng );
 }
 $cityid = isset( $cityid ) ? intval( $cityid ) : mgetcookie( "cityid" );
-if ( !in_array( $mod, array( "category", "index", "items", "information", "login", "openlogin", "myhome", "register", "mypost", "post", "search", "member", "shoucang", "history", "delete", "about", "changecity", "news", "corp", "store", "property") ) )
+if ( !in_array( $mod, array( "category", "index", "items", "information", "login", "openlogin", "myhome", "register", "mypost", "post", "search", "member", "shoucang", "history", "delete", "about", "changecity", "news", "corp", "store", "property", 'pay') ) )
 {
     $mod = "index";
 }
