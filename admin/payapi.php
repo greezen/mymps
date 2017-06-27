@@ -20,7 +20,7 @@ if ( !submit_check( CURSCRIPT."_submit" ) )
 {
 	$here = "管理支付接口";
 	$payapi = $db->getall( "SELECT * FROM `".$db_mymps."payapi` ORDER BY payid DESC" );
-	if ( empty( $payid ) )
+	if ( !empty( $payid ) )
 	{
 		$paydetail = $db->getrow( "SELECT * FROM `".$db_mymps."payapi` WHERE payid = '{$payid}'" );
 	}
