@@ -36,6 +36,27 @@ if(submit_check('pay_submit')){
 		}
 		include MYMPS_INC.'/payment/'.$payr['paytype'].'/to_pay.php';
 	}
+}elseif (isset($_GET['is_new'])){
+    $money = isset($_REQUEST['money']) ? floatval($_REQUEST['money']) : '';
+
+    if(!empty($money) && $ac == 'pay'){
+        if($money <= 0) write_msg('','?m=pay&error=17');
+        $payid=(int)$_REQUEST['payid'];
+        if(!$payid) write_msg('','?m=pay&error=18');
+        $payr = $db->getRow("SELECT * FROM {$db_mymps}payapi WHERE payid='$payid' AND isclose=0");
+        if(!$payr['payid']) write_msg('','?m=pay&error=18');
+        $ddno=$timestamp;
+        $pay_type 	 = 'PayToMoney';
+        $productname = $payid == 4 ? '物业缴费' : '金币充值';
+        include MYMPS_INC.'/pay.fun.php';
+        msetcookie("pay_type",$pay_type,0);
+        //返回地址前缀
+        $PayReturnUrlQz=$mymps_global['SiteUrl'];
+        if($charset=='utf-8'){
+            @header('Content-Type: text/html; charset=utf-8');
+        }
+        include MYMPS_INC.'/payment/'.$payr['paytype'].'/to_pay.php';
+    }
 }else{
 	$begindate	= isset($_GET['begindate']) ? intval(strtotime($_GET['begindate'])) : '';
 	$enddate	= isset($_GET['enddate']) ? intval(strtotime($_GET['enddate'])) : '';
