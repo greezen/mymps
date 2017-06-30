@@ -77,9 +77,10 @@ else if ( $action == "login" )
 }
 else if ( $act == 'wx' )
 {
-    $openid = isset($_POST['openid'])?trim($_POST['openid']):'';
-    $nickname = isset($_POST['nickname'])?trim($_POST['nickname']):'';
-    $headimg = isset($_POST['headimg'])?trim($_POST['headimg']):'';
+    $openid = isset($_REQUEST['openid'])?trim($_REQUEST['openid']):'';
+    $nickname = isset($_REQUEST['nickname'])?trim($_REQUEST['nickname']):'';
+	$nickname = array_iconv($nickname,"utf-8","gbk");
+    $headimg = isset($_REQUEST['headimg'])?trim($_REQUEST['headimg']):'';
 
     if (empty($openid) || empty($nickname) || empty($headimg) || !in_array(strlen($openid), [28, 29])) {
         redirectmsg( "µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=".$cityid );
@@ -100,5 +101,37 @@ else if ( $act == 'wx' )
 else
 {
     include( mymps_tpl( "member_login" ) );
+}
+
+/**
+ * UTF-8±àÂë GBK±àÂëÏà»¥×ª»»/£¨Ö§³ÖÊý×é£©
+ *
+ * @param array $str   ×Ö·û´®£¬Ö§³ÖÊý×é´«µÝ
+ * @param string $in_charset Ô­×Ö·û´®±àÂë
+ * @param string $out_charset Êä³öµÄ×Ö·û´®±àÂë
+ * @return array
+ */
+function array_iconv($str, $in_charset="gbk", $out_charset="utf-8")
+{
+ if(is_array($str))
+ {
+ foreach($str as $k => $v)
+ {
+  $str[$k] = array_iconv($v);
+ }
+ return $str;
+ }
+ else
+ {
+ if(is_string($str))
+ {
+  // return iconv('UTF-8', 'GBK//IGNORE', $str);
+  return mb_convert_encoding($str, $out_charset, $in_charset);
+ }
+ else
+ {
+  return $str;
+ }
+ }
 }
 ?>
