@@ -14,6 +14,13 @@
     <file url="file://$PROJECT_DIR$/include/common.fun.php" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/db.class.php" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/member.class.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/cert" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/doc" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/example" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/image" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/index.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/lib" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/logs" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/m/include/inc_information.php" charset="ISO-8859-1" />
     <file url="file://$PROJECT_DIR$/m/template/js/mobileSelect/js/mobileSelect.js" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
