@@ -15,8 +15,8 @@
     <file url="file://$PROJECT_DIR$/include/db.class.php" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/member.class.php" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/cert" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/wxpay/code" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/doc" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/include/payment/wxpay/example" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/image" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/index.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/lib" charset="UTF-8" />

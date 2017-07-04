@@ -22,6 +22,7 @@ if ($pay_config['paytype'] == 'wxpay') {
     require_once MYMPS_INC.'/payment/wxpay/lib/WxPay.Api.php';
     require_once MYMPS_INC.'/payment/wxpay/example/WxPay.NativePay.php';
     require_once MYMPS_INC.'/payment/wxpay/example/log.php';
+    require_once MYMPS_INC.'/payment/wxpay/example/phpqrcode/phpqrcode.php';
 
     $notify = new NativePay();
     $input = new WxPayUnifiedOrder();
@@ -36,9 +37,9 @@ if ($pay_config['paytype'] == 'wxpay') {
     $input->SetTrade_type("NATIVE");
     $input->SetProduct_id("123456789");
     $result = $notify->GetPayUrl($input);
-    $url2 = $result["code_url"];
+    $url = $result["code_url"];
+    QRcode::png($url);
 
-    echo $url2;exit;
 }
 
 is_object($db) && $db->Close();
