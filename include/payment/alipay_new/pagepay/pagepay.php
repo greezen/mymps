@@ -10,16 +10,16 @@ require_once dirname(__FILE__).'/service/AlipayTradeService.php';
 require_once dirname(__FILE__).'/buildermodel/AlipayTradePagePayContentBuilder.php';
 
     //商户订单号，商户网站订单系统中唯一订单号，必填
-    $out_trade_no = trim($_POST['WIDout_trade_no']);
+    $out_trade_no = date('YmdHis').uniqid();
 
     //订单名称，必填
-    $subject = trim($_POST['WIDsubject']);
+    $subject = '物业缴费';
 
     //付款金额，必填
-    $total_amount = trim($_POST['WIDtotal_amount']);
+    $total_amount = 0.01;//floatval($_REQUEST['amount']);
 
     //商品描述，可空
-    $body = trim($_POST['WIDbody']);
+    $body = '城盛惠民';
 
 	//构造参数
 	$payRequestBuilder = new AlipayTradePagePayContentBuilder();
