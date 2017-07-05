@@ -15,7 +15,7 @@ require_once dirname(__FILE__).'/config.php';
 
 	//构造参数
 
-	if (empty($_GET['is_wap'])) {
+	if (pcclient()) {
         require_once dirname(__FILE__).'/pagepay/service/AlipayTradeService.php';
         require_once dirname(__FILE__).'/pagepay/buildermodel/AlipayTradePagePayContentBuilder.php';
         $payRequestBuilder = new AlipayTradePagePayContentBuilder();
@@ -38,12 +38,12 @@ require_once dirname(__FILE__).'/config.php';
 	 * @param $notify_url 异步通知地址，公网可以访问
 	 * @return $response 支付宝返回的信息
  	*/
-	if (empty($_GET['is_wap'])) {
+	if (pcclient()) {
         $response = $aop->pagePay($payRequestBuilder,$config['return_url'],$config['notify_url']);
         //输出表单
         var_dump($response);
     } else {
         $response = $aop->wapPay($payRequestBuilder,$config['return_url'],$config['notify_url']);
     }
-	ToPayMoney($total_amount,$out_trade_no,$uid,$s_uid,'alipay_new', $relation_id);//写入等待支付记录
+	topaymoney($total_amount,$out_trade_no,$uid,$s_uid,'alipay_new', $relation_id);//写入等待支付记录
 

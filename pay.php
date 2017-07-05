@@ -13,6 +13,7 @@ require_once MYMPS_INC."/db.class.php";
 $act = empty($act) ? 'pay' : $act;
 
 if ($act == 'pay' && !empty($payid)) {
+    //TODO:¼ì²âÓÃ»§µÇÂ¼×´Ì¬
 
     $pay_config = $db->getRow("SELECT * FROM `{$db_mymps}payapi` WHERE payid={$payid} AND isclose=0");
 
@@ -83,7 +84,10 @@ if ($act == 'pay' && !empty($payid)) {
         }
     }
 } elseif ($act == 'return') {
-
+    $type = isset($_GET['type'])?trim($_GET['type']):null;
+    if ($type == 'ant') {
+        require_once MYMPS_INC . '/payment/alipay_new/return_url.php';
+    }
 } elseif ($act == 'qr') {
     $url = isset($_GET['url'])?urldecode(trim($_GET['url'])):null;
     if (!empty($url)) {

@@ -11,20 +11,6 @@
 <body class="{$mymps_global[cfg_tpl_dir]}">
 <div class="body_div">
     <style type="text/css">
-        select{
-            width: 100% !important;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            vertical-align: middle;
-            border: 1px solid #ccc;
-            background: #fff;
-            padding: 3px 5px;
-            margin-left: 2px;
-            height: 2.6rem;
-            margin-bottom: 0.5rem;
-            border-radius: 0.3rem;
-        }
         .select-list{
             margin: 1rem auto;
         }
@@ -35,7 +21,7 @@
             width: 20rem;
             margin: auto;
         }
-        #set_address{
+        #pay{
             width: 20rem;
             border-radius: 0.5rem;
             background: -webkit-gradient(linear,0 0,0 100%,color-stop(0,#3592E2),color-stop(1,#3592E2));
@@ -51,7 +37,7 @@
             height: 100%;
         }
         .summary{
-            height: 7.5rem;
+            height: 7rem;
             background-color: #383838;
             text-align: center;
             color: #B6B6B6;
@@ -89,30 +75,18 @@
             text-decoration: none;
             color: #9D9D9C;
         }
-        .bill_list{
-            margin: 0 1rem;
+
+        .pay-type-list>div{
+            height: 3rem;
+            vertical-align: middle;
+            line-height: 3rem;
+            background-color: #fff;
+            padding-left: 1rem;
+            border-bottom: 1px solid #eee;
         }
-        .bill_item{
-            padding: 0.5rem 0;
-            display: block;
-            border-bottom: 1px solid #ccc;
-            position: relative;
-        }
-        .bill_item div{
-            padding: 0.3rem 0;
-        }
-        .bill_item .date{
-            font-size: 1.5rem;
-        }
-        .bill_item .desc{
-            font-size: 0.8rem;
-        }
-        .bill_item .pay{
-            font-size: 1.2rem;
-            color: #DB4E28;
-            right: 1rem;
-            top: 1.2rem;
-            position: absolute;
+        .pay-type-list .item img{
+            vertical-align: middle;
+            margin-left: 0.5rem;
         }
     </style>
     {template header_search}
@@ -123,18 +97,25 @@
         </div>
         <div class="bill">
             <div class="bill_list">
-                <table style="margin-top: 1rem">
-                    <tr>
-                        <th width="50%">支付方式</th>
-                        <td>
-                            <select name="pay_type">
-                                <option value="wx">微信支付</option>
-                            </select>
-                        </td>
-                    </tr>
+                <div class="pay-type-list">
+                    <div>请选择支付方式</div>
+                    <div class="item">
+                        <label>
+                            <input type="radio" class="pay_type" name="pay_type" value="4" />
+                            <img src="template/images/alipay.jpg" alt="支付宝" width="30rem"> 支付宝支付
+                        </label>
+
+                    </div>
+                    <div class="item">
+                        <label>
+                            <input type="radio" class="pay_type" name="pay_type" value="5" />
+                            <img src="template/images/wxpay.jpg" alt="微信" width="30rem"> 微信支付
+                        </label>
+                    </div>
+                </div>
                 </table>
-                <div class="formrow formrow-action">
-                    <span class="minbtn-wrap"><span class="btn"><input type="button" id="set_address" value="支 付" class="button" name="base_submit"></span></span>
+                <div class="formrow formrow-action" style="margin-top: 1rem;">
+                    <span class="minbtn-wrap"><span class="btn"><input type="button" id="pay" value="支 付" class="button" name="base_submit"></span></span>
                 </div>
             </div>
         </div>
@@ -143,73 +124,15 @@
 <script type="text/javascript" src="template/js/jq_min.211.js"></script>
 <script type="application/javascript">
     $(function () {
-        $('#province_id').change(function () {
-            var that = $(this);
-            var data = {"do" : "city", "province_id" : $('#province_id').val()};
-            $.post('/address.php', data, function (rsp) {
-                var str = select_tpl('city', rsp);
-                that.nextAll().remove();
-                $('#address').append(str);
-            }, 'json')
-        });
-
-        $(document).on('change', '#city_id', function () {
-            var that = $(this);
-            var data = {"do" : "area", "city_id" : $(this).val()};
-            $.post('/address.php', data, function (rsp) {
-                var str = select_tpl('area', rsp);
-                that.nextAll().remove();
-                $('#address').append(str);
-            }, 'json')
-        });
-
-        $(document).on('change', '#area_id', function () {
-            var that = $(this);
-            var data = {"do": "building", "area_id": $(this).val()};
-            $.post('/address.php', data, function (rsp) {
-                var str = select_tpl('building', rsp);
-                that.nextAll().remove();
-                $('#address').append(str);
-            }, 'json')
-        });
-
-        $(document).on('change', '#building_id', function () {
-            var that = $(this);
-            var data = {"do": "room", "building_id": $(this).val()};
-            $.post('/address.php', data, function (rsp) {
-                var str = select_tpl('room', rsp);
-                that.nextAll().remove();
-                $('#address').append(str);
-            }, 'json')
-        });
-
-        $('#set_address').click(function () {
-            var room_id = $('#room_id').val();
-            if (room_id == undefined || room_id < 1) {
-                window.alert('您还未选择房间号哦');
-                return false;
+        $('#pay').click(function () {
+            var pay_type = $('input[name=pay_type]').filter(':checked').val();
+            if (pay_type == 4) {
+                window.location.href = '/pay.php?payid=4&id={$id}';
+            } else {
+                alert('开发中...');
             }
-            var url = '/member/index.php?m=property&act=address';
-            var data = {"room_id": room_id};
-            $.post(url, data, function (rsp) {
-                if (rsp == 'ok') {
-                    window.location.href = '/m/index.php?mod=property&status=N';
-                } else {
-                    window.alert('设置失败');
-                }
-            });
         });
-
-        function select_tpl(type, data) {
-            var tpl = '<select name="'+type+'_id" id="'+type+'_id">';
-            tpl += '<option value="">请选择</option>';
-            $.each(data, function (i,v) {
-                tpl += '<option value="'+ v.id+'">'+ v.name+'</option>';
-            });
-            tpl += '</select>';
-            return tpl;
-        }
-    })
+    });
 </script>
 </body>
 </html>

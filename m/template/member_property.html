@@ -156,12 +156,21 @@
             </div>
             <div class="bill_list">
                 {loop $list $item}
+                {if $item['status'] == 'N'}
                 <a class="bill_item" href="index.php?mod=pay&id={$item['id']}">
                     <div class="date">{echo date('Y年m月',strtotime($item['period']))}</div>
                     {php $fee = $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}
                     <div class="desc">本期费用合计 {$fee}，本期未缴费用 {$fee}</div>
                     <div class="pay">缴 费</div>
                 </a>
+                {else}
+                <a class="bill_item" href="javascript:void(0);">
+                    <div class="date">{echo date('Y年m月',strtotime($item['period']))}</div>
+                    {php $fee = $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}
+                    <div class="desc">本期费用合计 {$fee}</div>
+                    <div class="pay">已 缴</div>
+                </a>
+                {/if}
                 {loopelse}
                 <div style="margin:30px 0;text-align:center">无记录</div>
                 {/loop}

@@ -39,5 +39,5 @@ if (!empty($xml)) {//微信支付回调
     }
 
 } else {
-
+    require_once MYMPS_INC . '/payment/alipay_new/notify_url.php';
 }
