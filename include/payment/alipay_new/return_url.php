@@ -8,9 +8,15 @@ require_once MYMPS_DATA.'/config.php';
 require_once MYMPS_DATA.'/config.db.php';
 require_once MYMPS_INC.'/db.class.php';
 require_once MYMPS_INC."/member.class.php";;
-if(!$member_log->chk_in()) write_msg("",$mymps_global['SiteUrl']."/".$mymps_global['cfg_member_logfile']."?url=".urlencode(GetUrl()));
+
+if(!$member_log->chk_in()) {
+    $url = $mymps_global['SiteUrl']."/".$mymps_global['cfg_member_logfile']."?url=".urlencode(GetUrl());
+    if (!pcclient()) {
+        $url = $mymps_global['SiteUrl']."/m/index.php?mod=login&url=".urlencode(GetUrl());
+    }
+    write_msg("", $url);
+}
 require_once("config.php");
-require_once 'pagepay/service/AlipayTradeService.php';
 
 if (!pcclient()) {
     define( "WAP", true );
@@ -18,6 +24,9 @@ if (!pcclient()) {
     define( "IN_MYMPS", true );
     define( "IN_SMT", true );
     require_once MYMPS_ROOT."/m/common.fun.php";
+    require_once dirname ( __FILE__ ).DIRECTORY_SEPARATOR.'wappay/service/AlipayTradeService.php';
+} else {
+    require_once 'pagepay/service/AlipayTradeService.php';
 }
 
 $arr=$_GET;
@@ -45,13 +54,13 @@ if($result) {
         }
     }
 
-}
-if (pcclient()) {
-    write_msg("Ö§¸¶Ê§°Ü",$mymps_global['SiteUrl']."/member/index.php?m=pay&ac=record");
 } else {
-    redirectmsg('Ö§¸¶Ê§°Ü', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+    if (pcclient()) {
+        write_msg("Ö§¸¶Ê§°Ü",$mymps_global['SiteUrl']."/member/index.php?m=pay&ac=record");
+    } else {
+        redirectmsg('Ö§¸¶Ê§°Ü', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+    }
 }
-
 
 is_object($db) && $db->Close();
 $mymps_global = NULL;
