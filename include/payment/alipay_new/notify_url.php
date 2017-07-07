@@ -9,10 +9,15 @@ require_once MYMPS_DATA.'/config.db.php';
 require_once MYMPS_INC.'/db.class.php';
 
 require_once 'config.php';
-require_once 'pagepay/service/AlipayTradeService.php';
+$pay_type = substr($_POST['out_trade_no'], 0, 3);
+if ($pay_type == 'web') {
+    require_once 'web/pagepay/service/AlipayTradeService.php';
+} else {
+    require_once 'wap/pagepay/service/AlipayTradeService.php';
+}
 
 $arr=$_POST;
-$alipaySevice = new AlipayTradeService($config); 
+$alipaySevice = new AlipayTradeService($config);
 $alipaySevice->writeLog(var_export($_POST,true));
 $result = $alipaySevice->check($arr);
 
@@ -38,7 +43,7 @@ if($result) {
         }elseif($trade_status=="WAIT_SELLER_SEND_GOODS"){
             $paybz='充值成功';
         }
-        UpdatePayRecord($out_trade_no,$paybz);
+        updatepayrecord($out_trade_no,$paybz);
     }
 
 	echo "success";	//请不要修改或删除

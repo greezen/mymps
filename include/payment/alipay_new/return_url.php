@@ -24,9 +24,9 @@ if (!pcclient()) {
     define( "IN_MYMPS", true );
     define( "IN_SMT", true );
     require_once MYMPS_ROOT."/m/common.fun.php";
-    require_once dirname ( __FILE__ ).DIRECTORY_SEPARATOR.'wappay/service/AlipayTradeService.php';
+    require_once MYMPS_INC.'/payment/alipay_new/wap/wappay/service/AlipayTradeService.php';
 } else {
-    require_once 'pagepay/service/AlipayTradeService.php';
+    require_once MYMPS_INC.'/payment/alipay_new/web/pagepay/service/AlipayTradeService.php';
 }
 
 $arr=$_GET;

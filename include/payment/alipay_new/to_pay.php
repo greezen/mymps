@@ -1,6 +1,5 @@
 <?php
 require_once dirname(__FILE__).'/config.php';
-
     //商户订单号，商户网站订单系统中唯一订单号，必填
     $out_trade_no = date('YmdHis').uniqid();
 
@@ -16,12 +15,14 @@ require_once dirname(__FILE__).'/config.php';
 	//构造参数
 
 	if (pcclient()) {
-        require_once dirname(__FILE__).'/pagepay/service/AlipayTradeService.php';
-        require_once dirname(__FILE__).'/pagepay/buildermodel/AlipayTradePagePayContentBuilder.php';
+        $out_trade_no = 'web_' . $out_trade_no;
+        require_once dirname(__FILE__).'/web/pagepay/service/AlipayTradeService.php';
+        require_once dirname(__FILE__).'/web/pagepay/buildermodel/AlipayTradePagePayContentBuilder.php';
         $payRequestBuilder = new AlipayTradePagePayContentBuilder();
     } else {
-        require_once dirname(__FILE__).'/wappay/buildermodel/AlipayTradeWapPayContentBuilder.php';
-        require_once dirname(__FILE__).'/wappay/service/AlipayTradeService.php';
+        $out_trade_no = 'wap_' . $out_trade_no;
+        require_once dirname(__FILE__).'/wap/wappay/buildermodel/AlipayTradeWapPayContentBuilder.php';
+        require_once dirname(__FILE__).'/wap/wappay/service/AlipayTradeService.php';
         $payRequestBuilder = new AlipayTradeWapPayContentBuilder();
     }
 	$payRequestBuilder->setBody($body);
