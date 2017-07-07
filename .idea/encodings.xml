@@ -14,9 +14,18 @@
     <file url="file://$PROJECT_DIR$/include/common.fun.php" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/db.class.php" charset="GBK" />
     <file url="file://$PROJECT_DIR$/include/member.class.php" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/include/payment/wxpay/cert" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/AopSdk.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/aop" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/config.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/index.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/lib" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/log.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/lotusphp_runtime" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/notify_url.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/readme.txt" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/return_url.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/include/payment/alipay_new/wap/wappay" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/code" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/include/payment/wxpay/doc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/image" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/index.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/include/payment/wxpay/lib" charset="UTF-8" />
