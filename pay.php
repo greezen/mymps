@@ -87,6 +87,9 @@ if ($act == 'pay' && !empty($payid)) {
     $type = isset($_GET['type'])?trim($_GET['type']):null;
     if ($type == 'ant') {
         require_once MYMPS_INC . '/payment/alipay_new/return_url.php';
+    } elseif($type == 'wx') {
+        require_once MYMPS_ROOT."/m/common.fun.php";
+        redirectmsg('Ö§¸¶³É¹¦', $mymps_global['SiteUrl']."/m/index.php?mod=member");
     }
 } elseif ($act == 'qr') {
     $url = isset($_GET['url'])?urldecode(trim($_GET['url'])):null;

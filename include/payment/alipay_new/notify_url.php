@@ -13,42 +13,43 @@ $pay_type = substr($_POST['out_trade_no'], 0, 3);
 if ($pay_type == 'web') {
     require_once 'web/pagepay/service/AlipayTradeService.php';
 } else {
-    require_once 'wap/pagepay/service/AlipayTradeService.php';
+    require_once 'wap/wappay/service/AlipayTradeService.php';
 }
 
 $arr=$_POST;
+file_put_contents('s.txt', var_export($_POST, true), FILE_APPEND);
 $alipaySevice = new AlipayTradeService($config);
 $alipaySevice->writeLog(var_export($_POST,true));
 $result = $alipaySevice->check($arr);
 
 if($result) {
-	//ÉÌ»§¶©µ¥ºÅ
+	//å•†æˆ·è®¢å•å·
 	$out_trade_no = $_POST['out_trade_no'];
 
-	//Ö§¸¶±¦½»Ò×ºÅ
+	//æ”¯ä»˜å®äº¤æ˜“å·
 	$trade_no = $_POST['trade_no'];
 
-	//½»Ò××´Ì¬
+	//äº¤æ˜“çŠ¶æ€
 	$trade_status = $_POST['trade_status'];
 
 
     if($_POST['trade_status'] == 'TRADE_FINISHED' || $_POST['trade_status'] == 'TRADE_SUCCESS') {
-        include MYMPS_INC.'/pay.fun.php';
         if($trade_status=="TRADE_FINISHED"){
-            $paybz='Ö§¸¶Íê³É';
+            $paybz='æ”¯ä»˜å®Œæˆ';
         } elseif($trade_status=="TRADE_SUCCESS"){
-            $paybz='Ö§¸¶³É¹¦';
+            $paybz='æ”¯ä»˜æˆåŠŸ';
         } elseif($trade_status=="WAIT_BUYER_CONFIRM_GOODS"){
-            $paybz='³äÖµÈ·ÈÏÖĞ';
+            $paybz='å……å€¼ç¡®è®¤ä¸­';
         }elseif($trade_status=="WAIT_SELLER_SEND_GOODS"){
-            $paybz='³äÖµ³É¹¦';
+            $paybz='å……å€¼æˆåŠŸ';
         }
+        $paybz = mb_convert_encoding($paybz, 'gbk');
         updatepayrecord($out_trade_no,$paybz);
     }
 
-	echo "success";	//Çë²»ÒªĞŞ¸Ä»òÉ¾³ı
+	echo "success";	//è¯·ä¸è¦ä¿®æ”¹æˆ–åˆ é™¤
 }else {
-    //ÑéÖ¤Ê§°Ü
+    //éªŒè¯å¤±è´¥
     echo "fail";
 
 }

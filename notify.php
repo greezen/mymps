@@ -1,4 +1,5 @@
 <?php
+file_put_contents('d.txt', var_export($_POST, true), FILE_APPEND);
 define('IN_SMT', true);
 define('IN_MYMPS', true);
 define('CURSCRIPT','notify');
@@ -10,8 +11,8 @@ require_once MYMPS_INC."/db.class.php";
 require_once MYMPS_INC.'/pay.fun.php';
 
 $xml = file_get_contents('php://input');
-
-if (!empty($xml)) {//Î¢ĞÅÖ§¸¶»Øµ÷
+file_put_contents('d.txt', $xml, FILE_APPEND);
+if (empty($_POST)) {//å¾®ä¿¡æ”¯ä»˜å›è°ƒ
     libxml_disable_entity_loader(true);
     $data = json_decode(json_encode(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA)), true);
 
@@ -20,20 +21,20 @@ if (!empty($xml)) {//Î¢ĞÅÖ§¸¶»Øµ÷
     require_once MYMPS_INC . '/payment/wxpay/lib/PayNotifyCallBack.php';
     require_once MYMPS_INC . '/payment/wxpay/code/log.php';
 
-    //³õÊ¼»¯ÈÕÖ¾
+    //åˆå§‹åŒ–æ—¥å¿—
     $logHandler= new CLogFileHandler(MYMPS_DATA."/logs/".date('Y-m-d').'.log');
     $log = Log::Init($logHandler, 15);
     Log::DEBUG($xml);
     if($data['return_code'] == "SUCCESS" && $data['result_code'] == 'SUCCESS'){
-        $paybz='Ö§¸¶Íê³É';
+        $paybz='æ”¯ä»˜å®Œæˆ';
     } else {
-        $paybz='Ö§¸¶Ê§°Ü';
+        $paybz='æ”¯ä»˜å¤±è´¥';
     }
     updatepayrecord($data['out_trade_no'],$paybz);
 
     $recorde = $db->getRow("SELECT * FROM `{$db_mymps}payrecord` WHERE orderid='{$data['out_trade_no']}'");
     $property = $db->getRow("SELECT * FROM `{$db_mymps}property` WHERE id='{$recorde['relation_id']}'");
-    if ($recorde['paybz'] == 'Ö§¸¶Íê³É' && $property['status'] == 'Y') {
+    if ($recorde['paybz'] == 'æ”¯ä»˜å®Œæˆ' && $property['status'] == 'Y') {
         $notify = new PayNotifyCallBack();
         $notify->Handle(false);
     }

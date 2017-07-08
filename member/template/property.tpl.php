@@ -107,9 +107,8 @@
                                                     </tr>
                                                     <?php  endforeach;?>
                                                 </table>
-                                                <?php endif;?>
                                             </div>
-
+                                                <?php endif;?>
                                             <?php if ($rows_num > 0) { ?>
                                                 <div class="clearfix datacontrol">
                                                     <div class="dataaction">

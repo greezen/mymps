@@ -30,6 +30,7 @@ if (!pcclient()) {
 }
 
 $arr=$_GET;
+unset($arr['act'],$arr['type']);
 $alipaySevice = new AlipayTradeService($config); 
 $result = $alipaySevice->check($arr);
 

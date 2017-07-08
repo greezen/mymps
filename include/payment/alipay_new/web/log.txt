@@ -1,0 +1,30 @@
+2017-07-08 17:27:14  {"product_code":"FAST_INSTANT_TRADE_PAY","body":"城盛惠民","subject":"物业缴费","total_amount":"0.04","out_trade_no":"web_201707081727125960a570c179a"}
+2017-07-08 17:27:15  response: '<form id=\'alipaysubmit\' name=\'alipaysubmit\' action=\'https://openapi.alipaydev.com/gateway.do?charset=UTF-8\' method=\'POST\'><input type=\'hidden\' name=\'biz_content\' value=\'{"product_code":"FAST_INSTANT_TRADE_PAY","body":"城盛惠民","subject":"物业缴费","total_amount":"0.04","out_trade_no":"web_201707081727125960a570c179a"}\'/><input type=\'hidden\' name=\'app_id\' value=\'2016080600184608\'/><input type=\'hidden\' name=\'version\' value=\'1.0\'/><input type=\'hidden\' name=\'format\' value=\'json\'/><input type=\'hidden\' name=\'sign_type\' value=\'RSA2\'/><input type=\'hidden\' name=\'method\' value=\'alipay.trade.page.pay\'/><input type=\'hidden\' name=\'timestamp\' value=\'2017-07-08 17:27:14\'/><input type=\'hidden\' name=\'alipay_sdk\' value=\'alipay-sdk-php-20161101\'/><input type=\'hidden\' name=\'notify_url\' value=\'http://www.cs0663.cn/notify.php\'/><input type=\'hidden\' name=\'return_url\' value=\'http://www.cs0663.cn/pay.php?act=return&type=ant\'/><input type=\'hidden\' name=\'charset\' value=\'UTF-8\'/><input type=\'hidden\' name=\'sign\' value=\'i5txYRbYkh3BpUuRRMene6/J1iAkE/9kwcrD8U3/MZSIftmpTBWsEGphssyLTDrEpJ8Fpn9fvKZriXjZY4eXCa7ES4X/LmU/8AdL5CjkiG6x4Pjmsm9yU6Lmqd3WsxjE4u9EWNEZksMHNOZeiYkxHfRm2kbdWyeSBFoRZJAGiLdK6sxT4IiJAWqXrBckthN5nPcBJ4Do4ZlKO6LqaQFtkO5dPtYR2OZm4tEyN++AeuuNy6ugUuYMqoFESzb8rgL3Box/GOuRlARqCjeBDIj12bOsmNcs5KBSg9ODZpqdJVcvxmjg1Cqol3ob/wQdOcPinilIAPNiAjtpXURl/vM+Gg==\'/><input type=\'submit\' value=\'ok\' style=\'display:none;\'\'></form><script>document.forms[\'alipaysubmit\'].submit();</script>'
+2017-07-08 17:30:55  {"product_code":"FAST_INSTANT_TRADE_PAY","body":"城盛惠民","subject":"物业缴费","total_amount":0.04,"out_trade_no":"web_201707081730555960a64f35f09"}
+2017-07-08 17:30:55  response: '<form id=\'alipaysubmit\' name=\'alipaysubmit\' action=\'https://openapi.alipaydev.com/gateway.do?charset=UTF-8\' method=\'POST\'><input type=\'hidden\' name=\'biz_content\' value=\'{"product_code":"FAST_INSTANT_TRADE_PAY","body":"城盛惠民","subject":"物业缴费","total_amount":0.04,"out_trade_no":"web_201707081730555960a64f35f09"}\'/><input type=\'hidden\' name=\'app_id\' value=\'2016080600184608\'/><input type=\'hidden\' name=\'version\' value=\'1.0\'/><input type=\'hidden\' name=\'format\' value=\'json\'/><input type=\'hidden\' name=\'sign_type\' value=\'RSA2\'/><input type=\'hidden\' name=\'method\' value=\'alipay.trade.page.pay\'/><input type=\'hidden\' name=\'timestamp\' value=\'2017-07-08 17:30:55\'/><input type=\'hidden\' name=\'alipay_sdk\' value=\'alipay-sdk-php-20161101\'/><input type=\'hidden\' name=\'notify_url\' value=\'http://www.cs0663.cn/notify.php\'/><input type=\'hidden\' name=\'return_url\' value=\'http://www.cs0663.cn/pay.php?act=return&type=ant\'/><input type=\'hidden\' name=\'charset\' value=\'UTF-8\'/><input type=\'hidden\' name=\'sign\' value=\'yMaTvENOhkpVQ7UCfcH4bhKHg+VA3PHLt485HHKCqn8xJO9EJC1AqlGCYulUf19pnw4OaYPOPInjNBr7g+m5pWqmC7Xj4LpAJT77TfJpS6AgupVCazLvhSP3iBsFzLuFhq/lWm8S/NZHm93Jyxoxtjz0ZqTsEE0jw5cO02BXXTVYdX6yimYCh9UeI+PDQs045xetB56WyhwbOaKGe5fzOSB8AHds7nbof/FIL9jFITaXageptcE9+z6arxSl4tkjy212t+rCzghcd9EILDVc6mlLDVGl9VU6IEOS5EjSnmonCtgfSr8qkFPZRQf7SEOs9KApMRwt9eQc+ZdxnQEp2A==\'/><input type=\'submit\' value=\'ok\' style=\'display:none;\'\'></form><script>document.forms[\'alipaysubmit\'].submit();</script>'
+2017-07-08 17:32:51  array (
+  'gmt_create' => '2017-07-08 17:32:38',
+  'charset' => 'UTF-8',
+  'gmt_payment' => '2017-07-08 17:32:50',
+  'notify_time' => '2017-07-08 17:32:51',
+  'subject' => '物业缴费',
+  'sign' => 'TDl2Uwr6Ma0l6KWShc2qRaIqXEMvrYVEdq8od8+SLdXf8Dl0JsodUJWOQ6NHOuQyQzVbVgclM93PwxsrmOr1htv2oND8ZPB7E/CKoy4Y38lK+I3SbeDprJwAp2s2wvD6EL8SZtZSH4I2pxSbzQLqaU7OwEEXRUf4xEwsEdhSOdDPOzWEcI1xEr7MKcbt9JrcJcm399Cv2gxNscon2RO+yWeX4PYUF1chuiLr/sN6tLewjPHWpmIrI3ghODGQYo7ykc9w8akNrZWvSnyg8WqRcRv+kMg/T4jtM28bduasYs6fe1TKCajAzGLuO7Heazs1SDBFeEizbk1ZrMXoof0xcw==',
+  'buyer_id' => '2088102172351442',
+  'body' => '城盛惠民',
+  'invoice_amount' => '0.04',
+  'version' => '1.0',
+  'notify_id' => 'e942fe48d19961f63b05a722b3dbbaejea',
+  'fund_bill_list' => '[{"amount":"0.04","fundChannel":"ALIPAYACCOUNT"}]',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => 'web_201707081730555960a64f35f09',
+  'total_amount' => '0.04',
+  'trade_status' => 'TRADE_SUCCESS',
+  'trade_no' => '2017070821001004440200161510',
+  'auth_app_id' => '2016080600184608',
+  'receipt_amount' => '0.04',
+  'point_amount' => '0.00',
+  'app_id' => '2016080600184608',
+  'buyer_pay_amount' => '0.04',
+  'sign_type' => 'RSA2',
+  'seller_id' => '2088102170281992',
+)
