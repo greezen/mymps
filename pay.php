@@ -13,8 +13,9 @@ require_once MYMPS_INC."/db.class.php";
 $act = empty($act) ? 'pay' : $act;
 
 if ($act == 'pay' && !empty($payid)) {
-    //TODO:¼ì²âÓÃ»§µÇÂ¼×´Ì¬
-
+    require_once MYMPS_INC."/member.class.php";
+    if(!$log = $member_log->chk_in()) write_msg("","../".$mymps_global['cfg_member_logfile']."?url=".urlencode(GetUrl()));
+    $uid = $db -> getOne("SELECT id FROM `{$db_mymps}member` WHERE userid='{$s_uid}'");
     $pay_config = $db->getRow("SELECT * FROM `{$db_mymps}payapi` WHERE payid={$payid} AND isclose=0");
 
     if (empty($pay_config)) {
@@ -23,9 +24,9 @@ if ($act == 'pay' && !empty($payid)) {
     if ($pay_config['paytype'] == 'wxpay') {
         $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : 0;
         $row = $db->getRow("SELECT * FROM `{$db_mymps}property` WHERE id={$id}");
-        //TODO : ¶©µ¥×´Ì¬ÅÐ¶Ï£¬·ÀÖ¹ÖØ¸´Ö§¸¶
-        if ($row['status'] == 'Y') {
 
+        if ($row['status'] == 'Y') {
+            write_msg('ÇëÎðÖØ¸´Ö§¸¶', '?m=property&status=Y');
         }
         $money = floatval($row['manage_fee']+$row['water_fee']+$row['electric_fee']+$row['other_fee']);
         if (!empty($id) && !empty($money)) {
@@ -66,9 +67,8 @@ if ($act == 'pay' && !empty($payid)) {
         if(!empty($id)){
             $payr = $pay_config;
             $row = $db->getRow("SELECT * FROM {$db_mymps}property WHERE id={$id}");
-            //TODO : ¶©µ¥×´Ì¬ÅÐ¶Ï£¬·ÀÖ¹ÖØ¸´Ö§¸¶
             if ($row['status'] == 'Y') {
-
+                write_msg('ÇëÎðÖØ¸´Ö§¸¶', '?m=property&status=Y');
             }
             $money = floatval($row['manage_fee']+$row['water_fee']+$row['electric_fee']+$row['other_fee']);
             $relation_id = $id;

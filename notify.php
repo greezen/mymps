@@ -30,6 +30,7 @@ if (empty($_POST)) {//微信支付回调
     } else {
         $paybz='支付失败';
     }
+    $paybz = mb_convert_encoding($paybz, 'gbk');
     updatepayrecord($data['out_trade_no'],$paybz);
 
     $recorde = $db->getRow("SELECT * FROM `{$db_mymps}payrecord` WHERE orderid='{$data['out_trade_no']}'");

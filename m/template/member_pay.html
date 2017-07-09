@@ -129,7 +129,13 @@
             if (pay_type == 4) {
                 window.location.href = '/pay.php?payid=4&id={$id}';
             } else {
-                alert('开发中...');
+                //alert('开发中...');
+				var ua = navigator.userAgent.toLowerCase();	
+				if (/iphone|ipad|ipod/.test(ua)) {
+					document.location="openWeixinPay:{$total}"
+				}else{
+					applocal.openWeixinPay("{$total}");
+				}
             }
         });
     });
