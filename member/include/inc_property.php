@@ -21,7 +21,9 @@ if($act == 'address'){
 		echo 'ok';exit;
 	}
 	echo 'error2';exit;
-}  else {
+} elseif ($act == 'pay') {
+    include mymps_tpl('pay');
+}else {
 
 	require_once MYMPS_DATA.'/info.level.inc.php';
 	runcron();

@@ -99,7 +99,7 @@
                                                         <td><?= get_address($item['room_id'], 'room') ?></td>
                                                         <td><?= $total_fee ?></td>
                                                         <?php if ($status == 'N') :?>
-                                                            <td><a href="#">立即缴费</a></td>
+                                                            <td><a href="?m=property&act=pay&id=<?=$item['id']?>">立即缴费</a></td>
                                                         <?php else : ?>
                                                             <td><?=date('Y-m-d H:i:s',$item['pay_time'])?></td>
                                                             <td><?=Constants::map_pay_type[$item['pay_type']]?></td>

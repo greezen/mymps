@@ -58,7 +58,7 @@ if ($act == 'pay' && !empty($payid)) {
                 'no' => $out_trade_no,
                 'url' => 'http://'.$_SERVER['HTTP_HOST'].'/pay.php?act=qr&url='.$url,
             );
-            echo json_encode($data);
+            echo json_encode($data);exit;
         }
     } elseif ($pay_config['paytype'] == 'alipay_new') {
         $id = isset($_REQUEST['id']) ? intval($_REQUEST['id']) : '';
