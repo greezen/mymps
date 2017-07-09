@@ -98,6 +98,29 @@ if ($act == 'pay' && !empty($payid)) {
         QRcode::png($url);
         exit();
     }
+} elseif ($act == 'order') {
+    require_once MYMPS_INC."/member.class.php";
+    $log = $member_log->chk_in();
+    $uid = $db -> getOne("SELECT id FROM `{$db_mymps}member` WHERE userid='{$s_uid}'");
+    if(!$log) {
+        echo 'error';exit;
+    }
+
+    $id = isset($_GET['id'])?intval($_GET['id']):0;
+    if (empty($id)) {
+        echo 'error';exit;
+    }
+
+    include_once MYMPS_INC.'/pay.fun.php';
+    $out_trade_no = 'wap_' . date('YmdHis') . uniqid();
+    $row = $db->getRow("SELECT * FROM ".$db_mymps."property WHERE id={$id}");
+    if (empty($row)) {
+        echo 'error';exit;
+    }
+    $money = $row['manage_fee'] + $row['water_fee'] + $row['electric_fee'] + $row['other_fee'];
+    topaymoney($money,$out_trade_no,$uid,$s_uid,'wxpay', $id);
+
+    echo $out_trade_no;exit;
 }
 
 is_object($db) && $db->Close();
