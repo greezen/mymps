@@ -130,12 +130,17 @@
                 window.location.href = '/pay.php?payid=4&id={$id}';
             } else {
                 //alert('¿ª·¢ÖÐ...');
-				var ua = navigator.userAgent.toLowerCase();	
-				if (/iphone|ipad|ipod/.test(ua)) {
-					document.location="openWeixinPay:{$total}"
-				}else{
-					applocal.openWeixinPay("{$total}");
-				}
+                $.get('/pay.php?act=order&id={$id}',function (rsp) {
+                    if (rsp != 'error') {
+                        var ua = navigator.userAgent.toLowerCase();
+                        if (/iphone|ipad|ipod/.test(ua)) {
+                            document.location="openWeixinPay:{$total}"
+                        }else{
+                            applocal.openWeixinPay("{$total}");
+                        }
+                    }
+
+                });
             }
         });
     });
