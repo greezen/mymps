@@ -88,6 +88,8 @@ if ($act == 'pay' && !empty($payid)) {
     if ($type == 'ant') {
         require_once MYMPS_INC . '/payment/alipay_new/return_url.php';
     } elseif($type == 'wx') {
+        file_put_contents('t.txt', $_GET, FILE_APPEND);
+        file_put_contents('t.txt', $_POST, FILE_APPEND);
         require_once MYMPS_ROOT."/m/common.fun.php";
         redirectmsg('Ö§¸¶³É¹¦', $mymps_global['SiteUrl']."/m/index.php?mod=member");
     }

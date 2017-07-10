@@ -132,11 +132,13 @@
                 //alert('¿ª·¢ÖÐ...');
                 $.get('/pay.php?act=order&id={$id}',function (rsp) {
                     if (rsp != 'error') {
+						var money = {$total} * 100;
                         var ua = navigator.userAgent.toLowerCase();
                         if (/iphone|ipad|ipod/.test(ua)) {
-                            document.location="openWeixinPay:{$total}"
+							
+                            document.location="openWeixinPay:"+money+":"+rsp
                         }else{
-                            applocal.openWeixinPay("{$total}");
+                            applocal.openWeixinPay(""+money,rsp);
                         }
                     }
 
