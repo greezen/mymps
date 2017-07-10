@@ -134,9 +134,6 @@ if ($act == 'pay' && !empty($payid)) {
     topaymoney($money,$out_trade_no,$uid,$s_uid,'wxpay', $id);
 
     echo $out_trade_no;exit;
-} elseif ($act == 'test') {
-    $row = $db -> getRow("SELECT * FROM ".$db_mymps."property limit 1");
-    var_dump($row);
 }
 
 is_object($db) && $db->Close();
