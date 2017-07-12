@@ -6,7 +6,7 @@ function write_money_use($info='',$cost=''){
 	else return false;
 }
 
-function member_reg($userid,$userpwd,$email='',$safequestion='',$safeanswer='',$openid='',$cname='',$status=''){
+function member_reg($userid,$userpwd,$email='',$safequestion='',$safeanswer='',$openid='',$cname='',$status='',$mobile=''){
 
 	global $mymps_global,$db,$db_mymps,$member_log,$timestamp;
 	
@@ -21,7 +21,7 @@ function member_reg($userid,$userpwd,$email='',$safequestion='',$safeanswer='',$
 	$face 		= "";
 	$status 	= ($status == 1 || $mymps_global['cfg_member_verify'] == 1) ? 1 : 0;
 	
-	$sql 		= "INSERT INTO `{$db_mymps}member`(id,userid,userpwd,logo,prelogo,email,safequestion,safeanswer,levelid,joinip,loginip,jointime,logintime,money_own,openid,cname,status) VALUES ('','$userid','$userpwd','$face','$face','$email','$safequestion','$safeanswer','1','$ip','$ip','$timestamp','$timestamp','$money_own','$openid','$cname','$status')";
+	$sql 		= "INSERT INTO `{$db_mymps}member`(id,userid,userpwd,logo,prelogo,email,safequestion,safeanswer,levelid,joinip,loginip,jointime,logintime,money_own,openid,cname,status,mobile) VALUES ('','$userid','$userpwd','$face','$face','$email','$safequestion','$safeanswer','1','$ip','$ip','$timestamp','$timestamp','$money_own','$openid','$cname','$status','$mobile')";
 	
 	$db -> query($sql);
 }

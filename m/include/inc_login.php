@@ -31,7 +31,7 @@ else if ( $action == "login" )
     {
         redirectmsg( "用户帐号或密码不能为空", "index.php?mod=login&cityid=".$cityid );
     }
-    $s_uid = $db->getone( "SELECT userid FROM `".$db_mymps."member` WHERE userid='{$userid}' AND userpwd='".md5( $userpwd )."'" );
+    $s_uid = $db->getone( "SELECT userid FROM `".$db_mymps."member` WHERE (userid='{$userid}' OR mobile='{$userid}') AND userpwd='".md5( $userpwd )."'" );
     if ( PASSPORT_TYPE == "ucenter" )
     {
         require_once( MYMPS_ROOT."/member/include/common.func.php" );

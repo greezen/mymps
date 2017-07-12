@@ -12,6 +12,7 @@ if ( $action == "register" )
 {
     include( MYMPS_ROOT."/member/include/common.func.php" );
     $userid = isset( $_POST['userid'] ) ? mhtmlspecialchars( $_POST['userid'] ) : "";
+    $mobile = isset( $_POST['mobile'] ) ? mhtmlspecialchars( $_POST['mobile'] ) : "";
     $userpwd = isset( $_POST['userpwd'] ) ? mhtmlspecialchars( $_POST['userpwd'] ) : "";
     $reuserpwd = isset( $_POST['reuserpwd'] ) ? mhtmlspecialchars( $_POST['reuserpwd'] ) : "";
     $email = isset( $_POST['email'] ) ? mhtmlspecialchars( $_POST['email'] ) : "";
@@ -84,7 +85,7 @@ if ( $action == "register" )
             }
         }
     }
-    $rs = checkuserid( $userid, "手机号" );
+    $rs = CheckUserID( $userid, "用户名" );
     if ( $rs != "ok" )
     {
         redirectmsg( $rs, "index.php?mod=register" );
@@ -93,14 +94,11 @@ if ( $action == "register" )
     {
         redirectmsg( "您两次输入的密码不相同，请返回重新输入", "index.php?mod=register" );
     }
-    if ( 20 < strlen( $userid ) )
+    if ( 20 < strlen( $userid ) ||  strlen( $userid ) < 3)
     {
-       // redirectmsg( "您的用户名多于20个字符，不允许注册!", "index.php?mod=register" );
+        redirectmsg( "用户名必须3-20个字符!", "index.php?mod=register" );
     }
-    if ( 11 != strlen( $userid ) )
-    {
-        redirectmsg( "手机号码不正确!", "index.php?mod=register" );
-    }
+
     if ( strlen( $userpwd ) < 5 )
     {
         redirectmsg( "你的用户名或密码过短(不能少于3个字符)，不允许注册!", "index.php?mod=register" );
@@ -113,11 +111,11 @@ if ( $action == "register" )
     {
         redirectmsg( "你指定的用户名 ".$userid." 已存在，请使用别的用户名!", "index.php?mod=register" );
     }
-    $p_code = mgetcookie('p_code');
+    $p_code = mgetcookie('p_code'.$mobile);
     if (empty($code) || $code != intval($p_code) - 100) {
         redirectmsg( "验证码不正确", "index.php?mod=register" );
     }
-    member_reg( $userid, md5( $userpwd ), '', $safequestion, $safeanswer );
+    member_reg( $userid, md5( $userpwd ), '', $safequestion, $safeanswer, '', '', '', $mobile );
     $member_log->in( $userid, md5( $userpwd ), "on", "noredirect" );
     redirectmsg( "恭喜! 您已经注册成功", "index.php?mod=member&cityid=".$cityid );
 } elseif ($action == 'code') {
@@ -127,7 +125,7 @@ if ( $action == "register" )
         if (empty($phone)) {
             exit('error');
         }
-        if ($db->getone( "SELECT id FROM `".$db_mymps."member` WHERE userid = '{$phone}' " ) ) {
+        if ($db->getone( "SELECT id FROM `".$db_mymps."member` WHERE userid = '{$phone}' OR mobile='{$phone}'" ) ) {
             exit('has');
         }
         require_once  MYMPS_ROOT.'/include/Sms.php';
@@ -137,7 +135,7 @@ if ( $action == "register" )
         $msg = sprintf('您的验证码是:【%s】。请不要把验证码泄漏给其它人。', $code);
         $r=Sms::send($phone, $msg);
         if ($r){
-            msetcookie('p_code', $code + 100);
+            msetcookie('p_code'.$phone, $code + 100);
             exit('ok');
         }
         exit('error');
