@@ -133,7 +133,8 @@ if ( $action == "register" )
         require_once  MYMPS_ROOT.'/include/Sms.php';
         $code = mt_rand(100000, 999999);
         //$msg = sprintf('【城盛惠民】『【%s】』，为您的手机验证码。如非本人操作，请忽略。', mt_rand(100000, 999999));
-        $msg = sprintf('您的验证码是:【%s】。请不要把验证码泄漏给其它人。下次登录访问官网http://1.cndnss.net', $code);
+        //$msg = sprintf('您的验证码是:【%s】。请不要把验证码泄漏给其它人。下次登录访问官网http://1.cndnss.net', $code);
+        $msg = sprintf('您的验证码是:【%s】。请不要把验证码泄漏给其它人。', $code);
         $r=Sms::send($phone, $msg);
         if ($r){
             msetcookie('p_code', $code + 100);
