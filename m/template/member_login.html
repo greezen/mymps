@@ -61,7 +61,11 @@
 			  使用合作网站账号登录：
 			  <div class="login_hezuo_mian">
 				<ul>
-					<li class="bor" style=" margin:0 auto; float:none; border:none"><a href="{$mymps_global[SiteUrl]}/include/qqlogin/qq_login.php?mod=m"><i class="hzico-qq"></i>使用QQ账号登录</a></li>
+					<!--<li class="bor" style=" margin:0 auto; float:none; border:none"><a href="{$mymps_global[SiteUrl]}/include/qqlogin/qq_login.php?mod=m"><i class="hzico-qq"></i>使用QQ账号登录</a></li>-->
+					<li class="bor" style=" margin:0 auto; float:none; border:none ;vertical-align:middle;text-align::middle;">
+					<a href="javascript:doWeixinLogin();">
+					
+					<img src="/m/template/images/weixin.png" style="width:20px;height:20px;vertical-align:middle"/>使用微信登录</a></li>
 				</ul>
 			  </div>
 		  </div>
@@ -71,4 +75,16 @@
 	{template footer2}
 </div>
 </body>
+<script type="text/javascript">
+function doWeixinLogin(){
+//alert("99999999999");
+	var ua = navigator.userAgent.toLowerCase();	
+	if (/iphone|ipad|ipod/.test(ua)) {
+		//openWeixinLogin();
+		document.location="openWeixinLogin:alert:hello word!"
+	}else{
+		applocal.openWeixinLogin();
+	}
+}
+</script>
 </html>

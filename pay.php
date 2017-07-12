@@ -89,7 +89,20 @@ if ($act == 'pay' && !empty($payid)) {
         require_once MYMPS_INC . '/payment/alipay_new/return_url.php';
     } elseif($type == 'wx') {
         require_once MYMPS_ROOT."/m/common.fun.php";
-        redirectmsg('支付成功', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+        $out_trade_no = isset($_GET['out_trade_no'])?trim($_GET['out_trade_no']):null;
+        if (empty($out_trade_no)) {
+            redirectmsg('支付失败', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+        }
+        $id = $db->getOne("SELECT relation_id FROM {$db_mymps}payrecord WHERE orderid='{$out_trade_no}'");
+        if (empty($id)) {
+            redirectmsg('支付失败', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+        }
+        $row = $db->getRow("SELECT * FROM {$db_mymps}property WHERE id={$id}");
+        if ($row['status'] == 'Y') {
+            redirectmsg('支付成功', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+        } else {
+            redirectmsg('支付失败', $mymps_global['SiteUrl']."/m/index.php?mod=member");
+        }
     }
 } elseif ($act == 'qr') {
     $url = isset($_GET['url'])?urldecode(trim($_GET['url'])):null;

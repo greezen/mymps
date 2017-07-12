@@ -30,10 +30,17 @@
                             <span id="loginTip" class="passport-login-tip"></span>
                         </li>
 
+                        <li id="loginPasswordLi" class="passport-login-input-li">
+                            <span class="passport-login-input-span">用户名</span>
+                            <input type="text" name="userid" id="userid" size="20" maxlength="20"
+                                   class="passport-login-input passport-login-input-password"
+                                   placeholder="请输入用户名（3-20位）">
+                        </li>
+
                         <li id="loginUserNameLi" class="passport-login-input-li"
                             style="width: 60%;display: inline-block">
                             <span class="passport-login-input-span">手机号</span>
-                            <input type="text" name="userid" id="regname" size="11" maxlength="11" style="width: auto"
+                            <input type="text" name="mobile" id="mobile" size="11" maxlength="11" style="width: auto"
                                    class="passport-login-input passport-login-input-username" placeholder="请输入手机号">
                         </li>
                         <span><input style="height: 36px;padding: 0 10px;vertical-align: bottom;width: auto;line-height: 29px;margin-bottom: 8px;" class="btn_log" type="button" id="send"
@@ -104,7 +111,7 @@
             var t = null;
             $('#send').click(function () {
                 var that = $(this);
-                var phone = $('#regname').val();
+                var phone = $('#mobile').val();
                 if (phone.length != 11) {
                     alert('手机号码不正确');
                     return false;
