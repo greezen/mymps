@@ -45,7 +45,7 @@ if(!submit_check(CURSCRIPT.'_submit')) {
 		$where .= " AND ifadd = 0 AND paybz = 'µÈ´ýÖ§¸¶'";
 	}
 	
-	$sql	  = "SELECT * FROM `{$db_mymps}payrecord` $where ORDER BY posttime DESC";
+	$sql	  = "SELECT p.*,m.openid,m.nickname,m.mobile FROM `{$db_mymps}payrecord` p LEFT JOIN `{$db_mymps}member` m ON p.uid=m.id $where ORDER BY p.posttime DESC";
 	$rows_num = mymps_count('payrecord',$where);
 	$param	  = setParam(array('starttime','endtime','keywords','action','status'));
 	$list	  = page1($sql);

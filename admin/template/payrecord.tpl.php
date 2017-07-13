@@ -41,6 +41,7 @@ $(function(){
     <td><input class="checkbox" name="checkall" type="checkbox" id="checkall" onClick="CheckAll(this.form)"/> 删?</td>
       <td>订单号</td>
       <td>汇款者</td>
+      <td>手机号</td>
       <td>金额</td>
       <td>汇款时间</td>
       <td>汇款IP</td>
@@ -53,8 +54,21 @@ $(function(){
 	?>
     <tr bgcolor="white">
         <td><input type='checkbox' name='delids[]' value='<?=$list[id]?>' class='checkbox' id="<?=$list[id]?>"></td>
-        <td><?=$list[orderid]?></td>
-        <td><a href="javascript:void(0);" onclick="setbg('<?=MPS_SOFTNAME?>会员中心',400,110,'../box.php?part=member&userid=<?=$list[userid]?>&admindir=<?=$admindir?>')"><?=$list[userid]?></a></td>
+        <td><?=$list['orderid']?></td>
+        <td>
+            <a href="javascript:void(0);" onclick="setbg('<?=MPS_SOFTNAME?>会员中心',400,110,'../box.php?part=member&userid=<?=$list['userid']?>&admindir=<?=$admindir?>')">
+                <?php
+                    if (empty($list['openid'])) {
+                        echo $list['userid'];
+                    } else {
+                        echo $list['nickname'];
+                    }
+                ?>
+            </a>
+        </td>
+        <td>
+            <?=$list['mobile']?>
+        </td>
         <td><em><font color="red"><?=$list[money]?></font></em></td>
         <td><?=GetTime($list[posttime])?></td>
         <td align="left"><?=$list[payip]?></td>

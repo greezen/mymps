@@ -40,8 +40,25 @@ if($admin_id != 1 && $member[userid] == 'admin'){}else{
     <tr align="center" bgcolor="white">
       <td><input type='checkbox' name='id[]' value='<?=$member[id]?>' class='checkbox' id="<?=$member[id]?>"></td>
       <td><?=$member[id]?></td>
-	  <td><?php if($member['if_corp'] == 1 && $member['ifindex'] == 2){ echo '[<a href="?ifindex=2&moreoptions=yes&if_corp=1&cityid='.$cityid.'#lists" style="color:red" title="首页推荐">首页</a>] ';}?><?php if($member['if_corp'] == 1 && $member['iflist'] == 2){ echo '[<a href="?iflist=2&moreoptions=yes&&if_corp=1&cityid='.$cityid.'#lists" style="color:#ff6600" title="列表推荐">列表</a>] ';}?><a href="javascript:void(0);" onclick="
-setbg('<?=MPS_SOFTNAME?>会员中心',400,110,'../box.php?part=member&userid=<?=$member[userid]?>&admindir=<?=$admindir?>')"><?=$member[userid]?> <?php echo $member['if_corp'] ? $member['tname'] : ''; ?></a> <img align="absmiddle" title="信用值:<?=$member['credit']?>" alt="信用值:<?=$member['credit']?>" src="../images/credit/<?=$member[credits]?>.gif"> <?php if($member['per_certify'] == 1){?><img src="../images/person1.gif" align="absmiddle" title="已通过身份证认证"/><?php }?> <?php if($member['com_certify'] == 1){?><img src="../images/company1.gif" align="absmiddle" title="已通过营业执照证认证"/><?php }?></td>
+	  <td><?php
+            if($member['if_corp'] == 1 && $member['ifindex'] == 2){
+              echo '[<a href="?ifindex=2&moreoptions=yes&if_corp=1&cityid='.$cityid.'#lists" style="color:red" title="首页推荐">首页</a>] ';
+            }
+            if($member['if_corp'] == 1 && $member['iflist'] == 2){
+              echo '[<a href="?iflist=2&moreoptions=yes&&if_corp=1&cityid='.$cityid.'#lists" style="color:#ff6600" title="列表推荐">列表</a>] ';
+            }
+	      ?>
+        <a href="javascript:void(0);" onclick="setbg('<?=MPS_SOFTNAME?>会员中心',400,110,'../box.php?part=member&userid=<?=$member[userid]?>&admindir=<?=$admindir?>')">
+          <?php
+            if (empty($member['openid'])) {
+              echo $member['userid'];
+            } else {
+              echo $member['nickname'];
+            }
+          ?>
+          <?php echo $member['if_corp'] ? $member['tname'] : ''; ?>
+        </a>
+        <img align="absmiddle" title="信用值:<?=$member['credit']?>" alt="信用值:<?=$member['credit']?>" src="../images/credit/<?=$member[credits]?>.gif"> <?php if($member['per_certify'] == 1){?><img src="../images/person1.gif" align="absmiddle" title="已通过身份证认证"/><?php }?> <?php if($member['com_certify'] == 1){?><img src="../images/company1.gif" align="absmiddle" title="已通过营业执照证认证"/><?php }?></td>
 	  <td><img src="../member/images/mymps_icon_incomes.gif" align="absmiddle"> <?=$member[money_own]?></td>
       <td><?=$member[levelname]?><?php if(!empty($member['levelup_time'])){ echo '<br /><em style=color:red>截至'.date("Y-m-d",$member['levelup_time']).'</em>';}?></td>
       <td><a href="

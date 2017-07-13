@@ -167,7 +167,13 @@
                 <a class="bill_item" href="javascript:void(0);">
                     <div class="date">{echo date('Y年m月',strtotime($item['period']))}</div>
                     {php $fee = $item['manage_fee']+$item['water_fee']+$item['electric_fee']+$item['other_fee']}
-                    <div class="desc">本期费用合计 {$fee}</div>
+                    <div class="desc">
+                        <span>管理费：{$item['manage_fee']}</span>
+                        <span>水费：{$item['water_fee']}</span>
+                        <span>电费：{$item['electric_fee']}</span>
+                        <span>其它费用：{$item['other_fee']}</span>
+                        <span> 合计 {$fee}</span>
+                    </div>
                     <div class="pay">已 缴</div>
                 </a>
                 {/if}
