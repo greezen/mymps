@@ -42,7 +42,19 @@ if (!submit_check(CURSCRIPT . "_submit")) {
 
     } else if (isset($act)) {
         $part = 'search';
-        $sql = "SELECT p.*,m.userid,m.openid,m.nickname,m.mobile FROM " . $db_mymps . "property p LEFT JOIN ".$db_mymps."member m ON p.uid=m.id WHERE p.status='Y' ORDER BY time_created DESC";
+        $sql = "SELECT
+                    p.*, m.userid,
+                    m.openid,
+                    m.nickname,
+                    m.mobile
+                FROM
+                    my_property P
+                LEFT JOIN my_payrecord r ON r.relation_id = p.id
+                LEFT JOIN my_member m ON m.id = r.uid
+                WHERE
+                    p.`status` = 'Y'
+                ORDER BY
+                    p.time_created DESC";
         $query = $db->query($sql);
         $rows_num = $db->num_rows($query);
         $per_page = 20;
