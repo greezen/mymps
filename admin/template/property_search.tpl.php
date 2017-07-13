@@ -17,6 +17,7 @@
         <td>地址</td>
         <td>交费额</td>
         <td>交费人</td>
+        <td>手机</td>
         <td>支付方式</td>
     </tr>
 <?php foreach($list as $item) :?>
@@ -24,7 +25,8 @@
       <td><?=$item['period']?></td>
       <td><?=get_address($item['room_id'], 'room')?></td>
       <td><?=$item['manage_fee']+$item['electric_fee']+$item['water_fee']+$item['other_fee']?></td>
-      <td><?=$item['userid']?></td>
+      <td><?=empty($item['openid'])?$item['userid']:$item['nickname'];?></td>
+      <td><?=$item['mobile']?></td>
       <td><?=$map_pay_type[$item['pay_type']]?></td>
 </tr>
 <?php endforeach;?>
