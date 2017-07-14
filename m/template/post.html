@@ -9,8 +9,10 @@
     <link rel="stylesheet" type="text/css" href="template/js/mobileSelect/css/mobileSelect.css">
     <script src="template/js/mobileSelect/js/mobileSelect.js" type="text/javascript"></script>
     <script src="template/js/jq_min.211.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/template/default/js/layer/mobile/layer.js"></script>
 <script language="javascript">
 function submitForm(){
+
 	if (document.form1.title.value=="") {
 		alert('请填写信息标题!');
 		document.form1.title.focus();
@@ -43,6 +45,12 @@ function submitForm(){
 		return false;
 	}
 	<!--{/if}-->
+
+    layer.open({
+        content: '发布中...',
+        type : 2,
+        shade: 'background-color: rgba(98,98,98,.8)'
+    });
 	return true;
 }
 </script>
@@ -52,6 +60,9 @@ function submitForm(){
 <style>
     select{
         display: none;
+    }
+    .layui-m-layercont p{
+        color: black;
     }
 </style>
 	{template header_search}
@@ -137,7 +148,8 @@ function submitForm(){
         <div class="post"><input type="submit" name="button" id="button" value="点击发布" /></div>
       </form>
 	{template footer}
-    
+
+<link rel="stylesheet" href="/template/default/js/layer/skin/default/layer.css">
 <script>
     if (navigator.geolocation)
     {
@@ -169,7 +181,12 @@ function submitForm(){
             var txt = option[0].value;
             var name = $(v).attr('name');
             option.splice(0,1);
-            $('<div id='+id+'>'+txt+'</div><input type="hidden" id="'+tid+'" name="'+name+'">').appendTo($(v).parent());
+
+            var default_val = '';
+            if (name == 'catid') {
+                //default_val =option[0].id;
+            }
+            $('<div id='+id+'>'+txt+'</div><input type="hidden" id="'+tid+'" name="'+name+'" value="'+default_val+'">').appendTo($(v).parent());
             $(v).remove();
             new MobileSelect({
                 trigger: '#'+id,

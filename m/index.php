@@ -116,7 +116,7 @@ if ( $cityid )
         redirectmsg( "当前分站不存在，请前往选择您的分站！", "index.php?mod=changecity" );
     }
     $city = get_city_caches( $cityid );
-    msetcookie( "cityid", $cityid );
+    msetcookie( "cityid", $cityid , 8640000);
 }
 $s_uid = $iflogin = NULL;
 include( MYMPS_INC."/member.class.php" );

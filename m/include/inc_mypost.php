@@ -9,7 +9,7 @@ if ( !( $row = $db->getrow( "SELECT * FROM `".$db_mymps."member` WHERE userid = 
 {
     errormsg( "您所访问的用户不存在或者未通过审核！" );
 }
-$where = " WHERE userid = '".$userid."' AND (info_level = 1 OR info_level = 2)";
+$where = " WHERE userid = '".$userid."'";
 $perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
 $param = setparams( array( "mod", "userid" ) );
 $rows_num = $db->getone( "SELECT COUNT(id) FROM `".$db_mymps."information` {$where}" );

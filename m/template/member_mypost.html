@@ -31,7 +31,11 @@
 					<!--<span class="del"><i class="ico_del"></i>…æ≥˝</span>-->
 				</div>
 				<div class="attr">
+					{if $mymps['info_level'] == '0'}
+					<span class="status">…Û∫À÷–</span>
+					{else}
 					<span class="status">œ‘ æ÷–</span>
+					{/if}
 					<span>{echo get_format_time($mymps[begintime])}</span>
 				</div>
 				</a>

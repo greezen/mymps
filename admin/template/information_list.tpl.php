@@ -63,6 +63,7 @@
 	<td width="50">小顶</td>
     <td width="50">首顶</td>
 	<td width="50">发布人</td>
+	<td width="50">联系电话</td>
 	<td width="60">所在地</td>
 	<td width="50">时间</td>
     <td width="30">管理</td>
@@ -79,8 +80,8 @@
     <td><div class="signin_button"  onmouseover="wsug(event, '<?php echo $row['upgrade_time']; ?>')" onmouseout="wsug(event, 0)"><?=$row[upgrade_type]?></div></td>
     <td><div class="signin_button"  onmouseover="wsug(event, '<?php echo $row['upgrade_time_list']; ?>')" onmouseout="wsug(event, 0)"><?=$row[upgrade_type_list]?></div></td>
     <td><div class="signin_button"  onmouseover="wsug(event, '<?php echo $row['upgrade_time_index']; ?>')" onmouseout="wsug(event, 0)"><?=$row[upgrade_type_index]?></div></td>
-	<td><?=$row[contact_who]?>
-    </td>
+	<td><?=$row['contact_who']?></td>
+	<td><?=$row['tel']?></td>
 	<td><div class="signin_button"  onmouseover="wsug(event, '<?php echo $row['ip2area'] == 'wap' ? '手机端' : $row['ip2area']; ?>')" onmouseout="wsug(event, 0)"><i style="color:#585858"><?php echo $row['ip2area'] == 'wap' ? '手机端' : $row['ip']; ?></i></div>
     </td>
 	<td><div class="signin_button"  onmouseover="wsug(event, '发布时间：<?php echo GetTime($row['begintime']);?>')" onmouseout="wsug(event, 0)"><font style="color:#585858"><?php echo date("m-d",$row['begintime']);?></font></div></td>

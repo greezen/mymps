@@ -15,10 +15,10 @@ function check_upimage_wap( $file = "filename" )
     }
     if ( !preg_match( "/^image\\//i", $_FILES[$file]['type'] ) )
     {
-        redirectmsg( "很抱歉，系统无法识别您上传的文件的格式，请换一张图片上传！", "javascript:history.back()" );
+        //redirectmsg( "很抱歉，系统无法识别您上传的文件的格式，请换一张图片上传！", "javascript:history.back()" );
     }
     if ( !getimagesize($_FILES[$file]['tmp_name'])) {
-        write_msg( "很抱歉，你上传的不是一张图片！" );
+        redirectmsg( "很抱歉，你上传的不是一张图片！", "javascript:history.back()" );
     }
     return true;
 }
@@ -177,7 +177,7 @@ if ( $action == "post" )
     }
     if ( $mymps_global['cfg_if_post_othercity'] == 0 && $cityid && is_array( $cityarr = get_ip2city( $ip ) ) && $cityid != $cityarr[cityid] )
     {
-        errormsg( "您的IP不属于该分站，请不要在该分站下发布信息^_^" );
+        //errormsg( "您的IP不属于该分站，请不要在该分站下发布信息^_^" );
     }
     $post_time = 1;
     if ( !empty( $post_time ) )

@@ -377,7 +377,17 @@ switch ( $part )
 			$arr['ip'] = $row['ip'];
 			$arr['certify'] = $row['certify'];
 			$arr['ip2area'] = $row['ip2area'];
-			$arr['contact_who'] = $row['ismember'] == 1 ? "<a href=\"javascript:void(0);\" onclick=\"setbg('Mymps会员中心',400,110,'../box.php?part=member&userid=".$row['userid']."&admindir={$admindir}')\">".$row[userid]."</a>" : $row['contact_who'];
+			if ($row['ismember'] == 1) {
+				$member = $db->getRow("SELECT * FROM ".$db_mymps."member WHERE userid='{$row['userid']}'");
+				if (!empty($member['openid'])) {
+					$contact_who = "<a href=\"javascript:void(0);\" onclick=\"setbg('Mymps会员中心',400,110,'../box.php?part=member&userid=".$row['userid']."&admindir={$admindir}')\">".$member['nickname']."</a>";;
+				} else {
+					$contact_who = "<a href=\"javascript:void(0);\" onclick=\"setbg('Mymps会员中心',400,110,'../box.php?part=member&userid=".$row['userid']."&admindir={$admindir}')\">".$row['userid']."</a>";
+				}
+			} else {
+				$contact_who = $row['contact_who'];
+			}
+			$arr['contact_who'] = $contact_who;
 			$arr['title'] = $row['title'];
 			$arr['catid'] = $row['catid'];
 			$arr['catname'] = $row['catname'];
@@ -388,6 +398,7 @@ switch ( $part )
 			$arr['begintime'] = $row['begintime'];
 			$arr['ip'] = $row['ip'];
 			$arr['info_level'] = $information_level[$row[info_level]];
+			$arr['tel'] = $row['tel'];
 			if ( $timestamp <= $row['upgrade_time'] )
 			{
 				if ( 1 < $row['upgrade_type'] )
