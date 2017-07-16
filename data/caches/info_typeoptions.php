@@ -341,12 +341,13 @@ $data = array (
   'car_year' => 
   array (
     'title' => '上牌年份',
-    'rules' => 'a:1:{s:7:"choices";s:62:"1=2011年以前
+    'rules' => 'a:1:{s:7:"choices";s:72:"1=2011年以前
 2=2011年
 3=2012年
 4=2013年
 5=2014年
-6=2015年";}',
+6=2015年
+7=2016年";}',
     'type' => 'select',
   ),
   'car_brand' => 
@@ -488,6 +489,12 @@ $data = array (
 9=宽带
 10=暖气";}',
     'type' => 'checkbox',
+  ),
+  'hour_salary' => 
+  array (
+    'title' => '时薪',
+    'rules' => '',
+    'type' => 'text',
   ),
 );
 ?>

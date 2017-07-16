@@ -184,7 +184,7 @@ function submitForm(){
 
             var default_val = '';
             if (name == 'catid') {
-                //default_val =option[0].id;
+                default_val =option[0].id;
             }
             $('<div id='+id+'>'+txt+'</div><input type="hidden" id="'+tid+'" name="'+name+'" value="'+default_val+'">').appendTo($(v).parent());
             $(v).remove();

@@ -1223,11 +1223,17 @@ $data = array (
           'name' => '2015年',
           'identifier' => 'car_year',
         ),
+        7 => 
+        array (
+          'id' => 7,
+          'name' => '2016年',
+          'identifier' => 'car_year',
+        ),
       ),
       'title' => '上牌年份',
       'type' => 'select',
       'identifier' => 'car_year',
-      'publish' => '<select name="car_year" class="input" ><option value="">请选择</option><option value="0"selected >不限</option> <option value="1">2011年以前</option> <option value="2">2011年</option> <option value="3">2012年</option> <option value="4">2013年</option> <option value="5">2014年</option> <option value="6">2015年</option> </select>',
+      'publish' => '<select name="car_year" class="input" ><option value="">请选择</option><option value="0"selected >不限</option> <option value="1">2011年以前</option> <option value="2">2011年</option> <option value="3">2012年</option> <option value="4">2013年</option> <option value="5">2014年</option> <option value="6">2015年</option> <option value="7">2016年</option> </select>',
     ),
     13 => 
     array (
@@ -1762,11 +1768,17 @@ $data = array (
           'name' => '2015年',
           'identifier' => 'car_year',
         ),
+        7 => 
+        array (
+          'id' => 7,
+          'name' => '2016年',
+          'identifier' => 'car_year',
+        ),
       ),
       'title' => '上牌年份',
       'type' => 'select',
       'identifier' => 'car_year',
-      'publish' => '<select name="car_year" class="input" ><option value="">请选择</option><option value="0"selected >不限</option> <option value="1">2011年以前</option> <option value="2">2011年</option> <option value="3">2012年</option> <option value="4">2013年</option> <option value="5">2014年</option> <option value="6">2015年</option> </select>',
+      'publish' => '<select name="car_year" class="input" ><option value="">请选择</option><option value="0"selected >不限</option> <option value="1">2011年以前</option> <option value="2">2011年</option> <option value="3">2012年</option> <option value="4">2013年</option> <option value="5">2014年</option> <option value="6">2015年</option> <option value="7">2016年</option> </select>',
     ),
     13 => 
     array (

@@ -42,6 +42,21 @@ if (!submit_check(CURSCRIPT . "_submit")) {
 
     } else if (isset($act)) {
         $part = 'search';
+        $begin = strtotime($_GET['begindate']);
+        $end = strtotime($_GET['enddate']);
+
+        $begindate = empty($begin)?'':$_GET['begindate'];
+        $enddate = empty($end)?'':$_GET['enddate'];
+
+        $where = " p.`status` = 'Y' ";
+        if (!empty($begindate)) {
+            $where .= " AND p.pay_time >= {$begin} ";
+        }
+
+        if (!empty($enddate)) {
+            $where .= " AND p.pay_time <= {$end} ";
+        }
+
         $sql = "SELECT
                     p.*, m.userid,
                     m.openid,
@@ -52,7 +67,7 @@ if (!submit_check(CURSCRIPT . "_submit")) {
                 LEFT JOIN my_payrecord r ON r.relation_id = p.id
                 LEFT JOIN my_member m ON m.id = r.uid
                 WHERE
-                    p.`status` = 'Y'
+                    {$where}
                 ORDER BY
                     p.time_created DESC";
         $query = $db->query($sql);
@@ -63,6 +78,9 @@ if (!submit_check(CURSCRIPT . "_submit")) {
         $offset = ($page - 1) * $per_page;
         $list = $db->getAll($sql . " LIMIT $offset,{$per_page}");
         $map_pay_type = Constants::map_pay_type;
+
+        $sql1 = "SELECT sum(p.manage_fee+water_fee+electric_fee+other_fee) total FROM my_property P WHERE {$where}";
+        $total = $db->getOne($sql1);
 
     } elseif ($part == 'del') {
         $now = time();

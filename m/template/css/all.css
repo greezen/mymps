@@ -106,5 +106,5 @@ span.apost{ float:right; margin-right:8px; font-size:12px; margin-top:8px; paddi
 .it2+.big_dl {
 	margin-bottom: 10px;
 }
-.tishi{ line-height:25px; clear:both; padding:10px; }
+.tishi{ line-height:25px; clear:both; padding:10px; font-size: 1rem;}
 .tishi a{ color:#0000FF; padding:0 3px;}
