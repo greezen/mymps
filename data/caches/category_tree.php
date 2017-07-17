@@ -9,7 +9,7 @@ $data = array (
     'html_dir' => '/fang/',
     'uri' => 'category-catid-3.html',
     'usecoin' => '0',
-    'icon' => '/template/default/images/index/a1.png',
+    'icon' => '/template/default/images/index/icon_fang.gif',
     'children' => 
     array (
       41 => 
@@ -612,6 +612,914 @@ $data = array (
         'color' => '',
         'html_dir' => '/quanzhizhaopin/qitazhaopin/',
         'uri' => 'category-catid-67.html',
+        'usecoin' => '0',
+      ),
+    ),
+  ),
+  5 => 
+  array (
+    'catid' => '5',
+    'catname' => '兼职招聘',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '/jianzhi/',
+    'uri' => 'category-catid-5.html',
+    'usecoin' => '0',
+    'icon' => '/template/default/images/index/icon_jzzhaopin.gif',
+    'children' => 
+    array (
+      68 => 
+      array (
+        'catid' => '68',
+        'catname' => '派发/促销',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhi/jzcuxiao/',
+        'uri' => 'category-catid-68.html',
+        'usecoin' => '0',
+      ),
+      69 => 
+      array (
+        'catid' => '69',
+        'catname' => '家教/老师',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhi/jzjiajiao/',
+        'uri' => 'category-catid-69.html',
+        'usecoin' => '0',
+      ),
+      70 => 
+      array (
+        'catid' => '70',
+        'catname' => '餐厅/服务员',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhi/jzfuwuyuan/',
+        'uri' => 'category-catid-70.html',
+        'usecoin' => '0',
+      ),
+      71 => 
+      array (
+        'catid' => '71',
+        'catname' => '模特/礼仪',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhi/jzmote/',
+        'uri' => 'category-catid-71.html',
+        'usecoin' => '0',
+      ),
+      72 => 
+      array (
+        'catid' => '72',
+        'catname' => '网站/设计',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhi/jzwangzhan/',
+        'uri' => 'category-catid-72.html',
+        'usecoin' => '0',
+      ),
+      73 => 
+      array (
+        'catid' => '73',
+        'catname' => '会计/财务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhi/jzcaiwu/',
+        'uri' => 'category-catid-73.html',
+        'usecoin' => '0',
+      ),
+      74 => 
+      array (
+        'catid' => '74',
+        'catname' => '其他兼职',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jianzhizhaopin/qitajianzhi/',
+        'uri' => 'category-catid-74.html',
+        'usecoin' => '0',
+      ),
+    ),
+  ),
+  6 => 
+  array (
+    'catid' => '6',
+    'catname' => '求职简历',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '/qiuzhi/',
+    'uri' => 'category-catid-6.html',
+    'usecoin' => '1',
+    'icon' => '/template/default/images/index/icon_jianli.gif',
+    'children' => 
+    array (
+      75 => 
+      array (
+        'catid' => '75',
+        'catname' => '销售',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzxiaoshou/',
+        'uri' => 'category-catid-75.html',
+        'usecoin' => '1',
+      ),
+      76 => 
+      array (
+        'catid' => '76',
+        'catname' => '客服',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzkefu/',
+        'uri' => 'category-catid-76.html',
+        'usecoin' => '1',
+      ),
+      77 => 
+      array (
+        'catid' => '77',
+        'catname' => '人事/行政/后勤',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzhouqin/',
+        'uri' => 'category-catid-77.html',
+        'usecoin' => '1',
+      ),
+      78 => 
+      array (
+        'catid' => '78',
+        'catname' => '酒店/餐饮/旅游',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzcanyin/',
+        'uri' => 'category-catid-78.html',
+        'usecoin' => '1',
+      ),
+      79 => 
+      array (
+        'catid' => '79',
+        'catname' => '美容/美发/保健/健身',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzmeirong/',
+        'uri' => 'category-catid-79.html',
+        'usecoin' => '1',
+      ),
+      80 => 
+      array (
+        'catid' => '80',
+        'catname' => '计算机/网络/通信',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzcomputer/',
+        'uri' => 'category-catid-80.html',
+        'usecoin' => '1',
+      ),
+      81 => 
+      array (
+        'catid' => '81',
+        'catname' => '建筑/房产/装修/物业',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzfangdichan/',
+        'uri' => 'category-catid-81.html',
+        'usecoin' => '1',
+      ),
+      82 => 
+      array (
+        'catid' => '82',
+        'catname' => '普工/技工/生产',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzjigong/',
+        'uri' => 'category-catid-82.html',
+        'usecoin' => '1',
+      ),
+      83 => 
+      array (
+        'catid' => '83',
+        'catname' => '司机',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzsiji/',
+        'uri' => 'category-catid-83.html',
+        'usecoin' => '1',
+      ),
+      84 => 
+      array (
+        'catid' => '84',
+        'catname' => '家政保洁/安保',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzjiazheng/',
+        'uri' => 'category-catid-84.html',
+        'usecoin' => '1',
+      ),
+      85 => 
+      array (
+        'catid' => '85',
+        'catname' => '影视/娱乐/KTV',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzktv/',
+        'uri' => 'category-catid-85.html',
+        'usecoin' => '1',
+      ),
+      86 => 
+      array (
+        'catid' => '86',
+        'catname' => '编辑/出版/印刷',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzyinshua/',
+        'uri' => 'category-catid-86.html',
+        'usecoin' => '1',
+      ),
+      87 => 
+      array (
+        'catid' => '87',
+        'catname' => '教育培训/翻译',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzjiaoyu/',
+        'uri' => 'category-catid-87.html',
+        'usecoin' => '1',
+      ),
+      88 => 
+      array (
+        'catid' => '88',
+        'catname' => '财务/审计/统计',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhi/qzshenji/',
+        'uri' => 'category-catid-88.html',
+        'usecoin' => '1',
+      ),
+      89 => 
+      array (
+        'catid' => '89',
+        'catname' => '其他职位',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/qiuzhijianli/qitazhiwei/',
+        'uri' => 'category-catid-89.html',
+        'usecoin' => '1',
+      ),
+    ),
+  ),
+  7 => 
+  array (
+    'catid' => '7',
+    'catname' => '交友活动',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '/jiaoyou/',
+    'uri' => 'category-catid-7.html',
+    'usecoin' => '0',
+    'icon' => '/template/default/images/index/icon_love.gif',
+    'children' => 
+    array (
+      90 => 
+      array (
+        'catid' => '90',
+        'catname' => '找女友/找男友',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyou/zhaoduixiang/',
+        'uri' => 'category-catid-90.html',
+        'usecoin' => '0',
+      ),
+      91 => 
+      array (
+        'catid' => '91',
+        'catname' => '征婚',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyouhuodong/zhenghun/',
+        'uri' => 'category-catid-91.html',
+        'usecoin' => '0',
+      ),
+      92 => 
+      array (
+        'catid' => '92',
+        'catname' => '结伴活动',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyou/huodong/',
+        'uri' => 'category-catid-92.html',
+        'usecoin' => '0',
+      ),
+      93 => 
+      array (
+        'catid' => '93',
+        'catname' => '技能交换',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyou/jineng/',
+        'uri' => 'category-catid-93.html',
+        'usecoin' => '0',
+      ),
+      94 => 
+      array (
+        'catid' => '94',
+        'catname' => '找人/寻物',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyou/zhaoren/',
+        'uri' => 'category-catid-94.html',
+        'usecoin' => '0',
+      ),
+    ),
+  ),
+  8 => 
+  array (
+    'catid' => '8',
+    'catname' => '宠物',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '/chongwu/',
+    'uri' => 'category-catid-8.html',
+    'usecoin' => '0',
+    'icon' => '/template/default/images/index/icon_pet.gif',
+    'children' => 
+    array (
+      95 => 
+      array (
+        'catid' => '95',
+        'catname' => '狗狗',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/chongwu/gou/',
+        'uri' => 'category-catid-95.html',
+        'usecoin' => '0',
+      ),
+      96 => 
+      array (
+        'catid' => '96',
+        'catname' => '猫猫/其他宠物',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/chongwu/mao/',
+        'uri' => 'category-catid-96.html',
+        'usecoin' => '0',
+      ),
+      97 => 
+      array (
+        'catid' => '97',
+        'catname' => '宠物免费赠送',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/chongwu/songchongwu/',
+        'uri' => 'category-catid-97.html',
+        'usecoin' => '0',
+      ),
+      98 => 
+      array (
+        'catid' => '98',
+        'catname' => '宠物用品/食品',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/chongwu/shipin/',
+        'uri' => 'category-catid-98.html',
+        'usecoin' => '0',
+      ),
+      99 => 
+      array (
+        'catid' => '99',
+        'catname' => '宠物服务/配种',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/chongwu/peizhong/',
+        'uri' => 'category-catid-99.html',
+        'usecoin' => '0',
+      ),
+    ),
+  ),
+  9 => 
+  array (
+    'catid' => '9',
+    'catname' => '生活服务',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '/shenghuo/',
+    'uri' => 'category-catid-9.html',
+    'usecoin' => '0',
+    'icon' => '/template/default/images/index/icon_life.gif',
+    'children' => 
+    array (
+      100 => 
+      array (
+        'catid' => '100',
+        'catname' => '驾校服务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/jiaxiao/',
+        'uri' => 'category-catid-100.html',
+        'usecoin' => '0',
+      ),
+      101 => 
+      array (
+        'catid' => '101',
+        'catname' => '陪驾/代驾',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/daijia/',
+        'uri' => 'category-catid-101.html',
+        'usecoin' => '0',
+      ),
+      102 => 
+      array (
+        'catid' => '102',
+        'catname' => '婚庆/化妆',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/hunqing/',
+        'uri' => 'category-catid-102.html',
+        'usecoin' => '0',
+      ),
+      103 => 
+      array (
+        'catid' => '103',
+        'catname' => '摄影摄像',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/sheying/',
+        'uri' => 'category-catid-103.html',
+        'usecoin' => '0',
+      ),
+      104 => 
+      array (
+        'catid' => '104',
+        'catname' => '美容纤体',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/meirong/',
+        'uri' => 'category-catid-104.html',
+        'usecoin' => '0',
+      ),
+      105 => 
+      array (
+        'catid' => '105',
+        'catname' => '房屋装修',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/zhuangxiu/',
+        'uri' => 'category-catid-105.html',
+        'usecoin' => '0',
+      ),
+      106 => 
+      array (
+        'catid' => '106',
+        'catname' => '建材装饰',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/jiancai/',
+        'uri' => 'category-catid-106.html',
+        'usecoin' => '0',
+      ),
+      108 => 
+      array (
+        'catid' => '108',
+        'catname' => '保姆/月嫂',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/yuesao/',
+        'uri' => 'category-catid-108.html',
+        'usecoin' => '0',
+      ),
+      109 => 
+      array (
+        'catid' => '109',
+        'catname' => '保洁/清洗',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/baojie/',
+        'uri' => 'category-catid-109.html',
+        'usecoin' => '0',
+      ),
+      110 => 
+      array (
+        'catid' => '110',
+        'catname' => '搬家服务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/shenghuo/banjia/',
+        'uri' => 'category-catid-110.html',
+        'usecoin' => '0',
+      ),
+      111 => 
+      array (
+        'catid' => '111',
+        'catname' => '家电维修',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/xiujiandian/',
+        'uri' => 'category-catid-111.html',
+        'usecoin' => '0',
+      ),
+      112 => 
+      array (
+        'catid' => '112',
+        'catname' => '电脑维修',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/xiudiannao/',
+        'uri' => 'category-catid-112.html',
+        'usecoin' => '0',
+      ),
+      113 => 
+      array (
+        'catid' => '113',
+        'catname' => '家居维修',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/jiajuweixiu/',
+        'uri' => 'category-catid-113.html',
+        'usecoin' => '0',
+      ),
+      114 => 
+      array (
+        'catid' => '114',
+        'catname' => '管道疏通',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/tongguandao/',
+        'uri' => 'category-catid-114.html',
+        'usecoin' => '0',
+      ),
+      115 => 
+      array (
+        'catid' => '115',
+        'catname' => '外卖/送水',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/waimai/',
+        'uri' => 'category-catid-115.html',
+        'usecoin' => '0',
+      ),
+      116 => 
+      array (
+        'catid' => '116',
+        'catname' => '开锁/修锁',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/kaisuo/',
+        'uri' => 'category-catid-116.html',
+        'usecoin' => '0',
+      ),
+      117 => 
+      array (
+        'catid' => '117',
+        'catname' => '租车服务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/zuche/',
+        'uri' => 'category-catid-117.html',
+        'usecoin' => '0',
+      ),
+      118 => 
+      array (
+        'catid' => '118',
+        'catname' => '旅游度假',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/lvyou/',
+        'uri' => 'category-catid-118.html',
+        'usecoin' => '0',
+      ),
+      119 => 
+      array (
+        'catid' => '119',
+        'catname' => '休闲娱乐',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/yule/',
+        'uri' => 'category-catid-119.html',
+        'usecoin' => '0',
+      ),
+      120 => 
+      array (
+        'catid' => '120',
+        'catname' => '酒店/宾馆',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/jiudian/',
+        'uri' => 'category-catid-120.html',
+        'usecoin' => '0',
+      ),
+      133 => 
+      array (
+        'catid' => '133',
+        'catname' => '鲜花/盆景',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/xianhua/',
+        'uri' => 'category-catid-133.html',
+        'usecoin' => '0',
+      ),
+      135 => 
+      array (
+        'catid' => '135',
+        'catname' => '本地名站',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/fuwu/mingzhan/',
+        'uri' => 'category-catid-135.html',
+        'usecoin' => '0',
+      ),
+      136 => 
+      array (
+        'catid' => '136',
+        'catname' => '其它生活服务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/shenghuo/qitafuwu/',
+        'uri' => 'category-catid-136.html',
+        'usecoin' => '0',
+      ),
+    ),
+  ),
+  10 => 
+  array (
+    'catid' => '10',
+    'catname' => '教育培训',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '/jiaoyu/',
+    'uri' => 'category-catid-10.html',
+    'usecoin' => '0',
+    'icon' => '/template/default/images/index/icon_edu.gif',
+    'children' => 
+    array (
+      137 => 
+      array (
+        'catid' => '137',
+        'catname' => '职业培训',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/zhiyepeixun/',
+        'uri' => 'category-catid-137.html',
+        'usecoin' => '0',
+      ),
+      138 => 
+      array (
+        'catid' => '138',
+        'catname' => '外语培训',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/waiyu/',
+        'uri' => 'category-catid-138.html',
+        'usecoin' => '0',
+      ),
+      139 => 
+      array (
+        'catid' => '139',
+        'catname' => '学历教育',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/xueli/',
+        'uri' => 'category-catid-139.html',
+        'usecoin' => '0',
+      ),
+      140 => 
+      array (
+        'catid' => '140',
+        'catname' => '家教',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyoupeixun/jiajiao/',
+        'uri' => 'category-catid-140.html',
+        'usecoin' => '0',
+      ),
+      141 => 
+      array (
+        'catid' => '141',
+        'catname' => 'IT培训',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/jisuanji/',
+        'uri' => 'category-catid-141.html',
+        'usecoin' => '0',
+      ),
+      142 => 
+      array (
+        'catid' => '142',
+        'catname' => '留学签证',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/liuxue/',
+        'uri' => 'category-catid-142.html',
+        'usecoin' => '0',
+      ),
+      143 => 
+      array (
+        'catid' => '143',
+        'catname' => '高等教育',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyoupeixun/gaodengjiaoyu/',
+        'uri' => 'category-catid-143.html',
+        'usecoin' => '0',
+      ),
+      144 => 
+      array (
+        'catid' => '144',
+        'catname' => '文体培训',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/techang/',
+        'uri' => 'category-catid-144.html',
+        'usecoin' => '0',
+      ),
+      145 => 
+      array (
+        'catid' => '145',
+        'catname' => '婴幼儿教育',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/youjiao/',
+        'uri' => 'category-catid-145.html',
+        'usecoin' => '0',
+      ),
+      146 => 
+      array (
+        'catid' => '146',
+        'catname' => '中小学教育',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyu/zhongxiaoxue/',
+        'uri' => 'category-catid-146.html',
+        'usecoin' => '0',
+      ),
+      147 => 
+      array (
+        'catid' => '147',
+        'catname' => '其他培训',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '/jiaoyoupeixun/qitapeixun/',
+        'uri' => 'category-catid-147.html',
+        'usecoin' => '0',
+      ),
+    ),
+  ),
+  244 => 
+  array (
+    'catid' => '244',
+    'catname' => '商务服务',
+    'color' => '',
+    'if_view' => '2',
+    'html_dir' => '//',
+    'uri' => 'category-catid-244.html',
+    'usecoin' => '0',
+    'icon' => '/template/default/images/index/icon_business.gif',
+    'children' => 
+    array (
+      107 => 
+      array (
+        'catid' => '107',
+        'catname' => '投资理财',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//licai/',
+        'uri' => 'category-catid-107.html',
+        'usecoin' => '0',
+      ),
+      121 => 
+      array (
+        'catid' => '121',
+        'catname' => '机票/签证',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//qianzheng/',
+        'uri' => 'category-catid-121.html',
+        'usecoin' => '0',
+      ),
+      122 => 
+      array (
+        'catid' => '122',
+        'catname' => '招商加盟',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//zhaoshang/',
+        'uri' => 'category-catid-122.html',
+        'usecoin' => '0',
+      ),
+      123 => 
+      array (
+        'catid' => '123',
+        'catname' => '担保/贷款',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//daikuan/',
+        'uri' => 'category-catid-123.html',
+        'usecoin' => '0',
+      ),
+      124 => 
+      array (
+        'catid' => '124',
+        'catname' => '公司注册',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//gongsizhuce/',
+        'uri' => 'category-catid-124.html',
+        'usecoin' => '0',
+      ),
+      125 => 
+      array (
+        'catid' => '125',
+        'catname' => '会计/审计',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//huiji/',
+        'uri' => 'category-catid-125.html',
+        'usecoin' => '0',
+      ),
+      126 => 
+      array (
+        'catid' => '126',
+        'catname' => '网站建设',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//wangzhan/',
+        'uri' => 'category-catid-126.html',
+        'usecoin' => '0',
+      ),
+      127 => 
+      array (
+        'catid' => '127',
+        'catname' => '快递/物流',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//wuliu/',
+        'uri' => 'category-catid-127.html',
+        'usecoin' => '0',
+      ),
+      128 => 
+      array (
+        'catid' => '128',
+        'catname' => '庆典/演出',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//yanchu/',
+        'uri' => 'category-catid-128.html',
+        'usecoin' => '0',
+      ),
+      129 => 
+      array (
+        'catid' => '129',
+        'catname' => '印刷/喷绘',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//yinshua/',
+        'uri' => 'category-catid-129.html',
+        'usecoin' => '0',
+      ),
+      130 => 
+      array (
+        'catid' => '130',
+        'catname' => '设计策划',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//cehua/',
+        'uri' => 'category-catid-130.html',
+        'usecoin' => '0',
+      ),
+      131 => 
+      array (
+        'catid' => '131',
+        'catname' => '律师服务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//lvshi/',
+        'uri' => 'category-catid-131.html',
+        'usecoin' => '0',
+      ),
+      132 => 
+      array (
+        'catid' => '132',
+        'catname' => '翻译/速记',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//fanyi/',
+        'uri' => 'category-catid-132.html',
+        'usecoin' => '0',
+      ),
+      134 => 
+      array (
+        'catid' => '134',
+        'catname' => '礼品定制',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '//lipin/',
+        'uri' => 'category-catid-134.html',
+        'usecoin' => '0',
+      ),
+      245 => 
+      array (
+        'catid' => '245',
+        'catname' => '其它商务服务',
+        'if_view' => '2',
+        'color' => '',
+        'html_dir' => '///',
+        'uri' => 'category-catid-245.html',
         'usecoin' => '0',
       ),
     ),
