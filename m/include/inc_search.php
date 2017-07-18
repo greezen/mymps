@@ -9,6 +9,10 @@ if ( $keywords != "" && strlen( $keywords ) < 2 )
 {
 	redirectmsg( "您输入的关键字太短了！关键字不能少于2个字节！", "index.php?mod=search" );
 }
+
+if (stripos($_SERVER['HTTP_USER_AGENT'], 'iphone')) {
+	$keywords = mb_convert_encoding($keywords, 'gbk');
+}
 $timestamp = time( );
 define( CURSCRIPT, "search" );
 $perpage = $mobile_settings['mobiletopicperpage'] ? $mobile_settings['mobiletopicperpage'] : 10;
