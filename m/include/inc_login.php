@@ -71,9 +71,35 @@ if ($action == "logout") {
         redirectmsg($nickname . " »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=" . $cityid);
     }
     redirectmsg("µÇÂ¼Ê§°Ü!", $returnurl ? $returnurl : "index.php?mod=login&cityid=" . $cityid);
+} else if ($act == 'gzh') {
+    if (isset($_GET['code'])) {
+        $url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$gzh['appid'].'&secret='.$gzh['secret'].'&code='.trim($_GET['code']).'&grant_type=authorization_code';
+        $res = curl_get($url);
+
+        if (isset($res['access_token'])) {
+            require_once MYMPS_MEMBER.'/include/common.func.php';
+            $url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'];
+            $user_info = curl_get($url);
+
+            $userid = wx_member_reg($user_info['unionid'], mb_convert_encoding($user_info['nickname'], 'gbk'), $user_info['headimgurl']);
+            if ($userid) {
+                $userpwd = '';
+                $member_log -> in($userid,$userpwd,'','noredirect');
+                redirectmsg($user_info['nickname'] . " »¶Ó­»ØÀ´!", $returnurl ? $returnurl : "index.php?mod=member&cityid=" . $cityid);
+            }
+        }
+    } else {
+        $jump = 'http://' . $_SERVER['HTTP_HOST'] . '/m/index.php?mod=login&act=gzh';
+        $url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$gzh['appid'].'&redirect_uri='.urlencode($jump).'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        header('Location:'.$url);exit;
+    }
 } else if ($iflogin == 1) {
     redirectmsg("ÄúÒÑµÇÂ¼", $returnurl ? $returnurl : "index.php");
 } else {
+    $is_gzh = false;
+    if (stripos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false) {
+        $is_gzh = true;
+    }
     include(mymps_tpl("member_login"));
 }
 
@@ -100,6 +126,18 @@ function array_iconv($str, $in_charset = "gbk", $out_charset = "utf-8")
             return $str;
         }
     }
+}
+
+function curl_get($url)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+    $res = curl_exec($ch);
+    curl_close($ch);
+    return json_decode($res, true);
 }
 
 ?>

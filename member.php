@@ -149,7 +149,7 @@ if(!submit_check('log_submit')){
 			if (isset($res['access_token'])) {
 				$url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$res['access_token'].'&openid='.$res['openid'];
 				$user_info = curl_get($url);
-				$userid = wx_member_reg($user_info['openid'], $user_info['nickname'], $user_info['headimgurl']);
+				$userid = wx_member_reg($user_info['unionid'], $user_info['nickname'], $user_info['headimgurl']);
 				if ($userid) {
 					$userpwd = '';
 					$member_log -> in($userid,$userpwd,'','noredirect');
