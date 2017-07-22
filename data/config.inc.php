@@ -61,6 +61,9 @@ $mymps_mymps['cfg_goods_limit']['height'] = '100';
 $mymps_mymps['cfg_banner_limit']['width'] = '950';
 $mymps_mymps['cfg_banner_limit']['height'] = '150';
 
-$wx['appid'] = 'wx12fa90d205fe3807';
-$wx['secret'] = '030d72b4214462df46fff53ebc87421d';
+$wx['appid'] = 'wx31a2b3996b29fff5';
+$wx['secret'] = '48c71383931501a2dc4d963d7780f20d';
+
+$gzh['appid'] = 'wx9376ac8f86f276c9';
+$gzh['secret'] = '696d63dfafa3eca7c7cd8afb4797d342';
 ?>
