@@ -36,7 +36,7 @@ function wx_member_reg($openid, $nickname, $face, $email = '', $safequestion = '
     if ($openid) {
         $userid = $db->getOne("SELECT userid FROM `{$db_mymps}member` WHERE openid = '$openid'");
         if ($userid) {
-            $db->query("UPDATE `{$db_mymps}member` set nickname = '{$nickname}'");
+            $db->query("UPDATE `{$db_mymps}member` set nickname = '{$nickname}' where userid=$userid");
             return $userid;
         }
     } else {
