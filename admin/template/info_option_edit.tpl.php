@@ -39,9 +39,9 @@
     <tr bgcolor="#f5fbff" width="45%">
       <td>所属分类</td>
       <td bgcolor="#f5fbff">
-      <select name="classid">
+      <select name="modid">
       <?php foreach($class_option as $k => $value){?>
-        <option value="<?=$value[optionid]?>" <?php echo ($edit[classid]==$value[optionid])?"selected":"";?>><?=$value[title]?></option>
+        <option value="<?=$value['id']?>" <?php echo ($edit['modid']==$value['id'])?"selected":"";?>><?=$value['name']?></option>
       <?php }?>
       </select> 
       [<a href="?part=option_type">类别管理</a>]

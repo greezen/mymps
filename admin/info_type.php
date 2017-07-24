@@ -106,9 +106,9 @@ else if ( $part == "option_edit" )
 		}
 		$rule = $_POST['rules'];
 		$rules = serialize( str_replace( " ", "", $rule[$typenew] ) );
-		$db->query( "UPDATE `".$db_mymps."info_typeoptions` SET title='{$title}',identifier='{$identifier}',type='{$typenew}',classid='{$classid}',displayorder='{$displayorder}',description='{$description}',rules ='{$rules}',available='{$available}',required='{$required}',search='{$search}' WHERE optionid = '{$optionid}'" );
+		$db->query( "UPDATE `".$db_mymps."info_typeoptions` SET title='{$title}',modid='{$modid}',identifier='{$identifier}',type='{$typenew}',displayorder='{$displayorder}',description='{$description}',rules ='{$rules}',available='{$available}',required='{$required}',search='{$search}' WHERE optionid = '{$optionid}'" );
 		$rl = str_replace( " ", "", $rule[$typenew] );
-		$r = $db->getall( "SELECT id,options FROM `".$db_mymps."info_typemodels` WHERE id > 1" );
+		$r = $db->getall( "SELECT id,options FROM `".$db_mymps."info_typemodels` WHERE id = '{$modid}'" );
 		foreach ( $r as $k => $v )
 		{
 			if ( !in_array( $optionid, explode( ",", $v['options'] ) ) || !( $db->num_rows( $db->query( "SHOW TABLES LIKE '".$db_mymps."information_{$v[id]}'" ) ) == 1 ) )
@@ -159,7 +159,7 @@ else if ( $part == "option_edit" )
 		$options = $db->getall( "SELECT * FROM `".$db_mymps."info_typeoptions` WHERE classid ='0' ORDER BY optionid DESC" );
 		$edit = $db->getrow( "SELECT * FROM `".$db_mymps."info_typeoptions` WHERE optionid ='{$optionid}'" );
 		$here = "·ÖÀà×Ö¶Î";
-		$class_option = $db->getall( "SELECT optionid,title FROM `".$db_mymps."info_typeoptions` WHERE classid = '0' ORDER BY displayorder,optionid DESC" );
+		$class_option = $db->getall( "SELECT i.id,i.name FROM `".$db_mymps."category` c INNER JOIN `{$db_mymps}info_typemodels` i ON c.modid=i.id GROUP BY c.modid ORDER BY c.modid ASC" );
 		if ( $edit[rules] )
 		{
 			$rule = unserialize( $edit[rules] );
