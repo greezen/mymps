@@ -105,7 +105,32 @@ if ( $lat && $lng )
     //$cityid = get_latlng2cityid( $lat, $lng );
 }
 $cityid = isset( $cityid ) ? intval( $cityid ) : mgetcookie( "cityid" );
-if ( !in_array( $mod, array( "category", "index", "items", "information", "login", "openlogin", "myhome", "register", "mypost", "post", "search", "member", "shoucang", "history", "delete", "about", "changecity", "news", "corp", "store", "property", 'pay') ) )
+$allow = array(
+    "category",
+    "index",
+    "items",
+    "information",
+    "login",
+    "openlogin",
+    "myhome",
+    "register",
+    "mypost",
+    "post",
+    "search",
+    "member",
+    "shoucang",
+    "history",
+    "delete",
+    "about",
+    "changecity",
+    "news",
+    "corp",
+    "store",
+    "property",
+    'pay',
+    'ad',
+);
+if ( !in_array( $mod,  $allow) )
 {
     $mod = "index";
 }

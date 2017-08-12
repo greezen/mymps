@@ -27,7 +27,7 @@
 			<h1 class="tit">{$row[title]}</h1>
 			<div class="status_bar">
 				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
-				<span class="browse_num"><i class="ico"></i><span id="totalcount" >{$row['hit']}</span>次</span>
+				<span class="browse_num">浏览人数：<span id="totalcount" >{$row['hit']}</span>次</span>
 				<a rel="nofollow" href="{$mymps_global[SiteUrl]}/box.php?part=wap_shoucang&infoid={$row[id]}" class="btn_Favorite"><i class="ico"></i>收藏</a>
 			</div>
 		</div>
@@ -53,7 +53,7 @@
 			{/loop}
 		</ul>
 		{/if}
-	
+
     	{if $row[usecoin] > 0 && $iflogin != 1}
         <ul class="attr_info bottom gray">
 			<span class="attrVal mfico">

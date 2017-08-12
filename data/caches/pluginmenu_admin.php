@@ -23,5 +23,12 @@ $data = array (
     '商品管理' => 'goods_list.php',
     '订单管理' => 'goods_order.php',
   ),
+  '物业缴费' => 
+  array (
+    '小区信息' => 'property_building.php',
+    '房号信息' => 'property_room.php',
+    '信息录入' => 'property.php',
+    '查询交费记录' => 'property.php?act',
+  ),
 );
 ?>

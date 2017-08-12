@@ -52,7 +52,7 @@ var current_domain = '<?php echo $mymps_global[SiteUrl]?>';
 
                                         </div>
                                         <div class="account-uesrinfo">
-                                            <span class="account-name"><?php echo $row['tname'].$s_uid; ?> <font color=red>[<?=$levelname?>]</font> <a target="_blank" style="font-size:12px; font-weight:100;" href="<?php echo Rewrite('space',array('user'=>$row['userid']))?>">查看个人主页</a></span>
+                                            <span class="account-name"><?php echo !empty($row['openid'])?$row['nickname']:$row['tname'].$s_uid; ?> <font color=red>[<?=$levelname?>]</font> <a target="_blank" style="font-size:12px; font-weight:100;" href="<?php echo Rewrite('space',array('user'=>$row['userid']))?>">查看个人主页</a></span>
                                             <span class="account-id">UID: <?php echo $uid; ?></span>
                                         </div>
                                         <div class="account-baseinfo">

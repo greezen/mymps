@@ -27,14 +27,15 @@ if($act == 'address'){
 
 	require_once MYMPS_DATA.'/info.level.inc.php';
 	runcron();
-	$uid = $db->getOne("SELECT id FROM ".$db_mymps."member WHERE userid='{$s_uid}'");
-	$room_id = $db->getOne("SELECT room_id FROM ".$db_mymps."property WHERE uid={$uid}");
+	$user = $db->getRow("SELECT * FROM ".$db_mymps."member WHERE userid='{$s_uid}'");
+	$uid = $user['id'];
+	$room_id = $user['room_id'];
 	
 	if (empty($room_id)) {
 		$province_list = $db->getall("SELECT * FROM `" . $db_mymps . "province` ORDER BY displayorder ASC");
 
 	} else {
-		$where = " WHERE status='{$status}' AND room_id={$room_id}";
+		$where = " WHERE status='{$status}' AND room_id={$room_id} AND uid={$uid}";
 
 		$sql = "SELECT COUNT(*) total FROM ". $db_mymps . "property " . $where;
 		$rows_num = $db->getOne($sql);

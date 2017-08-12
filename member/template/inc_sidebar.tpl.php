@@ -5,7 +5,14 @@
             <div class="sidebarmenu-inner">
                 <div class="sidebarmenu-list">
                     <ul class="faceview">
-                    	<div class="img"><img src="<?php echo $mymps_global['SiteUrl'].($face != '' ? $face : '/images/noavatar_small.gif')?>" alt="" width="66" height="66" /></div><?php echo $s_uid; ?>
+                    	<div class="img">
+                            <?php if (!empty($row['openid']) && substr($row['logo'], 0, 4) == 'http') :?>
+                            <img src="<?=$row['logo']?>" alt="更改头像" width="48" height="48" />
+                            <?php else:?>
+                            <img src="<?php echo $mymps_global['SiteUrl'].($face != '' ? $face : '/images/noavatar_small.gif')?>" alt="更改头像" width="48" height="48" />
+                            <?php endif;?>
+                        </div>
+                        <?php echo !empty($row['openid'])?$row['nickname']:$s_uid; ?>
                     </ul>
                     <ul class="index">
                     	<li <?php if($m != 'index'){?>onmouseover= "this.className= 'li_mouseover '; " onmouseout= "this.className= 'li_normal '; " <?php } if($m == 'index') echo 'class="current"';?>><a href="?type=<?php echo $type; ?>" class="house">首页</a></li>
