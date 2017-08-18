@@ -12,7 +12,7 @@
     <script type="text/javascript" src="/template/default/js/layer/mobile/layer.js"></script>
 <script language="javascript">
 function submitForm(){
-	/*if (document.form1.title.value=="") {
+	if (document.form1.title.value=="") {
         showMsg('请填写信息标题!');
 		document.form1.title.focus();
 		return false;
@@ -43,18 +43,24 @@ function submitForm(){
 		document.form1.manage_pwd.focus();
 		return false;
 	}
-	<!--{/if}-->*/
+	<!--{/if}-->
+
+    var formData = new FormData(document.querySelector("#form1"));
+    var img_count = $('#pics')[0].files.length;
+    var max_count = '{$max_img_num}';
+    if (img_count > max_count) {
+        showMsg('最多只可上传 '+max_count+' 个文件');
+        return false;
+    }
+    for (i = 0; i < img_count; i++) {
+        formData.append('mymps_img_'+i, $('#pics')[0].files[i]);
+    }
+
     layer.open({
         content: '发布中...',
         type : 2,
         shade: 'background-color: rgba(98,98,98,.8)'
     });
-    var formData = new FormData(document.querySelector("#form1"));
-    var img_count = $('#pics')[0].files.length;
-    for (i = 0; i < img_count; i++) {
-        formData.append('mymps_img_'+i, $('#pics')[0].files[i]);
-    }
-
     $.ajax({
         url: 'index.php?mod=post',
         dataType: 'json',

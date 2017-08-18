@@ -343,6 +343,7 @@ else
         $return_url = "index.php?mod=post&catid=".$catid."&areaid=".$areaid."&cityid=".$cityid;
         $show_mod_option = return_category_info_options( $cat['modid'] );
         $upload_img = $cat['if_upimg'] == 1 ? get_upload_image_view_wap( 1 ) : "";
+        $max_img_num = $mymps_global['cfg_upimg_number'] ? $mymps_global[cfg_upimg_number] : "3";
         $mixcode = md5( $cookiepre );
         include( mymps_tpl( "post" ) );
     }
