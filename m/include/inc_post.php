@@ -91,44 +91,44 @@ if ( $action == "post" )
 
     if ( !$mixcode && $mixcode != md5( $cookiepre ) )
     {
-        errormsg( "系统判断您的来路不正确！" );
+        showJson('false', '系统判断您的来路不正确！');
     }
     $backurl = "javascript:history.back()";
     if ( empty( $catid ) )
     {
-        redirectmsg( "您选择发布的分类不存在!", "index.php?mod=category" );
+        showJson('false', '您选择发布的分类不存在!');
     }
     if ( !( $areaid = $db->getone( "SELECT areaid FROM `".$db_mymps."area` WHERE areaid = '{$areaid}'" ) ) )
     {
-        redirectmsg( "您选择发布的地区不存在!", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
+        showJson('false', '您选择发布的地区不存在!');
     }
     if ( empty( $cityid ) )
     {
-        redirectmsg( "请选择您要发布的分站!", "index.php?mod=post&catid=".$catid );
+        showJson('false', '请选择您要发布的分站!');
     }
     if ( empty( $areaid ) )
     {
-        redirectmsg( "请选择您要发布的地区!", "index.php?mod=post&catid=".$catid."&cityid=".$cityid );
+        showJson('false', '请选择您要发布的地区!');
     }
     if ( empty( $title ) )
     {
-        redirectmsg( "请输入信息标题!", $backurl );
+        showJson('false', '请输入信息标题!');
     }
     if ( empty( $content ) )
     {
-        redirectmsg( "您还没有输入信息描述!", $backurl );
+        showJson('false', '您还没有输入信息描述!');
     }
     if ( empty( $contact_who ) )
     {
-        redirectmsg( "联系人不能为空!", $backurl );
+        showJson('false', '联系人不能为空!');
     }
     if ( empty( $tel ) )
     {
-        redirectmsg( "联系电话不能为空!", $backurl );
+        showJson('false', '联系电话不能为空!');
     }
     if ( $iflogin == 0 && empty( $manage_pwd ) )
     {
-        redirectmsg( "管理密码不能为空，该密码用于修改/删除该信息，请谨记!", $backurl );
+        showJson('false', '管理密码不能为空，该密码用于修改/删除该信息，请谨记!');
     }
     require_once( MYMPS_INC."/upfile.fun.php" );
     require_once( MYMPS_DATA."/config.inc.php" );
@@ -136,7 +136,7 @@ if ( $action == "post" )
     $checkcode = isset( $_POST['checkcode'] ) ? mhtmlspecialchars( $_POST['checkcode'] ) : "";
     if ( $mobile_settings['authcode'] == 1 && !( $randcode = mymps_chk_randcode( $checkcode ) ) )
     {
-        redirectmsg( "验证码输入错误，请返回重新输入", $backurl );
+        showJson('false', '验证码输入错误，请返回重新输入');
     }
     if ( !empty( $mymps_global['cfg_disallow_post_tel'] ) || !empty( $tel ) )
     {
@@ -147,7 +147,8 @@ if ( $action == "post" )
         {
             if ( in_array( $tel, $disallow_telarray ) )
             {
-                redirectmsg( "您的电话号码<b style='color:red'>".$tel."</b> 已被管理员加入黑名单!<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&cityid=".$cityid."&areaid=".$areaid );
+                showJson('false', "您的电话号码<b style='color:red'>".$tel."</b> 已被管理员加入黑名单!<br />如果您要继续操作，请联系客服。");
+                //redirectmsg( "您的电话号码<b style='color:red'>".$tel."</b> 已被管理员加入黑名单!<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&cityid=".$cityid."&areaid=".$areaid );
             }
         }
         else if ( $disallow_tel[1] == 0 )
@@ -171,7 +172,8 @@ if ( $action == "post" )
                 continue;
             }
             $ctrlip .= "%";
-            redirectmsg( "您当前的IP <b style='color:red'>".$ip."</b> 已被管理员加入黑名单，不允许发布信息！<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
+            showJson('false', "您当前的IP <b style='color:red'>".$ip."</b> 已被管理员加入黑名单，不允许发布信息！<br />如果您要继续操作，请联系客服。");
+            //redirectmsg( "您当前的IP <b style='color:red'>".$ip."</b> 已被管理员加入黑名单，不允许发布信息！<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
             exit( );
         }
     }
@@ -185,7 +187,7 @@ if ( $action == "post" )
         $count = mymps_count( "information", "WHERE ip = '".$ip."' AND begintime > (".time( )." - 1*60)" );
         if ( $post_time <= $count )
         {
-            redirectmsg( "您的发布时间太快了，休息一会儿。", "index.php?mod=zuixin" );
+            showJson('false', '您的发布时间太快了，休息一会儿。');
         }
     }
     $img_count = upload_img_num( "mymps_img_" );
@@ -194,7 +196,7 @@ if ( $action == "post" )
     {
         if ( $db->getone( "SELECT id FROM `".$db_mymps."information` WHERE title = '{$title}' AND userid = '{$s_uid}'" ) )
         {
-            redirectmsg( "本信息标题已经存在，本站禁止发布重复信息！请更换标题。或者您已经发过同样信息想重复发布，可到帐号管理后台进行刷新操作即可。", $backurl );
+            showJson('false', '本信息标题已经存在，本站禁止发布重复信息！请更换标题。或者您已经发过同样信息想重复发布，可到帐号管理后台进行刷新操作即可。');
         }
         $per = $db->getrow( "SELECT b.perday_maxpost FROM `".$db_mymps."member` AS a LEFT JOIN `{$db_mymps}member_level` AS b ON a.levelid = b.id WHERE a.userid = '{$s_uid}'" );
         $perday_maxpost = $per['perday_maxpost'];
@@ -203,7 +205,8 @@ if ( $action == "post" )
             $count = mymps_count( "information", "WHERE userid LIKE '".$s_uid."' AND begintime > '".mktime( 0, 0, 0 )."'" );
             if ( $perday_maxpost <= $count )
             {
-                redirectmsg( "很抱歉！您当前的会员级别每天只能发布 <b style='color:red'>".$perday_maxpost."</b> 条信息<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
+                showJson('false', "很抱歉！您当前的会员级别每天只能发布 <b style='color:red'>".$perday_maxpost."</b> 条信息<br />如果您要继续操作，请联系客服。");
+                //redirectmsg( "很抱歉！您当前的会员级别每天只能发布 <b style='color:red'>".$perday_maxpost."</b> 条信息<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
             }
         }
         $userid = trim( $s_uid );
@@ -234,7 +237,8 @@ if ( $action == "post" )
             $count = mymps_count( "information", "WHERE ip = '".$ip."' AND begintime > '".mktime( 0, 0, 0 )."' AND ismember = '0'" );
             if ( $mymps_global[cfg_nonmember_perday_post] <= $count )
             {
-                redirectmsg( "很抱歉！游客每天只能发布 <b style='color:red'>".$mymps_global[cfg_nonmember_perday_post]."</b> 条信息<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
+                showJson('false', "很抱歉！游客每天只能发布 <b style='color:red'>".$mymps_global[cfg_nonmember_perday_post]."</b> 条信息<br />如果您要继续操作，请联系客服。");
+                //redirectmsg( "很抱歉！游客每天只能发布 <b style='color:red'>".$mymps_global[cfg_nonmember_perday_post]."</b> 条信息<br />如果您要继续操作，请联系客服。", "index.php?mod=post&catid=".$catid."&areaid=".$areaid );
             }
         }
         $sql = "INSERT INTO `".$db_mymps."information` (title,content,begintime,activetime,endtime,catid,catname,dir_typename,cityid,areaid,streetid,info_level,qq,email,tel,contact_who,img_count,certify,ip,ip2area,manage_pwd,latitude,longitude) VALUES ('{$title}','{$content}','{$timestamp}','0','0','{$catid}','{$catname}','{$dir_typename}','{$cityid}','{$areaid}','{$streetid}','{$info_level}','{$qq}','{$email}','{$tel}','{$contact_who}','{$img_count}','{$certify}','{$ip}','wap','{$manage_pwd}','{$lat}','{$lng}')";
@@ -271,7 +275,8 @@ if ( $action == "post" )
         $db->query( "UPDATE `".$db_mymps."information` SET img_path = '{$mymps_image['1']}' WHERE id = '{$id}'" );
     }
     $msg = 0 < $info_level ? "成功发布一条信息!" : "您的信息审核通过后将显示在网站上!";
-    redirectmsg( $msg, "index.php?mod=category&catid=".$catid );
+    showJson('true', $msg);
+    //redirectmsg( $msg, "index.php?mod=category&catid=".$catid );
 }
 else if ( !$catid )
 {
@@ -291,16 +296,8 @@ else if ( ((!$areaid && $cityid)))
 }
 else if (   !$streetid &&!empty( $street_list )  )
 {
-
-	 
-   
-
-
-    
-    
         include( mymps_tpl( "post_street" ) );
         exit( );
-    
 }
 else
 {
@@ -350,4 +347,3 @@ else
         include( mymps_tpl( "post" ) );
     }
 }
-?>

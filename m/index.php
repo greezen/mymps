@@ -37,6 +37,16 @@ function setparams( $param )
     return $params;
 }
 
+function showJson($state, $msg = '', $data = [], $option = 0){
+    $ret = array(
+        'state' => $state,
+        'msg' => urlencode($msg),
+        'data' => $data,
+    );
+    die(urldecode(json_encode($ret, $option)));
+}
+
+
 function pager( )
 {
     global $page;

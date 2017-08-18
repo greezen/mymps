@@ -100,7 +100,7 @@
         <ul>
             <li class="item current current1"><a href="javascript:void(0);">头版头条</a></li>
             {php $ifnews = ifplugin('news');}
-            {if $ifnews}<li class="item current2"><a href="javascript:void(0);">新闻资讯</a></li>{/if}
+            {if $ifnews}<!--<li class="item current2"><a href="javascript:void(0);">新闻资讯</a></li>-->{/if}
             {if $mymps_global[cfg_if_corp] == 1}<li class="item current3"><a href="javascript:void(0);">推荐商家</a></li>{/if}
 
         </ul>

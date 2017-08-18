@@ -12,46 +12,77 @@
     <script type="text/javascript" src="/template/default/js/layer/mobile/layer.js"></script>
 <script language="javascript">
 function submitForm(){
-
-	if (document.form1.title.value=="") {
-		alert('请填写信息标题!');
+	/*if (document.form1.title.value=="") {
+        showMsg('请填写信息标题!');
 		document.form1.title.focus();
 		return false;
 	}
 	if (document.form1.endtime.value=="") {
-		alert('请选择有效期!');
+        showMsg('请选择有效期!');
 		document.form1.endtime.focus();
 		return false;
 	}
 	if (document.form1.content.value=="") {
-		alert('请填写信息内容!');
+        showMsg('请填写信息内容!');
 		document.form1.content.focus();
 		return false;
 	}
 	if (document.form1.contact_who.value=="") {
-		alert('请填写联系人!');
+        showMsg('请填写联系人!');
 		document.form1.contact_who.focus();
 		return false;
 	}
 	if (document.form1.tel.value=="") {
-		alert('请填写联系电话!');
+        showMsg('请填写联系电话!');
 		document.form1.tel.focus();
 		return false;
 	}
 	<!--{if $iflogin == 0}-->
 	if (document.form1.manage_pwd.value=="") {
-		alert('请填写管理密码!');
+        showMsg('请填写管理密码!');
 		document.form1.manage_pwd.focus();
 		return false;
 	}
-	<!--{/if}-->
-
+	<!--{/if}-->*/
     layer.open({
         content: '发布中...',
         type : 2,
         shade: 'background-color: rgba(98,98,98,.8)'
     });
-	return true;
+    var formData = new FormData(document.querySelector("#form1"));
+    var img_count = $('#pics')[0].files.length;
+    for (i = 0; i < img_count; i++) {
+        formData.append('mymps_img_'+i, $('#pics')[0].files[i]);
+    }
+
+    $.ajax({
+        url: 'index.php?mod=post',
+        dataType: 'json',
+        type: 'POST',
+        cache: false,
+        data: formData,
+        processData: false,
+        contentType: false
+    }).done(function(res) {
+    }).fail(function(res) {
+        showMsg('发布失败');
+    }).success(function (res) {
+        console.log(res)
+        if (res.state == 'true') {
+            window.location.href = 'index.php?mod=category&catid={$catid}';
+        } else {
+            showMsg(res.msg);
+        }
+    });
+
+	return false;
+}
+
+function showMsg(msg) {
+    layer.open({
+        content: msg,
+        btn: '关闭'
+    });
 }
 </script>
 </head>
@@ -66,7 +97,7 @@ function submitForm(){
     }
 </style>
 	{template header_search}
-    <form id="form1" method="post" enctype="multipart/form-data" action="index.php?mod=post" name="form1"  onSubmit="return submitForm();">
+    <form id="form1" method="post" enctype="multipart/form-data" action="javascript:;" name="form1"  onSubmit="return submitForm();">
     <input name="areaid" type="hidden" value="{$areaid}">
     <input name="cityid" type="hidden" value="{$cityid}">
     {if empty($child)}<input name="catid" type="hidden" value="{$catid}">{/if}
@@ -127,7 +158,10 @@ function submitForm(){
 			{if $upload_img}
             <li class="item">
                 <div class="title"><span>添加照片：</span></div>
-                <div class="">{$upload_img}</div>
+                <div style="margin-left: 6rem">
+                    <input type="file" name="pics" id="pics" multiple />
+                </div>
+                <!--<div class="dropzones" id="dpzs" style="border: none;min-height: 2rem;padding: 0px;margin-left: 5rem"></div>-->
             </li>
             {/if}
 

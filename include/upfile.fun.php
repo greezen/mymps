@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE );
+
 function check_upimage( $file = "filename" )
 {
 	global $mymps_global;
@@ -266,7 +268,7 @@ function waterimg( $srcFile, $fromGo = "up" )
 	{
 		return;
 	}
-	$trueMarkimg = MYMPS_ROOT.$photo_markimg;
+	$trueMarkimg = $photo_markimg;
 	if ( !file_exists( $trueMarkimg ) && empty( $photo_markimg ) )
 	{
 		$trueMarkimg = "";
