@@ -8,5 +8,6 @@ $data = array (
   'authcode' => '0',
   'mobiletopicperpage' => '10',
   'mobiledomain' => '',
+  'mobilelogo' => '/chengsheng_m_logo.png',
 );
 ?>

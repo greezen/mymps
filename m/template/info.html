@@ -25,9 +25,13 @@
 	<div class="detail">	
 		<div class="tit_area">
 			<h1 class="tit">{$row[title]}</h1>
+		
 			<div class="status_bar">
 				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
 				<span class="browse_num">浏览人数：<span id="totalcount" >{$row['hit']}</span>次</span>
+				
+				<a  href="javascript:doWeixinShare('{$mymps_global[SiteUrl]}{$row[image][0][prepath]}','{$row[title]}','{$row[content]}','{$mymps_global[SiteUrl]}/m/index.php?mod=information&id={$row[id]}');" class="btn_Favorite" style="right: 27rem !important;">
+					<img src="../images/font-340.png" alt="" width="18px" style="vertical-align:middle;margin-left: -0.5rem">分享</a>
 				<a rel="nofollow" href="{$mymps_global[SiteUrl]}/box.php?part=wap_shoucang&infoid={$row[id]}" class="btn_Favorite"><i class="ico"></i>收藏</a>
 			</div>
 		</div>
@@ -107,6 +111,7 @@
 		</div>
 	</div>
 	
+	
 	<div id="viewBigImagebg"></div>
 	<div id="viewBigImage">
 		<div class="bigimg_topbar">
@@ -122,4 +127,21 @@
 {template footer}
 </div>
 </body>
+<script type="text/javascript">
+//分享 
+function doWeixinShare(imgurl,title,descx,pageurl){
+	if(imgurl=="")imgurl = "http://www.cs0663.cn/chengsheng_m_logo.png";
+	if(pageurl=="")pageurl = window.location.href;
+	var ua = navigator.userAgent.toLowerCase();	
+	if (/iphone|ipad|ipod/.test(ua)) {
+		imgurl = imgurl.replace("http://","");
+		imgurl = imgurl.replace("https://","");
+		pageurl = pageurl.replace("http://","");
+		pageurl = pageurl.replace("https://","");
+		document.location="openWeixinShare:"+imgurl+":"+title+":"+descx+":"+pageurl;
+	}else{
+		applocal.openWeixinShare(imgurl,title,descx,pageurl);
+	}
+}
+</script>
 </html>

@@ -1,6 +1,6 @@
 <?php
 $data = array (
-  'root' =>
+  'admin' => 
   array (
     'typename' => '超级管理员',
     'ifsystem' => '1',
