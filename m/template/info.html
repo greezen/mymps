@@ -6,7 +6,9 @@
 	<link type="text/css" rel="stylesheet" href="template/css/global.css">
 	<link type="text/css" rel="stylesheet" href="template/css/style.css">
 	<link type="text/css" rel="stylesheet" href="template/css/info.css">
-    <script src="template/js/jq_min.js"></script>
+	<link rel="stylesheet" href="/template/default/js/layer/skin/default/layer.css">
+	<script src="template/js/jq_min.211.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/template/default/js/layer/mobile/layer.js"></script>
 </head>
 
 <body class="{$mymps_global[cfg_tpl_dir]}">
@@ -30,7 +32,7 @@
 				<span class="date"><i class="ico"></i>{echo GetTime($row[begintime])}</span>
 				<span class="browse_num">浏览人数：<span id="totalcount" >{$row['hit']}</span>次</span>
 				
-				<a  href="javascript:doWeixinShare('{$mymps_global[SiteUrl]}{$row[image][0][prepath]}','{$row[title]}','{$row[content]}','{$mymps_global[SiteUrl]}/m/index.php?mod=information&id={$row[id]}');" class="btn_Favorite" style="right: 27rem !important;">
+				<a href="javascript:;" class="btn_Favorite" id="share" style="right: 4.4rem !important;width:55px">
 					<img src="../images/font-340.png" alt="" width="18px" style="vertical-align:middle;margin-left: -0.5rem">分享</a>
 				<a rel="nofollow" href="{$mymps_global[SiteUrl]}/box.php?part=wap_shoucang&infoid={$row[id]}" class="btn_Favorite"><i class="ico"></i>收藏</a>
 			</div>
@@ -123,11 +125,27 @@
 
 	<script src="template/js/slide.js"></script>
 	<div style="display:none"><script src="template/js/history.js"></script></div>
+	<div id="share-list">
+		<div class="item">
+			<a href="javascript:doWeixinShare('{$mymps_global[SiteUrl]}{$row[image][0][prepath]}','{$row[title]}','{$row[content]}','{$mymps_global[SiteUrl]}/m/index.php?mod=information&id={$row[id]}',false);"><img src="/images/weixin.png" alt="" style="width: 3rem; margin-left: 1rem"></a>
+			<a href="javascript:doWeixinShare('{$mymps_global[SiteUrl]}{$row[image][0][prepath]}','{$row[title]}','{$row[content]}','{$mymps_global[SiteUrl]}/m/index.php?mod=information&id={$row[id]}',true);"><img src="/images/pengyouquan.png" alt="" style="width: 3rem; margin-left: 1rem"></a>
+		</div>
+	</div>
 	
 {template footer}
 </div>
 </body>
 <script type="text/javascript">
+	$(function () {
+		$('#share').click(function () {
+			layer.open({
+				type: 1,
+				content: $('#share-list').html(),
+				anim: 'up',
+				style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100px; padding:10px 0; border:none;'
+			});
+		});
+	});
 //分享 
 function doWeixinShare(imgurl,title,descx,pageurl){
 	if(imgurl=="")imgurl = "http://www.cs0663.cn/chengsheng_m_logo.png";
