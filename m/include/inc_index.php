@@ -10,5 +10,5 @@ if (mgetcookie('post') == 1) {
     $url = 'http://'.$_SERVER['HTTP_HOST'] . '/m/index.php?mod=post&cityid='.$cityid;
     header('Location:'.$url);exit;
 }
-include( mymps_tpl( "index" ) );
+include( mymps_tpl( "index_new" ) );
 ?>
